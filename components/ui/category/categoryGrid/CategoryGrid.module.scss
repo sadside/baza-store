@@ -1,0 +1,28 @@
+.wrapper {
+	.firstColumn {
+		display: flex;
+	}
+	
+	.secondColumn {
+		display: flex;
+	}
+	
+	.thirdColumn {
+		display: flex;
+		margin-bottom: 70px;
+	}
+	
+	.columnItem {
+		flex: 1 1 33.3%;
+		height: 362px;
+		background-color: red;
+		
+		&:first-child {
+			background-color: blue;
+		}
+		
+		&:last-child {
+			background-color: green;
+		}
+	}
+}

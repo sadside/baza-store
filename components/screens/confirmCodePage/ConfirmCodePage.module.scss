@@ -1,0 +1,47 @@
+.wrapper {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+
+.errorMessage {
+	color: #b00000;
+	margin-top: 3px;
+	text-align: left;
+	width: 100%;
+	font-size: 14px;
+	margin-top: 5px;
+}
+
+.form {
+	height: 100%;
+	margin-top: 140px;
+}
+
+.goBack {
+	font-size: 12px;
+	text-align: left;
+	width: 100%;
+	cursor: pointer;
+}
+
+.authTitle {
+	font-size: 20px;
+	margin-bottom: 12px;
+	font-weight: bold;
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-bottom: 250px;
+}
+
+.subTitle {
+	width: 300px;
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 24px;
+}
