@@ -3,6 +3,7 @@ import Link from "next/link";
 
 type Props = {}
 
+
 type LinkType = {
 	title: string
 	link: string,
