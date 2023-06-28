@@ -1,8 +1,8 @@
-import {NextPage} from "next";
+import { NextPage } from "next";
 import ForWomenPage from "@/components/screens/forWomen/ForWomen";
 
 const Womens: NextPage = () => {
-	return <ForWomenPage/>
-}
+  return <ForWomenPage />;
+};
 
-export default Womens
+export default Womens;
