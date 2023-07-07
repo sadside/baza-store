@@ -1,46 +1,82 @@
+import { generatePath } from "@/utils/generatePath";
 import Link from "next/link";
 
-type Props = {};
-
-type LinkType = {
-  title: string;
-  link: string;
+type Props = {
+  setShowFullMenu: () => void;
 };
 
-const links: LinkType[] = [
+export type Options = {
+  category?: boolean;
+  products?: boolean;
+};
+
+export type LinkType = {
+  title: string;
+  link: string;
+  options: Options;
+};
+
+export const links: LinkType[] = [
   {
     title: "Женщины",
-    link: "/category/womens",
+    link: "womens",
+    options: {
+      category: true,
+    },
   },
   {
     title: "Мужчины",
-    link: "/for-women",
+    link: "mans",
+    options: {
+      category: true,
+    },
   },
   {
     title: "Дети",
-    link: "/for-women",
+    link: "kids",
+    options: {
+      category: true,
+    },
   },
   {
     title: "Доставка",
-    link: "/for-women",
+    link: "delivery",
+    options: {
+      category: false,
+    },
   },
   {
     title: "Программа лояльности",
-    link: "/for-women",
+    link: "loyalty",
+    options: {
+      category: false,
+    },
+  },
+  {
+    title: "Товары",
+    link: "products",
+    options: {
+      category: false,
+    },
   },
 ];
 
-const MenuLinks = (props: Props) => {
+console.log("test", generatePath(links[5]));
+
+const MenuLinks = ({ setShowFullMenu }: Props) => {
   return (
     <ul>
-      {links.map((link) => (
-        <Link
-          href={link.link}
-          style={{ textDecoration: "none", color: "#000" }}
-        >
-          <li>{link.title}</li>
-        </Link>
-      ))}
+      {links.map((link) => {
+        return (
+          <Link
+            href={generatePath(link)}
+            style={{ textDecoration: "none", color: "#000" }}
+            onMouseEnter={setShowFullMenu}
+          >
+            <li>{link.title}</li>
+          </Link>
+        );
+      })}
     </ul>
   );
 };

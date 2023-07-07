@@ -8,7 +8,8 @@ export const products = [
 		countColors: 4,
 		price: 6500,
 		id: 1,
-		image: img1,
+		image: 'https://assets.burberry.com/is/image/Burberryltd/44D7B11D-5802-4358-9C72-AE8FE3041089?$BBY_V2_SL_3x4$&wid=640&hei=852',
+		images: ['https://assets.burberry.com/is/image/Burberryltd/44D7B11D-5802-4358-9C72-AE8FE3041089?$BBY_V2_SL_3x4$&wid=640&hei=852', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852']
 	},
 	{
 		name: 'Пуховая  кроп',
@@ -16,7 +17,8 @@ export const products = [
 		price: 3000,
 		id: 2,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/44D7B11D-5802-4358-9C72-AE8FE3041089?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500']
 	},
 	{
 		name: 'Пуховая жилетка ',
@@ -24,7 +26,8 @@ export const products = [
 		price: 5500,
 		id: 3,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/44D7B11D-5802-4358-9C72-AE8FE3041089?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500']
 	},
 	{
 		name: 'Куртка ебкая',
@@ -32,7 +35,9 @@ export const products = [
 		price: 2000,
 		id: 4,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/44D7B11D-5802-4358-9C72-AE8FE3041089?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500']
+
 	},
 	{
 		name: 'На зиму ок',
@@ -40,7 +45,8 @@ export const products = [
 		price: 22000,
 		id: 5,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500']
 	},
 	{
 		name: 'Пуховая жилетка кроп',
@@ -48,7 +54,8 @@ export const products = [
 		price: 6500,
 		id: 6,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500']
 	},
 	{
 		name: 'Пуховая жилетка кроп',
@@ -56,7 +63,9 @@ export const products = [
 		price: 6500,
 		id: 7,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/44D7B11D-5802-4358-9C72-AE8FE3041089?$BBY_V2_SL_3x4$&wid=640&hei=852', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852']
+
 	},
 	{
 		name: 'Пуховая жилетка кроп',
@@ -64,7 +73,8 @@ export const products = [
 		price: 6500,
 		id: 8,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500']
 	},
 	{
 		name: 'Пуховая жилетка кроп',
@@ -72,7 +82,8 @@ export const products = [
 		price: 6500,
 		id: 9,
 		image:
-			'https://imgcdn.zarina.ru/upload/images/31234/thumb/450_9999/3123468118_13_1.jpg?t=1677510831',
+			'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_3x4$&wid=640&hei=852',
+			images: ['https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500', 'https://assets.burberry.com/is/image/Burberryltd/CCA704C5-4710-4D48-AC3A-10168A203408?$BBY_V2_SL_1x1$&wid=2500&hei=2500']
 	},
 ]
 

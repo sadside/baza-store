@@ -1,28 +1,18 @@
 .wrapper {
-	.firstColumn {
+	.twoItems {
 		display: flex;
-	}
-	
-	.secondColumn {
-		display: flex;
-	}
-	
-	.thirdColumn {
-		display: flex;
-		margin-bottom: 70px;
-	}
-	
-	.columnItem {
-		flex: 1 1 33.3%;
-		height: 362px;
-		background-color: red;
-		
-		&:first-child {
-			background-color: blue;
-		}
-		
+		overflow: hidden;
+		margin-top: -17%;
 		&:last-child {
-			background-color: green;
+			margin-bottom: -17%;
+		}
+	}
+	.threeItems {
+		display: flex;
+		overflow: hidden;
+
+		a {
+			flex: 0 0 33.3% !important;
 		}
 	}
 }

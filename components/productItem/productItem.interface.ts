@@ -3,5 +3,6 @@ export interface IProduct {
 	price: number
 	name: string
 	countColors: number
-	image: any
+	image: string,
+	images?: string[]
 }

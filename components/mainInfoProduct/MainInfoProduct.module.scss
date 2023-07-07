@@ -1,0 +1,28 @@
+.wrapper {
+    width: 100%;
+}
+
+
+.productName {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.name {
+    font-size: 24px;
+    @media (min-width: 1200px) and (max-width: 2600px) {
+        font-size: 16px;
+    }
+    font-family: Montserrat;
+    font-weight: 700;
+    line-height: 130%;
+}
+
+.price {
+    font-weight: 500;
+    line-height: 100%;
+    font-size: 16px;
+    margin-bottom: 25px;
+}

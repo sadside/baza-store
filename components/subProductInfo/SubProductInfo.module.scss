@@ -1,0 +1,14 @@
+.wrapper {
+    margin: 25px 0;
+    
+    .infoItem {
+        display: flex;
+        margin-top: 15px;
+        align-items: center;
+        div {
+            margin-left: 15px;
+            font-size: 14px;
+
+        }
+    }
+}

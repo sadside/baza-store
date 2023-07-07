@@ -8,6 +8,8 @@ const nextConfig = {
 			'i.ibb.co',
 			'localhost',
 			'img5.goodfon.ru',
+			'downloader.disk.yandex.ru',
+			'assets.burberry.com'
 		],
 	},
 }

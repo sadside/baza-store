@@ -1,0 +1,12 @@
+.breadcrumbs {
+    display: flex;
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 16px;
+    @media (min-width: 1200px) and (max-width: 2600px) {
+        font-size: 14px;
+    }
+    font-weight: 400;
+    font-family: Montserrat;
+    line-height: 100%;
+}

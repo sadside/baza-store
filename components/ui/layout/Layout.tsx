@@ -1,21 +1,20 @@
-import Footer from './footer/Footer'
-import styles from './Layout.module.scss'
-import Menu from './menu/Menu'
+import { useState } from "react";
+import Footer from "./footer/Footer";
+import styles from "./Layout.module.scss";
+import Menu from "./menu/Menu";
 
-type Props = { children?: React.ReactNode }
+type Props = { children?: React.ReactNode; content: any };
 
-const Layout = ({children}) => {
-	return (
-		<div className={styles.wrapper}>
-			<Menu/>
-			<div className={styles.outlet}>
-				{children}
-			</div>
-			<div className={styles.footer}>
-				<Footer/>
-			</div>
-		</div>
-	)
-}
+const Layout = ({ children, content }: Props) => {
+  return (
+    <div className={styles.wrapper}>
+      <Menu content={content} />
+      <div className={styles.outlet}>{children}</div>
+      <div className={styles.footer}>
+        <Footer />
+      </div>
+    </div>
+  );
+};
 
-export default Layout
+export default Layout;
