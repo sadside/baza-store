@@ -17,13 +17,17 @@ export const getStaticPaths = async () => {
     const paths = data.map((product: IProduct) => ({
       params: { id: product.id.toString() },
     }));
+    console.log(paths);
 
     return {
       paths,
       fallback: false,
     };
   } catch {
-    return {};
+    return {
+      paths: [],
+      fallback: false,
+    };
   }
 };
 
