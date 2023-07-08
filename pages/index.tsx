@@ -25,7 +25,9 @@ export const getServerSideProps: GetServerSideProps = async () => {
     };
   } catch {
     return {
-      props: {},
+      props: {
+        products: [],
+      },
     };
   }
 };
