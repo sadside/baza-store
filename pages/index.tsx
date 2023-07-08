@@ -16,7 +16,7 @@ const Home: NextPage<Props> = ({ products }) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {
-    const { data } = await axios.get("http://localhost:3000/api/products");
+    const { data } = await axios.get(`${process.env.SERVER_URL}api/products`);
 
     return {
       props: {
