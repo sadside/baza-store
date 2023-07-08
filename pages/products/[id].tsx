@@ -12,7 +12,7 @@ export default function ({ product }: IProductPageProps) {
 
 export const getStaticPaths = async () => {
   try {
-    const { data } = await axios.get(`${process.env.SERVER_URL}/api/products`);
+    const { data } = await axios.get(`${process.env.SERVER_URL}api/products`);
 
     const paths = data.map((product: IProduct) => ({
       params: { id: product.id.toString() },
