@@ -44,28 +44,39 @@ const Menu = ({ content }: Props) => {
   return (
     <>
       <div onMouseLeave={() => setShowFullMenu(false)}>
-        <div
-          className={clsx({
-            [styles.hide]: hideMenu,
-            [styles.wrapper]: true,
-          })}
-          style={showFullMenu ? { border: "none" } : {}}
-        >
-          <Link className={styles.logo} href="/">
-            <SvgSelector id="logo" />
-          </Link>
-          <div className={styles.nav}>
-            <MenuLinks setShowFullMenu={() => setShowFullMenu(true)} />
-          </div>
-          <div className={styles.additional}>
-            <Link className={styles.userIcon} href="auth">
-              <SvgSelector id="user" />
-            </Link>
-            <div className={styles.userIcon}>
-              <SvgSelector id="cart" />
-            </div>
-          </div>
-        </div>
+        <AnimatePresence>
+          {!hideMenu && (
+            <motion.div
+              initial={{ y: "-110%" }}
+              transition={{
+                duration: 0.3,
+              }}
+              animate={{
+                y: 0,
+              }}
+              exit={{
+                y: "-110%",
+              }}
+              className={styles.wrapper}
+              style={showFullMenu ? { border: "none" } : {}}
+            >
+              <Link className={styles.logo} href="/">
+                <SvgSelector id="logo" />
+              </Link>
+              <div className={styles.nav}>
+                <MenuLinks setShowFullMenu={() => setShowFullMenu(true)} />
+              </div>
+              <div className={styles.additional}>
+                <Link className={styles.userIcon} href="auth">
+                  <SvgSelector id="user" />
+                </Link>
+                <div className={styles.userIcon}>
+                  <SvgSelector id="cart" />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <DropdownMenu
           showFullMenu={showFullMenu}
           hideMenu={hideMenu}

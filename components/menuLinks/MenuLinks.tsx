@@ -61,8 +61,6 @@ export const links: LinkType[] = [
   },
 ];
 
-console.log("test", generatePath(links[5]));
-
 const MenuLinks = ({ setShowFullMenu }: Props) => {
   return (
     <ul>

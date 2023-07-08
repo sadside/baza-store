@@ -24,8 +24,8 @@ export const DropdownMenu = ({ showFullMenu, hideMenu, content }: Props) => {
         {showFullMenu && !hideMenu && (
           <motion.div
             className={styles.fullMenuContent}
-            animate={{ height: 400 }}
-            initial={{ height: 0 }}
+            animate={{ y: 0 }}
+            initial={{ y: "-150%" }}
             exit={{ y: "-150%" }}
             transition={{ duration: 0.3 }}
           >
