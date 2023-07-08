@@ -36,7 +36,7 @@ export const getStaticProps = async (context: any) => {
 
   try {
     const { data } = await axios.get(
-      `${process.env.SERVER_URL}/api/products/${id}`
+      `${process.env.SERVER_URL}api/products/${id}`
     );
 
     return {
