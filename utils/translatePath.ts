@@ -1,4 +1,5 @@
-import { links } from "@/components/menuLinks/MenuLinks"
+
+import { links } from "@/components/menuLinks/menuLinks.data"
 import { generatePath } from "./generatePath"
 
 export const translatePath = (path: string): any => {
