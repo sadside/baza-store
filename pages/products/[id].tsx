@@ -45,7 +45,7 @@ export const getStaticProps = async (context: any) => {
       },
     };
   } catch {
-    alert("load error");
+    console.log("load error");
     return {
       props: {
         product: [],
