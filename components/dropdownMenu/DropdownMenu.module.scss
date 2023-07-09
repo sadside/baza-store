@@ -17,5 +17,9 @@
 	width: 100vw;
 	left: 0	;
 	z-index: 101;
-	overflow: hidden;
+	height: -webkit-max-content;
+	height: -moz-max-content;
+	height: max-content;
+	// transition: all .2s ease;
+	// overflow: hidden;
 }

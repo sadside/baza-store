@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactNode } from "react";
 
 type AnimatedTextProps = {
@@ -6,7 +6,11 @@ type AnimatedTextProps = {
 };
 
 export const AnimatedText = ({ children, ...props }: AnimatedTextProps) => {
+  console.log("render");
+
   return (
+    // <AnimatePresence>
+    // {children && (
     <motion.div
       {...props}
       animate={{ y: 0, opacity: 1 }}
@@ -16,5 +20,7 @@ export const AnimatedText = ({ children, ...props }: AnimatedTextProps) => {
     >
       {children}
     </motion.div>
+    // )}
+    // </AnimatePresence>
   );
 };

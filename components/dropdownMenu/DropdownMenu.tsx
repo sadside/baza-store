@@ -3,14 +3,25 @@ import React from "react";
 
 import styles from "./DropdownMenu.module.scss";
 import { DropdownMenuContent } from "../dropdownMenuContent/DropdownMenuContent";
+import { ICategory } from "../menuCategory/menuCategory.interface";
 
-type Props = { showFullMenu: boolean; hideMenu: boolean; content: any };
+type Props = {
+  showFullMenu: boolean;
+  hideMenu: boolean;
+  content: any;
+  activeCategory: ICategory | null;
+};
 
-export const DropdownMenu = ({ showFullMenu, hideMenu, content }: Props) => {
+export const DropdownMenu = ({
+  showFullMenu,
+  hideMenu,
+  content,
+  activeCategory,
+}: Props) => {
   return (
     <>
       <AnimatePresence>
-        {showFullMenu && !hideMenu && (
+        {!hideMenu && activeCategory && Object.keys(activeCategory).length && (
           <motion.div
             className={styles.fullMenu}
             initial={{ opacity: 0 }}
@@ -21,7 +32,7 @@ export const DropdownMenu = ({ showFullMenu, hideMenu, content }: Props) => {
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {showFullMenu && !hideMenu && (
+        {!hideMenu && activeCategory && Object.keys(activeCategory).length && (
           <motion.div
             className={styles.fullMenuContent}
             animate={{ y: 0 }}
@@ -29,7 +40,10 @@ export const DropdownMenu = ({ showFullMenu, hideMenu, content }: Props) => {
             exit={{ y: "-150%" }}
             transition={{ duration: 0.3 }}
           >
-            <DropdownMenuContent content={content} />
+            <DropdownMenuContent
+              content={content}
+              activeCategory={activeCategory}
+            />
           </motion.div>
         )}
       </AnimatePresence>

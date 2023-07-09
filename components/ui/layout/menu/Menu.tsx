@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { AnimatePresence, motion } from "framer-motion";
 import { DropdownMenu } from "@/components/dropdownMenu/DropdownMenu";
+import { LinkType } from "@/components/menuLinks/menuLinks.data";
+import { ICategory } from "@/components/menuCategory/menuCategory.interface";
 
-type Props = { content?: any };
+type Props = { content?: ICategory[] };
 
 const Menu = ({ content }: Props) => {
   let scroll = 0;
@@ -16,11 +18,36 @@ const Menu = ({ content }: Props) => {
 
   const [hideMenu, setHideMenu] = useState(false);
   const [showFullMenu, setShowFullMenu] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<ICategory | null>(null);
 
   const router = useRouter();
 
+  const handleHoverMenuLink = (state: boolean, category?: string) => {
+    let flag = false;
+
+    if (category) {
+      content?.forEach((contentCategory) => {
+        if (flag) return;
+
+        if (contentCategory.slug === category) {
+          setShowFullMenu(state);
+          setActiveCategory(contentCategory);
+          console.log(contentCategory.slug == category);
+          flag = true;
+        }
+        if (!flag) {
+          setActiveCategory(null);
+        }
+      });
+    } else {
+      if (!state) setActiveCategory(null);
+    }
+  };
+
+  console.log(content);
+
   useEffect(() => {
-    setShowFullMenu(false);
+    setActiveCategory(null);
   }, [router.asPath]);
 
   useEffect(() => {
@@ -43,7 +70,11 @@ const Menu = ({ content }: Props) => {
 
   return (
     <>
-      <div onMouseLeave={() => setShowFullMenu(false)}>
+      <div
+        onMouseLeave={() => {
+          setActiveCategory(null);
+        }}
+      >
         <AnimatePresence>
           {!hideMenu && (
             <motion.div
@@ -58,13 +89,16 @@ const Menu = ({ content }: Props) => {
                 y: "-110%",
               }}
               className={styles.wrapper}
-              style={showFullMenu ? { border: "none" } : {}}
+              style={activeCategory ? { border: "none" } : {}}
             >
               <Link className={styles.logo} href="/">
                 <SvgSelector id="logo" />
               </Link>
               <div className={styles.nav}>
-                <MenuLinks setShowFullMenu={() => setShowFullMenu(true)} />
+                <MenuLinks
+                  setShowFullMenu={handleHoverMenuLink}
+                  activeCategory={activeCategory?.slug}
+                />
               </div>
               <div className={styles.additional}>
                 <Link className={styles.userIcon} href="auth">
@@ -81,6 +115,7 @@ const Menu = ({ content }: Props) => {
           showFullMenu={showFullMenu}
           hideMenu={hideMenu}
           content={content}
+          activeCategory={activeCategory}
         />
       </div>
     </>

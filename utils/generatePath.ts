@@ -1,6 +1,4 @@
-import { LinkType } from "@/components/menuLinks/MenuLinks";
-
-
+import { LinkType } from "@/components/menuLinks/menuLinks.data"
 
 export const generatePath = (link: LinkType) => {
     const newObj = {}

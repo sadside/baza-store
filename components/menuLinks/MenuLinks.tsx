@@ -1,77 +1,28 @@
 import { generatePath } from "@/utils/generatePath";
 import Link from "next/link";
+import { LinkType, links } from "./menuLinks.data";
+import { ICategory } from "../menuCategory/menuCategory.interface";
+
+import styles from "./MenuLinks.module.scss";
 
 type Props = {
-  setShowFullMenu: () => void;
+  setShowFullMenu: (state: boolean, link?: string) => void;
+  activeCategory: string | undefined;
 };
 
-export type Options = {
-  category?: boolean;
-  products?: boolean;
-};
-
-export type LinkType = {
-  title: string;
-  link: string;
-  options: Options;
-};
-
-export const links: LinkType[] = [
-  {
-    title: "Женщины",
-    link: "womens",
-    options: {
-      category: true,
-    },
-  },
-  {
-    title: "Мужчины",
-    link: "mans",
-    options: {
-      category: true,
-    },
-  },
-  {
-    title: "Дети",
-    link: "kids",
-    options: {
-      category: true,
-    },
-  },
-  {
-    title: "Доставка",
-    link: "delivery",
-    options: {
-      category: false,
-    },
-  },
-  {
-    title: "Программа лояльности",
-    link: "loyalty",
-    options: {
-      category: false,
-    },
-  },
-  {
-    title: "Товары",
-    link: "products",
-    options: {
-      category: false,
-    },
-  },
-];
-
-const MenuLinks = ({ setShowFullMenu }: Props) => {
+const MenuLinks = ({ setShowFullMenu, activeCategory }: Props) => {
   return (
     <ul>
       {links.map((link) => {
         return (
           <Link
             href={generatePath(link)}
-            style={{ textDecoration: "none", color: "#000" }}
-            onMouseEnter={setShowFullMenu}
+            style={{ color: "#000" }}
+            onMouseEnter={() => setShowFullMenu(true, link.link)}
           >
-            <li>{link.title}</li>
+            <li className={`${activeCategory == link.link && styles.active}`}>
+              {link.title}
+            </li>
           </Link>
         );
       })}

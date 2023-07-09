@@ -8,20 +8,21 @@ type Props = {
   category: ICategory;
 };
 
-export const MenuCategory = ({ category: { name, children } }: Props) => {
+export const MenuCategory = ({ category }: Props) => {
   return (
     <AnimatedText>
       <div className={styles.wrapper}>
-        <div className={styles.category}>{name}</div>
+        <div className={styles.category}>{category.name}</div>
         <div>
-          {children.map((child) => (
-            <Link
-              className={styles.subCategory}
-              href={`/categories/${child.slug}`}
-            >
-              {`${child.name}`}
-            </Link>
-          ))}
+          {Object.keys(category).length &&
+            category.children.map((child) => (
+              <Link
+                className={styles.subCategory}
+                href={`/categories/${child.slug}`}
+              >
+                {`${child.name}`}
+              </Link>
+            ))}
         </div>
       </div>
     </AnimatedText>
