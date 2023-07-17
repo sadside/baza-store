@@ -3,20 +3,19 @@ import { AnimatedText } from "../animatedText/AnimatedText";
 import { MenuCategory } from "../menuCategory/MenuCategory";
 import { ICategory } from "../menuCategory/menuCategory.interface";
 import styles from "./DropdownMenuContent.module.scss";
+import { useUnit } from "effector-react";
+import { $activeCategory } from "@/stores/layout/menu/init";
 
-type Props = {
-  content: ICategory[];
-  activeCategory: ICategory | null;
-};
+type Props = {};
 
-export const DropdownMenuContent = ({ content, activeCategory }: Props) => {
+export const DropdownMenuContent = ({}: Props) => {
+  const activeCategory = useUnit($activeCategory);
+
   return (
-    <AnimatePresence>
-      <motion.div transition={{ duration: 0.3 }} className={styles.wrapper}>
-        <div className={styles.grid}>
-          {activeCategory && <MenuCategory category={activeCategory} />}
-        </div>
-      </motion.div>
-    </AnimatePresence>
+    <div className={styles.wrapper}>
+      <div className={styles.grid}>
+        <MenuCategory />
+      </div>
+    </div>
   );
 };

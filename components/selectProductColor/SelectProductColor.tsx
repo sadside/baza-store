@@ -35,6 +35,7 @@ export const SelectProductColor = (props: Props) => {
                 [styles.colorPrickerBtn]: true,
                 [styles.selectedColorBtn]: color.color === selectedColor.color,
               })}
+              key={color.color}
             ></div>
           );
         })}

@@ -1,32 +1,51 @@
 import { generatePath } from "@/utils/generatePath";
 import Link from "next/link";
-import { LinkType, links } from "./menuLinks.data";
 import { ICategory } from "../menuCategory/menuCategory.interface";
 
 import styles from "./MenuLinks.module.scss";
+import {
+  $activeCategory,
+  $showDropdownMenu,
+  categorySelected,
+  dropdownMenuOpened,
+} from "@/stores/layout/menu/init";
+import { useUnit } from "effector-react";
+import { $menuContent } from "@/stores/layout/menu/content/init";
 
-type Props = {
-  setShowFullMenu: (state: boolean, link?: string) => void;
-  activeCategory: string | undefined;
-};
+type Props = {};
 
-const MenuLinks = ({ setShowFullMenu, activeCategory }: Props) => {
+const MenuLinks = ({}: Props) => {
+  const links: ICategory[] = useUnit($menuContent);
+  const activeCategory = useUnit($activeCategory);
+  const showDropdownMenu = useUnit($showDropdownMenu);
+
   return (
-    <ul>
-      {links.map((link) => {
-        return (
-          <Link
-            href={generatePath(link)}
-            style={{ color: "#000" }}
-            onMouseEnter={() => setShowFullMenu(true, link.link)}
-          >
-            <li className={`${activeCategory == link.link && styles.active}`}>
-              {link.title}
-            </li>
-          </Link>
-        );
-      })}
-    </ul>
+    <div className={styles.nav}>
+      <ul>
+        {links.map((link) => {
+          return (
+            <div
+              style={{ color: "#000" }}
+              onMouseEnter={() => {
+                dropdownMenuOpened();
+                categorySelected(link);
+              }}
+              key={link.id}
+            >
+              <li
+                className={`${
+                  activeCategory?.name === link.name &&
+                  showDropdownMenu &&
+                  styles.active
+                }`}
+              >
+                {link.name}
+              </li>
+            </div>
+          );
+        })}
+      </ul>
+    </div>
   );
 };
 

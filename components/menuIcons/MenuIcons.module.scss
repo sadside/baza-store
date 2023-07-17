@@ -1,0 +1,21 @@
+.additional {
+  height: 40px;
+  margin-right: 40px;
+  margin-left: 40px;
+  flex-shrink: 1;
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+  .userIcon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #000;
+    
+    &:nth-child(2) {
+      margin-left: 20px;
+    }
+  }
+}

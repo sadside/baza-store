@@ -6,7 +6,7 @@ type Props = {};
 export function LoyaltyPage({}: Props) {
   return (
     <div className={styles.wrapper}>
-      <h1>Программа лоялности</h1>
+      <h1>Программа лояльности</h1>
       <TextBlock
         title="Требования к участникам программы"
         type="list"

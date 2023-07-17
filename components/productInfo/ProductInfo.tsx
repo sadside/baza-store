@@ -1,5 +1,5 @@
 type Props = {
-    product: IProduct;
+  product: IProduct;
 };
 
 import { useRouter } from "next/router";
@@ -13,24 +13,34 @@ import { SelectProductSize } from "../selectSizeProduct/SelectProductSize";
 import Button from "../ui/button/Button";
 import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
+import { productAddedToCart } from "@/stores/cart/init";
 
 export const ProductInfo = ({ product }: Props) => {
-    const router = useRouter();
-
-    return (
-        <div className={styles.productInfo}>
-            <div className={styles.wrapper}>
-                <Breadcrumbs path={router.asPath} />
-                <MainInfoProduct product={product} />
-                <Hr />
-                <SelectProductColor />
-                <Hr />
-                <SelectProductSize />
-                <Button text="Добавить в корзину" style={{ width: "100%" }} />
-                <SubProductInfo />
-                <Hr />
-                <ProductDetails />
-            </div>
-        </div>
-    );
+  return (
+    <div className={styles.productInfo}>
+      <div className={styles.wrapper}>
+        {/* <Breadcrumbs path={router.asPath} /> */}
+        <MainInfoProduct product={product} />
+        <Hr />
+        <SelectProductColor />
+        <Hr />
+        <SelectProductSize />
+        <Button
+          text="Добавить в корзину"
+          style={{ width: "100%" }}
+          onClick={() => {
+            productAddedToCart({
+              id: product.id,
+              price: product.price,
+              name: product.name,
+              image: product.image,
+            });
+          }}
+        />
+        <SubProductInfo />
+        <Hr />
+        <ProductDetails />
+      </div>
+    </div>
+  );
 };

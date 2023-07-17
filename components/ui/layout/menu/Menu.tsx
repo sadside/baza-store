@@ -1,64 +1,64 @@
-import Link from "next/link";
-import SvgSelector from "../../../../utils/SvgSelector";
-import MenuLinks from "../../../menuLinks/MenuLinks";
-import clsx from "clsx";
-import styles from "./Menu.module.scss";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { AnimatePresence, motion } from "framer-motion";
+
 import { DropdownMenu } from "@/components/dropdownMenu/DropdownMenu";
-import { LinkType } from "@/components/menuLinks/menuLinks.data";
-import { ICategory } from "@/components/menuCategory/menuCategory.interface";
 
-type Props = { content?: ICategory[] };
+import { useUnit } from "effector-react";
 
-const Menu = ({ content }: Props) => {
-  let scroll = 0;
-  const defaultOffset = 150;
+import {
+  $showCart,
+  mouseLeavedFromCart,
+  pageMounted,
+} from "@/stores/cart/init";
+import { Cart } from "@/components/cart/Cart";
+import {
+  $showDropdownMenu,
+  $showSmallMenu,
+  categoryCleared,
+  dropdownMenuClosed,
+  smallMenuClosed,
+  smallMenuOpened,
+} from "@/stores/layout/menu/init";
+import {
+  getMenuContentFx,
+  menuMounted,
+} from "@/stores/layout/menu/content/init";
+import { SmallMenu } from "../smallMenu/SmallMenu";
 
-  const [hideMenu, setHideMenu] = useState(false);
-  const [showFullMenu, setShowFullMenu] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<ICategory | null>(null);
+type Props = {};
 
+const Menu = ({}: Props) => {
+  const showSmallMenu = useUnit($showSmallMenu);
   const router = useRouter();
-
-  const handleHoverMenuLink = (state: boolean, category?: string) => {
-    let flag = false;
-
-    if (category) {
-      content?.forEach((contentCategory) => {
-        if (flag) return;
-
-        if (contentCategory.slug === category) {
-          setShowFullMenu(state);
-          setActiveCategory(contentCategory);
-          console.log(contentCategory.slug == category);
-          flag = true;
-        }
-        if (!flag) {
-          setActiveCategory(null);
-        }
-      });
-    } else {
-      if (!state) setActiveCategory(null);
-    }
-  };
-
-  console.log(content);
+  const showCart = useUnit($showCart);
 
   useEffect(() => {
-    setActiveCategory(null);
+    mouseLeavedFromCart();
+    categoryCleared();
   }, [router.asPath]);
 
   useEffect(() => {
+    menuMounted();
+    pageMounted();
+
+    let scroll = 0;
+
+    const defaultOffset = 150;
+
     const scrollPosition = (): number =>
       window.scrollY || document.documentElement.scrollTop;
 
     const scrollListener = () => {
-      if (scrollPosition() > scroll && !hideMenu && scroll >= defaultOffset) {
-        setHideMenu(true);
+      if (
+        scrollPosition() > scroll &&
+        showSmallMenu &&
+        scroll >= defaultOffset &&
+        !showCart
+      ) {
+        dropdownMenuClosed();
+        smallMenuClosed();
       } else {
-        setHideMenu(false);
+        smallMenuOpened();
       }
       scroll = scrollPosition();
     };
@@ -72,51 +72,12 @@ const Menu = ({ content }: Props) => {
     <>
       <div
         onMouseLeave={() => {
-          setActiveCategory(null);
+          dropdownMenuClosed();
         }}
       >
-        <AnimatePresence>
-          {!hideMenu && (
-            <motion.div
-              initial={{ y: "-110%" }}
-              transition={{
-                duration: 0.3,
-              }}
-              animate={{
-                y: 0,
-              }}
-              exit={{
-                y: "-110%",
-              }}
-              className={styles.wrapper}
-              style={activeCategory ? { border: "none" } : {}}
-            >
-              <Link className={styles.logo} href="/">
-                <SvgSelector id="logo" />
-              </Link>
-              <div className={styles.nav}>
-                <MenuLinks
-                  setShowFullMenu={handleHoverMenuLink}
-                  activeCategory={activeCategory?.slug}
-                />
-              </div>
-              <div className={styles.additional}>
-                <Link className={styles.userIcon} href="auth">
-                  <SvgSelector id="user" />
-                </Link>
-                <div className={styles.userIcon}>
-                  <SvgSelector id="cart" />
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <DropdownMenu
-          showFullMenu={showFullMenu}
-          hideMenu={hideMenu}
-          content={content}
-          activeCategory={activeCategory}
-        />
+        <SmallMenu />
+        <Cart />
+        <DropdownMenu />
       </div>
     </>
   );

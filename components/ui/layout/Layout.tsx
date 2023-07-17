@@ -3,12 +3,12 @@ import Footer from "./footer/Footer";
 import styles from "./Layout.module.scss";
 import Menu from "./menu/Menu";
 
-type Props = { children?: React.ReactNode; content: any };
+type Props = { children?: React.ReactNode };
 
-const Layout = ({ children, content }: Props) => {
+const Layout = ({ children }: Props) => {
   return (
     <div className={styles.wrapper}>
-      <Menu content={content} />
+      <Menu />
       <div className={styles.outlet}>{children}</div>
       <div className={styles.footer}>
         <Footer />

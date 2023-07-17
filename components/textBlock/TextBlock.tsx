@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect } from "react";
 import styles from "./TextBlock.module.scss";
 
 type Props = {
@@ -7,6 +10,8 @@ type Props = {
 };
 
 export const TextBlock = ({ title, text, type = "p" }: Props) => {
+  useEffect(() => {}, []);
+
   const paragraphs = text.split("\n");
 
   console.log(paragraphs);
