@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 import { DropdownMenu } from "@/components/dropdownMenu/DropdownMenu";
@@ -19,10 +19,7 @@ import {
   smallMenuClosed,
   smallMenuOpened,
 } from "@/stores/layout/menu/init";
-import {
-  getMenuContentFx,
-  menuMounted,
-} from "@/stores/layout/menu/content/init";
+import { menuMounted } from "@/stores/layout/menu/content/init";
 import { SmallMenu } from "../smallMenu/SmallMenu";
 
 type Props = {};

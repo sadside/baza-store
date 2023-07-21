@@ -3,15 +3,13 @@ import React from "react";
 
 import styles from "./DropdownMenu.module.scss";
 import { DropdownMenuContent } from "../dropdownMenuContent/DropdownMenuContent";
-import { ICategory } from "../menuCategory/menuCategory.interface";
 import { useUnit } from "effector-react";
-import { $activeCategory, $showDropdownMenu } from "@/stores/layout/menu/init";
+import { $showDropdownMenu } from "@/stores/layout/menu/init";
 
 type Props = {};
 
 export const DropdownMenu = ({}: Props) => {
   const showDropdownMenu = useUnit($showDropdownMenu);
-  const activeCategory = useUnit($activeCategory);
 
   return (
     <>
