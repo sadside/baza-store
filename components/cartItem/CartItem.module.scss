@@ -1,0 +1,43 @@
+.wrapper {
+  display: flex;
+
+  .info {
+    flex: 1 1 auto;
+    margin: 0 30px;
+  }
+
+  .price {
+    flex: 0 0 10%;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    text-align: right;
+  }
+
+  .name {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    margin-bottom: 15px;
+
+  }
+  .count {
+    -webkit-user-select: none;
+         -moz-user-select: none;
+          -ms-user-select: none;
+              user-select: none;
+    span {
+      cursor: pointer;
+      margin: 0 5px;
+      font-size: 18px;
+    }
+  }
+
+  .count, .size {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    margin-bottom: 15px;
+
+  }
+}

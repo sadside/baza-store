@@ -21,6 +21,7 @@ import {
 } from "@/stores/layout/menu/init";
 import { menuMounted } from "@/stores/layout/menu/content/init";
 import { SmallMenu } from "../smallMenu/SmallMenu";
+import { isValidMotionProp } from "framer-motion";
 
 type Props = {};
 

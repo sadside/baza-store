@@ -1,5 +1,3 @@
-import { generatePath } from "@/utils/generatePath";
-import Link from "next/link";
 import { ICategory } from "../menuCategory/menuCategory.interface";
 
 import styles from "./MenuLinks.module.scss";
@@ -15,7 +13,7 @@ import { $menuContent } from "@/stores/layout/menu/content/init";
 type Props = {};
 
 const MenuLinks = ({}: Props) => {
-  const links: ICategory[] = useUnit($menuContent);
+  const links = useUnit($menuContent);
   const activeCategory = useUnit($activeCategory);
   const showDropdownMenu = useUnit($showDropdownMenu);
 

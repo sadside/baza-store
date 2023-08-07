@@ -6,6 +6,8 @@ import { useUnit } from "effector-react";
 import React from "react";
 import { number } from "yup";
 
+import styles from "./MenuCart.module.scss";
+
 type Props = {};
 
 export const MenuCart = (props: Props) => {
@@ -19,5 +21,9 @@ export const MenuCart = (props: Props) => {
     return prev + current;
   }, initialValue);
 
-  return <div>{count}</div>;
+  return (
+    <div className={styles.count}>
+      {String(count).length < 3 ? String(count) : "99+"}
+    </div>
+  );
 };

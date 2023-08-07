@@ -14,8 +14,12 @@ import Button from "../ui/button/Button";
 import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
 import { productAddedToCart } from "@/stores/cart/init";
+import { useUnit } from "effector-react";
+import { $selectedSize } from "@/stores/ui/products/productSize";
 
 export const ProductInfo = ({ product }: Props) => {
+  const selectedSize = useUnit($selectedSize);
+
   return (
     <div className={styles.productInfo}>
       <div className={styles.wrapper}>
@@ -29,11 +33,16 @@ export const ProductInfo = ({ product }: Props) => {
           text="Добавить в корзину"
           style={{ width: "100%" }}
           onClick={() => {
+            if (!selectedSize) {
+              alert("Выберите размер");
+              return;
+            }
             productAddedToCart({
               id: product.id,
               price: product.price,
               name: product.name,
               image: product.image,
+              size: selectedSize,
             });
           }}
         />

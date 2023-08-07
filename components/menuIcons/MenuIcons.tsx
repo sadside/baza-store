@@ -5,10 +5,15 @@ import { mouseEnteredToCart } from "@/stores/cart/init";
 import SvgSelector from "@/utils/SvgSelector";
 import Link from "next/link";
 import { MenuCart } from "../ui/layout/cart/MenuCart";
+import { disablePageScroll } from "scroll-lock";
 
 type Props = {};
 
 export const MenuIcons = (props: Props) => {
+  const handleMouseEnter = () => {
+    mouseEnteredToCart();
+  };
+
   return (
     <div className={styles.additional}>
       <Link className={styles.userIcon} href="auth">
@@ -16,11 +21,13 @@ export const MenuIcons = (props: Props) => {
       </Link>
       <Link
         className={styles.userIcon}
-        onMouseEnter={mouseEnteredToCart}
+        onMouseEnter={handleMouseEnter}
         href="/cart"
       >
-        <SvgSelector id="cart" />
-        <MenuCart />
+        <div className={styles.iconWrapper}>
+          <SvgSelector id="cart" />
+          <MenuCart />
+        </div>
       </Link>
     </div>
   );

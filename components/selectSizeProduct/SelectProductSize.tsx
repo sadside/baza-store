@@ -2,12 +2,12 @@ import React from "react";
 import styles from "./SelectProductSize.module.scss";
 import clsx from "clsx";
 import { useUnit } from "effector-react";
-import { $selectSize, sizeClicked } from "@/stores/ui/products/productSize";
+import { $selectedSize, sizeSelected } from "@/stores/ui/products/productSize";
 
 type Props = {};
 
 export const SelectProductSize = (props: Props) => {
-  const selectedSize = useUnit($selectSize);
+  const selectedSize = useUnit($selectedSize);
 
   const sizes = ["s", "x", "xl", "m"];
 
@@ -25,7 +25,7 @@ export const SelectProductSize = (props: Props) => {
                 [styles.sizeItem]: true,
                 [styles.active]: selectedSize === size,
               })}
-              onClick={() => sizeClicked(size)}
+              onClick={() => sizeSelected(size)}
               key={size}
             >
               {size}

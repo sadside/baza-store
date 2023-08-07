@@ -1,4 +1,5 @@
 import { ICategory } from "@/components/menuCategory/menuCategory.interface";
+import { mouseLeavedFromCart } from "@/stores/cart/init";
 import { createEvent, createStore, sample } from "effector";
 
 
@@ -52,8 +53,6 @@ sample({
   clock: dropdownMenuClosed,
   target: categoryCleared
 })
-
-
 
 
 

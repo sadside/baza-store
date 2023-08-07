@@ -18,4 +18,12 @@
       margin-left: 20px;
     }
   }
+
+  .iconWrapper {
+    position: relative;
+    height: 22px !important;
+    height: -webkit-min-content;
+    height: -moz-min-content;
+    height: min-content;
+  }
 }

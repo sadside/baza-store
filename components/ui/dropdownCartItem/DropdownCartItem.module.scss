@@ -1,0 +1,31 @@
+.wrapper {
+  min-width: 220px !important;
+  display: flex;
+  margin-bottom: 20px;
+
+
+  .info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    width: 100%;
+    div {
+      font-size: 14px;
+    }
+
+    .title {
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    .count {
+      flex: 1 1;
+      margin-top: 10px;
+      font-size: 12px;
+      span {
+        font-weight: bold;
+      }
+    }
+
+  }
+}
