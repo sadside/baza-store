@@ -25,7 +25,7 @@ export const ProductPageImages = ({ product }: Props) => {
       {product.image && (
         <Image
           src={product.image.replace(
-            "http://localhost:8000/",
+            "http://127.0.0.1:8000/",
             "http://iizhukov.site:8000/"
           )}
           width={2500}

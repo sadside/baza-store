@@ -15,7 +15,7 @@ const ProductItem = ({ image, price, name, colours, id }: IProduct) => {
       <div>
         <Image
           src={image.replace(
-            "http://localhost:8000/",
+            "http://127.0.0.1:8000/",
             "http://iizhukov.site:8000/"
           )}
           alt={"j"}

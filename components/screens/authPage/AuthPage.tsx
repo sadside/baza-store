@@ -43,7 +43,7 @@ const AuthPage = ({}: Props) => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    const res = await axios.post(`http://localhost:8000/api/auth/send-code/`, {
+    const res = await axios.post(`http://127.0.0.1:8000/api/auth/send-code/`, {
       phone: data.phoneNumber,
     });
 

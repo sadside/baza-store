@@ -24,7 +24,7 @@ export const CartItem = ({
     <div className={styles.wrapper}>
       <Image
         src={image.replace(
-          "http://localhost:8000/",
+          "http://127.0.0.1:8000/",
           "http://iizhukov.site:8000/"
         )}
         width={150}
