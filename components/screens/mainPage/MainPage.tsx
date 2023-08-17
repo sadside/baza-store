@@ -1,5 +1,5 @@
-import { IProduct } from "@/components/productItem/productItem.interface";
 import Products from "@/components/products/Products";
+import { IProduct } from "@/models/Product";
 import Head from "next/head";
 
 interface Props {
@@ -9,9 +9,6 @@ interface Props {
 const MainPage = ({ products }: Props) => {
   return (
     <>
-      <Head>
-        <title>Главная страница</title>
-      </Head>
       <Products products={products} />
     </>
   );

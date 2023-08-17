@@ -3,6 +3,7 @@ export interface IProductCart {
   count?: number,
   name: string,
   price: number,
-  image: string
-  size: string
+  image: string,
+  size: string,
+  color: string
 }

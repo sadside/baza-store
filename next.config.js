@@ -9,9 +9,19 @@ const nextConfig = {
 			'localhost',
 			'img5.goodfon.ru',
 			'downloader.disk.yandex.ru',
-			'assets.burberry.com'
+			'assets.burberry.com',
+			'iizhukov.site'
 		],
 	},
+}
+
+const path = require('path')
+ 
+module.exports = {
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+		reactStrictMode: false,
+  },
 }
 
 module.exports = nextConfig

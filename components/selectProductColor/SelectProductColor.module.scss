@@ -29,6 +29,7 @@
     width: 26px;
     border-radius: 100%;
     margin-right: 25px;
+    border: 1px solid #ccc;
     cursor: pointer;
     position: relative;
     &::before {
@@ -36,8 +37,8 @@
         transition: all 1s ease-in;
         content: '';
         position: absolute;
-        top: -6px;
-        left: -6px;
+        top: -7px !important;
+        left: -7px !important;
         height: 38px;
         width: 38px;
         border-radius: 100%;

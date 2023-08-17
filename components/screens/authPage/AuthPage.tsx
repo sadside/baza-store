@@ -1,13 +1,18 @@
+"use client";
+
 import Button from "@/components/ui/button/Button";
 import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
-import { phoneInputSubmitted } from "@/stores/auth/auth";
+import { $user, phoneInputSubmitted } from "@/stores/auth/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Head from "next/head";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
 import styles from "./AuthPage.module.scss";
+import axios from "axios";
+import { useUnit } from "effector-react";
+import { useLayoutEffect } from "react";
 
 type Props = {};
 
@@ -20,7 +25,12 @@ const schema = yup.object().shape({
 });
 
 const AuthPage = ({}: Props) => {
+  const user = useUnit($user);
   const { push } = useRouter();
+
+  useLayoutEffect(() => {
+    if (user) push("/");
+  }, []);
 
   const {
     register,
@@ -32,10 +42,16 @@ const AuthPage = ({}: Props) => {
     mode: "onChange",
   });
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data.phoneNumber);
-    phoneInputSubmitted(data.phoneNumber);
-    push("/confirm-code");
+  const onSubmit = handleSubmit(async (data) => {
+    const res = await axios.post(`http://localhost:8000/api/auth/send-code/`, {
+      phone: data.phoneNumber,
+    });
+
+    if (res.status === 201) {
+      phoneInputSubmitted(data.phoneNumber);
+      push("/confirm-code");
+    }
+    if (res.status === 400) alert("Номер телефона не соответсвует формату.");
   });
 
   return (

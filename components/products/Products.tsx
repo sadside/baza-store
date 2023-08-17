@@ -1,11 +1,9 @@
 import ProductItem from "@/components/productItem/ProductItem";
-import { IProducts } from "@/components/products/products.interface";
 
 import styles from "./Products.module.scss";
-import { notAuthApi } from "@/api/api";
-import { useEffect } from "react";
+import { IProduct } from "@/models/Product";
 
-const Products = ({ products }: IProducts) => {
+const Products = ({ products }: { products: IProduct[] }) => {
   return (
     <div className={styles.productsWrapper}>
       {products.map((product) => (
@@ -13,7 +11,7 @@ const Products = ({ products }: IProducts) => {
           id={product.id}
           price={product.price}
           name={product.name}
-          countColors={product.countColors}
+          colours={product.colours}
           image={product.image}
           key={product.id}
         />

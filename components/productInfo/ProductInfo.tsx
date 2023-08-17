@@ -1,5 +1,5 @@
 type Props = {
-  product: IProduct;
+  product: IFullProduct;
 };
 
 import { useRouter } from "next/router";
@@ -15,20 +15,76 @@ import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
 import { productAddedToCart } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
-import { $selectedSize } from "@/stores/ui/products/productSize";
+import {
+  $selectedColor,
+  $selectedSize,
+} from "@/stores/ui/products/productSize";
+import { IFullProduct } from "@/models/Product";
 
 export const ProductInfo = ({ product }: Props) => {
   const selectedSize = useUnit($selectedSize);
+  const selectedColor = useUnit($selectedColor);
+
+  const { modifications } = product;
+
+  const colours: any[] = [];
+  const added: string[] = [];
+
+  const defaultColor = {
+    name: "Стандартный",
+    hex_code: "#ccc",
+  };
+
+  if (modifications.length) {
+    modifications.forEach((item) => {
+      let currentColor = {
+        ...defaultColor,
+      };
+
+      if (item.color) {
+        currentColor = {
+          ...item.color,
+        };
+      }
+
+      const sizes: any[] = [];
+
+      if (!added.includes(currentColor.name)) {
+        if (item.size) {
+          modifications.forEach((mod) => {
+            if ((mod?.color?.name || defaultColor.name) === currentColor.name) {
+              sizes.push({
+                size: mod.size,
+                id: mod.id,
+              });
+            }
+          });
+        }
+
+        added.push(currentColor.name);
+
+        if (!sizes.length)
+          sizes.push({
+            id: 100,
+            size: "OS",
+          });
+
+        colours.push({
+          ...currentColor,
+          sizes,
+        });
+      }
+    });
+  }
 
   return (
     <div className={styles.productInfo}>
       <div className={styles.wrapper}>
-        {/* <Breadcrumbs path={router.asPath} /> */}
         <MainInfoProduct product={product} />
         <Hr />
-        <SelectProductColor />
+        <SelectProductColor colours={colours} />
         <Hr />
-        <SelectProductSize />
+        <SelectProductSize modifications={product.modifications} />
         <Button
           text="Добавить в корзину"
           style={{ width: "100%" }}
@@ -37,18 +93,21 @@ export const ProductInfo = ({ product }: Props) => {
               alert("Выберите размер");
               return;
             }
-            productAddedToCart({
-              id: product.id,
-              price: product.price,
-              name: product.name,
-              image: product.image,
-              size: selectedSize,
-            });
+            if (selectedColor) {
+              productAddedToCart({
+                id: product.id,
+                price: product.price,
+                name: product.name,
+                image: product.image,
+                size: selectedSize,
+                color: selectedColor?.name,
+              });
+            }
           }}
         />
         <SubProductInfo />
         <Hr />
-        <ProductDetails />
+        <ProductDetails descrition={product.description} />
       </div>
     </div>
   );

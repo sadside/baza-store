@@ -13,7 +13,15 @@ export const DropdownCartItem = ({
 }: IProductCart) => {
   return (
     <div className={styles.wrapper}>
-      <Image src={image} height={250} width={180} alt="product image" />
+      <Image
+        src={image.replace(
+          "http://localhost:8000/",
+          "http://iizhukov.site:8000/"
+        )}
+        height={250}
+        width={180}
+        alt="product image"
+      />
       <div className={styles.info}>
         <div className={styles.title}>{name}</div>
         <div className={styles.count}>

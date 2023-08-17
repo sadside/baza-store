@@ -23,7 +23,7 @@ sample({
   target: mouseLeavedFromCart
 })
 
-sample({
+sample({ 
   clock: productCountIncremented,
   source: $cart,
   fn: incrementProductCount,
@@ -31,6 +31,7 @@ sample({
 })
 
 sample({
+  //@ts-ignore
   clock: productCounDecremented,
   source: $cart,
   fn: decrementProductCount,

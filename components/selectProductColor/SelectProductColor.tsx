@@ -1,41 +1,44 @@
-import React, { useId, useState } from "react";
+"use client";
+
+import React, { useEffect, useId, useState } from "react";
 import styles from "./SelectProductColor.module.scss";
 import { IColor } from "./SelectProductColor.interface";
 import clsx from "clsx";
+import { colorSelected } from "@/stores/ui/products/productSize";
 
-type Props = {};
+type Props = {
+  colours: any;
+};
 
-export const SelectProductColor = (props: Props) => {
-  const colors: IColor[] = [
-    { label: "Черный", color: "#000" },
-    { label: "Серый", color: "#F2F2F2" },
-    { label: "Серо-буро-малиновый", color: "#8D6B6B" },
-    { label: "Фиолка", color: "#3F489A" },
-  ];
-
-  const [selectedColor, setSelectdColor] = useState<IColor>(colors[0]);
+export const SelectProductColor = ({ colours }: Props) => {
+  const [selectedColor, setSelectdColor] = useState<IColor>(colours[0]);
+  useEffect(() => {
+    colorSelected(colours[0]);
+  }, []);
 
   const selectColorHandleClicked = (color: IColor) => {
     setSelectdColor(color);
+    colorSelected(color);
   };
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.color}>
         <div className={styles.titleText}>ЦВЕТ:</div>
-        <div className={styles.selectedColor}>{selectedColor.label}</div>
+        <div className={styles.selectedColor}>{selectedColor.name}</div>
       </div>
       <div className={styles.colorPicker}>
-        {colors.map((color) => {
+        {colours.map((color: IColor) => {
           return (
             <div
-              style={{ backgroundColor: color.color }}
+              style={{ backgroundColor: `#${color.hex_code}` }}
               onClick={() => selectColorHandleClicked(color)}
               className={clsx({
                 [styles.colorPrickerBtn]: true,
-                [styles.selectedColorBtn]: color.color === selectedColor.color,
+                [styles.selectedColorBtn]:
+                  color.hex_code === selectedColor.hex_code,
               })}
-              key={color.color}
+              key={color.hex_code}
             ></div>
           );
         })}

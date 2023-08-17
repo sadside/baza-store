@@ -5,22 +5,24 @@ import { pageMounted } from "@/stores/cart/init";
 import { createEffect, createEvent, sample } from "effector";
 import {createStore} from 'effector/compat'
 
-const getMenuContentFx = createEffect(async () => {
-  const menuContent = await notAuthApi.get(`api/menu-content/`)
+// const getMenuContentFx = createEffect(async () => {
+//   const menuContent = await notAuthApi.get(`api/menu-content/`)
 
-  return menuContent.data
-})
-
-
-const menuMounted = createEvent()
-
-const $menuContent = createStore<ICategory[]>([]).on(getMenuContentFx.done, (_, payload) => payload.result)
+//   return menuContent.data
+// })
 
 
-sample({
-  clock: menuMounted, 
-  target: getMenuContentFx
-})
+export const menuMounted = createEvent()
+
+// const $menuContent = createStore<ICategory[]>([]).on(getMenuContentFx.done, (_, payload) => payload.result)
+
+// $menuContent.watch(state => console.log(state))
 
 
-export {$menuContent, menuMounted, getMenuContentFx}
+// sample({
+//   clock: menuMounted, 
+//   target: getMenuContentFx
+// })
+
+
+// export {$menuContent, menuMounted, getMenuContentFx}

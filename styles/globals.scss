@@ -4,22 +4,11 @@ body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Montserrat', sans-serif !important;
 	scrollbar-width: none;
 	max-width:100%;
 	overflow-x: hidden;
-	// overflow: hidden;
 }
-// ::-webkit-scrollbar {
-//   position: absolute;
-//   top: 0;
-//   right: 0;
-// }
-
-// html {
-// 	-ms-overflow-style: none;  /* IE и Edge */
-// 	scrollbar-width: thin;  /* Firefox */
-// }
 
 html {
 	height: 100%;
@@ -34,6 +23,10 @@ html {
 *::before,
 *::after {
 	box-sizing: border-box;
+}
+
+* {
+	font-family: 'Montserrat', sans-serif !important;
 }
 
 /* Убираем внутренние отступы */

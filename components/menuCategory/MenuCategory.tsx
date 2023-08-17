@@ -1,10 +1,10 @@
-import { ICategory } from "./menuCategory.interface";
+"use client";
 
 import styles from "./MenuCategory.module.scss";
 import { AnimatedText } from "../animatedText/AnimatedText";
 import Link from "next/link";
 import { useUnit } from "effector-react";
-import { $activeCategory } from "@/stores/layout/menu/init";
+import { $activeCategory, dropdownMenuClosed } from "@/stores/layout/menu/init";
 
 type Props = {};
 
@@ -22,6 +22,7 @@ export const MenuCategory = ({}: Props) => {
                 className={styles.subCategory}
                 href={`/categories/${child.slug}`}
                 key={child.id}
+                onClick={() => dropdownMenuClosed()}
               >
                 {child.name}
               </Link>

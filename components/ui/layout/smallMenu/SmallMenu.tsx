@@ -12,24 +12,23 @@ import {
   $showDropdownMenu,
   $showSmallMenu,
 } from "@/stores/layout/menu/init";
-import { getMenuContentFx } from "@/stores/layout/menu/content/init";
 
-type Props = {};
+import { IUser } from "@/models/User";
 
-export const SmallMenu = (props: Props) => {
+type Props = { links: any[] };
+
+export const SmallMenu = ({ links }: Props) => {
   const showSmallMenu = useUnit($showSmallMenu);
-  const activeCategory = useUnit($activeCategory);
   const showDropdownMenu = useUnit($showDropdownMenu);
 
-  const isLoading = useUnit(getMenuContentFx.pending);
-
   return (
-    <AnimatePresence>
-      {showSmallMenu && !isLoading && (
+    <AnimatePresence initial={false}>
+      {showSmallMenu && (
         <motion.div
           initial={{ y: "-120%" }}
           transition={{
             duration: 0.3,
+            type: "tween",
           }}
           animate={{
             y: 0,
@@ -47,7 +46,7 @@ export const SmallMenu = (props: Props) => {
           <Link className={styles.logo} href="/">
             <SvgSelector id="logo" />
           </Link>
-          <MenuLinks />
+          <MenuLinks links={links} />
           <MenuIcons />
         </motion.div>
       )}

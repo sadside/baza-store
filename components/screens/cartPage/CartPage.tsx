@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import styles from "./CartPage.module.scss";
 import { useUnit } from "effector-react";
@@ -5,18 +7,20 @@ import { $cart } from "@/stores/cart/init";
 import { CartItem } from "@/components/cartItem/CartItem";
 import { getPriceFromCart } from "@/utils/getFullPrice";
 import Button from "@/components/ui/button/Button";
+import { $selectedColor } from "@/stores/ui/products/productSize";
 
 type Props = {};
 
 export const CartPage = (props: Props) => {
   const products = useUnit($cart);
+  // const color = useUnit($selectedColor);
 
   return (
     <div className={styles.wrapper}>
       <h1>Корзина</h1>
       <div className={styles.columns}>
         <div className={styles.products}>
-          {products.map(({ size, name, count, price, id, image }) => (
+          {products.map(({ size, name, count, price, id, image, color }) => (
             <CartItem
               size={size}
               name={name}
@@ -25,6 +29,7 @@ export const CartPage = (props: Props) => {
               key={id}
               id={id}
               image={image}
+              color={color}
             />
           ))}
         </div>
@@ -51,7 +56,7 @@ export const CartPage = (props: Props) => {
                   <span>ИТОГО</span>
                 </div>
                 <div>
-                  <span>{-getPriceFromCart(products)} ₽</span>
+                  <span>{getPriceFromCart(products)} ₽</span>
                 </div>
               </div>
               <div className={styles.text}>

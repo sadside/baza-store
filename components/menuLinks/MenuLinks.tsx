@@ -1,3 +1,4 @@
+"use client";
 import { ICategory } from "../menuCategory/menuCategory.interface";
 
 import styles from "./MenuLinks.module.scss";
@@ -8,19 +9,18 @@ import {
   dropdownMenuOpened,
 } from "@/stores/layout/menu/init";
 import { useUnit } from "effector-react";
-import { $menuContent } from "@/stores/layout/menu/content/init";
 
-type Props = {};
+type Props = { links: any[] };
 
-const MenuLinks = ({}: Props) => {
-  const links = useUnit($menuContent);
+const MenuLinks = ({ links }: Props) => {
+  // const links = useUnit($menuContent);
   const activeCategory = useUnit($activeCategory);
   const showDropdownMenu = useUnit($showDropdownMenu);
 
   return (
     <div className={styles.nav}>
       <ul>
-        {links.map((link) => {
+        {links.map((link: any) => {
           return (
             <div
               style={{ color: "#000" }}

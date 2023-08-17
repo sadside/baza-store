@@ -13,7 +13,7 @@ export const MainInfoProduct = ({ product }: Props) => {
         <div className={styles.name}>{product.name}</div>
         <AddToFavorites />
       </div>
-      <div className={styles.price}>{product.price} ₽</div>
+      <div className={styles.price}>{product.price / 100} ₽</div>
     </div>
   );
 };

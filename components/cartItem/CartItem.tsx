@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { IProduct } from "../productItem/productItem.interface";
 import { IProductCart } from "@/stores/cart/cart.interface";
@@ -8,9 +10,6 @@ import {
   productCounDecremented,
   productCountIncremented,
 } from "@/stores/cart/init";
-import Id from "@/pages/products/[id]";
-
-type Props = {};
 
 export const CartItem = ({
   name,
@@ -19,33 +18,59 @@ export const CartItem = ({
   image,
   count,
   id,
+  color,
 }: IProductCart) => {
   return (
     <div className={styles.wrapper}>
-      <Image src={image} width={150} height={200} alt={"img"} />
+      <Image
+        src={image.replace(
+          "http://localhost:8000/",
+          "http://iizhukov.site:8000/"
+        )}
+        width={150}
+        height={200}
+        alt={"img"}
+      />
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>
         <div className={styles.size}>Размер: {size}</div>
+        <div className={styles.size}>Цвет: {color}</div>
         <div className={styles.count}>
-          Количество:{" "}
+          Количество:
           <span
             onClick={() =>
-              productCounDecremented({ name, price, size, image, count, id })
+              productCounDecremented({
+                name,
+                price,
+                size,
+                image,
+                count,
+                id,
+                color,
+              })
             }
           >
             -
-          </span>{" "}
-          {count}{" "}
+          </span>
+          {count}
           <span
             onClick={() =>
-              productCountIncremented({ name, price, size, image, count, id })
+              productCountIncremented({
+                name,
+                price,
+                size,
+                image,
+                count,
+                id,
+                color,
+              })
             }
           >
             +
           </span>
         </div>
       </div>
-      <div className={styles.price}>{`${price} ₽`}</div>
+      <div className={styles.price}>{`${price / 100} ₽`}</div>
     </div>
   );
 };

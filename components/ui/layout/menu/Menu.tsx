@@ -1,5 +1,6 @@
+"use client";
+
 import { useEffect } from "react";
-import { useRouter } from "next/router";
 
 import { DropdownMenu } from "@/components/dropdownMenu/DropdownMenu";
 
@@ -12,7 +13,6 @@ import {
 } from "@/stores/cart/init";
 import { Cart } from "@/components/cart/Cart";
 import {
-  $showDropdownMenu,
   $showSmallMenu,
   categoryCleared,
   dropdownMenuClosed,
@@ -21,21 +21,17 @@ import {
 } from "@/stores/layout/menu/init";
 import { menuMounted } from "@/stores/layout/menu/content/init";
 import { SmallMenu } from "../smallMenu/SmallMenu";
-import { isValidMotionProp } from "framer-motion";
+import { IUser } from "@/models/User";
 
-type Props = {};
+type Props = { links: any };
 
-const Menu = ({}: Props) => {
+const Menu = ({ links }: Props) => {
   const showSmallMenu = useUnit($showSmallMenu);
-  const router = useRouter();
   const showCart = useUnit($showCart);
 
   useEffect(() => {
     mouseLeavedFromCart();
     categoryCleared();
-  }, [router.asPath]);
-
-  useEffect(() => {
     menuMounted();
     pageMounted();
 
@@ -73,7 +69,7 @@ const Menu = ({}: Props) => {
           dropdownMenuClosed();
         }}
       >
-        <SmallMenu />
+        <SmallMenu links={links} />
         <Cart />
         <DropdownMenu />
       </div>

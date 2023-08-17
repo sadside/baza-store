@@ -5,5 +5,5 @@ export interface IProduct {
 	countColors?: number
 	image: string,
 	images?: string[]
-	size: string,
+	size?: string,
 }

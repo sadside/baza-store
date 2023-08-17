@@ -1,11 +1,14 @@
+"use client";
+
 import Button from "@/components/ui/button/Button";
 import InputCodeMask from "@/components/ui/inputCodeMask/InputCodeMask";
-import { $phoneNumber, codeInputSubmitted } from "@/stores/auth/auth";
+import { $phoneNumber, $user, codeInputSubmitted } from "@/stores/auth/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUnit } from "effector-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 import * as yup from "yup";
 import styles from "./ConfirmCodePage.module.scss";
 
@@ -21,8 +24,9 @@ const schema = yup.object().shape({
 
 const ConfirmCodePage = (props: Props) => {
   const phoneNumber = useUnit($phoneNumber);
+  const user = useUnit($user);
 
-  const { push, pathname } = useRouter();
+  const { push } = useRouter();
 
   useEffect(() => {
     if (!phoneNumber.length) {
@@ -37,9 +41,12 @@ const ConfirmCodePage = (props: Props) => {
     resetField,
   } = useForm<ConfirmCodeFormValue>({ resolver: yupResolver(schema) });
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit(async (data) => {
+    const code = data.code.replace("-", "");
+
+    codeInputSubmitted({ phone: phoneNumber, code });
+
     push("/");
-    if (pathname !== "/confirm-code") codeInputSubmitted();
   });
 
   return (
