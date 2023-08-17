@@ -90,7 +90,7 @@ export const products: IProduct[] = [
 
 export async function GET(req: Request) {
 
-  const id = req.url.replace('http://localhost:3000/api/products/','')
+  const id = req.url.replace('http://127.0.0.1:3000/api/products/','')
 
   const getProductById = (id: string | string[]) => {
 		return products.filter(product => product.id == +id)

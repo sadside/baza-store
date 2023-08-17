@@ -4,7 +4,7 @@ import {createEffect, createEvent, createStore, forward, sample} from "effector"
 export const getUser = createEvent()
 
 const getUserFx = createEffect(async () => {
-	const {data} = await axios.get('http://localhost:3000/api/hello')
+	const {data} = await axios.get('http://127.0.0.1:3000/api/hello')
 	
 	return data
 })
