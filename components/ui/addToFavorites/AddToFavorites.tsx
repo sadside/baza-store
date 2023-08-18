@@ -12,6 +12,7 @@ import { IProduct } from "@/components/productItem/productItem.interface";
 import {
   $favorites,
   addFavorite,
+  addToServerFx,
   removeFavorite,
 } from "@/stores/favotites/favorites";
 import { useUnit } from "effector-react";
@@ -19,49 +20,42 @@ import {
   $selectedColor,
   $selectedSize,
 } from "@/stores/ui/products/productSize";
+import { $user } from "@/stores/auth/auth";
 
 export const AddToFavorites = ({ product }: Props) => {
-  const selectedSize = useUnit($selectedSize);
-  const selectedColor = useUnit($selectedColor);
+  const user = useUnit($user);
 
   const favorites = useUnit($favorites);
 
-  let isFavorite = false;
+  const [isFavorite, setFavorite] = useState(false);
 
-  favorites.forEach((item) => {
-    if (
-      item.id === product.id &&
-      item.color === selectedColor?.name &&
-      item.size === selectedSize
-    ) {
-      isFavorite = true;
-    }
-  });
+  useEffect(() => {
+    favorites.forEach((item) => {
+      if (item.id === product.id) {
+        setFavorite(true);
+      }
+    });
+  }, []);
 
   const handleClick = () => {
+    setFavorite(!isFavorite);
+
     if (!isFavorite) {
-      if (selectedColor && selectedSize) {
-        addFavorite({
-          id: product.id,
-          image: product.image,
-          size: selectedSize,
-          color: selectedColor?.name,
-          price: product.price,
-          name: product.name,
-        });
-      } else {
-        alert("Выберите цвет и размер товара");
-      }
+      addFavorite({
+        id: product.id,
+        image: product.image,
+        price: product.price,
+        name: product.name,
+      });
+
+      if (user) addToServerFx(product.id);
     } else {
-      if (selectedColor && selectedSize)
-        removeFavorite({
-          id: product.id,
-          image: product.image,
-          size: selectedSize,
-          color: selectedColor?.name,
-          price: product.price,
-          name: product.name,
-        });
+      removeFavorite({
+        id: product.id,
+        image: product.image,
+        price: product.price,
+        name: product.name,
+      });
     }
   };
 

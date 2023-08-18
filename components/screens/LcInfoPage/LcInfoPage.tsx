@@ -1,6 +1,6 @@
 import React from "react";
-import LcInfo from "../../LcInfo/LcInfo";
 import Welcome from "@/components/welcome/Welcome";
+import LcInfo from "@/components/LcInfo/LcInfo";
 
 const LcInfoPage = () => {
   return (

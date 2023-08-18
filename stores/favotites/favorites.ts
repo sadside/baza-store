@@ -1,6 +1,8 @@
 import { createEffect, createEvent, createStore, sample } from "effector";
 import { IProductCart } from "../cart/cart.interface";
 import { addFavotitesToStorage } from "@/utils/localStorage/localStorage";
+import axios from "axios";
+import { API_URL_CLIENT } from "@/http";
 
 
 const $favorites = createStore<IProductCart[]>([])
@@ -10,6 +12,14 @@ const removeFavorite = createEvent<IProductCart>()
 
 const addToStorageFx = createEffect((favorites: IProductCart[]) => {
   addFavotitesToStorage(favorites)
+})
+
+const addToServerFx = createEffect(async (id: number) => {
+  const res = await axios.post(`${API_URL_CLIENT}profile/favorites/`, {
+    id,
+  }, {withCredentials: true})
+
+  if (res.status < 300) throw new Error('err')
 })
 
 sample({
@@ -25,7 +35,7 @@ sample({
     let flag = true
 
     favorites.forEach(favorite => {
-      if (favorite.id === item.id && favorite.color === item.color && favorite.size === item.size) flag = false
+      if (favorite.id === item.id) flag = false
     })
 
     if (flag) return [item, ...favorites]
@@ -34,19 +44,12 @@ sample({
   target: [$favorites, addToStorageFx]
 })
 
+
 sample({
-  // @ts-ignore
   clock: removeFavorite,
   source: $favorites,
   fn: (favorites, item) => {
-    return favorites.map((favorite) => {
-      if (favorite.id === item.id && favorite.color === item.color && favorite.size === item.size) {
-        return undefined
-      } else {
-        return favorite
-      }
-
-    }).filter(item => item !== undefined)
+    return favorites.filter(favorit => item.id !== favorit.id)
   },
   target: [$favorites, addToStorageFx]
 })
@@ -54,5 +57,5 @@ sample({
 
 
 
-export {$favorites, mounted, addFavorite, removeFavorite}
+export {$favorites, mounted, addFavorite, removeFavorite, addToServerFx}
 
