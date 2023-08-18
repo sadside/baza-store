@@ -1,0 +1,31 @@
+.banner {
+  top: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  overflow: hidden;
+  width: 100%;
+  @media (max-width: 720px) {
+    display: none;
+  }
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.txt {
+  position: absolute;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  color: #FFF;
+  text-align: center;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 35px; /* 97.222% */
+}

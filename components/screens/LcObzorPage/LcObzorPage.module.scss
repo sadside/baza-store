@@ -1,0 +1,13 @@
+.content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  padding: 0 10px;
+  flex-direction: row;
+  margin-top: 20px;
+  @media (max-width: 725px) {
+    align-items: stretch;
+    flex-direction: column-reverse;
+  }
+}

@@ -24,8 +24,7 @@ export const MenuIcons = ({}: Props) => {
 
   return (
     <div className={styles.additional}>
-      {userStm && <div>{userStm.phone}</div>}
-      <Link className={styles.userIcon} href="/auth">
+      <Link className={styles.userIcon} href={userStm ? "/lk/review" : "/auth"}>
         <SvgSelector id="user" />
       </Link>
       <Link

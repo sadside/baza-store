@@ -428,7 +428,155 @@ const SvgSelector = ({ id, style }: Props) => {
           </defs>
         </svg>
       );
-
+    case "hamburger":
+      return (
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          style={{ cursor: "pointer" }}
+        >
+          <g id="Humburger">
+            <path
+              id="Vector"
+              d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"
+              fill="black"
+            />
+          </g>
+        </svg>
+      );
+    case "arrowTop": {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ cursor: "pointer" }}
+        >
+          <path
+            d="M12.0002 11.828L9.17216 14.657L7.75716 13.243L12.0002 9L16.2432 13.243L14.8282 14.657L12.0002 11.828Z"
+            fill="black"
+          />
+        </svg>
+      );
+    }
+    case "arrowDown": {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ cursor: "pointer" }}
+        >
+          <path
+            d="M12.0002 12.1718L14.8282 9.34277L16.2432 10.7568L12.0002 14.9998L7.75716 10.7568L9.17216 9.34277L12.0002 12.1718Z"
+            fill="black"
+          />
+        </svg>
+      );
+    }
+    case "arrowRight": {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ cursor: "pointer" }}
+        >
+          <path
+            d="M12.172 12.0002L9.343 9.17216L10.757 7.75716L15 12.0002L10.757 16.2432L9.343 14.8282L12.172 12.0002Z"
+            fill="#333333"
+          />
+        </svg>
+      );
+    }
+    case "arrowLeft": {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ cursor: "pointer" }}
+        >
+          <path
+            d="M11.828 11.9998L14.657 14.8278L13.243 16.2428L9 11.9998L13.243 7.75684L14.657 9.17184L11.828 11.9998Z"
+            fill="black"
+          />
+        </svg>
+      );
+    }
+    case "radio": {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ cursor: "pointer" }}
+        >
+          <circle cx="12" cy="12" r="8" stroke="black" strokeWidth="2" />
+        </svg>
+      );
+    }
+    case "radioActive": {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ cursor: "pointer" }}
+        >
+          <circle cx="12" cy="12" r="8" stroke="black" strokeWidth="2" />
+          <circle cx="12" cy="12" r="5" fill="black" />
+        </svg>
+      );
+    }
+    case "close": {
+      return (
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          style={{ cursor: "pointer" }}
+        >
+          <path
+            d="M11.9293 10.6565L12 10.7272L12.0707 10.6565L16.95 5.77716L18.2226 7.04974L13.3433 11.929L13.2726 11.9997L13.3433 12.0705L18.2226 16.9497L16.95 18.2223L12.0707 13.343L12 13.2723L11.9293 13.343L7.04999 18.2223L5.77741 16.9497L10.6567 12.0705L10.7274 11.9997L10.6567 11.929L5.77741 7.04974L7.04999 5.77716L11.9293 10.6565Z"
+            fill="black"
+            stroke="white"
+            strokeWidth="0.2"
+          />
+        </svg>
+      );
+    }
+    case "home": {
+      return (
+        <svg
+          style={{ cursor: "pointer" }}
+          xmlns="http://www.w3.org/2000/svg"
+          width="84"
+          height="6"
+          viewBox="0 0 84 6"
+          fill="none"
+        >
+          <rect width="84" height="6" rx="3" fill="white" />
+        </svg>
+      );
+    }
     default:
       return <div>undefined</div>;
   }

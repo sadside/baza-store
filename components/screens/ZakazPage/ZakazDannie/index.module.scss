@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 22px;
+  align-self: stretch;
+}
+.inputs {
+  width: 100%;
+  justify-content: flex-start;
+  display: grid;
+  margin-bottom: 20px;
+  grid-template-columns: 48% 48%;
+  gap: 30px;
+  @media (max-width: 700px) {
+    justify-content: center;
+    grid-template-columns: 95%;
+  }
+}

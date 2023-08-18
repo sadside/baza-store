@@ -1,0 +1,143 @@
+.root {
+  display: flex;
+  align-items: flex-start;
+  flex: 1 0 0;
+  @media (max-width: 590px) {
+    display: flex;
+    height: 150px;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+}
+
+.img {
+  width: 150px;
+  height: 200px;
+  @media (max-width: 590px) {
+    width: 112.258px;
+    height: 150px;
+  }
+}
+
+.card {
+  display: flex;
+  height: 200px;
+  padding: 0px 10px 0px 30px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex: 1 0 0;
+  width: 100%;
+  @media (max-width: 590px) {
+    height: 150px;
+    display: flex;
+    padding: 0px 10px;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 7px;
+    flex: 1 0 0;
+    align-self: stretch;
+  }
+}
+
+.content {
+  display: flex;
+  height: 143px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  flex-shrink: 0;
+  align-self: stretch;
+  @media (max-width: 590px) {
+
+  }
+}
+
+.name {
+  color: var(--card-primary, #000);
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  align-self: stretch;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 11px;
+  align-self: stretch;
+}
+
+.item {
+  color: var(--card-primary, #000);
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+}
+.bot {
+  @media (max-width: 590px) {
+    display: flex;
+    align-items: flex-start;
+    align-self: stretch;
+    justify-content: space-between;
+  }
+  .price {
+    display: none;
+    @media (max-width: 590px) {
+      display: flex;
+    }
+  }
+}
+.price {
+  color: var(--card-primary, #000);
+  text-align: right;
+  font-family: Montserrat;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 16px; /* 133.333% */
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch;
+  @media (max-width: 590px) {
+display: none;
+  }
+  .count {
+    display: none;
+  }
+
+  .setting {
+    color: var(--card-action, rgba(0, 0, 0, 0.60));
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
+    @media (max-width: 590px) {
+
+    }
+  }
+}
+
+.heart {
+  display: flex;
+  align-items: flex-start;
+  flex: 1 0 0;
+  @media (max-width: 590px) {
+
+  }
+}

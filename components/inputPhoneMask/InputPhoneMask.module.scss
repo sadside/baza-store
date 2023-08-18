@@ -1,0 +1,22 @@
+.input {
+	border: 1px solid #999999;
+	height: 44px;
+	width: 392px;
+	padding: 0 15px;
+	outline: none;
+	&:focus {
+		border: 1px solid #000;
+	}
+	@media (max-width: 470px) {
+		width: 292px;
+	}
+}
+
+.error {
+	border: 1px solid #b00000 !important;
+}
+
+.errorMessage {
+	color: #b00000;
+	margin-top: 3px;
+}
