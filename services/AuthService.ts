@@ -17,7 +17,7 @@ export default class AuthService {
   }
 
   static async getUser(): Promise<AxiosResponse<IUser>> {
-    return axios.get<IUser>(`${API_URL}profile/info/`, {
+    return axios.get<IUser>(`${API_URL_CLIENT}profile/info/`, {
       withCredentials: true
     })
   }
