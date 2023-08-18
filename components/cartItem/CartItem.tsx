@@ -20,13 +20,12 @@ export const CartItem = ({
   id,
   color,
 }: IProductCart) => {
+  console.log("image", image);
+
   return (
     <div className={styles.wrapper}>
       <Image
-        src={image.replace(
-          "http://127.0.0.1:8000/",
-          "http://iizhukov.site:8000/"
-        )}
+        src={image.replace("http://localhost:8000/", "http://thebaza.ru:8000/")}
         width={150}
         height={200}
         alt={"img"}

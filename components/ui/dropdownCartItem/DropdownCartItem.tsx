@@ -14,10 +14,7 @@ export const DropdownCartItem = ({
   return (
     <div className={styles.wrapper}>
       <Image
-        src={image.replace(
-          "http://127.0.0.1:8000/",
-          "http://iizhukov.site:8000/"
-        )}
+        src={image.replace("http://localhost:8000/", "http://thebaza.ru:8000/")}
         height={250}
         width={180}
         alt="product image"
