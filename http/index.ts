@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-export const API_URL_CLIENT = "http://thebaza.com:8000/api/";
+export const API_URL_CLIENT = "http://thebaza.ru:8000/api/";
 export const API_URL = "http://127.0.0.1:8000/api/";
 // export const API_URL = "http://127.0.0.1:8000/api/";
 export const API = "http://thebaza.ru:8000";
