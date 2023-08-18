@@ -1,8 +1,8 @@
 import React from "react";
-import Welcome from "../../welcome/Welcome";
-import LcBlock from "../../lcBlock/LcBlock";
 
 import s from "./index.module.scss";
+import Welcome from "@/components/welcome/Welcome";
+import LcBlock from "@/components/lcBlock/LcBlock";
 const LcBazaLoyalty = () => {
   let o = {
     type: "baza",

@@ -1,8 +1,8 @@
 import React from "react";
 import s from "./FavouriteBlock.module.scss";
-import SvgSelector from "../../utils/SvgSelector";
 import classNames from "classnames";
 import { Favour } from "@/components/screens/LcFavourPage/LcFavourPage";
+import SvgSelector from "@/utils/SvgSelector";
 type Props = {
   o: Favour;
 };
