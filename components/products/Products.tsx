@@ -4,6 +4,8 @@ import styles from "./Products.module.scss";
 import { IProduct } from "@/models/Product";
 
 const Products = ({ products }: { products: IProduct[] }) => {
+  console.log(products);
+
   return (
     <div className={styles.productsWrapper}>
       {products.map((product) => (

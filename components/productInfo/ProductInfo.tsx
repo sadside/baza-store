@@ -2,11 +2,8 @@ type Props = {
   product: IFullProduct;
 };
 
-import { useRouter } from "next/router";
 import styles from "./ProductInfo.module.scss";
-import { Breadcrumbs } from "../ui/breadcrumbs/Breadcrumbs";
 import { MainInfoProduct } from "../mainInfoProduct/MainInfoProduct";
-import { IProduct } from "../productItem/productItem.interface";
 import { Hr } from "../ui/hr/Hr";
 import { SelectProductColor } from "../selectProductColor/SelectProductColor";
 import { SelectProductSize } from "../selectSizeProduct/SelectProductSize";

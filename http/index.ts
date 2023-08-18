@@ -1,6 +1,8 @@
 import axios from "axios";
 
-export const API_URL = "http://thebaza.ru:8000/api/";
+
+export const API_URL_CLIENT = "http://thebaza:8000/api/";
+export const API_URL = "http://127.0.0.1:8000/api/";
 // export const API_URL = "http://127.0.0.1:8000/api/";
 export const API = "http://thebaza.ru:8000";
 // export const API = "http://127.0.0.1:8000";
@@ -9,11 +11,6 @@ const $api = axios.create({
   withCredentials: true,
   baseURL: API_URL,
 });
-
-// $api.interceptors.request.use((config) => {
-  // config.headers.Authorization = `accessToken ${localStorage.getItem("token")}`;
-//   return config;
-// });
 
 $api.interceptors.response.use(
   (config) => {
