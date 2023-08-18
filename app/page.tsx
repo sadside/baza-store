@@ -3,7 +3,7 @@ import { API_URL } from "@/http";
 
 const getProducts = async () => {
   try {
-    const res = await fetch(`${API_URL}products/filter/?page=1&page_size=50`, {
+    const res = await fetch(`${API_URL}products/filter/?page=1&page_size=10`, {
       next: {
         revalidate: 60,
       },

@@ -19,6 +19,7 @@ const ProductItem = ({ image, price, name, colours, id }: IProduct) => {
             "http://iizhukov.site:8000/"
           )}
           alt={"j"}
+          quality={80}
           className={styles.img}
           width={376}
           height={502}
