@@ -21,7 +21,7 @@ import {
 } from "@/stores/layout/menu/init";
 import { menuMounted } from "@/stores/layout/menu/content/init";
 import { SmallMenu } from "../smallMenu/SmallMenu";
-import { IUser } from "@/models/User";
+import { mounted } from "@/stores/favotites/favorites";
 
 type Props = { links: any };
 
@@ -34,6 +34,7 @@ const Menu = ({ links }: Props) => {
     categoryCleared();
     menuMounted();
     pageMounted();
+    mounted();
 
     let scroll = 0;
 

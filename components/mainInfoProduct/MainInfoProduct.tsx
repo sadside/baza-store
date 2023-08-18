@@ -11,7 +11,7 @@ export const MainInfoProduct = ({ product }: Props) => {
     <div className={styles.wrapper}>
       <div className={styles.productName}>
         <div className={styles.name}>{product.name}</div>
-        <AddToFavorites />
+        <AddToFavorites product={product} />
       </div>
       <div className={styles.price}>{product.price / 100} ₽</div>
     </div>

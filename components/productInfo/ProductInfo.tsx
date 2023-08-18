@@ -1,3 +1,5 @@
+"use client";
+
 type Props = {
   product: IFullProduct;
 };
@@ -15,8 +17,10 @@ import { useUnit } from "effector-react";
 import {
   $selectedColor,
   $selectedSize,
+  pageUnMounted,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
+import { useEffect } from "react";
 
 export const ProductInfo = ({ product }: Props) => {
   const selectedSize = useUnit($selectedSize);
@@ -31,6 +35,10 @@ export const ProductInfo = ({ product }: Props) => {
     name: "Стандартный",
     hex_code: "#ccc",
   };
+
+  useEffect(() => {
+    return pageUnMounted();
+  }, []);
 
   if (modifications.length) {
     modifications.forEach((item) => {

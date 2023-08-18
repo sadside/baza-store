@@ -10,6 +10,12 @@ export const addProductToStorage = (products: IProductCart[]) => {
   localStorage.setItem('products', newProducts)
 }
 
+export const addFavotitesToStorage = (favorites: IProductCart[]) => {
+  const newFavorites = JSON.stringify(favorites)
+
+  localStorage.setItem('favorites', newFavorites)
+}
+
 export const removeProductFromStorage = (id: number) => {
   const products = localStorage.getItem('cart')
 

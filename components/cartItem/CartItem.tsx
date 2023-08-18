@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { IProduct } from "../productItem/productItem.interface";
 import { IProductCart } from "@/stores/cart/cart.interface";
 
 import styles from "./CartItem.module.scss";
@@ -20,8 +19,6 @@ export const CartItem = ({
   id,
   color,
 }: IProductCart) => {
-  console.log("image", image);
-
   return (
     <div className={styles.wrapper}>
       <Image
