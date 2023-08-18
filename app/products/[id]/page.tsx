@@ -23,13 +23,11 @@ export async function generateMetadata({ params: { id } }: params) {
 async function getProduct(id: string) {
   try {
     const response = await ProductService.getProductById(id);
-    console.log(response, "res");
 
     if (!response.ok) throw new Error("error");
 
     return await response.json();
   } catch {
-    console.log("load error");
     return {} as IFullProduct;
   }
 }

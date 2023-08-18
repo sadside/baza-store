@@ -13,6 +13,7 @@ import styles from "./AuthPage.module.scss";
 import axios from "axios";
 import { useUnit } from "effector-react";
 import { useLayoutEffect } from "react";
+import { API_URL } from "@/http";
 
 type Props = {};
 
@@ -43,7 +44,7 @@ const AuthPage = ({}: Props) => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    const res = await axios.post(`http://127.0.0.1:8000/api/auth/send-code/`, {
+    const res = await axios.post(`${API_URL}auth/send-code/`, {
       phone: data.phoneNumber,
     });
 
