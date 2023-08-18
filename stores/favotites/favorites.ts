@@ -16,7 +16,7 @@ const addToStorageFx = createEffect((favorites: IProductCart[]) => {
 
 const addToServerFx = createEffect(async (id: number) => {
   const res = await axios.post(`${API_URL_CLIENT}profile/favorites/`, {
-    id,
+    product_id: id,
   }, {withCredentials: true})
 
   if (res.status < 300) throw new Error('err')
