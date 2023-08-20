@@ -1,10 +1,9 @@
 import React from "react";
 import Banner from "./banner/Banner";
 import WelcomeText from "./welcomeTxt/WelcomeText";
-
-import s from "./Welcome.module.scss";
 import LcLinks from "../lcLincks/LcLincks";
-import ModalLoyalty from "../modalLoyalty/ModalLoyalty";
+import s from "./Welcome.module.scss";
+import ModalLoyalty from "@/components/modalLoyalty/ModalLoyalty";
 
 type Props = {
   children: any;
@@ -14,8 +13,8 @@ const Welcome = ({ children }: Props) => {
     <>
       <Banner />
       <WelcomeText />
+      <LcLinks />
       <div className={s.content}>
-        <LcLinks />
         <ModalLoyalty />
         {children}
       </div>

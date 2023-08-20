@@ -1,8 +1,7 @@
 import React from "react";
-
+import LcBlock, { ObjLc } from "../../lcBlock/LcBlock";
 import s from "./LcObzorPage.module.scss";
 import Welcome from "@/components/welcome/Welcome";
-import LcBlock, { ObjLc } from "@/components/lcBlock/LcBlock";
 
 const LcObzorPage = () => {
   let a = [

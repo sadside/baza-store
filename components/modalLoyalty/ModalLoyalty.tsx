@@ -34,7 +34,7 @@ const ModalLoyalty = () => {
     },
   ];
   let clas = [s.MyModal];
-  visible ? clas.push(s.active, "hidвden") : undefined;
+  visible ? clas.push(s.active, "hidden") : undefined;
 
   return (
     <>

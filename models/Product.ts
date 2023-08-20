@@ -11,7 +11,7 @@ export interface IProduct {
   }
 }
 
-export type Modifications = {
+export type Modification = {
   id: number,
   color: {
     name: string,
@@ -34,7 +34,7 @@ export interface IFullProduct {
       name: string,
       slug: string
   },
-  modifications: Modifications[],
+  modifications: Modification[],
   full_path: string,
   slug_path: string
 }

@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import s from "./OrderItem.module.scss";
+import SvgSelector from "../../utils/SvgSelector";
 import MiniOrder from "./miniOrder/MiniOrder";
 import { AnimatePresence, motion } from "framer-motion";
 import { OrderType } from "@/components/orders/Orders";
 import { getCountPrice } from "@/utils/getCountPrice";
-import SvgSelector from "@/utils/SvgSelector";
 import { convertDate } from "@/utils/convertDate";
 type Props = {
   o: OrderType;
@@ -48,8 +48,8 @@ const OrderItem = ({ o }: Props) => {
         {open && (
           <motion.div
             animate={{ height: "auto" }}
-            initial={{ height: 0 }}
-            exit={{ height: 0 }}
+            initial={{ height: "0" }}
+            exit={{ height: "0" }}
             transition={{ duration: 0.4 }}
             style={{ overflow: "hidden" }}
             className={s.orders}

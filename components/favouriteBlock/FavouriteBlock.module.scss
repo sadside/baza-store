@@ -10,6 +10,10 @@
   }
 }
 
+.name {
+  flex: 1 0;
+}
+
 .img {
   width: 150px;
   height: 200px;
@@ -65,9 +69,9 @@
 .top {
   display: flex;
   align-items: center;
-  gap: 23px;
-  align-self: stretch;
-}
+  justify-content: space-between;
+  width: 100%;
+  }
 
 .description {
   display: flex;
@@ -136,7 +140,8 @@ display: none;
 .heart {
   display: flex;
   align-items: flex-start;
-  flex: 1 0 0;
+  flex: 0 0;
+  cursor: pointer;
   @media (max-width: 590px) {
 
   }

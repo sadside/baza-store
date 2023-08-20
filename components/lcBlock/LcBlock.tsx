@@ -71,7 +71,7 @@ const LcBlock = ({ o }: Props) => {
               clickOpen();
             } else router.push("/lk/baza-loyalty");
           } else if (o.type === "zakaz") {
-            router.push("/lk/order");
+            router.push("/lk/orders");
           } else if (o.type === "info") {
             router.push("/lk/info");
           }

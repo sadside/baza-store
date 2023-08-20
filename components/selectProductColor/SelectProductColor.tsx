@@ -4,7 +4,7 @@ import React, { useEffect, useId, useState } from "react";
 import styles from "./SelectProductColor.module.scss";
 import { IColor } from "./SelectProductColor.interface";
 import clsx from "clsx";
-import { colorSelected } from "@/stores/ui/products/productSize";
+import { colorSelected, sizeSelected } from "@/stores/ui/products/productSize";
 
 type Props = {
   colours: any;
@@ -12,12 +12,14 @@ type Props = {
 
 export const SelectProductColor = ({ colours }: Props) => {
   const [selectedColor, setSelectdColor] = useState<IColor>(colours[0]);
+
   useEffect(() => {
-    colorSelected(colours[0]);
+    colorSelected(selectedColor);
   }, []);
 
   const selectColorHandleClicked = (color: IColor) => {
     setSelectdColor(color);
+    sizeSelected(null);
     colorSelected(color);
   };
 

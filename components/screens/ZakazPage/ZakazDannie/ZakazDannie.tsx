@@ -48,7 +48,7 @@ const ZakazDannie = ({ title, main }: IProps) => {
               // @ts-ignore
               return (
                 <InputForm
-                  //@ts-ignore
+                  // @ts-ignore
                   error={errors[p.type] && errors[p.type].message}
                   register={register}
                   type={p.type}
@@ -61,7 +61,7 @@ const ZakazDannie = ({ title, main }: IProps) => {
               // @ts-ignore
               return (
                 <InputForm
-                  //@ts-ignore
+                  // @ts-ignore
                   error={errors[p.type] && errors[p.type].message}
                   register={register}
                   type={p.type}

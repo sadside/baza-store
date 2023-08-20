@@ -8,6 +8,7 @@
   align-items: flex-start;
   gap: 6px;
   align-self: stretch;
+  padding-bottom: 5px;
 }
 .title {
   display: flex;
@@ -134,12 +135,8 @@
 
 .orders {
   display: flex;
-  padding-top: 10px;
   flex-direction: column;
   align-items: flex-start;
   gap: 6px;
   align-self: stretch;
-  -webkit-transition: height .4s ease-in;
-  -moz--transition: height .4s ease-in;
-  transition: height .4s ease-in;
 }

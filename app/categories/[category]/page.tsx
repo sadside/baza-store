@@ -1,3 +1,4 @@
+import CategoriesPage from "@/components/screens/categoriesPage/CategoriesPage";
 import MainPage from "@/components/screens/mainPage/MainPage";
 import { IProduct } from "@/models/Product";
 import CategoriesService from "@/services/CategoriesService";
@@ -7,7 +8,7 @@ export default async function Category({ params: { category } }: any) {
 
   console.log(products);
 
-  return <MainPage products={products} />;
+  return <CategoriesPage products={products} />;
 }
 
 async function getProducts(category: string) {

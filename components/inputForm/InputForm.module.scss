@@ -44,17 +44,12 @@
 .error {
   border: 1px solid #B00000;
   background: var(--input-background, #FFF);
-  color: red;
 }
 .txt {
-  display: none;
   color: #B00000;
   font-family: Montserrat;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 142.857% */
-}
-.txtErr {
-  display: flex;
 }

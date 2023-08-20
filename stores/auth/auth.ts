@@ -2,13 +2,35 @@ import AuthService from '@/services/AuthService'
 import axios, { AxiosResponse } from 'axios'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 import { IUser } from '@/models/User'
+import { API_URL_CLIENT } from '@/http'
 
 export const phoneInputSubmitted = createEvent<string>()
 export const codeInputSubmitted = createEvent<{phone: string, code: string}>()
 
 
+export const postUserFx = createEffect(async (data: any) => {
+  try {
+    const res = await axios.post(`${API_URL_CLIENT}profile/info/`, {
+      name: data.name,
+      surname: data.surname,
+      birthday_date: data.dateOfBth,
+      city: data.city,
+      street: data.street,
+      house: data.house,
+      frame: data.frame,
+      apartment: data.room,
+    });
+
+    return res.data
+  } catch {
+    throw new Error('Ошибка получения личных данных')
+  }
+})
+
+
+
 export const saveUser = createEvent()
-export const $user = createStore<IUser | null >(null).on(saveUser, (_, state) => state)
+export const $user = createStore<IUser | null >(null).on(saveUser, (_, state) => state).on(postUserFx.doneData, (_, payload) => payload)
 
 export const loginFx = createEffect(async ({phone, code}: {phone: string, code: string}) => {
 	try {
@@ -49,6 +71,7 @@ sample({
 	clock: getUserFx.doneData,
 	target: $user,
 })
+
 
 sample({
 	clock: loginFx.doneData, 

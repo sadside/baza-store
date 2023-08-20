@@ -1,8 +1,9 @@
 export interface IColor {
     name: string,
     hex_code: string,
-    id: number,
-    sizes: size[]
+    sizes: size[], 
+    images: string[],
+    id: number
 }
 
 type size = {

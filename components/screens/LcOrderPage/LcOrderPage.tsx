@@ -1,6 +1,6 @@
-import Orders from "@/components/orders/Orders";
-import Welcome from "@/components/welcome/Welcome";
 import React from "react";
+import Orders from "../../orders/Orders";
+import Welcome from "@/components/welcome/Welcome";
 
 const LcOrderPage = () => {
   return (

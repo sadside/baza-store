@@ -29,7 +29,7 @@ export const MenuIcons = ({}: Props) => {
       </Link>
       <Link
         className={styles.userIcon}
-        onMouseEnter={handleMouseEnter}
+        // onMouseEnter={handleMouseEnter}
         href="/cart"
       >
         <div className={styles.iconWrapper}>

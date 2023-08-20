@@ -17,16 +17,20 @@ import { useUnit } from "effector-react";
 import {
   $selectedColor,
   $selectedSize,
+  colorSelected,
   pageUnMounted,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
 import { useEffect } from "react";
+import { IColor } from "../selectProductColor/SelectProductColor.interface";
 
 export const ProductInfo = ({ product }: Props) => {
   const selectedSize = useUnit($selectedSize);
   const selectedColor = useUnit($selectedColor);
 
   const { modifications } = product;
+
+  console.log(selectedColor);
 
   const colours: any[] = [];
   const added: string[] = [];
@@ -40,7 +44,7 @@ export const ProductInfo = ({ product }: Props) => {
     return pageUnMounted();
   }, []);
 
-  if (modifications.length) {
+  if (modifications?.length) {
     modifications.forEach((item) => {
       let currentColor = {
         ...defaultColor,
@@ -70,7 +74,7 @@ export const ProductInfo = ({ product }: Props) => {
 
         if (!sizes.length)
           sizes.push({
-            id: 100,
+            id: item.id,
             size: "OS",
           });
 
@@ -82,6 +86,11 @@ export const ProductInfo = ({ product }: Props) => {
     });
   }
 
+  useEffect(() => {
+    console.log(colours[0]);
+    colorSelected(colours[0]);
+  }, []);
+
   return (
     <div className={styles.productInfo}>
       <div className={styles.wrapper}>
@@ -89,22 +98,22 @@ export const ProductInfo = ({ product }: Props) => {
         <Hr />
         <SelectProductColor colours={colours} />
         <Hr />
-        <SelectProductSize modifications={product.modifications} />
+        <SelectProductSize modifications={modifications} />
         <Button
           text="Добавить в корзину"
           style={{ width: "100%" }}
           onClick={() => {
-            if (!selectedSize) {
+            if (selectedSize === null) {
               alert("Выберите размер");
               return;
             }
             if (selectedColor) {
               productAddedToCart({
-                id: product.id,
+                id: selectedSize.id,
                 price: product.price,
                 name: product.name,
                 image: product.image,
-                size: selectedSize,
+                size: selectedSize.size,
                 color: selectedColor?.name,
               });
             }

@@ -21,7 +21,7 @@ interface IProps
     resetFiled?: any
 }
 
-export const PATTERN = /\D/g
+export const PATTERN =/[^a-zA-ZА-Яа-яЁё]/g
 
 export const InputNameMask = ({
                                    className,
@@ -32,24 +32,23 @@ export const InputNameMask = ({
                                    resetFiled,
                                    ...rest
                                }: IProps) => {
-    const getInputNumbersValue = (value: string) => {
+    const getInputSymvolValue = (value: string) => {
         return value.replace(PATTERN, '')
     }
 
     const handlePhoneInput = (event: ChangeEvent<HTMLInputElement>) => {
         const input = event.target
-        let val = input.value
-
+        let val = getInputSymvolValue(input.value)
+        console.log(val, 'haha')
         input.value = val.replace(/[a-zа-я]+/gi, (match) => match[0].toUpperCase()+match.substr(1))
     }
 
     const handlePhoneDelete = (event: KeyboardEvent<HTMLInputElement>) => {
-        console.log('lalala')
         const input = event.target as HTMLInputElement
 
         if (
             event.key === 'Backspace' &&
-            getInputNumbersValue(input.value).length === 1
+            getInputSymvolValue(input.value).length === 1
         ) {
             input.value = ''
         }
@@ -67,9 +66,7 @@ export const InputNameMask = ({
                 maxLength={18}
                 onInput={handlePhoneInput}
                 onKeyDown={handlePhoneDelete}
-                {...register(name, {
-                    required: `${type==='name'?'name':'Surname'} is require field!`,
-                })}
+                {...register(name)}
                 {...rest}
             />
         </>
