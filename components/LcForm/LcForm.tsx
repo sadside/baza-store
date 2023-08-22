@@ -75,7 +75,7 @@ const LcForm = () => {
       setValue("frame", user?.frame);
       setValue("room", user?.apartment);
     }
-  }, []);
+  }, [user]);
 
   const onSubmit = async (data: any) => {
     postUserFx(data);
