@@ -2,7 +2,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	flex: 1 0 100%;
+	height: calc(100vh - 230px);
 }
 
 .errorMessage {
@@ -32,7 +32,6 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	margin-bottom: 250px;
 }
 
 .subTitle {

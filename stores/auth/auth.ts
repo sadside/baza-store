@@ -78,5 +78,10 @@ sample({
 	target: $user
 })
 
+sample({
+	clock: postUserFx.doneData,
+	target: $user,
+})
+
 
 $user.watch(state => console.log(state))
