@@ -1,7 +1,7 @@
 import axios from "axios";
 
 
-export const API_URL_CLIENT = "http://thebaza.ru/api/";
+export const API_URL_CLIENT = "https://thebaza.ru/api/";
 export const API_URL = "http://127.0.0.1:8000/api/";
 
 const $api = axios.create({

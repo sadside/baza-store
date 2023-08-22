@@ -32,7 +32,7 @@ export const ProductPageImages = ({ product }: Props) => {
           height={1150}
           alt="ssss"
           className={styles.productImage}
-          key={Math.random() * 100}
+          key={product.id}
         />
       )}
     </div>

@@ -56,7 +56,7 @@ const AuthPage = ({}: Props) => {
   });
 
   return (
-    <div>
+    <div className={styles.test}>
       <Head>
         <title>Авторизация</title>
       </Head>

@@ -1,9 +1,8 @@
 .wrapper {
 	display: flex;
-	height: 100% !important;
 	align-items: center;
 	justify-content: center;
-	margin-top: 240px;
+	flex: 1 0 100%;
 }
 
 .errorMessage {

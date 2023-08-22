@@ -10,7 +10,7 @@ type Props = {
 };
 const Welcome = ({ children }: Props) => {
   return (
-    <>
+    <div>
       <Banner />
       <WelcomeText />
       <LcLinks />
@@ -18,7 +18,7 @@ const Welcome = ({ children }: Props) => {
         <ModalLoyalty />
         {children}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -18,6 +18,10 @@ const Layout = ({ children, links = [] }: Props) => {
     getUserFx();
   }, []);
 
+  useEffect(() => {
+    if (pathname === "/") menuChanged("transparent");
+  }, [pathname]);
+
   return (
     <div className={styles.wrapper}>
       <Menu links={links} />

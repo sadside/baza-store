@@ -10,7 +10,9 @@
 	flex: 1 0;
 	min-height: 100%;
 	margin-top: 70px;
-}
+	display: flex;
+	// flex-direction: column;
+}	
 
 .footer {
 	flex: 0 0;

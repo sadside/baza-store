@@ -6,6 +6,7 @@ export default function Loading() {
     <div
       style={{
         height: "100vh",
+        flex: "1 1 100%",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

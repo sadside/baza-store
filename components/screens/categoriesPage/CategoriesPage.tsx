@@ -8,9 +8,9 @@ interface Props {
 
 const CategoriesPage = ({ products }: Props) => {
   return (
-    <>
+    <div style={{ flex: "1 1 100%" }}>
       <Products products={products} />
-    </>
+    </div>
   );
 };
 

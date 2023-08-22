@@ -11,11 +11,11 @@ interface Props {
 
 const MainPage = ({ products }: Props) => {
   return (
-    <>
+    <div>
       <Video src={"./video.mp4"} />
       <h1 className={styles.title}>Магазин</h1>
       <Products products={products} />
-    </>
+    </div>
   );
 };
 
