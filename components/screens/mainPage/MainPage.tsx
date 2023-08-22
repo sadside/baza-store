@@ -3,7 +3,6 @@
 import Products from "@/components/products/Products";
 import { Video } from "@/components/video/Video";
 import { IProduct } from "@/models/Product";
-import ReactPlayer from "react-player";
 import styles from "./MainPage.module.scss";
 
 interface Props {
@@ -13,7 +12,7 @@ interface Props {
 const MainPage = ({ products }: Props) => {
   return (
     <>
-      <Video />
+      <Video src={"./video.mp4"} />
       <h1 className={styles.title}>Магазин</h1>
       <Products products={products} />
     </>

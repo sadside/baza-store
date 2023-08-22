@@ -50,7 +50,23 @@
       &:focus:after {
         width: 100%;
       }
+    }
 
+    .active_white {
+      &:after {
+        display: block;
+        background-color: #fff !important;
+        content: "";
+        height: 2px;
+        width: 0%;
+        -webkit-transition: width .4s ease-in-out;
+        -moz--transition: width .4s ease-in-out;
+        transition: width .4s ease-in-out;
+      }
+      &:hover:after,
+      &:focus:after {
+        width: 100%;
+      }
     }
   }
 }

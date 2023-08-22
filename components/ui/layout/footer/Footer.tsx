@@ -1,5 +1,6 @@
 import SvgSelector from "@/utils/SvgSelector";
 import styles from "./Footer.module.scss";
+import Link from "next/link";
 
 type Props = {};
 
@@ -26,7 +27,9 @@ const Footer = (props: Props) => {
             <div className={styles.icon}>
               <SvgSelector id="email" />
             </div>
-            <div className={styles.link}>info@vr-arsoft.com</div>
+            <Link className={styles.link} href="/offer">
+              Публичная оферта
+            </Link>
           </div>
         </div>
         <div className={styles.rightBlock}>

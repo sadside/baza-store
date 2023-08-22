@@ -11,15 +11,20 @@ import {
   $activeCategory,
   $showDropdownMenu,
   $showSmallMenu,
+  $stateOfMenu,
+  $videoHeight,
 } from "@/stores/layout/menu/init";
 
 import { IUser } from "@/models/User";
+import { usePathname } from "next/navigation";
 
 type Props = { links: any[] };
 
 export const SmallMenu = ({ links }: Props) => {
   const showSmallMenu = useUnit($showSmallMenu);
   const showDropdownMenu = useUnit($showDropdownMenu);
+  const menuState = useUnit($stateOfMenu);
+  const pathname = usePathname();
 
   return (
     <AnimatePresence initial={false}>
@@ -36,7 +41,11 @@ export const SmallMenu = ({ links }: Props) => {
           exit={{
             y: "-120%",
           }}
-          className={styles.wrapper}
+          className={`${styles.wrapper} ${
+            menuState === "transparent" && pathname === "/"
+              ? styles.opacity
+              : ""
+          }`}
           style={
             showDropdownMenu
               ? { borderBottom: "1px solid #fff" }
@@ -44,7 +53,13 @@ export const SmallMenu = ({ links }: Props) => {
           }
         >
           <Link className={styles.logo} href="/">
-            <SvgSelector id="logo" />
+            <SvgSelector
+              id={
+                menuState === "transparent" && pathname === "/"
+                  ? "logo-white"
+                  : "logo"
+              }
+            />
           </Link>
           <MenuLinks links={links} />
           <MenuIcons />

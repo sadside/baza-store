@@ -1,22 +1,43 @@
 "use client";
-import ReactPlayer from "react-player/youtube";
+import { createRef, useCallback, useEffect, useRef, useState } from "react";
 import styles from "./Video.module.scss";
-import YouTube, { YouTubeProps } from "react-youtube";
+import SvgSelector from "@/utils/SvgSelector";
+import { heightChanged } from "@/stores/layout/menu/init";
 
-export const Video = () => {
+export const Video = ({ src }: { src: string }) => {
+  const [state, setState] = useState("");
+
+  useEffect(() => {
+    setState("123");
+  }, []);
+
+  const [height, setHeight] = useState(0);
+
+  const measuredRef = useCallback((node: any) => {
+    if (node !== null) {
+      setHeight(node.getBoundingClientRect().height);
+      heightChanged(node.getBoundingClientRect().height);
+    }
+  }, []);
+
   return (
-    <div className={styles.wrap}>
-      <ReactPlayer
-        url="https://www.youtube.com/embed/xqjPiRs9zbo?controls=0"
-        playing={true}
-        loop={true}
-        controls={false}
-        volume={0}
-        className={styles.video}
-      />
-      <div className={styles.content}></div>
-      <div className={styles.bot}></div>
-      <div className={styles.top}></div>
-    </div>
+    <>
+      {state ? (
+        //@ts-ignore
+        <div className={styles.wrap} ref={measuredRef}>
+          <video
+            src={src}
+            autoPlay
+            loop
+            muted
+            className={styles.video}
+            key={src}
+          ></video>
+          <div className={styles.content}></div>
+        </div>
+      ) : (
+        <div className={styles.load}></div>
+      )}
+    </>
   );
 };

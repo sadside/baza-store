@@ -7,9 +7,15 @@ const smallMenuClosed = createEvent()
 const dropdownMenuClosed = createEvent()
 const dropdownMenuOpened = createEvent()
 const smallMenuOpened = createEvent()
+export const menuChanged = createEvent<'transparent' | 'color'>()
 
 const $showSmallMenu = createStore(true)
 const $showDropdownMenu = createStore(false)
+export const heightChanged = createEvent<number>()
+
+export const $videoHeight = createStore(0).on(heightChanged, (_, paylaod) => paylaod)
+
+export const $stateOfMenu = createStore<'transparent' | 'color'>('transparent').on(menuChanged, (_, payload) => payload)
 
 export const categorySelected = createEvent<ICategory>()
 export const categoryCleared = createEvent()

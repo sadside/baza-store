@@ -12,6 +12,8 @@ import { useSession, signOut } from "next-auth/react";
 import { useUnit } from "effector-react";
 import { $user } from "@/stores/auth/auth";
 import { IUser } from "@/models/User";
+import { $stateOfMenu } from "@/stores/layout/menu/init";
+import { usePathname } from "next/navigation";
 
 type Props = {};
 
@@ -21,11 +23,19 @@ export const MenuIcons = ({}: Props) => {
   };
 
   const userStm = useUnit($user);
+  const menuState = useUnit($stateOfMenu);
+  const pathname = usePathname();
 
   return (
     <div className={styles.additional}>
       <Link className={styles.userIcon} href={userStm ? "/lk/review" : "/auth"}>
-        <SvgSelector id="user" />
+        <SvgSelector
+          id={
+            menuState === "transparent" && pathname === "/"
+              ? "user-white"
+              : "user"
+          }
+        />
       </Link>
       <Link
         className={styles.userIcon}
@@ -33,7 +43,13 @@ export const MenuIcons = ({}: Props) => {
         href="/cart"
       >
         <div className={styles.iconWrapper}>
-          <SvgSelector id="cart" />
+          <SvgSelector
+            id={
+              menuState === "transparent" && pathname === "/"
+                ? "cart-white"
+                : "cart"
+            }
+          />
           <MenuCart />
         </div>
       </Link>

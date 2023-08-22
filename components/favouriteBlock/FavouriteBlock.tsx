@@ -18,10 +18,7 @@ const FavouriteBlock = ({ o }: Props) => {
     <div className={s.root}>
       <div className={s.img}>
         <img
-          src={image.replace(
-            "http://127.0.0.1:8000/",
-            "http://iizhukov.site:8000/"
-          )}
+          src={image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
           alt="img"
         />
       </div>

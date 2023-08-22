@@ -14,12 +14,8 @@ const ProductItem = ({ image, price, name, colours, id }: IProduct) => {
     <Link className={styles.product} href={`/products/${id}`}>
       <div>
         <Image
-          src={image.replace(
-            "http://127.0.0.1:8000/",
-            "http://iizhukov.site:8000/"
-          )}
+          src={image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
           alt={"j"}
-          quality={80}
           className={styles.img}
           width={376}
           height={502}
