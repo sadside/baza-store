@@ -67,8 +67,9 @@ const LcForm = () => {
   useEffect(() => {
     if (user) {
       setValue("name", user?.name);
+      setValue("mail", user.email);
       setValue("surname", user?.surname);
-      setValue("dateOfBth", user?.birthday_date);
+      setValue("date", user?.birthday_date);
       setValue("city", user?.city);
       setValue("street", user?.street);
       setValue("house", user?.house);
