@@ -10,7 +10,7 @@ export const codeInputSubmitted = createEvent<{phone: string, code: string}>()
 
 export const postUserFx = createEffect(async (data: any) => {
   try {
-    const res = await axios.post(`${API_URL_CLIENT}profile/info/`, {
+		data = {
       name: data.name,
       surname: data.surname,
       birthday_date: data.date.replace('.', '-'),
@@ -20,7 +20,11 @@ export const postUserFx = createEffect(async (data: any) => {
       frame: data.frame,
       apartment: data.room,
 			email: data.mail,
-    });
+    }
+
+		console.log(data)
+
+    const res = await axios.post(`${API_URL_CLIENT}profile/info/`, data);
 
 		console.log(res)
 
