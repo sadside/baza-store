@@ -24,19 +24,19 @@ export const InfoBlock = (props: Props) => {
           <div className={s.line}>
             <span className={s.tag}>Фамилия:</span>
             <span suppressHydrationWarning className={s.right}>
-              {user?.name ? user.name : "Необходимо заполнить."}
+              {user?.surname ? user.surname : "Необходимо заполнить."}
             </span>
           </div>
           <div className={s.line}>
             <span className={s.tag}>E-mail:</span>
             <span suppressHydrationWarning className={`${s.right} ${s.done}`}>
-              {user?.name ? user.name : "Необходимо заполнить."}
+              {user?.email ? user.email : "Необходимо заполнить."}
             </span>
           </div>
           <div className={s.line}>
             <span className={s.tag}>Телефон:</span>
             <span suppressHydrationWarning className={`${s.right} ${s.done}`}>
-              {user?.name ? user.name : "Необходимо заполнить."}
+              {user?.phone ? user.phone : "Необходимо заполнить."}
             </span>
           </div>
         </div>

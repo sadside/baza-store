@@ -23,6 +23,10 @@ export default class AuthService {
   }
 
   static async logout() {
-    return $api.get("/auth/logout/");
+    return axios.get(`${API_URL_CLIENT}auth/logout/`, {
+      withCredentials: true,
+    })
   }
+
+  
 }

@@ -45,7 +45,14 @@ export const postUserFx = createEffect(async (data: any) => {
 
 
 export const saveUser = createEvent()
-export const $user = createStore<IUser | null >(null).on(saveUser, (_, state) => state).on(postUserFx.doneData, (_, payload) => payload)
+
+export const logoutFx = createEffect(async () => {
+	await AuthService.logout()
+})
+
+export const $user = createStore<IUser | null >(null).on(saveUser, (_, state) => state).on(postUserFx.doneData, (_, payload) => payload).reset(logoutFx.doneData)
+
+
 
 export const loginFx = createEffect(async ({phone, code}: {phone: string, code: string}) => {
 	try {
@@ -69,7 +76,6 @@ export const getUserFx = createEffect(async () => {
 	}
 })
 
-export const logoutFx = createEffect(async () => {})
 
 export const $loading = createStore(true).on(getUserFx.finally, () => false)
 

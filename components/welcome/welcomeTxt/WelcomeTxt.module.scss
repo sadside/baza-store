@@ -71,8 +71,11 @@
 .top {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 40px;
+  span {
+    cursor: pointer;
+  }
   @media (max-width: 720px) {
     flex-direction: column;
     align-items: center;

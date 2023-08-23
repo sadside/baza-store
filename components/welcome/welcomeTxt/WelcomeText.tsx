@@ -1,13 +1,26 @@
+"use client";
 import React from "react";
 import s from "./WelcomeTxt.module.scss";
+import { useRouter } from "next/navigation";
+import { logoutFx } from "@/stores/auth/auth";
 
 const WelcomeText = () => {
   const name = "Геннадий";
+
+  const { push } = useRouter();
+
+  const handleClick = () => {
+    logoutFx();
+    push("/");
+  };
+
   return (
     <div className={s.root}>
       <span className={s.top}>
         <div className={s.name}>ДОБРО ПОЖАЛОВАТЬ, {name}</div>
-        <span className={s.vix}>Выход</span>
+        <span className={s.vix} onClick={handleClick}>
+          Выход
+        </span>
       </span>
       <div className={s.content}>
         <span className={s.txt}>
