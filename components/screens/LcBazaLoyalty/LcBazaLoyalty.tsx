@@ -3,6 +3,8 @@ import LcBlock from "../../lcBlock/LcBlock";
 
 import s from "./index.module.scss";
 import Welcome from "@/components/welcome/Welcome";
+import Loyalty from "@/app/lk/baza-loyalty/page";
+import { LoyaltyBlock } from "@/components/reviewBlock/LoyaltyBlock";
 const LcBazaLoyalty = () => {
   let o = {
     type: "baza",
@@ -12,11 +14,9 @@ const LcBazaLoyalty = () => {
     ],
   };
   return (
-    <Welcome>
-      <div className={s.content}>
-        <LcBlock o={o} />
-      </div>
-    </Welcome>
+    <div className={s.content}>
+      <LoyaltyBlock />
+    </div>
   );
 };
 

@@ -18,7 +18,6 @@ const getData = async () => {
   });
 
   const links = await res.json();
-  console.log(links);
 
   if (!res.ok) throw new Error("error");
 

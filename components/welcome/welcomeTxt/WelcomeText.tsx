@@ -2,12 +2,12 @@
 import React from "react";
 import s from "./WelcomeTxt.module.scss";
 import { useRouter } from "next/navigation";
-import { logoutFx } from "@/stores/auth/auth";
+import { $user, logoutFx } from "@/stores/auth/auth";
+import { useUnit } from "effector-react";
 
 const WelcomeText = () => {
-  const name = "Геннадий";
-
   const { push } = useRouter();
+  const user = useUnit($user);
 
   const handleClick = () => {
     logoutFx();
@@ -17,7 +17,9 @@ const WelcomeText = () => {
   return (
     <div className={s.root}>
       <span className={s.top}>
-        <div className={s.name}>ДОБРО ПОЖАЛОВАТЬ, {name}</div>
+        <div className={s.name}>
+          ДОБРО ПОЖАЛОВАТЬ{user?.name && `, ${user.name}`}
+        </div>
         <span className={s.vix} onClick={handleClick}>
           Выход
         </span>

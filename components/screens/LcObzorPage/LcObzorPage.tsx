@@ -45,18 +45,11 @@ const LcObzorPage = () => {
     },
   ];
   return (
-    <>
-      <Welcome>
-        <div className={s.content}>
-          {/* {b.map((o) => (
-            <LcBlock key={o.type} o={o} />
-          ))} */}
-          <LoyaltyBlock />
-          <OrderBlock />
-          <InfoBlock />
-        </div>
-      </Welcome>
-    </>
+    <div className={s.content}>
+      <LoyaltyBlock />
+      <OrderBlock />
+      <InfoBlock />
+    </div>
   );
 };
 

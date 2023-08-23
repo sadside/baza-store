@@ -4,7 +4,7 @@ import Link from "next/link";
 type Props = {};
 
 export const OrderBlock = (props: Props) => {
-  const order = "123";
+  const order = false;
 
   return (
     <div className={s.block}>
