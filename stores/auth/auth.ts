@@ -10,10 +10,13 @@ export const codeInputSubmitted = createEvent<{phone: string, code: string}>()
 
 export const postUserFx = createEffect(async (data: any) => {
   try {
+
+		const date = data.date.split('.').reverse().join('-')
+
 		data = {
       name: data.name,
       surname: data.surname,
-      birthday_date: data.date.replaceAll('.', '-'),
+      birthday_date: date,
       city: data.city,
       street: data.street,
       house: data.house,
