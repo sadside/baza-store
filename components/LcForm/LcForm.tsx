@@ -78,6 +78,7 @@ const LcForm = () => {
   }, [user]);
 
   const onSubmit = async (data: any) => {
+    console.log(data);
     postUserFx(data);
   };
 

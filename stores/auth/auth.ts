@@ -24,6 +24,7 @@ export const postUserFx = createEffect(async (data: any) => {
 
     return res.data
   } catch {
+		console.log('errrrrror')
     throw new Error('Ошибка получения личных данных')
   }
 })
