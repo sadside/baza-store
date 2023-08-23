@@ -13,7 +13,7 @@ export const postUserFx = createEffect(async (data: any) => {
 		data = {
       name: data.name,
       surname: data.surname,
-      birthday_date: data.date.replace('.', '-'),
+      birthday_date: data.date.replaceAll('.', '-'),
       city: data.city,
       street: data.street,
       house: data.house,
