@@ -2,6 +2,9 @@ import React from "react";
 import LcBlock, { ObjLc } from "../../lcBlock/LcBlock";
 import s from "./LcObzorPage.module.scss";
 import Welcome from "@/components/welcome/Welcome";
+import { LoyaltyBlock } from "@/components/reviewBlock/LoyaltyBlock";
+import { OrderBlock } from "@/components/orderBlock/OrderBlock";
+import { InfoBlock } from "@/components/infoBlock/InfoBlock";
 
 const LcObzorPage = () => {
   let a = [
@@ -45,9 +48,12 @@ const LcObzorPage = () => {
     <>
       <Welcome>
         <div className={s.content}>
-          {b.map((o) => (
+          {/* {b.map((o) => (
             <LcBlock key={o.type} o={o} />
-          ))}
+          ))} */}
+          <LoyaltyBlock />
+          <OrderBlock />
+          <InfoBlock />
         </div>
       </Welcome>
     </>

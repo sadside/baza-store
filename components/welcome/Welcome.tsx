@@ -10,7 +10,7 @@ type Props = {
 };
 const Welcome = ({ children }: Props) => {
   return (
-    <div>
+    <div className={s.wrapper}>
       <Banner />
       <WelcomeText />
       <LcLinks />
