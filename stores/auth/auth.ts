@@ -22,6 +22,8 @@ export const postUserFx = createEffect(async (data: any) => {
 			email: data.mail,
     });
 
+		console.log(res)
+
     return res.data
   } catch {
 		console.log('errrrrror')
