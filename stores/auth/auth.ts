@@ -13,12 +13,13 @@ export const postUserFx = createEffect(async (data: any) => {
     const res = await axios.post(`${API_URL_CLIENT}profile/info/`, {
       name: data.name,
       surname: data.surname,
-      birthday_date: data.dateOfBth,
+      birthday_date: data.dateOfBth.replace('.', '-'),
       city: data.city,
       street: data.street,
       house: data.house,
       frame: data.frame,
       apartment: data.room,
+			email: data.mail,
     });
 
     return res.data
