@@ -1,5 +1,5 @@
 import AuthService from '@/services/AuthService'
-import axios, { AxiosResponse } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { createEffect, createEvent, createStore, sample } from 'effector'
 import { IUser } from '@/models/User'
 import { API_URL_CLIENT } from '@/http'
@@ -25,9 +25,13 @@ export const postUserFx = createEffect(async (data: any) => {
 		console.log(res)
 
     return res.data
-  } catch {
-		console.log('errrrrror')
-    throw new Error('Ошибка получения личных данных')
+  } catch(error) {
+		if (axios.isAxiosError(error)) {
+      console.log(error.status)
+      console.error(error.response);
+    } else {
+      console.error(error);
+    }
   }
 })
 
