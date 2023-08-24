@@ -15,9 +15,9 @@ type params = {
 };
 
 export async function generateMetadata({ params: { slug } }: params) {
-  const product = await getProduct(slug);
+  const product: IFullProduct = await getProduct(slug);
 
-  return { title: product.name };
+  return { title: product.name, description: product.description };
 }
 
 async function getProduct(slug: string) {
