@@ -1,14 +1,17 @@
 export interface IProduct {
   name: string,
-  id: number,
+  product_id: number,
+  modification_id: number,
   price: number,
-  image: string,
-  colours: any[],
+  images: string[],
+  colors_count: number,
+  old_price: number,
   path?: {
     id: number,
     name: string,
     slug: string
-  }
+  },
+  slug:string
 }
 
 export type Modification = {
@@ -23,18 +26,31 @@ export type Modification = {
 }
 
 export interface IFullProduct {
-  id: number,
   name: string,
   description?: string,
   price: number,
-  image: string,
-  category: number,
+  images: string[],
+  category: {
+    name: string,
+    size_image: string,
+  },
+  old_price: number,
   path: {
       id: number,
       name: string,
       slug: string
   },
-  modifications: Modification[],
-  full_path: string,
-  slug_path: string
+  sizes: {
+    name: string,
+    mod_id: number
+  }[],
+  current_color: {
+    name: string,
+    hex_code: string
+  },
+  colors: {
+    slug: string,
+    hex_code: string,
+    name: string
+  }[]
 }

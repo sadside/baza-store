@@ -10,10 +10,13 @@ import {
 import { Modification } from "@/models/Product";
 
 type Props = {
-  modifications: Modification[];
+  sizes: {
+    name: string;
+    mod_id: number;
+  }[];
 };
 
-export const SelectProductSize = ({ modifications }: Props) => {
+export const SelectProductSize = ({ sizes }: Props) => {
   const color = useUnit($selectedColor);
 
   const selectedSize = useUnit($selectedSize);
@@ -26,17 +29,17 @@ export const SelectProductSize = ({ modifications }: Props) => {
           <div className={styles.gid}>Гид по уходу</div>
         </div>
         <div className={styles.sizeItems}>
-          {color?.sizes.map((size) => {
+          {sizes.map((size) => {
             return (
               <div
                 className={clsx({
                   [styles.sizeItem]: true,
-                  [styles.active]: selectedSize?.size === size.size,
+                  [styles.active]: selectedSize?.mod_id === size.mod_id,
                 })}
                 onClick={() => sizeSelected(size)}
-                key={size.id}
+                key={size.mod_id}
               >
-                {size.size}
+                {size.name}
               </div>
             );
           })}

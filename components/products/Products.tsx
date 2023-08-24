@@ -10,12 +10,16 @@ const Products = ({ products }: { products: IProduct[] }) => {
     <div className={styles.productsWrapper}>
       {products.map((product) => (
         <ProductItem
-          id={product.id}
+          product_id={product.product_id}
           price={product.price}
           name={product.name}
-          colours={product.colours}
-          image={product.image}
-          key={product.id}
+          colors_count={product.colors_count}
+          images={product.images}
+          key={product.modification_id}
+          modification_id={product.modification_id}
+          slug={product.slug}
+          path={product.path}
+          old_price={product.old_price}
         />
       ))}
     </div>

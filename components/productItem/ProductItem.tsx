@@ -3,7 +3,14 @@ import Link from "next/link";
 import styles from "./ProductItem.module.scss";
 import { IProduct } from "@/models/Product";
 
-const ProductItem = ({ image, price, name, colours, id }: IProduct) => {
+const ProductItem = ({
+  images,
+  product_id,
+  name,
+  price,
+  colors_count,
+  slug,
+}: IProduct) => {
   const formatter = new Intl.NumberFormat("ru", {
     style: "unit",
     unit: "meter",
@@ -11,16 +18,17 @@ const ProductItem = ({ image, price, name, colours, id }: IProduct) => {
   });
 
   return (
-    <Link className={styles.product} href={`/products/${id}`}>
+    <Link className={styles.product} href={`/products/${slug}`}>
       <div>
         <Image
-          src={image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
+          src={images[0].replace(
+            "http://127.0.0.1:8000/",
+            "http://thebaza.ru/"
+          )}
           alt={"j"}
           className={styles.img}
           width={376}
           height={502}
-          placeholder="blur"
-          blurDataURL={image}
           priority
         />
       </div>
@@ -29,7 +37,7 @@ const ProductItem = ({ image, price, name, colours, id }: IProduct) => {
         <div className={styles.name}>{name}</div>
         <div className={styles.price}>{price / 100} ₽</div>
         <div className={styles.countColor}>
-          {formatter.format(colours.length || 1).replace("метр", "цвет")}
+          {formatter.format(colors_count || 1).replace("метр", "цвет")}
         </div>
       </div>
     </Link>

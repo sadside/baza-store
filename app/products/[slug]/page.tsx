@@ -10,19 +10,19 @@ export interface IProductPageProps {
 
 type params = {
   params: {
-    id: string;
+    slug: string;
   };
 };
 
-export async function generateMetadata({ params: { id } }: params) {
-  const product = await getProduct(id);
+export async function generateMetadata({ params: { slug } }: params) {
+  const product = await getProduct(slug);
 
   return { title: product.name };
 }
 
-async function getProduct(id: string) {
+async function getProduct(slug: string) {
   try {
-    const response = await ProductService.getProductById(id);
+    const response = await ProductService.getProductBySlug(slug);
 
     if (!response.ok) throw new Error("error");
 
@@ -32,8 +32,8 @@ async function getProduct(id: string) {
   }
 }
 
-export default async function ({ params: { id } }: params) {
-  const product: IFullProduct = await getProduct(id);
+export default async function ({ params: { slug } }: params) {
+  const product: IFullProduct = await getProduct(slug);
   console.log(product);
 
   return <ProductPage product={product} />;

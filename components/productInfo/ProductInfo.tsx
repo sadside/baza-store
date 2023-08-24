@@ -28,13 +28,6 @@ export const ProductInfo = ({ product }: Props) => {
   const selectedSize = useUnit($selectedSize);
   const selectedColor = useUnit($selectedColor);
 
-  const { modifications } = product;
-
-  console.log(selectedColor);
-
-  const colours: any[] = [];
-  const added: string[] = [];
-
   const defaultColor = {
     name: "Стандартный",
     hex_code: "#ccc",
@@ -44,61 +37,61 @@ export const ProductInfo = ({ product }: Props) => {
     return pageUnMounted();
   }, []);
 
-  if (modifications?.length) {
-    modifications.forEach((item) => {
-      let currentColor = {
-        ...defaultColor,
-      };
+  // if (modifications?.length) {
+  //   modifications.forEach((item) => {
+  //     let currentColor = {
+  //       ...defaultColor,
+  //     };
 
-      if (item.color) {
-        currentColor = {
-          ...item.color,
-        };
-      }
+  //     if (item.color) {
+  //       currentColor = {
+  //         ...item.color,
+  //       };
+  //     }
 
-      const sizes: any[] = [];
+  //     const sizes: any[] = [];
 
-      if (!added.includes(currentColor.name)) {
-        if (item.size) {
-          modifications.forEach((mod) => {
-            if ((mod?.color?.name || defaultColor.name) === currentColor.name) {
-              sizes.push({
-                size: mod.size,
-                id: mod.id,
-              });
-            }
-          });
-        }
+  //     if (!added.includes(currentColor.name)) {
+  //       if (item.size) {
+  //         modifications.forEach((mod) => {
+  //           if ((mod?.color?.name || defaultColor.name) === currentColor.name) {
+  //             sizes.push({
+  //               size: mod.size,
+  //               id: mod.id,
+  //             });
+  //           }
+  //         });
+  //       }
 
-        added.push(currentColor.name);
+  //       added.push(currentColor.name);
 
-        if (!sizes.length)
-          sizes.push({
-            id: item.id,
-            size: "OS",
-          });
+  //       if (!sizes.length)
+  //         sizes.push({
+  //           id: item.id,
+  //           size: "OS",
+  //         });
 
-        colours.push({
-          ...currentColor,
-          sizes,
-        });
-      }
-    });
-  }
+  //       colours.push({
+  //         ...currentColor,
+  //         sizes,
+  //       });
+  //     }
+  //   });
+  // }
 
-  useEffect(() => {
-    console.log(colours[0]);
-    colorSelected(colours[0]);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.productInfo}>
       <div className={styles.wrapper}>
         <MainInfoProduct product={product} />
         <Hr />
-        <SelectProductColor colours={colours} />
+        <SelectProductColor
+          colours={product.colors}
+          current_color={product.current_color}
+        />
         <Hr />
-        <SelectProductSize modifications={modifications} />
+        <SelectProductSize sizes={product.sizes} />
         <Button
           text="Добавить в корзину"
           style={{ width: "100%" }}
@@ -109,11 +102,11 @@ export const ProductInfo = ({ product }: Props) => {
             }
             if (selectedColor) {
               productAddedToCart({
-                id: selectedSize.id,
+                id: selectedSize.mod_id,
                 price: product.price,
                 name: product.name,
-                image: product.image,
-                size: selectedSize.size,
+                image: product.images[0],
+                size: selectedSize.name,
                 color: selectedColor?.name,
               });
             }

@@ -22,19 +22,22 @@ export const ProductPageImages = ({ product }: Props) => {
           />
         );
       })} */}
-      {product.image && (
-        <Image
-          src={product.image.replace(
-            "http://127.0.0.1:8000/",
-            "http://thebaza.ru/"
-          )}
-          width={2500}
-          height={1150}
-          alt="ssss"
-          className={styles.productImage}
-          key={product.id}
-        />
-      )}
+      {product.images.map((image, index) => {
+        console.log(
+          image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")
+        );
+
+        return (
+          <Image
+            src={image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
+            width={2500}
+            height={1150}
+            alt="ssss"
+            className={styles.productImage}
+            key={index}
+          />
+        );
+      })}
     </div>
   );
 };

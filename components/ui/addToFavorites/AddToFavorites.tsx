@@ -3,7 +3,7 @@
 import SvgSelector from "@/utils/SvgSelector";
 
 type Props = {
-  product: IProduct;
+  product: IFullProduct;
 };
 
 import styles from "./AddToFavorites.module.scss";
@@ -21,6 +21,7 @@ import {
   $selectedSize,
 } from "@/stores/ui/products/productSize";
 import { $user } from "@/stores/auth/auth";
+import { IFullProduct } from "@/models/Product";
 
 export const AddToFavorites = ({ product }: Props) => {
   const user = useUnit($user);
@@ -31,7 +32,7 @@ export const AddToFavorites = ({ product }: Props) => {
 
   useEffect(() => {
     favorites.forEach((item) => {
-      if (item.id === product.id) {
+      if (item. === product.) {
         setFavorite(true);
       }
     });
@@ -42,7 +43,7 @@ export const AddToFavorites = ({ product }: Props) => {
 
     if (!isFavorite) {
       addFavorite({
-        id: product.id,
+        id: product.,
         image: product.image,
         price: product.price,
         name: product.name,
