@@ -1,11 +1,7 @@
 "use client";
 
-import React, { useEffect, useId, useState } from "react";
 import styles from "./SelectProductColor.module.scss";
-import { IColor } from "./SelectProductColor.interface";
 import clsx from "clsx";
-import { colorSelected, sizeSelected } from "@/stores/ui/products/productSize";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 type Props = {
@@ -17,31 +13,16 @@ type Props = {
   current_color: {
     name: string;
     hex_code: string;
+    eng_name: string;
   };
 };
 
 export const SelectProductColor = ({ colours, current_color }: Props) => {
-  // const [selectedColor, setSelectdColor] = useState<IColor>(colours[0]);
-  const router = useRouter();
-  // useEffect(() => {
-  //   colorSelected(selectedColor);
-  // }, []);
-
-  const selectColorHandleClicked = (color: {
-    slug: string;
-    name: string;
-    hex_code: string;
-  }) => {
-    // setSelectdColor(color);
-    // sizeSelected(null);
-    // colorSelected(color);
-  };
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.color}>
         <div className={styles.titleText}>ЦВЕТ:</div>
-        <div className={styles.selectedColor}>{}</div>
+        <div className={styles.selectedColor}>{current_color.eng_name}</div>
       </div>
       <div className={styles.colorPicker}>
         {colours.map((color) => {
@@ -49,7 +30,6 @@ export const SelectProductColor = ({ colours, current_color }: Props) => {
             <Link
               href={color.slug}
               style={{ backgroundColor: `#${color.hex_code}` }}
-              onClick={() => selectColorHandleClicked(color)}
               className={clsx({
                 [styles.colorPrickerBtn]: true,
                 [styles.selectedColorBtn]:

@@ -17,8 +17,6 @@ type Props = {
 };
 
 export const SelectProductSize = ({ sizes }: Props) => {
-  const color = useUnit($selectedColor);
-
   const selectedSize = useUnit($selectedSize);
 
   return (

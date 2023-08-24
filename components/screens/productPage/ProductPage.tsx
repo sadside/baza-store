@@ -1,5 +1,3 @@
-"use client";
-
 import styles from "./ProductPage.module.scss";
 import Image from "next/image";
 import { ProductInfo } from "@/components/productInfo/ProductInfo";
@@ -12,8 +10,6 @@ type Props = {
 };
 
 export const ProductPage = ({ product }: Props) => {
-  console.log(product);
-
   return (
     <>
       <div className={styles.wrapper}>

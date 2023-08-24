@@ -25,61 +25,8 @@ import { useEffect } from "react";
 import { IColor } from "../selectProductColor/SelectProductColor.interface";
 
 export const ProductInfo = ({ product }: Props) => {
-  const selectedSize = useUnit($selectedSize);
   const selectedColor = useUnit($selectedColor);
-
-  const defaultColor = {
-    name: "Стандартный",
-    hex_code: "#ccc",
-  };
-
-  useEffect(() => {
-    return pageUnMounted();
-  }, []);
-
-  // if (modifications?.length) {
-  //   modifications.forEach((item) => {
-  //     let currentColor = {
-  //       ...defaultColor,
-  //     };
-
-  //     if (item.color) {
-  //       currentColor = {
-  //         ...item.color,
-  //       };
-  //     }
-
-  //     const sizes: any[] = [];
-
-  //     if (!added.includes(currentColor.name)) {
-  //       if (item.size) {
-  //         modifications.forEach((mod) => {
-  //           if ((mod?.color?.name || defaultColor.name) === currentColor.name) {
-  //             sizes.push({
-  //               size: mod.size,
-  //               id: mod.id,
-  //             });
-  //           }
-  //         });
-  //       }
-
-  //       added.push(currentColor.name);
-
-  //       if (!sizes.length)
-  //         sizes.push({
-  //           id: item.id,
-  //           size: "OS",
-  //         });
-
-  //       colours.push({
-  //         ...currentColor,
-  //         sizes,
-  //       });
-  //     }
-  //   });
-  // }
-
-  useEffect(() => {}, []);
+  const selectedSize = useUnit($selectedSize);
 
   return (
     <div className={styles.productInfo}>
