@@ -47,6 +47,7 @@ export interface IFullProduct {
   current_color: {
     name: string,
     hex_code: string,
+    slug: string,
     eng_name: string
   },
   colors: {

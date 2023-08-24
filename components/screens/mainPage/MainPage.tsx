@@ -4,6 +4,9 @@ import Products from "@/components/products/Products";
 import { Video } from "@/components/video/Video";
 import { IProduct } from "@/models/Product";
 import styles from "./MainPage.module.scss";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL_CLIENT } from "@/http";
 
 interface Props {
   products: IProduct[];

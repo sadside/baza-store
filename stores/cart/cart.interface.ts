@@ -1,5 +1,6 @@
 export interface IProductCart {
-  id: number,
+  id?: number,
+  slug?: string 
   count?: number,
   name: string,
   price: number,

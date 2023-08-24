@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./ProductItem.module.scss";
 import { IProduct } from "@/models/Product";
+import { useInView } from "react-intersection-observer";
 
 const ProductItem = ({
   images,
@@ -17,20 +18,29 @@ const ProductItem = ({
     unitDisplay: "long",
   });
 
+  const { ref, inView } = useInView({
+    threshold: 0.5,
+    triggerOnce: true,
+  });
+
   return (
-    <Link className={styles.product} href={`/products/${slug}`}>
+    <Link className={styles.product} href={`/products/${slug}`} ref={ref}>
       <div>
-        <Image
-          src={images[0].replace(
-            "http://127.0.0.1:8000/",
-            "http://thebaza.ru/"
-          )}
-          alt={"j"}
-          className={styles.img}
-          width={376}
-          height={502}
-          priority
-        />
+        {inView ? (
+          <Image
+            src={images[0].replace(
+              "http://127.0.0.1:8000/",
+              "http://thebaza.ru/"
+            )}
+            alt={"j"}
+            className={styles.img}
+            width={376}
+            height={502}
+            priority
+          />
+        ) : (
+          <div>skeleton</div>
+        )}
       </div>
 
       <div className={styles.infoWrap}>

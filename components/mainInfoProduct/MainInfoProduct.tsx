@@ -15,7 +15,7 @@ export const MainInfoProduct = ({ product }: Props) => {
         <div
           className={styles.name}
         >{`${product.name} ${product.current_color.eng_name}`}</div>
-        {/* <AddToFavorites product={product} /> */}
+        <AddToFavorites product={product} />
       </div>
       <div className={styles.price}>{product.price / 100} ₽</div>
     </div>

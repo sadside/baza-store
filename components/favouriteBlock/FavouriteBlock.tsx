@@ -12,8 +12,6 @@ type Props = {
 const FavouriteBlock = ({ o }: Props) => {
   const { name, id, price, image } = o;
 
-  console.log(image);
-
   return (
     <div className={s.root}>
       <div className={s.img}>
@@ -56,7 +54,7 @@ const FavouriteBlock = ({ o }: Props) => {
           <span className={s.setting} style={{ cursor: "pointer" }}>
             Изменить
           </span>
-          <span className={s.price}>{price} ₽</span>
+          <span className={s.price}>{price / 100} ₽</span>
         </div>
       </div>
     </div>

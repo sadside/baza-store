@@ -20,9 +20,9 @@ const LcFavourPage = () => {
     <>
       {favorites.length ? (
         <div className={s.content}>
-          {favorites.map((o) => (
+          {/* {favorites.map((o) => (
             <FavouriteBlock key={o.id} o={o} />
-          ))}
+          ))} */}
         </div>
       ) : (
         <div className={s.none}>
