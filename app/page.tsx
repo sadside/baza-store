@@ -13,7 +13,7 @@ const getProducts = async () => {
 
     const products = await res.json();
 
-    console.log(products);
+    console.table(products);
 
     return products;
   } catch {
