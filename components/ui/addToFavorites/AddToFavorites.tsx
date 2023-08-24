@@ -30,38 +30,38 @@ export const AddToFavorites = ({ product }: Props) => {
 
   const [isFavorite, setFavorite] = useState(false);
 
-  useEffect(() => {
-    favorites.forEach((item) => {
-      if (item. === product.) {
-        setFavorite(true);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   favorites.forEach((item) => {
+  //     if (item. === product.) {
+  //       setFavorite(true);
+  //     }
+  //   });
+  // }, []);
 
-  const handleClick = () => {
-    setFavorite(!isFavorite);
+  // const handleClick = () => {
+  //   setFavorite(!isFavorite);
 
-    if (!isFavorite) {
-      addFavorite({
-        id: product.,
-        image: product.image,
-        price: product.price,
-        name: product.name,
-      });
+  //   if (!isFavorite) {
+  //     addFavorite({
+  //       id: product.,
+  //       image: product.image,
+  //       price: product.price,
+  //       name: product.name,
+  //     });
 
-      if (user) addToServerFx(product.id);
-    } else {
-      removeFavorite({
-        id: product.id,
-        image: product.image,
-        price: product.price,
-        name: product.name,
-      });
-    }
-  };
+  //     if (user) addToServerFx(product.id);
+  //   } else {
+  //     removeFavorite({
+  //       id: product.id,
+  //       image: product.image,
+  //       price: product.price,
+  //       name: product.name,
+  //     });
+  //   }
+  // };
 
   return (
-    <div className={styles.wrapper} onClick={handleClick}>
+    <div className={styles.wrapper}>
       <SvgSelector
         id={isFavorite ? "favoriteHeart" : "heart"}
         style={{ height: 25, width: 25 }}
@@ -69,6 +69,3 @@ export const AddToFavorites = ({ product }: Props) => {
     </div>
   );
 };
-function addFavotite(product: IProduct) {
-  throw new Error("Function not implemented.");
-}
