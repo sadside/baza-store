@@ -4,16 +4,14 @@ import { API_URL } from "@/http";
 const getProducts = async () => {
   try {
     const res = await fetch(`${API_URL}products/products/`, {
-      // next: {
-      // revalidate: 60,
-      // },
-      cache: "no-store",
+      next: {
+        revalidate: 60,
+      },
     });
 
     if (!res.ok) throw new Error("erroe");
 
     const products = await res.json();
-    console.log(products);
 
     return products;
   } catch {

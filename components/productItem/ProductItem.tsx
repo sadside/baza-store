@@ -19,7 +19,7 @@ const ProductItem = ({
   });
 
   const { ref, inView } = useInView({
-    threshold: 0.5,
+    threshold: 0.1,
     triggerOnce: true,
   });
 
@@ -39,7 +39,7 @@ const ProductItem = ({
             priority
           />
         ) : (
-          <div>skeleton</div>
+          <div className={styles.sceleton}></div>
         )}
       </div>
 
