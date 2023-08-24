@@ -18,5 +18,5 @@ async function getProducts(category: string) {
 
   const products = await response.json();
 
-  return products.results;
+  return products;
 }

@@ -8,6 +8,6 @@ export default class CategoriesService {
   }
 
   static async getProductsByCategory(category: string) {
-    return fetch(`${API_URL}products/filter/?slug=${category}`)
+    return fetch(`${API_URL}products/products/?slug=${category}`)
   }
 }

@@ -13,6 +13,8 @@ const getProducts = async () => {
 
     const products = await res.json();
 
+    console.log(products);
+
     return products;
   } catch {
     throw new Error("Ошибка загрузки товаров, попробуйте позже");
