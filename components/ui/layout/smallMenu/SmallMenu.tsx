@@ -13,6 +13,7 @@ import {
   $showSmallMenu,
   $stateOfMenu,
   $videoHeight,
+  dropdownMenuClosed,
 } from "@/stores/layout/menu/init";
 
 import { IUser } from "@/models/User";
@@ -52,7 +53,13 @@ export const SmallMenu = ({ links }: Props) => {
               : { borderBottom: "1px solid #ccc" }
           }
         >
-          <Link className={styles.logo} href="/">
+          <Link
+            className={styles.logo}
+            href="/"
+            onMouseEnter={() => {
+              dropdownMenuClosed();
+            }}
+          >
             <SvgSelector
               id={
                 menuState === "transparent" && pathname === "/"

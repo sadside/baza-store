@@ -34,9 +34,9 @@ const ProductItem = ({
             )}
             alt={"j"}
             className={styles.img}
-            width={376}
-            height={502}
-            priority
+            height={800}
+            width={250}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         ) : (
           <div className={styles.sceleton}></div>
