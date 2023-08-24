@@ -22,7 +22,7 @@ export const SelectProductColor = ({ colours, current_color }: Props) => {
     <div className={styles.wrapper}>
       <div className={styles.color}>
         <div className={styles.titleText}>ЦВЕТ:</div>
-        <div className={styles.selectedColor}>{current_color.eng_name}</div>
+        <div className={styles.selectedColor}>{current_color.name}</div>
       </div>
       <div className={styles.colorPicker}>
         {colours.map((color) => {

@@ -1,9 +1,4 @@
 "use client";
-
-type Props = {
-  product: IFullProduct;
-};
-
 import styles from "./ProductInfo.module.scss";
 import { MainInfoProduct } from "../mainInfoProduct/MainInfoProduct";
 import { Hr } from "../ui/hr/Hr";
@@ -21,11 +16,12 @@ import {
   pageUnMounted,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
-import { useEffect } from "react";
-import { IColor } from "../selectProductColor/SelectProductColor.interface";
+
+type Props = {
+  product: IFullProduct;
+};
 
 export const ProductInfo = ({ product }: Props) => {
-  const selectedColor = useUnit($selectedColor);
   const selectedSize = useUnit($selectedSize);
 
   return (
@@ -47,16 +43,14 @@ export const ProductInfo = ({ product }: Props) => {
               alert("Выберите размер");
               return;
             }
-            if (selectedColor) {
-              productAddedToCart({
-                id: selectedSize.mod_id,
-                price: product.price,
-                name: product.name,
-                image: product.images[0],
-                size: selectedSize.name,
-                color: selectedColor?.name,
-              });
-            }
+            productAddedToCart({
+              id: selectedSize.mod_id,
+              price: product.price,
+              name: product.name,
+              image: product.images[0],
+              size: selectedSize.name,
+              color: product.current_color.name,
+            });
           }}
         />
         <SubProductInfo />
