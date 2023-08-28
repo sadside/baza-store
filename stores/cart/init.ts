@@ -119,8 +119,9 @@ sample({
           // slug: item.product.slug
         }
       })
-
+      console.log('cart', cart)
       return cart
+
     }
 
     return []
