@@ -253,7 +253,7 @@ sample({
 
 sample({
 	clock: getUserFx.doneData,
-	target: $user,
+	target: [$user, getCartFromServerFx],
 })
 
 
