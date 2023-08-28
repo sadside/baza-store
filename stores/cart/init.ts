@@ -31,6 +31,48 @@ export const addToServerFx = createEffect(async (id: number) => {
   }
 })
 
+export const synchronizationWithLocalStorage = createEffect(async () => {
+
+  const products = localStorage.getItem('products')
+
+  if (products) {
+    const cart = JSON.parse(products)
+
+    const body: {
+      modifications: number[],
+      quantities: number[]
+    } = {
+      modifications: [],
+      quantities: []
+    }
+
+    cart.forEach((item: IServerCart) => {
+      body.modifications.push(item.product.id)
+      body.quantities.push(item.quantity)
+    })
+
+    try {
+      const res = await axios.post(`${API_URL_CLIENT}profile/cart/`, body, {
+        withCredentials: true
+      })
+
+      return res.data as IServerCart[]
+    } catch(e: any) {
+      console.log(e.message())
+      return []
+    }
+
+  } else {
+    try {
+      const res = await axios.get(`${API_URL_CLIENT}profile/cart/`)
+  
+      return res.data as IServerCart[]
+    } catch {
+      return []
+    }
+  }
+})
+
 export const decrementProductCountServer = createEffect(async ({id, quantity}: {id: number, quantity: number}) => {
   try {
     const res = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
@@ -104,7 +146,7 @@ sample({
 })
 
 sample({
-  clock: [addToServerFx.doneData, getCartFromServerFx.doneData],
+  clock: [addToServerFx.doneData, synchronizationWithLocalStorage.doneData],
   fn: (items) => {
 
     if (items.length) {
@@ -227,7 +269,7 @@ sample({
 
 sample({
   clock: loginFx.doneData,
-  target: getCartFromServerFx
+  target: synchronizationWithLocalStorage
 })
 
 
