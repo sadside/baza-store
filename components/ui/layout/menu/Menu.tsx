@@ -41,7 +41,7 @@ const Menu = ({ links }: Props) => {
     mouseLeavedFromCart();
     categoryCleared();
     menuMounted();
-    pageMounted();
+    // pageMounted();
     mounted();
 
     const defaultOffset = 200;
