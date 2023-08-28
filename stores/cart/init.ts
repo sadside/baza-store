@@ -101,9 +101,11 @@ sample({
 })
 
 sample({
-  //@ts-ignore
-  clock: [decrementProductCountServer.doneData, getCartFromServerFx.doneData, addToServerFx.doneData],
+  clock: [addToServerFx.doneData],
   fn: (items) => {
+
+    console.log('effector', items)
+
     if (items.length) {
       const cart: IProductCart[] = items.map(item => {
         return {
@@ -120,6 +122,8 @@ sample({
 
       return cart
     }
+
+    return []
   },
   target: [addToStorageFx, $cart]
 })
