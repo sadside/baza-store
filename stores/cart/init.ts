@@ -107,24 +107,20 @@ sample({
   clock: [addToServerFx.doneData, getCartFromServerFx.doneData],
   fn: (items) => {
 
-    console.log('effector', items)
-
     if (items.length) {
       const cart: IProductCart[] = items.map(item => {
         return {
           id: item.product.id,
           name: item.product.name,
-          image: item.product.images.images[0],
+          image: item.product.image,
           price: item.product.price,
           count: item.quantity,
           size: item.product.size,
           color: item.product.color,
-          // slug: item.product.slug
+          slug: item.product.slug
         }
       })
-      console.log('cart', cart)
       return cart
-
     }
 
     return []
