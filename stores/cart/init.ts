@@ -126,7 +126,7 @@ sample({
 
     return []
   },
-  target: $cart,
+  target: [$cart, addToStorageFx],
 })
 
 
