@@ -1,19 +1,29 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./CartPage.module.scss";
 import { useUnit } from "effector-react";
-import { $cart } from "@/stores/cart/init";
+import {
+  $cart,
+  getCartFromLocalStorageFx,
+  getCartFromServerFx,
+} from "@/stores/cart/init";
 import { CartItem } from "@/components/cartItem/CartItem";
 import { getPriceFromCart } from "@/utils/getFullPrice";
 import Button from "@/components/ui/button/Button";
 import { $selectedColor } from "@/stores/ui/products/productSize";
+import { $user } from "@/stores/auth/auth";
 
 type Props = {};
 
 export const CartPage = (props: Props) => {
   const products = useUnit($cart);
-  // const color = useUnit($selectedColor);
+  const user = useUnit($user);
+
+  useEffect(() => {
+    if (user) getCartFromServerFx();
+    else getCartFromLocalStorageFx();
+  }, []);
 
   return (
     <div className={styles.wrapper}>

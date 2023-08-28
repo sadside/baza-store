@@ -14,6 +14,11 @@ const addToStorageFx = createEffect((favorites: IProductCart[]) => {
   addFavotitesToStorage(favorites)
 })
 
+
+export const getFavoritesFx = createEffect(async () => {
+
+})
+
 const addToServerFx = createEffect(async (id: number) => {
   const res = await axios.post(`${API_URL_CLIENT}profile/favorites/`, {
     product_id: id,

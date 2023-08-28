@@ -7,7 +7,7 @@ import { SelectProductSize } from "../selectSizeProduct/SelectProductSize";
 import Button from "../ui/button/Button";
 import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
-import { productAddedToCart } from "@/stores/cart/init";
+import { addToServerFx, productAddedToCart } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import {
   $selectedColor,
@@ -16,6 +16,7 @@ import {
   pageUnMounted,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
+import { $loading, $user } from "@/stores/auth/auth";
 
 type Props = {
   product: IFullProduct;
@@ -23,6 +24,9 @@ type Props = {
 
 export const ProductInfo = ({ product }: Props) => {
   const selectedSize = useUnit($selectedSize);
+  const user = useUnit($user);
+
+  const loading = useUnit(addToServerFx.pending);
 
   return (
     <div className={styles.productInfo}>
@@ -50,7 +54,9 @@ export const ProductInfo = ({ product }: Props) => {
               image: product.images[0],
               size: selectedSize.name,
               color: product.current_color.name,
-            });
+              slug: product.current_color.slug,
+            }); // ls-cart
+            if (user) addToServerFx(selectedSize.mod_id);
           }}
         />
         <SubProductInfo />

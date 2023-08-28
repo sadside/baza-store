@@ -11,7 +11,7 @@ const nextConfig = {
 			'downloader.disk.yandex.ru',
 			'assets.burberry.com',
 			'iizhukov.site',
-			'thebaza.ru'
+			'thebaza.ru',
 		],
 	},
 }
