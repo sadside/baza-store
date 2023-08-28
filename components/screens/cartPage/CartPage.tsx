@@ -5,6 +5,7 @@ import styles from "./CartPage.module.scss";
 import { useUnit } from "effector-react";
 import {
   $cart,
+  $user,
   getCartFromLocalStorageFx,
   getCartFromServerFx,
 } from "@/stores/cart/init";
@@ -12,7 +13,6 @@ import { CartItem } from "@/components/cartItem/CartItem";
 import { getPriceFromCart } from "@/utils/getFullPrice";
 import Button from "@/components/ui/button/Button";
 import { $selectedColor } from "@/stores/ui/products/productSize";
-import { $user } from "@/stores/auth/auth";
 
 type Props = {};
 

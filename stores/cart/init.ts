@@ -8,6 +8,7 @@ import axios from "axios"
 import { API_URL_CLIENT } from "@/http"
 import { IFullProduct } from "@/models/Product"
 import { IServerCart } from "@/models/Cart"
+import AuthService from "@/services/AuthService"
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products)
@@ -52,6 +53,8 @@ export const getCartFromServerFx = createEffect(async () => {
     return []
   }
 })
+
+
 
 export const getCartFromLocalStorageFx = createEffect<void, IProductCart[]>(() => {
   return JSON.parse(localStorage.getItem('products') || '[]') as IProductCart[]
@@ -129,5 +132,109 @@ sample({
   target: [$cart, addToStorageFx],
 })
 
+export const phoneInputSubmitted = createEvent<string>()
+export const codeInputSubmitted = createEvent<{phone: string, code: string}>()
+
+
+export const postUserFx = createEffect(async (data: any) => {
+  try {
+
+		// const date = data.date.split('.').reverse().join('-')
+
+		data = {
+      name: data.name,
+      surname: data.surname,
+      birthday_date: data.date,
+      city: data.city,
+      street: data.street,
+      house: data.house,
+      frame: data.frame,
+      apartment: data.room,
+			email: data.mail,
+    }
+
+		console.log(data)
+
+    const res = await axios.post(`${API_URL_CLIENT}profile/info/`, data);
+
+		console.log(res)
+
+    return res.data
+  } catch(error) {
+		if (axios.isAxiosError(error)) {
+      console.log(error.status)
+      console.error(error.response);
+    } else {
+      console.error(error);
+    }
+  }
+})
+
+
+
+export const saveUser = createEvent()
+
+export const logoutFx = createEffect(async () => {
+	await AuthService.logout()
+})
+
+export const $user = createStore<IUser | null >(null).on(saveUser, (_, state) => state).on(postUserFx.doneData, (_, payload) => payload).reset(logoutFx.doneData)
+
+export const loginFx = createEffect(async ({phone, code}: {phone: string, code: string}) => {
+	try {
+		const res = await AuthService.login(phone, code)
+
+		return res.data
+	} catch (e: any) {
+		console.log(e.message())
+		return null
+	}
+})
+
+export const getUserFx = createEffect(async () => {
+	try {
+		const res = await AuthService.getUser()
+
+		return res.data
+	} catch (e: any) {
+		console.log(e.message())
+		return null
+	}
+})
+
+export const $loading = createStore(true).on(getUserFx.finally, () => false)
+
+export const $phoneNumber = createStore<string>('')
+	.on(phoneInputSubmitted, (_, newState) => newState)
+	.reset(loginFx.doneData)
+
+sample({
+	clock: codeInputSubmitted,
+	target: loginFx,
+})
+
+sample({
+	clock: getUserFx.doneData,
+	target: $user,
+})
+
+
+sample({
+	clock: loginFx.doneData, 
+	target: $user
+})
+
+sample({
+	clock: postUserFx.doneData,
+	target: $user,
+})
+
+sample({
+  clock: loginFx.doneData,
+  target: getCartFromServerFx
+})
+
+
+$user.watch(state => console.log(state))
 
 export {mouseEnteredToCart, mouseLeavedFromCart, $cart, $showCart, addToStorageFx, productAddedToCart, pageMounted, productCountIncremented, productCounDecremented}

@@ -2,8 +2,8 @@
 import React from "react";
 import s from "./WelcomeTxt.module.scss";
 import { useRouter } from "next/navigation";
-import { $user, logoutFx } from "@/stores/auth/auth";
 import { useUnit } from "effector-react";
+import { $user, logoutFx } from "@/stores/cart/init";
 
 const WelcomeText = () => {
   const { push } = useRouter();

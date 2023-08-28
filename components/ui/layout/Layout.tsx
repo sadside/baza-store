@@ -5,9 +5,9 @@ import Footer from "./footer/Footer";
 import styles from "./Layout.module.scss";
 import Menu from "./menu/Menu";
 import "../../../styles/globals.scss";
-import { getUserFx } from "@/stores/auth/auth";
 import { usePathname } from "next/navigation";
 import { categoryCleared, menuChanged } from "@/stores/layout/menu/init";
+import { getUserFx } from "@/stores/cart/init";
 
 type Props = { children?: React.ReactNode; links: any[] };
 

@@ -7,7 +7,7 @@ import { SelectProductSize } from "../selectSizeProduct/SelectProductSize";
 import Button from "../ui/button/Button";
 import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
-import { addToServerFx, productAddedToCart } from "@/stores/cart/init";
+import { $user, addToServerFx, productAddedToCart } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import {
   $selectedColor,
@@ -16,7 +16,6 @@ import {
   pageUnMounted,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
-import { $loading, $user } from "@/stores/auth/auth";
 
 type Props = {
   product: IFullProduct;

@@ -20,8 +20,8 @@ import {
   $selectedColor,
   $selectedSize,
 } from "@/stores/ui/products/productSize";
-import { $user } from "@/stores/auth/auth";
 import { IFullProduct } from "@/models/Product";
+import { $user } from "@/stores/cart/init";
 
 export const AddToFavorites = ({ product }: Props) => {
   const user = useUnit($user);

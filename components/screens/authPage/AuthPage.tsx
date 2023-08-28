@@ -2,7 +2,6 @@
 
 import Button from "@/components/ui/button/Button";
 import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
-import { $user, phoneInputSubmitted } from "@/stores/auth/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
@@ -14,6 +13,7 @@ import axios from "axios";
 import { useUnit } from "effector-react";
 import { useLayoutEffect } from "react";
 import { API_URL, API_URL_CLIENT } from "@/http";
+import { $user, phoneInputSubmitted } from "@/stores/cart/init";
 
 type Props = {};
 

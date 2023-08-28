@@ -13,9 +13,9 @@ import { InputDateMask } from "../InputDateMask/InputDateMask";
 import InputForm from "../inputForm/InputForm";
 import { InputNameMask } from "../inputNameMask/InputNameMask";
 import { useUnit } from "effector-react";
-import { $user, postUserFx } from "@/stores/auth/auth";
 import { API_URL_CLIENT } from "@/http";
 import axios from "axios";
+import { $user, postUserFx } from "@/stores/cart/init";
 
 const schema = yup.object().shape({
   name: yup.string().required("Введите имя"),

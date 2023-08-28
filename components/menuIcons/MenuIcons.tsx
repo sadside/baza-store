@@ -3,14 +3,13 @@
 import React from "react";
 
 import styles from "./MenuIcons.module.scss";
-import { mouseEnteredToCart } from "@/stores/cart/init";
+import { $user, mouseEnteredToCart } from "@/stores/cart/init";
 import SvgSelector from "@/utils/SvgSelector";
 import Link from "next/link";
 import { MenuCart } from "../ui/layout/cart/MenuCart";
 import { disablePageScroll } from "scroll-lock";
 import { useSession, signOut } from "next-auth/react";
 import { useUnit } from "effector-react";
-import { $user } from "@/stores/auth/auth";
 import { IUser } from "@/models/User";
 import { $stateOfMenu } from "@/stores/layout/menu/init";
 import { usePathname } from "next/navigation";

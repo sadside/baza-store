@@ -4,7 +4,7 @@ import React from "react";
 import s from "./InfoBlock.module.scss";
 import Link from "next/link";
 import { useUnit } from "effector-react";
-import { $user } from "@/stores/auth/auth";
+import { $user } from "@/stores/cart/init";
 type Props = {};
 
 export const InfoBlock = (props: Props) => {

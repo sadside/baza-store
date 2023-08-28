@@ -2,7 +2,6 @@
 
 import Button from "@/components/ui/button/Button";
 import InputCodeMask from "@/components/ui/inputCodeMask/InputCodeMask";
-import { $phoneNumber, $user, codeInputSubmitted } from "@/stores/auth/auth";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useUnit } from "effector-react";
 import { useRouter } from "next/navigation";
@@ -11,6 +10,7 @@ import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import * as yup from "yup";
 import styles from "./ConfirmCodePage.module.scss";
+import { $phoneNumber, $user, codeInputSubmitted } from "@/stores/cart/init";
 
 interface Props {}
 

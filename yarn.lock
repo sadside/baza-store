@@ -9,6 +9,11 @@
   dependencies:
     regenerator-runtime "^0.14.0"
 
+"@effector/next@^0.5.1":
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/@effector/next/-/next-0.5.1.tgz#723d60afcb922ee72ac01bf05ee70691cacb5125"
+  integrity sha512-tpLpeL4IgFxlCAR7SbVjLMeIND+xBvZ/Qs1kWJVufgMnrDpBw6yVw/KG6keKTRDxLnoP1HVWJ7Nd8zW3ivviMw==
+
 "@emotion/is-prop-valid@^0.8.2":
   version "0.8.8"
   resolved "https://registry.npmjs.org/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz"
