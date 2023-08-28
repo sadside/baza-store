@@ -104,7 +104,7 @@ sample({
 })
 
 sample({
-  clock: [addToServerFx.doneData],
+  clock: [addToServerFx.doneData, getCartFromServerFx.doneData],
   fn: (items) => {
 
     console.log('effector', items)
