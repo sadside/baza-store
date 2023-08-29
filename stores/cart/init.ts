@@ -136,7 +136,7 @@ sample({
 })
 
 sample({
-  clock: addToServerFx.doneData,
+  clock: [addToServerFx.doneData, getCartFromServerFx.doneData],
   fn: (items) => {
 
     if (items.length) {
@@ -289,5 +289,6 @@ sample({
 
 
 $user.watch(state => console.log(state))
+$cart.watch(state => console.log('cart: ', state))
 
 export {mouseEnteredToCart, mouseLeavedFromCart, $cart, $showCart, addToStorageFx, productAddedToCart, pageMounted, productCountIncremented, productCounDecremented}

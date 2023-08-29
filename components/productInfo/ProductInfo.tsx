@@ -51,7 +51,6 @@ export const ProductInfo = ({ product }: Props) => {
               alert("Выберите размер");
               return;
             }
-            synchronizationWithLocalStorage();
 
             productAddedToCart({
               id: selectedSize.mod_id,
@@ -62,7 +61,7 @@ export const ProductInfo = ({ product }: Props) => {
               color: product.current_color.name,
               slug: product.current_color.slug,
             }); // ls-cart
-            // if (user) addToServerFx(selectedSize.mod_id);
+            if (user) addToServerFx(selectedSize.mod_id);
           }}
         />
         <SubProductInfo />
