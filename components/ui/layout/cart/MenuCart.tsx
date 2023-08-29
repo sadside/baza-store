@@ -12,6 +12,7 @@ type Props = {};
 
 export const MenuCart = (props: Props) => {
   const products = useUnit($cart);
+  console.log("render", products);
 
   const countsProducts = products.map((item) => (item.count ? item.count : 0));
 
