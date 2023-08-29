@@ -22,14 +22,8 @@ export const CartPage = (props: Props) => {
   const user = useUnit($user);
 
   const res = products.sort(function (a: IProductCart, b: IProductCart) {
-    if (a.name > b.name) {
-      return 1;
-    }
-    if (a.name < b.name) {
-      return -1;
-    }
-
-    return 0;
+    if (a.id && b.id) return a.id - b.id;
+    else return 0;
   });
 
   useEffect(() => {
