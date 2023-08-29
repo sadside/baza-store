@@ -114,6 +114,33 @@ const productCountIncremented = createEvent<IProductCart>()
 const productCounDecremented = createEvent<IProductCart>()
 export const logouted = createEffect()
 
+export const removeCartItem = createEffect(async (id: number) => {
+	try {
+    const {data} = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
+      modification_id: id,
+    })
+
+    const result: IProductCart[] = []
+
+    data.forEach((item: IServerCart) => {
+      result.push({
+        id: item.product.id,
+        name: item.product.name,
+        image: item.product.image,
+        price: item.product.price,
+        count: item.quantity,
+        size: item.product.size,
+        color: item.product.color,
+        slug: item.product.slug
+      })
+    })
+
+    return result
+  } catch {
+    return []
+  }
+})
+
 export const logoutFx = createEffect(async () => {
 	await AuthService.logout()
 })

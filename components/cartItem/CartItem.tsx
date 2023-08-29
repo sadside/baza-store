@@ -6,11 +6,12 @@ import { IProductCart } from "@/stores/cart/cart.interface";
 import styles from "./CartItem.module.scss";
 import Image from "next/image";
 import {
+  $user,
   productCounDecremented,
   productCountIncremented,
+  removeCartItem,
 } from "@/stores/cart/init";
-import axios from "axios";
-import { API_URL_CLIENT } from "@/http";
+import { useUnit } from "effector-react";
 
 export const CartItem = ({
   name,
@@ -21,6 +22,8 @@ export const CartItem = ({
   id,
   color,
 }: IProductCart) => {
+  const user = useUnit($user);
+
   return (
     <div className={styles.wrapper}>
       <Image src={image} width={150} height={200} alt={"img"} />
@@ -31,11 +34,19 @@ export const CartItem = ({
         <div className={styles.count}>
           Количество:
           <span
-            onClick={async () =>
-              await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
-                modification_id: id,
-              })
-            }
+            onClick={() => {
+              productCounDecremented({
+                name,
+                price,
+                size,
+                image,
+                count,
+                id,
+                color,
+              });
+
+              if (user) removeCartItem(id || 0);
+            }}
           >
             -
           </span>
