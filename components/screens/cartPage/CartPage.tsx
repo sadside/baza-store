@@ -13,12 +13,24 @@ import { CartItem } from "@/components/cartItem/CartItem";
 import { getPriceFromCart } from "@/utils/getFullPrice";
 import Button from "@/components/ui/button/Button";
 import { $selectedColor } from "@/stores/ui/products/productSize";
+import { IProductCart } from "@/stores/cart/cart.interface";
 
 type Props = {};
 
 export const CartPage = (props: Props) => {
   const products = useUnit($cart);
   const user = useUnit($user);
+
+  const res = products.sort(function (a: IProductCart, b: IProductCart) {
+    if (a.name > b.name) {
+      return 1;
+    }
+    if (a.name < b.name) {
+      return -1;
+    }
+
+    return 0;
+  });
 
   useEffect(() => {
     if (user) getCartFromServerFx();
@@ -30,7 +42,7 @@ export const CartPage = (props: Props) => {
       <h1>Корзина</h1>
       <div className={styles.columns}>
         <div className={styles.products}>
-          {products.map(({ size, name, count, price, id, image, color }) => (
+          {res.map(({ size, name, count, price, id, image, color }) => (
             <CartItem
               size={size}
               name={name}
