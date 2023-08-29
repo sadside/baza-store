@@ -45,8 +45,6 @@ const ConfirmCodePage = (props: Props) => {
     const code = data.code.replace("-", "");
 
     codeInputSubmitted({ phone: phoneNumber, code });
-
-    push("/");
   });
 
   return (
