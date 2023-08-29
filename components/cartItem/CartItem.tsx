@@ -39,7 +39,7 @@ export const CartItem = ({
           Количество:
           <span
             onClick={() => {
-              if (!isLoading2) {
+              if (!isLoading2 && !isLoading1) {
                 productCounDecremented({
                   name,
                   price,
@@ -59,7 +59,7 @@ export const CartItem = ({
           {count}
           <span
             onClick={() => {
-              if (!isLoading1) {
+              if (!isLoading2 && !isLoading1) {
                 productCountIncremented({
                   name,
                   price,
