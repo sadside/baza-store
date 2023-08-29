@@ -11,6 +11,7 @@ const WelcomeText = () => {
 
   const handleClick = () => {
     logoutFx();
+    localStorage.setItem("products", "[]");
     push("/");
   };
 

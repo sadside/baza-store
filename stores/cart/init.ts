@@ -96,6 +96,7 @@ const mouseLeavedFromCart = createEvent<any>()
 const mouseEnteredToCart = createEvent<any>()
 const productCountIncremented = createEvent<IProductCart>()
 const productCounDecremented = createEvent<IProductCart>()
+export const logouted = createEffect()
 
 const $showCart = createStore(false).on(mouseEnteredToCart, () => true).on(mouseLeavedFromCart, () => false)
 const $cart = createStore<IProductCart[]>([])
@@ -104,6 +105,7 @@ sample({
   clock: [dropdownMenuOpened, smallMenuClosed],
   target: mouseLeavedFromCart
 })
+
 
 sample({ 
   clock: productCountIncremented,
@@ -227,6 +229,11 @@ export const saveUser = createEvent()
 
 export const logoutFx = createEffect(async () => {
 	await AuthService.logout()
+})
+
+sample({
+  clock: logouted,
+  target: logoutFx
 })
 
 export const $user = createStore<IUser | null >(null).on(saveUser, (_, state) => state).on(postUserFx.doneData, (_, payload) => payload).reset(logoutFx.doneData)
