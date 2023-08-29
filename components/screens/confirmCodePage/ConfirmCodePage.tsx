@@ -29,7 +29,7 @@ const ConfirmCodePage = (props: Props) => {
   const { push } = useRouter();
 
   useEffect(() => {
-    if (!phoneNumber.length) {
+    if (!phoneNumber.length || user) {
       push("/");
     }
   }, []);
