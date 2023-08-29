@@ -32,9 +32,7 @@ export const addToServerFx = createEffect(async (id: number) => {
 })
 
 export const synchronizationWithLocalStorage = createEffect(async () => {
-
   const products = localStorage.getItem('products') as string
-
 
   const cart = JSON.parse(products)
 
@@ -274,17 +272,12 @@ sample({
 
 sample({
 	clock: loginFx.doneData, 
-	target: $user
+	target: [$user, synchronizationWithLocalStorage]
 })
 
 sample({
 	clock: postUserFx.doneData,
 	target: $user,
-})
-
-sample({
-  clock: loginFx.doneData,
-  target: synchronizationWithLocalStorage
 })
 
 
