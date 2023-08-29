@@ -29,10 +29,12 @@ const ConfirmCodePage = (props: Props) => {
   const { push } = useRouter();
 
   useEffect(() => {
-    if (!phoneNumber.length || user) {
+    if (!phoneNumber.length) {
       push("/");
     }
   }, []);
+
+  if (user) push("/");
 
   const {
     register,
