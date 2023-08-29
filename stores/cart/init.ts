@@ -33,43 +33,33 @@ export const addToServerFx = createEffect(async (id: number) => {
 
 export const synchronizationWithLocalStorage = createEffect(async () => {
 
-  const products = localStorage.getItem('products')
+  const products = localStorage.getItem('products') as string
 
-  if (products) {
-    const cart = JSON.parse(products)
 
-    const body: {
-      modifications: number[],
-      quantities: number[]
-    } = {
-      modifications: [],
-      quantities: []
-    }
+  const cart = JSON.parse(products)
 
-    cart.forEach((item: IServerCart) => {
-      body.modifications.push(item.product.id)
-      body.quantities.push(item.quantity)
+  const body: {
+    modifications: number[],
+    quantities: number[]
+  } = {
+    modifications: [],
+    quantities: []
+  }
+
+  cart.forEach((item: any) => {
+    body.modifications.push(item.id)
+    body.quantities.push(item.count)
+  })
+
+  try {
+    const res = await axios.post(`${API_URL_CLIENT}profile/cart/`, body, {
+      withCredentials: true
     })
 
-    try {
-      const res = await axios.post(`${API_URL_CLIENT}profile/cart/`, body, {
-        withCredentials: true
-      })
-
-      return res.data as IServerCart[]
-    } catch(e: any) {
-      console.log(e.message())
-      return []
-    }
-
-  } else {
-    try {
-      const res = await axios.get(`${API_URL_CLIENT}profile/cart/`)
-  
-      return res.data as IServerCart[]
-    } catch {
-      return []
-    }
+    return res.data as IServerCart[]
+  } catch(e: any) {
+    console.log(e.message())
+    return []
   }
 })
 
@@ -146,7 +136,7 @@ sample({
 })
 
 sample({
-  clock: [addToServerFx.doneData, synchronizationWithLocalStorage.doneData],
+  clock: addToServerFx.doneData,
   fn: (items) => {
 
     if (items.length) {
@@ -172,6 +162,31 @@ sample({
 
 export const phoneInputSubmitted = createEvent<string>()
 export const codeInputSubmitted = createEvent<{phone: string, code: string}>()
+
+// sample({
+//   clock: synchronizationWithLocalStorage.doneData,
+//   fn: (items) => {
+
+//     if (items.length) {
+//       const cart: IProductCart[] = items.map(item => {
+//         return {
+//           id: item.product.id,
+//           name: item.product.name,
+//           image: item.product.image,
+//           price: item.product.price,
+//           count: item.quantity,
+//           size: item.product.size,
+//           color: item.product.color,
+//           slug: item.product.slug
+//         }
+//       })
+//       return cart
+//     }
+
+//     return []
+//   },
+//   target: $cart,
+// })
 
 
 export const postUserFx = createEffect(async (data: any) => {

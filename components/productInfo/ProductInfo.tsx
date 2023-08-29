@@ -7,7 +7,12 @@ import { SelectProductSize } from "../selectSizeProduct/SelectProductSize";
 import Button from "../ui/button/Button";
 import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
-import { $user, addToServerFx, productAddedToCart } from "@/stores/cart/init";
+import {
+  $user,
+  addToServerFx,
+  productAddedToCart,
+  synchronizationWithLocalStorage,
+} from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import {
   $selectedColor,
@@ -41,11 +46,13 @@ export const ProductInfo = ({ product }: Props) => {
         <Button
           text="Добавить в корзину"
           style={{ width: "100%" }}
-          onClick={() => {
+          onClick={async () => {
             if (selectedSize === null) {
               alert("Выберите размер");
               return;
             }
+            synchronizationWithLocalStorage();
+
             productAddedToCart({
               id: selectedSize.mod_id,
               price: product.price,
@@ -55,7 +62,7 @@ export const ProductInfo = ({ product }: Props) => {
               color: product.current_color.name,
               slug: product.current_color.slug,
             }); // ls-cart
-            if (user) addToServerFx(selectedSize.mod_id);
+            // if (user) addToServerFx(selectedSize.mod_id);
           }}
         />
         <SubProductInfo />

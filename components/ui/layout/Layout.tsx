@@ -16,6 +16,7 @@ const Layout = ({ children, links = [] }: Props) => {
 
   useEffect(() => {
     getUserFx();
+    localStorage.setItem("products", "[]");
   }, []);
 
   useEffect(() => {
