@@ -50,13 +50,27 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
   })
 
   try {
-    const res = await axios.post(`${API_URL_CLIENT}profile/cart/`, body, {
+    const { data } = await axios.post(`${API_URL_CLIENT}profile/cart/`, body, {
       withCredentials: true
     })
 
-    console.log('res', res.data)
+    const result: IProductCart[] = []
 
-    return res.data as IServerCart[]
+    data.forEach((item: IServerCart) => {
+      result.push({
+        id: item.product.id,
+        name: item.product.name,
+        image: item.product.image,
+        price: item.product.price,
+        count: item.quantity,
+        size: item.product.size,
+        color: item.product.color,
+        slug: item.product.slug
+      })
+    })
+
+    return result
+
   } catch(e: any) {
     console.log(e.message())
     return []
