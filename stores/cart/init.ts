@@ -286,8 +286,14 @@ sample({
 	target: $user
 })
 
+
+
+// sample({
+
+// })
+
 sample({
-  clock: loginFx,
+  clock: loginFx.doneData,
   target: synchronizationWithLocalStorage
 })
 
