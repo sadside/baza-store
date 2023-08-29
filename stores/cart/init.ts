@@ -54,6 +54,8 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
       withCredentials: true
     })
 
+    console.log('res', res.data)
+
     return res.data as IServerCart[]
   } catch(e: any) {
     console.log(e.message())
@@ -99,7 +101,7 @@ const productCounDecremented = createEvent<IProductCart>()
 export const logouted = createEffect()
 
 const $showCart = createStore(false).on(mouseEnteredToCart, () => true).on(mouseLeavedFromCart, () => false)
-const $cart = createStore<IProductCart[]>([])
+const $cart = createStore<IProductCart[]>([]).reset(logouted)
 
 sample({
   clock: [dropdownMenuOpened, smallMenuClosed],
@@ -284,7 +286,7 @@ sample({
 })
 
 sample({
-  clock: loginFx.doneData,
+  clock: loginFx,
   target: synchronizationWithLocalStorage
 })
 

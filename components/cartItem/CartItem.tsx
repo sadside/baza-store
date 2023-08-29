@@ -21,14 +21,7 @@ export const CartItem = ({
 }: IProductCart) => {
   return (
     <div className={styles.wrapper}>
-      <Image
-        src={image
-          .replace("http://localhost:8000/", "http://thebaza.ru/")
-          .replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
-        width={150}
-        height={200}
-        alt={"img"}
-      />
+      <Image src={image} width={150} height={200} alt={"img"} />
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>
         <div className={styles.size}>Размер: {size}</div>
