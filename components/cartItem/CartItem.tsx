@@ -24,8 +24,9 @@ export const CartItem = ({
   color,
 }: IProductCart) => {
   const user = useUnit($user);
-  const isLoading =
-    useUnit(addToServerFx.pending) || useUnit(removeCartItem.pending);
+  const isLoading1 = useUnit(addToServerFx.pending);
+
+  const isLoading2 = useUnit(removeCartItem.pending);
 
   return (
     <div className={styles.wrapper}>
@@ -38,7 +39,7 @@ export const CartItem = ({
           Количество:
           <span
             onClick={() => {
-              if (!isLoading) {
+              if (!isLoading2) {
                 productCounDecremented({
                   name,
                   price,
@@ -58,7 +59,7 @@ export const CartItem = ({
           {count}
           <span
             onClick={() => {
-              if (!isLoading) {
+              if (!isLoading1) {
                 productCountIncremented({
                   name,
                   price,
