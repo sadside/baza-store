@@ -9,6 +9,8 @@ import {
   productCounDecremented,
   productCountIncremented,
 } from "@/stores/cart/init";
+import axios from "axios";
+import { API_URL_CLIENT } from "@/http";
 
 export const CartItem = ({
   name,
@@ -29,15 +31,9 @@ export const CartItem = ({
         <div className={styles.count}>
           Количество:
           <span
-            onClick={() =>
-              productCounDecremented({
-                name,
-                price,
-                size,
-                image,
-                count,
-                id,
-                color,
+            onClick={async () =>
+              await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
+                modification_id: id,
               })
             }
           >
