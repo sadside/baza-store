@@ -16,26 +16,10 @@ const addToStorageFx = createEffect((products: IProductCart[]) => {
 
 export const addToServerFx = createEffect(async (id: number) => {
   try {
-    const {data} = await axios.post(`${API_URL_CLIENT}profile/cart/add/`, {
+    const res = await axios.post(`${API_URL_CLIENT}profile/cart/add/`, {
       modification_id: id,
     })
 
-    const result: IProductCart[] = []
-
-    data.forEach((item: IServerCart) => {
-      result.push({
-        id: item.product.id,
-        name: item.product.name,
-        image: item.product.image,
-        price: item.product.price,
-        count: item.quantity,
-        size: item.product.size,
-        color: item.product.color,
-        slug: item.product.slug
-      })
-    })
-
-    return result
 
     return res.data as IServerCart[]
   } catch (e) {

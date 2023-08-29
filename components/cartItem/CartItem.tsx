@@ -7,6 +7,7 @@ import styles from "./CartItem.module.scss";
 import Image from "next/image";
 import {
   $user,
+  addToServerFx,
   productCounDecremented,
   productCountIncremented,
   removeCartItem,
@@ -52,7 +53,7 @@ export const CartItem = ({
           </span>
           {count}
           <span
-            onClick={() =>
+            onClick={() => {
               productCountIncremented({
                 name,
                 price,
@@ -61,8 +62,10 @@ export const CartItem = ({
                 count,
                 id,
                 color,
-              })
-            }
+              });
+
+              if (user) addToServerFx(id || 0);
+            }}
           >
             +
           </span>
