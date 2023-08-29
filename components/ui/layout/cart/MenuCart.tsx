@@ -12,6 +12,7 @@ type Props = {};
 
 export const MenuCart = (props: Props) => {
   const products = useUnit($cart);
+  console.log(products);
 
   const countsProducts = products.map((item) => (item.count ? item.count : 0));
 
@@ -20,8 +21,6 @@ export const MenuCart = (props: Props) => {
   const count = countsProducts.reduce((prev, current) => {
     return prev + current;
   }, initialValue);
-
-  console.log("render", count);
 
   return (
     <div className={styles.count}>
