@@ -264,6 +264,7 @@ sample({
 	target: loginFx,
 })
 
+
 sample({
 	clock: getUserFx.doneData,
 	target: [$user, getCartFromServerFx],
@@ -272,7 +273,18 @@ sample({
 
 sample({
 	clock: loginFx.doneData, 
-	target: [$user, synchronizationWithLocalStorage]
+	target: $user
+})
+
+sample({
+  clock: loginFx.doneData,
+  target: synchronizationWithLocalStorage
+})
+
+sample({
+  //@ts-ignore
+  clock: synchronizationWithLocalStorage.doneData,
+  target: $cart
 })
 
 sample({
