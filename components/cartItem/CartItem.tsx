@@ -24,6 +24,8 @@ export const CartItem = ({
   color,
 }: IProductCart) => {
   const user = useUnit($user);
+  const isLoading =
+    useUnit(addToServerFx.pending) || useUnit(removeCartItem.pending);
 
   return (
     <div className={styles.wrapper}>
@@ -36,17 +38,19 @@ export const CartItem = ({
           Количество:
           <span
             onClick={() => {
-              productCounDecremented({
-                name,
-                price,
-                size,
-                image,
-                count,
-                id,
-                color,
-              });
+              if (!isLoading) {
+                productCounDecremented({
+                  name,
+                  price,
+                  size,
+                  image,
+                  count,
+                  id,
+                  color,
+                });
 
-              if (user) removeCartItem(id || 0);
+                if (user) removeCartItem(id || 0);
+              }
             }}
           >
             -
@@ -54,17 +58,19 @@ export const CartItem = ({
           {count}
           <span
             onClick={() => {
-              productCountIncremented({
-                name,
-                price,
-                size,
-                image,
-                count,
-                id,
-                color,
-              });
+              if (!isLoading) {
+                productCountIncremented({
+                  name,
+                  price,
+                  size,
+                  image,
+                  count,
+                  id,
+                  color,
+                });
 
-              if (user) addToServerFx(id || 0);
+                if (user) addToServerFx(id || 0);
+              }
             }}
           >
             +

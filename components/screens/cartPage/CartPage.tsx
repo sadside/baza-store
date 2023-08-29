@@ -6,8 +6,10 @@ import { useUnit } from "effector-react";
 import {
   $cart,
   $user,
+  addToServerFx,
   getCartFromLocalStorageFx,
   getCartFromServerFx,
+  removeCartItem,
 } from "@/stores/cart/init";
 import { CartItem } from "@/components/cartItem/CartItem";
 import { getPriceFromCart } from "@/utils/getFullPrice";
