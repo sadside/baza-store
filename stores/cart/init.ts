@@ -9,6 +9,7 @@ import { API_URL_CLIENT } from "@/http"
 import { IServerCart } from "@/models/Cart"
 import AuthService from "@/services/AuthService"
 import { addFavotitesToStorage } from "@/utils/localStorage/localStorage";
+import { IServerFavorite } from "@/models/Favorites"
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products)
@@ -351,15 +352,13 @@ sample({
 })
 
 
-$user.watch(state => console.log(state))
-$cart.watch(state => console.log('cart: ', state))
+// favotites
 
-
-
-const $favorites = createStore<IProductCart[]>([])
+const $favorites = createStore<string[]>([])
+const $favoritesItems = createStore<IServerFavorite[]>([])
 const mounted = createEvent()
-const addFavorite = createEvent<IProductCart>()
-const removeFavorite = createEvent<IProductCart>()
+const addFavorite = createEvent<string>()
+const removeFavorite = createEvent<string>()
 
 const addFavoriteToStorageFx = createEffect((favorites: IProductCart[]) => {
   addFavotitesToStorage(favorites)
@@ -370,12 +369,26 @@ export const getFavoritesFx = createEffect(async () => {
 
 })
 
-const addFavoriteToServerFx = createEffect(async (id: number) => {
-  const res = await axios.post(`${API_URL_CLIENT}profile/favorites/`, {
-    product_id: id,
-  }, {withCredentials: true})
+export const addFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
+  try {
+    const res = await axios.post(`${API_URL_CLIENT}profile/favorites/`, {
+      slug,
+    }, {withCredentials: true})
 
-  if (res.status < 300) throw new Error('err')
+    return res.data as IServerFavorite[]
+  } catch {
+    return []
+  }
+})
+
+export const deleteFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
+  try {
+    const res = await axios.delete(`${API_URL_CLIENT}profile/favorites/`, {withCredentials: true})
+
+    return res.data as IServerFavorite[]
+  } catch {
+    return []
+  }
 })
 
 sample({
@@ -385,17 +398,19 @@ sample({
 })
 
 sample({
+  clock: [addFavoriteToServerFx.doneData, deleteFavoriteToServerFx.doneData],
+  target: $favoritesItems
+})
+
+sample({
   clock: addFavorite,
   source: $favorites,
   fn: (favorites, item) => {
-    let flag = true
+    favorites.push(item)
 
-    favorites.forEach(favorite => {
-      if (favorite.id === item.id) flag = false
-    })
+    const settedFavorites = new Set(favorites)
 
-    if (flag) return [item, ...favorites]
-    else return favorites
+    return Array.from(settedFavorites)
   },
   target: [$favorites, addFavoriteToStorageFx]
 })
@@ -405,12 +420,16 @@ sample({
   clock: removeFavorite,
   source: $favorites,
   fn: (favorites, item) => {
-    return favorites.filter(favorit => item.id !== favorit.id)
+    return favorites.filter(favorite => favorite !== item)
   },
   target: [$favorites, addFavoriteToStorageFx]
 })
 
+//  watch 
 
+$user.watch(state => console.log(state))
+$cart.watch(state => console.log('cart: ', state))
+$favorites.watch(state => console.log('fav', state))
 
 
 export {$favorites, mounted, addFavorite, removeFavorite, mouseEnteredToCart, mouseLeavedFromCart, $cart, $showCart, addToStorageFx, productAddedToCart, pageMounted, productCountIncremented, productCounDecremented}

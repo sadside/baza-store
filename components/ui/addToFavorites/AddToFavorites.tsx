@@ -19,6 +19,8 @@ import {
   $favorites,
   $user,
   addFavorite,
+  addFavoriteToServerFx,
+  deleteFavoriteToServerFx,
   removeFavorite,
 } from "@/stores/cart/init";
 
@@ -31,7 +33,7 @@ export const AddToFavorites = ({ product }: Props) => {
 
   useEffect(() => {
     favorites.forEach((item) => {
-      if (item.slug === product.current_color.slug) {
+      if (item === product.current_color.slug) {
         setFavorite(true);
       }
     });
@@ -41,21 +43,12 @@ export const AddToFavorites = ({ product }: Props) => {
     setFavorite(!isFavorite);
 
     if (!isFavorite) {
-      addFavorite({
-        slug: product.current_color.slug,
-        image: product.images[0],
-        price: product.price,
-        name: product.name,
-      });
+      addFavorite(product.current_color.slug);
 
-      // if (user) addToServerFx(product.current_color.slug);
+      if (user) addFavoriteToServerFx(product.current_color.slug);
     } else {
-      removeFavorite({
-        slug: product.current_color.slug,
-        image: product.images[0],
-        price: product.price,
-        name: product.name,
-      });
+      removeFavorite(product.current_color.slug);
+      if (user) deleteFavoriteToServerFx(product.current_color.slug);
     }
   };
 

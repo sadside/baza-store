@@ -7,7 +7,11 @@ import Menu from "./menu/Menu";
 import "../../../styles/globals.scss";
 import { usePathname } from "next/navigation";
 import { categoryCleared, menuChanged } from "@/stores/layout/menu/init";
-import { getCartFromLocalStorageFx, getUserFx } from "@/stores/cart/init";
+import {
+  getCartFromLocalStorageFx,
+  getUserFx,
+  mounted,
+} from "@/stores/cart/init";
 
 type Props = { children?: React.ReactNode; links: any[] };
 
@@ -17,6 +21,7 @@ const Layout = ({ children, links = [] }: Props) => {
   useEffect(() => {
     getUserFx();
     getCartFromLocalStorageFx();
+    mounted();
 
     if (!localStorage.getItem("products"))
       localStorage.setItem("products", "[]");
