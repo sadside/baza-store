@@ -355,7 +355,7 @@ sample({
 // favotites
 
 const $favorites = createStore<string[]>([]).reset(logouted)
-const $favoritesItems = createStore<IServerFavorite[]>([])
+export const $favoritesItems = createStore<IServerFavorite[]>([])
 const mounted = createEvent()
 const addFavorite = createEvent<string>()
 const removeFavorite = createEvent<string>()
@@ -389,7 +389,7 @@ export const addFavoriteToServerFx = createEffect(async (slug: string | string[]
 
 export const deleteFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
   try {
-    const res = await axios.delete(`${API_URL_CLIENT}profile/favorites/`)
+    const res = await axios.delete(`${API_URL_CLIENT}profile/favorites/?slug=${slug}`)
 
     return res.data as IServerFavorite[]
   } catch {

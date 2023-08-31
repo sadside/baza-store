@@ -6,6 +6,7 @@ import FavouriteBlock from "../../favouriteBlock/FavouriteBlock";
 import s from "./index.module.scss";
 import { useUnit } from "effector-react";
 import { $favorites } from "@/stores/favotites/favorites";
+import { $favoritesItems } from "@/stores/cart/init";
 
 export type Favour = {
   name: string;
@@ -15,14 +16,14 @@ export type Favour = {
 };
 
 const LcFavourPage = () => {
-  const favorites = useUnit($favorites);
+  const favorites = useUnit($favoritesItems);
   return (
     <>
       {favorites.length ? (
         <div className={s.content}>
-          {/* {favorites.map((o) => (
-            <FavouriteBlock key={o.id} o={o} />
-          ))} */}
+          {favorites.map((o) => (
+            <FavouriteBlock key={o.slug} o={o} />
+          ))}
         </div>
       ) : (
         <div className={s.none}>
