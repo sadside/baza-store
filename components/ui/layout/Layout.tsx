@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 import { categoryCleared, menuChanged } from "@/stores/layout/menu/init";
 import {
   getCartFromLocalStorageFx,
+  getFavoritesFx,
   getUserFx,
   mounted,
 } from "@/stores/cart/init";
@@ -21,6 +22,7 @@ const Layout = ({ children, links = [] }: Props) => {
   useEffect(() => {
     getUserFx();
     getCartFromLocalStorageFx();
+    getFavoritesFx();
     mounted();
 
     if (!localStorage.getItem("products"))
