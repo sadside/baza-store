@@ -6,9 +6,9 @@ import { createListWithNewProduct, decrementProductCount, incrementProductCount 
 import { IUser } from "@/models/User"
 import axios from "axios"
 import { API_URL_CLIENT } from "@/http"
-import { IFullProduct } from "@/models/Product"
 import { IServerCart } from "@/models/Cart"
 import AuthService from "@/services/AuthService"
+import { addFavotitesToStorage } from "@/utils/localStorage/localStorage";
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products)
@@ -18,6 +18,8 @@ export const addToServerFx = createEffect(async (id: number) => {
   try {
     const res = await axios.post(`${API_URL_CLIENT}profile/cart/add/`, {
       modification_id: id,
+    }, {
+      withCredentials: true
     })
 
 
@@ -352,4 +354,63 @@ sample({
 $user.watch(state => console.log(state))
 $cart.watch(state => console.log('cart: ', state))
 
-export {mouseEnteredToCart, mouseLeavedFromCart, $cart, $showCart, addToStorageFx, productAddedToCart, pageMounted, productCountIncremented, productCounDecremented}
+
+
+const $favorites = createStore<IProductCart[]>([])
+const mounted = createEvent()
+const addFavorite = createEvent<IProductCart>()
+const removeFavorite = createEvent<IProductCart>()
+
+const addFavoriteToStorageFx = createEffect((favorites: IProductCart[]) => {
+  addFavotitesToStorage(favorites)
+})
+
+
+export const getFavoritesFx = createEffect(async () => {
+
+})
+
+const addFavoriteToServerFx = createEffect(async (id: number) => {
+  const res = await axios.post(`${API_URL_CLIENT}profile/favorites/`, {
+    product_id: id,
+  }, {withCredentials: true})
+
+  if (res.status < 300) throw new Error('err')
+})
+
+sample({
+  clock: mounted,
+  fn: () => (JSON.parse(localStorage.getItem('favorites') || '[]')),
+  target: $favorites
+})
+
+sample({
+  clock: addFavorite,
+  source: $favorites,
+  fn: (favorites, item) => {
+    let flag = true
+
+    favorites.forEach(favorite => {
+      if (favorite.id === item.id) flag = false
+    })
+
+    if (flag) return [item, ...favorites]
+    else return favorites
+  },
+  target: [$favorites, addFavoriteToStorageFx]
+})
+
+
+sample({
+  clock: removeFavorite,
+  source: $favorites,
+  fn: (favorites, item) => {
+    return favorites.filter(favorit => item.id !== favorit.id)
+  },
+  target: [$favorites, addFavoriteToStorageFx]
+})
+
+
+
+
+export {$favorites, mounted, addFavorite, removeFavorite, mouseEnteredToCart, mouseLeavedFromCart, $cart, $showCart, addToStorageFx, productAddedToCart, pageMounted, productCountIncremented, productCounDecremented}

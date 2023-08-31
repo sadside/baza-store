@@ -9,19 +9,18 @@ type Props = {
 import styles from "./AddToFavorites.module.scss";
 import { useEffect, useState } from "react";
 import { IProduct } from "@/components/productItem/productItem.interface";
-import {
-  $favorites,
-  addFavorite,
-  addToServerFx,
-  removeFavorite,
-} from "@/stores/favotites/favorites";
 import { useUnit } from "effector-react";
 import {
   $selectedColor,
   $selectedSize,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
-import { $user } from "@/stores/cart/init";
+import {
+  $favorites,
+  $user,
+  addFavorite,
+  removeFavorite,
+} from "@/stores/cart/init";
 
 export const AddToFavorites = ({ product }: Props) => {
   const user = useUnit($user);

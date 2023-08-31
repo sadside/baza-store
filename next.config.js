@@ -12,6 +12,7 @@ const nextConfig = {
 			'assets.burberry.com',
 			'iizhukov.site',
 			'thebaza.ru',
+			'127.0.0.1',
 		],
 	},
 }
