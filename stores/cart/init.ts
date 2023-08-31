@@ -354,7 +354,7 @@ sample({
 
 // favotites
 
-const $favorites = createStore<string[]>([])
+const $favorites = createStore<string[]>([]).reset(logouted)
 const $favoritesItems = createStore<IServerFavorite[]>([])
 const mounted = createEvent()
 const addFavorite = createEvent<string>()
@@ -366,7 +366,13 @@ const addFavoriteToStorageFx = createEffect((favorites: IProductCart[]) => {
 
 
 export const getFavoritesFx = createEffect(async () => {
+  try {
+    const res = await axios.get(`${API_URL_CLIENT}profile/favorites/`)
 
+    return res.data as IServerFavorite[]
+  } catch {
+    return []
+  }
 })
 
 export const addFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
@@ -383,7 +389,7 @@ export const addFavoriteToServerFx = createEffect(async (slug: string | string[]
 
 export const deleteFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
   try {
-    const res = await axios.delete(`${API_URL_CLIENT}profile/favorites/`, {withCredentials: true})
+    const res = await axios.delete(`${API_URL_CLIENT}profile/favorites/`)
 
     return res.data as IServerFavorite[]
   } catch {
@@ -398,8 +404,18 @@ sample({
 })
 
 sample({
-  clock: [addFavoriteToServerFx.doneData, deleteFavoriteToServerFx.doneData],
+  clock: loginFx.doneData,
+  source: $favorites,
+  target: addFavoriteToServerFx,
+})
+
+sample({
+  clock: [addFavoriteToServerFx.doneData, deleteFavoriteToServerFx.doneData, getFavoritesFx.doneData],
   target: $favoritesItems
+})
+
+sample({
+  clock: logouted
 })
 
 sample({
