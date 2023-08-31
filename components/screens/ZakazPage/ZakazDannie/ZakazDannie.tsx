@@ -1,76 +1,139 @@
+"use client";
+
 import React from "react";
 import s from "./index.module.scss";
-import { useForm } from "react-hook-form";
-import { RegisterFormValues } from "@/components/screens/authPage/AuthPage";
+import classNames from "classnames";
+import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
 import InputForm from "@/components/inputForm/InputForm";
+import { InputNameMask } from "@/components/inputNameMask/InputNameMask";
 
 interface IProps {
   title?: string;
   main?: boolean;
+  errors?: any;
+  reset?: any;
+  register?: any;
+  resetField?: any;
 }
-const ZakazDannie = ({ title, main }: IProps) => {
-  let aaaarrrr = {
-    main: [
-      { val: "Геннадий", type: "name" },
-      { val: "Васькин", type: "surname" },
-      { val: "ebanarot@gmail.com", type: "mail" },
-      { val: "+7(123) 123‒45‒67", type: "phoneNumber" },
-    ],
-    adres: [
-      { val: "Самара", type: "city" },
-      { val: "пр-т Кирова", type: "street" },
-      { val: "322a", type: "house" },
-      { val: "6", type: "frame" },
-      { val: "97", type: "room" },
-    ],
-  };
-  let defValMain = {
-    ...Object.fromEntries(aaaarrrr.main.map((n) => [n.type, n.val])),
-    ...Object.fromEntries(aaaarrrr.adres.map((n) => [n.type, n.val])),
-  };
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    resetField,
-  } = useForm<RegisterFormValues>({
-    defaultValues: defValMain,
-  });
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
+const ZakazDannie = ({
+  title,
+  main,
+  errors,
+  reset,
+  register,
+  resetField,
+}: IProps) => {
   return (
     <div className={s.root}>
       <span>{title}</span>
-      <form className={s.inputs} onSubmit={handleSubmit(onSubmit)}>
-        {main
-          ? aaaarrrr.main.map((p) => {
-              // @ts-ignore
-              return (
-                <InputForm
-                  // @ts-ignore
-                  error={errors[p.type] && errors[p.type].message}
+      <div className={s.form}>
+        {main ? (
+          <div className={s.inputs}>
+            <div className={s.all}>
+              <span className={s.title}>Имя*</span>
+              <span className={s.prov}>
+                <InputNameMask
+                  style={{ width: "100%" }}
+                  name="name"
                   register={register}
-                  type={p.type}
-                  reset={resetField}
-                  form={true}
+                  error={Boolean(errors.name)}
+                  placeholder={`Введите Имя..`}
                 />
-              );
-            })
-          : aaaarrrr.adres.map((p) => {
-              // @ts-ignore
-              return (
-                <InputForm
-                  // @ts-ignore
-                  error={errors[p.type] && errors[p.type].message}
+                {errors.name && (
+                  <span className={s.txt}>{errors.name?.message}</span>
+                )}
+              </span>
+            </div>
+            <div className={s.all}>
+              <span className={s.title}>Фамилия*</span>
+              <span className={s.prov}>
+                <InputNameMask
+                  style={{ width: "100%" }}
+                  name="surname"
                   register={register}
-                  type={p.type}
-                  reset={resetField}
-                  form={true}
+                  error={Boolean(errors.surname)}
+                  placeholder={`Введите Фамилию..`}
                 />
-              );
-            })}
-      </form>
+                {errors.surname && (
+                  <span className={s.txt}>{errors.surname?.message}</span>
+                )}
+              </span>
+            </div>
+            <div className={s.all}>
+              <span className={s.title}>E-mail*</span>
+              <span className={s.prov}>
+                <input
+                  {...register("mail", {
+                    required: "Введите E-mail",
+                  })}
+                  className={classNames(s.input, errors.mail && s.error)}
+                  placeholder={"Введите E-mail.."}
+                />
+                {errors.mail && (
+                  <span className={s.txt}>{errors.mail?.message}</span>
+                )}
+              </span>
+            </div>
+            <div className={s.all}>
+              <span className={s.title}>Телефон*</span>
+              <span className={s.prov}>
+                <InputPhoneMask
+                  style={{ width: "100%" }}
+                  resetFiled={reset}
+                  error={!!errors.phone}
+                  register={register}
+                  className={classNames(s.input, errors.phone && s.error)}
+                  name="phone"
+                  type="tel"
+                />
+                {errors.phone && (
+                  <span className={s.txt}>{errors.phone?.message}</span>
+                )}
+              </span>
+            </div>
+          </div>
+        ) : (
+          <>
+            <div className={s.inputs}>
+              <InputForm
+                register={register}
+                type={"city"}
+                reset={resetField}
+                form={true}
+              />{" "}
+              <InputForm
+                register={register}
+                type={"street"}
+                reset={resetField}
+                form={true}
+              />
+            </div>
+            <div className={s.bot}>
+              <InputForm
+                placeholder={"№"}
+                register={register}
+                type={"house"}
+                reset={resetField}
+                form={true}
+              />
+              <InputForm
+                register={register}
+                placeholder={"№"}
+                type={"frame"}
+                reset={resetField}
+                form={true}
+              />
+              <InputForm
+                register={register}
+                placeholder={"№"}
+                type={"room"}
+                reset={resetField}
+                form={true}
+              />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 };

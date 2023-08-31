@@ -39,6 +39,7 @@
 }
 .oform {
   width: 100%;
+  margin-bottom: 70px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -90,4 +91,9 @@
   font-style: normal;
   font-weight: 700;
   line-height: 130%; /* 20.8px */
+}
+
+.root {
+  max-width: 1500px;
+
 }

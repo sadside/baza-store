@@ -16,11 +16,13 @@ import { getPriceFromCart } from "@/utils/getFullPrice";
 import Button from "@/components/ui/button/Button";
 import { IProductCart } from "@/stores/cart/cart.interface";
 import { getSalePriceFromCart } from "@/utils/getSalePrice";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 export const CartPage = (props: Props) => {
   const products = useUnit($cart);
+  const { push } = useRouter();
   const user = useUnit($user);
 
   const res = products.sort(function (a: IProductCart, b: IProductCart) {
@@ -32,6 +34,9 @@ export const CartPage = (props: Props) => {
     if (user) getCartFromServerFx();
     else getCartFromLocalStorageFx();
   }, []);
+
+  const fullPrice = getSalePriceFromCart(products);
+  const salePrice = getPriceFromCart(products);
 
   return (
     <div className={styles.wrapper}>
@@ -60,26 +65,24 @@ export const CartPage = (props: Props) => {
             <div className={styles.orderInfo}>
               <div className={styles.columnsOrder}>
                 <div>Товары, {products.length} шт.</div>
-                <div className={styles.price}>
-                  {getPriceFromCart(products)} ₽
-                </div>
+                <div className={styles.price}>{fullPrice} ₽</div>
               </div>
-              <div className={styles.columnsOrder}>
-                <div>
-                  Скидка <span>BAZA</span>
+              {fullPrice - salePrice > 0 && (
+                <div className={styles.columnsOrder}>
+                  <div>
+                    Скидка <span>BAZA</span>
+                  </div>
+                  <div className={styles.sale}>
+                    {`-${fullPrice - salePrice}₽`}
+                  </div>
                 </div>
-                <div className={styles.sale}>
-                  {`-${
-                    getSalePriceFromCart(products) - getPriceFromCart(products)
-                  }₽`}
-                </div>
-              </div>
+              )}
               <div className={`${styles.columnsOrder} ${styles.total}`}>
                 <div>
                   <span>ИТОГО</span>
                 </div>
                 <div>
-                  <span>{getPriceFromCart(products)} ₽</span>
+                  <span>{salePrice} ₽</span>
                 </div>
               </div>
               <div className={styles.text}>
@@ -87,11 +90,11 @@ export const CartPage = (props: Props) => {
               </div>
             </div>
 
-            <Button text="ОФОРМИТЬ ЗАКАЗ" style={{ marginTop: 40 }} />
-          </div>
-          <div className={styles.addInfo}>
-            Lorem ipsum dolor sit amet consectetur. At sem amet egestas at sit
-            dui.
+            <Button
+              text="ОФОРМИТЬ ЗАКАЗ"
+              style={{ marginTop: 40 }}
+              onClick={() => push("/order")}
+            />
           </div>
         </div>
       </div>
