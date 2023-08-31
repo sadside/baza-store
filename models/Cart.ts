@@ -12,4 +12,5 @@ export type Product = {
   slug: string,
   size: string,
   color: string,
+  old_price?: number
 }

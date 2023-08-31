@@ -67,7 +67,8 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
         count: item.quantity,
         size: item.product.size,
         color: item.product.color,
-        slug: item.product.slug
+        slug: item.product.slug,
+        old_price: item.product.old_price || item.product.price,
       })
     })
 
@@ -133,7 +134,8 @@ export const removeCartItem = createEffect(async (id: number) => {
         count: item.quantity,
         size: item.product.size,
         color: item.product.color,
-        slug: item.product.slug
+        slug: item.product.slug,
+        old_price: item.product.old_price || item.product.price
       })
     })
 
@@ -198,7 +200,8 @@ sample({
           count: item.quantity,
           size: item.product.size,
           color: item.product.color,
-          slug: item.product.slug
+          slug: item.product.slug,
+          old_price: item.product.old_price || item.product.price
         }
       })
       return cart

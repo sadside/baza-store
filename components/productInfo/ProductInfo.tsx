@@ -60,6 +60,7 @@ export const ProductInfo = ({ product }: Props) => {
               size: selectedSize.name,
               color: product.current_color.name,
               slug: product.current_color.slug,
+              old_price: product.old_price,
             }); // ls-cart
             if (user) addToServerFx(selectedSize.mod_id);
           }}

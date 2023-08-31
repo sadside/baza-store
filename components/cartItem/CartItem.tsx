@@ -48,6 +48,7 @@ export const CartItem = ({
                   count,
                   id,
                   color,
+                  old_price: price,
                 });
 
                 if (user) removeCartItem(id || 0);
@@ -68,6 +69,7 @@ export const CartItem = ({
                   count,
                   id,
                   color,
+                  old_price: price,
                 });
 
                 if (user) addToServerFx(id || 0);

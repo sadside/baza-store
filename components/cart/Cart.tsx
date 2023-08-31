@@ -42,18 +42,21 @@ export const Cart = (props: Props) => {
           onMouseLeave={handleMouseLeave}
         >
           <div className={styles.items}>
-            {products?.map(({ name, price, id, image, count, size, color }) => (
-              <DropdownCartItem
-                name={name}
-                price={price}
-                key={id}
-                image={image}
-                id={id}
-                count={count}
-                size={size}
-                color={color}
-              />
-            ))}
+            {products?.map(
+              ({ name, price, id, image, count, size, color, old_price }) => (
+                <DropdownCartItem
+                  name={name}
+                  price={price}
+                  key={id}
+                  image={image}
+                  id={id}
+                  count={count}
+                  size={size}
+                  color={color}
+                  old_price={old_price}
+                />
+              )
+            )}
           </div>
           <div className={styles.makeOrder}>
             <div className={styles.totalPrice}>

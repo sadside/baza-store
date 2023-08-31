@@ -14,8 +14,8 @@ import {
 import { CartItem } from "@/components/cartItem/CartItem";
 import { getPriceFromCart } from "@/utils/getFullPrice";
 import Button from "@/components/ui/button/Button";
-import { $selectedColor } from "@/stores/ui/products/productSize";
 import { IProductCart } from "@/stores/cart/cart.interface";
+import { getSalePriceFromCart } from "@/utils/getSalePrice";
 
 type Props = {};
 
@@ -38,18 +38,21 @@ export const CartPage = (props: Props) => {
       <h1>Корзина</h1>
       <div className={styles.columns}>
         <div className={styles.products}>
-          {res.map(({ size, name, count, price, id, image, color }) => (
-            <CartItem
-              size={size}
-              name={name}
-              count={count}
-              price={price}
-              key={id}
-              id={id}
-              image={image}
-              color={color}
-            />
-          ))}
+          {res.map(
+            ({ size, name, count, price, id, image, color, old_price = 0 }) => (
+              <CartItem
+                size={size}
+                name={name}
+                count={count}
+                price={price}
+                key={id}
+                id={id}
+                image={image}
+                color={color}
+                old_price={old_price}
+              />
+            )
+          )}
         </div>
         <div className={styles.right}>
           <div className={styles.makeOrder}>
@@ -66,7 +69,8 @@ export const CartPage = (props: Props) => {
                   Скидка <span>BAZA</span>
                 </div>
                 <div className={styles.sale}>
-                  {-getPriceFromCart(products)} ₽
+                  {-getSalePriceFromCart(products) - getPriceFromCart(products)}{" "}
+                  ₽
                 </div>
               </div>
               <div className={`${styles.columnsOrder} ${styles.total}`}>

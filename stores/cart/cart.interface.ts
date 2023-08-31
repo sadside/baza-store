@@ -6,5 +6,6 @@ export interface IProductCart {
   price: number,
   image: string,
   size?: string,
-  color?: string
+  color?: string,
+  old_price: number
 }
