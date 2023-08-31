@@ -69,8 +69,9 @@ export const CartPage = (props: Props) => {
                   Скидка <span>BAZA</span>
                 </div>
                 <div className={styles.sale}>
-                  {-getSalePriceFromCart(products) - getPriceFromCart(products)}{" "}
-                  ₽
+                  {`-${
+                    getSalePriceFromCart(products) - getPriceFromCart(products)
+                  }` ₽}
                 </div>
               </div>
               <div className={`${styles.columnsOrder} ${styles.total}`}>
