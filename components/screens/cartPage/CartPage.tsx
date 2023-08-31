@@ -71,7 +71,7 @@ export const CartPage = (props: Props) => {
                 <div className={styles.sale}>
                   {`-${
                     getSalePriceFromCart(products) - getPriceFromCart(products)
-                  }` ₽}
+                  }₽`}
                 </div>
               </div>
               <div className={`${styles.columnsOrder} ${styles.total}`}>
