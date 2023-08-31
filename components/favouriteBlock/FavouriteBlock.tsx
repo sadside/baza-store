@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Favour } from "@/components/screens/LcFavourPage/LcFavourPage";
 import SvgSelector from "@/utils/SvgSelector";
 import { IServerFavorite } from "@/models/Favorites";
-import { removeFavorite } from "@/stores/cart/init";
+import { deleteFavoriteToServerFx, removeFavorite } from "@/stores/cart/init";
 type Props = {
   o: IServerFavorite;
 };
@@ -25,7 +25,13 @@ const FavouriteBlock = ({ o }: Props) => {
         <div className={s.content}>
           <div className={s.top}>
             <span className={s.name}>{name}</span>
-            <span className={s.heart} onClick={() => removeFavorite(slug)}>
+            <span
+              className={s.heart}
+              onClick={() => {
+                removeFavorite(slug);
+                deleteFavoriteToServerFx(slug);
+              }}
+            >
               <SvgSelector id={"favoriteHeart"} />
             </span>
           </div>
