@@ -35,7 +35,7 @@ const schema = yup.object().shape({
     .min(5, "Введите номер телефона"),
 });
 
-const ZakazPage = ({}: Props) => {
+export const ZakazPage = ({}: Props) => {
   let Zakaz = {
     price: { delivery: 700, cost: 12200 },
     adres: "Оренбург, Поляничко 9",
@@ -121,5 +121,3 @@ const ZakazPage = ({}: Props) => {
     </div>
   );
 };
-
-export default ZakazPage;
