@@ -30,7 +30,13 @@ export const CartItem = ({
 
   return (
     <div className={styles.wrapper}>
-      <Image src={image} width={200} height={340} alt={"img"} />
+      <Image
+        src={image}
+        width={300}
+        height={300}
+        alt={"img"}
+        className={styles.img}
+      />
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>
         <div className={styles.size}>Размер: {size}</div>
