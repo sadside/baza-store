@@ -102,7 +102,7 @@ export const OrderPage = ({}: Props) => {
               <span>Стоимость </span>
               <span className={s.itemPrice}>
                 {" "}
-                {orderPaymentData ? orderPaymentData.price : "Загрузка"} ₽
+                {orderPaymentData ? orderPaymentData.price / 100 : "Загрузка"} ₽
               </span>
             </div>
             {/* <div className={s.item}>
@@ -112,7 +112,7 @@ export const OrderPage = ({}: Props) => {
             <div className={s.item}>
               <span className={s.Itog}>Итого </span>
               <span className={s.Itog}>
-                {orderPaymentData ? orderPaymentData.price : "Загрузка"} ₽
+                {orderPaymentData ? orderPaymentData.price / 100 : "Загрузка"} ₽
               </span>
             </div>
           </div>
