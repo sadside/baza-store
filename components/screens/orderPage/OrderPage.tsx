@@ -17,7 +17,7 @@ import {
 import { $user } from "@/stores/cart/init";
 import MethRec from "@/components/MethRec/MethRec";
 import ZakazDannie from "@/components/ZakazDannie/ZakazDannie";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 type Props = {};
 
 export type ZakazFormValues = {
