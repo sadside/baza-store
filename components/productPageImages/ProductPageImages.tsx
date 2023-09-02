@@ -23,10 +23,6 @@ export const ProductPageImages = ({ product }: Props) => {
         );
       })} */}
       {product.images.map((image, index) => {
-        console.log(
-          image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")
-        );
-
         return (
           <Image
             src={image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
