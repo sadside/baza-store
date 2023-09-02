@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./index.module.scss";
 import classNames from "classnames";
 import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
 import InputForm from "@/components/inputForm/InputForm";
 import { InputNameMask } from "@/components/inputNameMask/InputNameMask";
+import { orderPageMounted } from "@/stores/order/init";
 
 interface IProps {
   title?: string;
