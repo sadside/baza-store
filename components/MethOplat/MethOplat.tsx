@@ -2,7 +2,7 @@
 
 import React from "react";
 import s from "./index.module.scss";
-import SvgSelector from "../../../../utils/SvgSelector";
+import SvgSelector from "../../utils/SvgSelector";
 import { useUnit } from "effector-react";
 import { $activeOplata, clickOplata } from "@/stores/zakaz/init";
 

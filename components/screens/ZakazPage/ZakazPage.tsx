@@ -3,9 +3,7 @@
 import React, { useEffect } from "react";
 import s from "./index.module.scss";
 import { Hr } from "../../ui/hr/Hr";
-import ZakazDannie from "./ZakazDannie/ZakazDannie";
-import MethRec from "./MethRec/MethRec";
-import MethOplat from "./MethOplat/MethOplat";
+import MethOplat from "../../MethOplat/MethOplat";
 import Button from "../../ui/button/Button";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,6 +11,8 @@ import * as yup from "yup";
 import { useUnit } from "effector-react";
 import { $orderPaymentData, orderPageMounted } from "@/stores/order/init";
 import { $user } from "@/stores/cart/init";
+import MethRec from "@/components/MethRec/MethRec";
+import ZakazDannie from "@/components/ZakazDannie/ZakazDannie";
 type Props = {};
 
 export type ZakazFormValues = {
