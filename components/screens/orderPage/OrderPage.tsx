@@ -17,6 +17,7 @@ import {
 import { $user } from "@/stores/cart/init";
 import MethRec from "@/components/MethRec/MethRec";
 import ZakazDannie from "@/components/ZakazDannie/ZakazDannie";
+import { useRouter } from "next/router";
 type Props = {};
 
 export type ZakazFormValues = {
@@ -56,6 +57,9 @@ export const OrderPage = ({}: Props) => {
   } = useForm<ZakazFormValues>({
     resolver: yupResolver(schema),
   });
+
+  const { push } = useRouter();
+
   const onSubmit = (data: ZakazFormValues) => {
     const body = {
       name: data.name,
@@ -71,7 +75,14 @@ export const OrderPage = ({}: Props) => {
       apartment: null,
     };
 
-    createOrderFx(body);
+    createOrderFx(body)
+      .then(() => {
+        push("/lk/info");
+        alert("Заказ создан!");
+      })
+      .catch(() => {
+        alert("Произошла ошибка");
+      });
   };
 
   const user = useUnit($user);
