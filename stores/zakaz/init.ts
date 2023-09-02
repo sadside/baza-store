@@ -8,6 +8,6 @@ const clickOplata = createEvent<string>()
 
 const $activeMeth = createStore<string>('sam').on(clickSam, ()=> 'sam').on(clickDost, ()=> 'dost')
 
-const $activeOplata = createStore<string>('Onl').on(clickOplata, (_, payload)=> payload)
+const $activeOplata = createStore<string>('Nal').on(clickOplata, (_, payload)=> payload)
 
 export {clickSam, clickDost, $activeMeth, $activeOplata, clickOplata}

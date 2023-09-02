@@ -35,7 +35,7 @@ const schema = yup.object().shape({
     .min(5, "Введите номер телефона"),
 });
 
-export const ZakazPage = ({}: Props) => {
+export const OrderPage = ({}: Props) => {
   let Zakaz = {
     price: { delivery: 700, cost: 12200 },
     adres: "Оренбург, Поляничко 9",
@@ -57,15 +57,16 @@ export const ZakazPage = ({}: Props) => {
   };
 
   const user = useUnit($user);
-  if (user) {
-    setValue("name", user?.name);
-    setValue("surname", user.surname);
-    setValue("phone", user?.phone);
-    setValue("mail", user.email);
-  }
 
   useEffect(() => {
     orderPageMounted();
+
+    if (user) {
+      setValue("name", user?.name);
+      setValue("surname", user.surname);
+      setValue("phone", user?.phone);
+      setValue("mail", user.email);
+    }
   }, []);
 
   const orderPaymentData = useUnit($orderPaymentData);

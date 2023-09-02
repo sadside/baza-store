@@ -13,9 +13,9 @@ type Props = {
 const MethOplat = () => {
   const type = useUnit($activeOplata);
   let a = [
-    { type: "Onl", name: "Банковской картой онлайн" },
+    // { type: "Onl", name: "Банковской картой онлайн" },
     { type: "Nal", name: "Наличными или картой при получении" },
-    { type: "SPB", name: "Система быстрых платежей" },
+    // { type: "SPB", name: "Система быстрых платежей" },
   ];
   return (
     <div className={s.root}>

@@ -24,8 +24,8 @@ export const CartItem = ({
   color,
 }: IProductCart) => {
   const user = useUnit($user);
-  const isLoading1 = useUnit(addToServerFx.pending);
 
+  const isLoading1 = useUnit(addToServerFx.pending);
   const isLoading2 = useUnit(removeCartItem.pending);
 
   return (
