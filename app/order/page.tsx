@@ -1,4 +1,4 @@
-import { ZakazPage } from "@/components/screens/zakazPage/ZakazPage";
+import { ZakazPage } from "@/components/screens/orderPage/OrderPage";
 
 export default function Order() {
   return <ZakazPage />;
