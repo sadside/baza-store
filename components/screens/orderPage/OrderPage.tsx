@@ -9,7 +9,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useUnit } from "effector-react";
-import { $orderPaymentData, orderPageMounted } from "@/stores/order/init";
+import {
+  $orderPaymentData,
+  createOrderFx,
+  orderPageMounted,
+} from "@/stores/order/init";
 import { $user } from "@/stores/cart/init";
 import MethRec from "@/components/MethRec/MethRec";
 import ZakazDannie from "@/components/ZakazDannie/ZakazDannie";
@@ -66,6 +70,8 @@ export const OrderPage = ({}: Props) => {
       frame: null,
       apartment: null,
     };
+
+    createOrderFx(body);
   };
 
   const user = useUnit($user);
