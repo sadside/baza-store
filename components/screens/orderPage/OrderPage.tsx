@@ -60,16 +60,18 @@ export const OrderPage = ({}: Props) => {
 
   useEffect(() => {
     orderPageMounted();
+  }, []);
 
+  const orderPaymentData = useUnit($orderPaymentData);
+
+  useEffect(() => {
     if (user) {
       setValue("name", user?.name);
       setValue("surname", user.surname);
       setValue("phone", user?.phone);
       setValue("mail", user.email);
     }
-  }, []);
-
-  const orderPaymentData = useUnit($orderPaymentData);
+  }, [orderPaymentData]);
 
   return (
     <div className={s.root}>
