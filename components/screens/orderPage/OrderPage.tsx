@@ -52,8 +52,20 @@ export const OrderPage = ({}: Props) => {
   } = useForm<ZakazFormValues>({
     resolver: yupResolver(schema),
   });
-  const onSubmit = (data: object) => {
-    console.log(data);
+  const onSubmit = (data: ZakazFormValues) => {
+    const body = {
+      name: data.name,
+      surname: data.surname,
+      email: data.mail,
+      phone: data.phone,
+      receiving: "pickup",
+      payment_type: "cash",
+      city: null,
+      street: null,
+      house: null,
+      frame: null,
+      apartment: null,
+    };
   };
 
   const user = useUnit($user);
