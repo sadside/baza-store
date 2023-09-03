@@ -31,7 +31,7 @@ const MenuLinks = ({ links }: Props) => {
               onMouseEnter={() => {
                 dropdownMenuOpened();
                 menuChanged("color");
-                categorySelected(link);
+                // categorySelected(link);
               }}
               key={link.id}
             >

@@ -1,6 +1,6 @@
-import SvgSelector from "@/utils/SvgSelector";
 import React from "react";
 import styles from "./EmptyCart.module.scss";
+import SvgSelector from "../../utils/SvgSelector";
 
 type Props = {};
 

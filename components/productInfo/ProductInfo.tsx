@@ -53,6 +53,8 @@ export const ProductInfo = ({ product }: Props) => {
               return;
             }
 
+            // if (product.sizes.)
+
             productAddedToCart({
               id: selectedSize.mod_id,
               price: product.price,
