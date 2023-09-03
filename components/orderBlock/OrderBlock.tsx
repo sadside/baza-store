@@ -1,10 +1,14 @@
 import React from "react";
 import s from "./OrderBlock.module.scss";
 import Link from "next/link";
+import { $orders } from "@/stores/order/init";
+import { useUnit } from "effector-react";
+import { getOrderPrice } from "@/utils/getOrderPrice";
+import { convertOrderStatus } from "@/utils/convertOrderStatus";
 type Props = {};
 
 export const OrderBlock = (props: Props) => {
-  const order = false;
+  const order = useUnit($orders)[0];
 
   return (
     <div className={s.block}>
@@ -16,13 +20,13 @@ export const OrderBlock = (props: Props) => {
               <div className={s.line}>
                 <span>Покупка от </span>
                 <span suppressHydrationWarning className={s.right}>
-                  22.01.01
+                  {order.order_date.split("T")[0]}
                 </span>
               </div>
               <div className={s.line}>
                 <span>Сумма:</span>
                 <span suppressHydrationWarning className={s.right}>
-                  1845 руб.
+                  {getOrderPrice(order)} руб.
                 </span>
               </div>
               <div className={s.line}>
@@ -31,7 +35,7 @@ export const OrderBlock = (props: Props) => {
                   suppressHydrationWarning
                   className={`${s.right} ${s.done}`}
                 >
-                  доставлен
+                  {convertOrderStatus(order.status)}
                 </span>
               </div>
             </div>
