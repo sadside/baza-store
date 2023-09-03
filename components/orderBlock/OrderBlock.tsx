@@ -38,7 +38,7 @@ export const OrderBlock = (props: Props) => {
               <div className={s.line}>
                 <span>Покупка от </span>
                 <span suppressHydrationWarning className={s.right}>
-                  {order.order_date}
+                  {order.order_date.split("T")[0]}
                 </span>
               </div>
               <div className={s.line}>
