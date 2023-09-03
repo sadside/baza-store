@@ -24,7 +24,7 @@ const MiniOrder = ({ o }: Props) => {
         </div>
       </div>
       <span className={s.count}>{quantity} шт.</span>
-      <span className={s.price}>{product.price * quantity} ₽</span>
+      <span className={s.price}>{(product.price / 100) * quantity} ₽</span>
     </div>
   );
 };
