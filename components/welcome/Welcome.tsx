@@ -1,3 +1,5 @@
+"use client"
+
 import React, {useEffect} from "react";
 import Banner from "./banner/Banner";
 import WelcomeText from "./welcomeTxt/WelcomeText";
@@ -8,7 +10,7 @@ import {$orders, getOrders} from "@/stores/order/init";
 import {useUnit} from "effector-react";
 
 type Props = {
-  children: any;
+    children: any;
 };
 const Welcome = ({ children }: Props) => {
 
