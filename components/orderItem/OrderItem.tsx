@@ -9,6 +9,9 @@ import { OrderType } from "@/components/orders/Orders";
 import { getCountPrice } from "@/utils/getCountPrice";
 import { convertDate } from "@/utils/convertDate";
 import { IOrder } from "@/models/Order";
+import { getOrderPrice } from "@/utils/getOrderPrice";
+import { getLoyaltyCount } from "@/utils/getLoyaltyCount";
+import { convertOrderStatus } from "@/utils/convertOrderStatus";
 type Props = {
   o: IOrder;
 };
@@ -29,11 +32,11 @@ const OrderItem = ({ o }: Props) => {
             </span>
           </div>
           <span className={s.count}>{o.products.length} товаров</span>
-          <span className={s.price}>x ₽</span>
+          <span className={s.price}>{getOrderPrice(o)} ₽</span>
         </div>
         <div className={s.line}>
           <span className={s.left}>Статус: </span>
-          <span className={s.right}>{o.status}</span>
+          <span className={s.right}>{convertOrderStatus(o.status)}</span>
         </div>
         <div className={s.line}>
           <span className={s.left}>Заказ получен: </span>
@@ -41,7 +44,7 @@ const OrderItem = ({ o }: Props) => {
         </div>
         <div className={s.bottom}>
           <span className={s.left}>BAZA LOYALTY:</span>
-          <span className={s.right}>x ₽</span>
+          <span className={s.right}>{getLoyaltyCount(o)} ₽</span>
         </div>
       </div>
       <AnimatePresence>

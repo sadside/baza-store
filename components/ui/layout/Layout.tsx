@@ -6,7 +6,11 @@ import styles from "./Layout.module.scss";
 import Menu from "./menu/Menu";
 import "../../../styles/globals.scss";
 import { usePathname } from "next/navigation";
-import { categoryCleared, menuChanged } from "@/stores/layout/menu/init";
+import {
+  categoryCleared,
+  dropdownMenuClosed,
+  menuChanged,
+} from "@/stores/layout/menu/init";
 import {
   getCartFromLocalStorageFx,
   getFavoritesFx,
@@ -31,6 +35,7 @@ const Layout = ({ children, links = [] }: Props) => {
 
   useEffect(() => {
     if (pathname === "/") menuChanged("transparent");
+    dropdownMenuClosed();
   }, [pathname]);
 
   return (

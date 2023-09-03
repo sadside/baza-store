@@ -16,6 +16,15 @@
 	   object-fit: cover;
 		 width: 100% !important;
 		 height: 500px;
+		 @media (min-width: 2600px) {
+			height: 900px;
+		 }
+		 @media (min-width: 2200px) {
+			height: 800px;
+		 }
+		 @media (min-width: 1800px) {
+			height: 600px;
+		 }
 }
 .sceleton {
 	height: 500px;

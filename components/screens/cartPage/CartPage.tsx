@@ -55,6 +55,7 @@ export const CartPage = (props: Props) => {
                 image,
                 color,
                 old_price = 0,
+                slug,
               }) => (
                 <CartItem
                   size={size}
@@ -63,6 +64,7 @@ export const CartPage = (props: Props) => {
                   price={price}
                   key={id}
                   id={id}
+                  slug={slug}
                   image={image}
                   color={color}
                   old_price={old_price}

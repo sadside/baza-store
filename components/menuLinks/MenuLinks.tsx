@@ -8,6 +8,7 @@ import {
   $showDropdownMenu,
   $stateOfMenu,
   categorySelected,
+  dropdownMenuClosed,
   dropdownMenuOpened,
   menuChanged,
 } from "@/stores/layout/menu/init";
@@ -51,6 +52,7 @@ const MenuLinks = ({ links }: Props) => {
           style={{ color: "#000" }}
           onMouseEnter={() => {
             menuChanged("color");
+            dropdownMenuClosed();
           }}
         >
           <li>ДОСТАВКА</li>
@@ -60,6 +62,7 @@ const MenuLinks = ({ links }: Props) => {
           style={{ color: "#000" }}
           onMouseEnter={() => {
             menuChanged("color");
+            dropdownMenuClosed();
           }}
         >
           <li>ПРОГРАММА ЛОЯЛЬНОСТИ</li>

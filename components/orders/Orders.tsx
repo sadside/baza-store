@@ -25,8 +25,9 @@ export type OrderType = {
 };
 const Orders = () => {
   const orders = useUnit($orders);
+
   useEffect(() => {
-    getOrders();
+    if (!orders) getOrders();
   }, []);
 
   return (

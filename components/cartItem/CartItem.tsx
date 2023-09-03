@@ -13,6 +13,7 @@ import {
   removeCartItem,
 } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
+import Link from "next/link";
 
 export const CartItem = ({
   name,
@@ -22,6 +23,7 @@ export const CartItem = ({
   count,
   id,
   color,
+  slug,
 }: IProductCart) => {
   const user = useUnit($user);
 
@@ -38,7 +40,9 @@ export const CartItem = ({
         className={styles.img}
       />
       <div className={styles.info}>
-        <div className={styles.name}>{name}</div>
+        <Link className={styles.name} href={`/products/${slug}`}>
+          {name}
+        </Link>
         <div className={styles.size}>Размер: {size}</div>
         <div className={styles.size}>Цвет: {color}</div>
         <div className={styles.count}>
@@ -55,6 +59,7 @@ export const CartItem = ({
                   id,
                   color,
                   old_price: price,
+                  slug,
                 });
 
                 if (user) removeCartItem(id || 0);
@@ -76,6 +81,7 @@ export const CartItem = ({
                   id,
                   color,
                   old_price: price,
+                  slug,
                 });
 
                 if (user) addToServerFx(id || 0);
