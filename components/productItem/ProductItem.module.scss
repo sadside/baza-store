@@ -12,8 +12,10 @@
 }
 
 .img {
-	height: 100% !important;
-	width: 100% !important;
+	-o-object-fit: cover;
+	   object-fit: cover;
+		 width: 100% !important;
+		 height: 500px;
 }
 .sceleton {
 	height: 500px;

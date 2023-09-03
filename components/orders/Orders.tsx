@@ -1,7 +1,11 @@
+"use client";
+
 import React from "react";
 
 import s from "./Orders.module.scss";
 import OrderItem from "../orderItem/OrderItem";
+import { useUnit } from "effector-react";
+import { $orders } from "@/stores/order/init";
 export type miniOrder = {
   name: string;
   id: number;
@@ -109,9 +113,12 @@ const Orders = () => {
       ],
     },
   ];
+
+  const orders1 = useUnit($orders);
+
   return (
     <>
-      {!orders.length ? (
+      {!orders1.length ? (
         <div className={s.block}>
           <div className={s.none}>
             <div className={s.top}>
@@ -125,7 +132,7 @@ const Orders = () => {
         </div>
       ) : (
         <div className={s.orders}>
-          {orders.map((o) => (
+          {orders1.map((o) => (
             <OrderItem key={o.id} o={o} />
           ))}
         </div>

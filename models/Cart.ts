@@ -1,6 +1,7 @@
 export interface IServerCart {
   product: Product
   quantity: number
+  baza_loyalty?: number
 }
 
 

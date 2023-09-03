@@ -8,13 +8,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import { OrderType } from "@/components/orders/Orders";
 import { getCountPrice } from "@/utils/getCountPrice";
 import { convertDate } from "@/utils/convertDate";
+import { IOrder } from "@/models/Order";
 type Props = {
-  o: OrderType;
+  o: IOrder;
 };
 const OrderItem = ({ o }: Props) => {
-  const { id, date, children, baza, state } = { ...o };
   const [open, setOpen] = useState(false);
-  const { price, count } = getCountPrice(children);
+  // const { price, count } = getCountPrice(children);
   return (
     <div className={s.root}>
       <div className={s.info}>
@@ -24,24 +24,24 @@ const OrderItem = ({ o }: Props) => {
               <SvgSelector id={open ? "arrowTop" : "arrowDown"} />
             </span>
             <span className={s.TxtDate}>
-              <span className={s.txt}>Заказ vs{id}</span>
-              <span className={s.date}> от {convertDate(date.by)}</span>
+              <span className={s.txt}>Заказ vs{o.id}</span>
+              <span className={s.date}> от {o.receiving_date}</span>
             </span>
           </div>
-          <span className={s.count}>{count} товаров</span>
-          <span className={s.price}>{price} ₽</span>
+          <span className={s.count}>{o.products.length} товаров</span>
+          <span className={s.price}>x ₽</span>
         </div>
         <div className={s.line}>
           <span className={s.left}>Статус: </span>
-          <span className={s.right}>{state}</span>
+          <span className={s.right}>{o.status}</span>
         </div>
         <div className={s.line}>
           <span className={s.left}>Заказ получен: </span>
-          <span className={s.right}>{convertDate(date.of)}</span>
+          <span className={s.right}>{o.receiving_date}</span>
         </div>
         <div className={s.bottom}>
           <span className={s.left}>BAZA LOYALTY:</span>
-          <span className={s.right}>{baza} ₽</span>
+          <span className={s.right}>x ₽</span>
         </div>
       </div>
       <AnimatePresence>
@@ -54,8 +54,8 @@ const OrderItem = ({ o }: Props) => {
             style={{ overflow: "hidden" }}
             className={s.orders}
           >
-            {children.map((p) => (
-              <MiniOrder key={p.id} o={p} />
+            {o.products.map((p) => (
+              <MiniOrder key={p.product.id} o={p} />
             ))}
           </motion.div>
         )}

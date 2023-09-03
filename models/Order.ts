@@ -21,5 +21,9 @@ export interface IOrder {
     frame: string | null,
     apartment: string | null,
     is_paid: boolean,
-    products: IServerCart[]
+    products: IServerCart[],
+    order_date: string,
+    status: string,
+    receiving_date: string,
+
 }
