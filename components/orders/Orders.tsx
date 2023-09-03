@@ -27,7 +27,7 @@ const Orders = () => {
   const orders = useUnit($orders);
 
   useEffect(() => {
-    if (!orders) getOrders();
+    if (!orders.length) getOrders();
   }, []);
 
   return (
