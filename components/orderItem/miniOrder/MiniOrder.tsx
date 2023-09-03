@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./MiniOrder.module.scss";
 import { IServerCart } from "@/models/Cart";
+import Image from "next/image";
 
 type Props = {
   o: IServerCart;
@@ -10,7 +11,13 @@ const MiniOrder = ({ o }: Props) => {
   return (
     <div className={s.root}>
       <div className={s.left}>
-        <img className={s.img} src={product.image} />
+        <Image
+          className={s.img}
+          width={53}
+          height={70}
+          src={product.image}
+          alt={"product image"}
+        />
         <div className={s.card}>
           <span className={s.title}>{product.name}</span>
           <span className={s.article}>Артикул: {product.id}</span>

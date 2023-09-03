@@ -14,7 +14,7 @@ type Props = {
 };
 const OrderItem = ({ o }: Props) => {
   const [open, setOpen] = useState(false);
-  // const { price, count } = getCountPrice(children);
+
   return (
     <div className={s.root}>
       <div className={s.info}>
@@ -24,8 +24,8 @@ const OrderItem = ({ o }: Props) => {
               <SvgSelector id={open ? "arrowTop" : "arrowDown"} />
             </span>
             <span className={s.TxtDate}>
-              <span className={s.txt}>Заказ vs {o.id}</span>
-              <span className={s.date}> от {o.receiving_date}</span>
+              <span className={s.txt}>Заказ vs{o.id} </span>
+              <span className={s.date}> от {o.order_date}</span>
             </span>
           </div>
           <span className={s.count}>{o.products.length} товаров</span>
