@@ -12,6 +12,6 @@ export function middleware(request: NextRequest) {
     }
 
     if (request.nextUrl.pathname.startsWith("/auth") && isLogin) {
-        return NextResponse.rewrite(new URL("/", request.url));
+        return NextResponse.redirect(new URL("/", request.url));
     }
 }
