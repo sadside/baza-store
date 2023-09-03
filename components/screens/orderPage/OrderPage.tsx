@@ -77,7 +77,7 @@ export const OrderPage = ({}: Props) => {
 
     createOrderFx(body)
       .then(() => {
-        push("/lk/info");
+        push("/lk/orders");
         alert("Заказ создан!");
       })
       .catch(() => {

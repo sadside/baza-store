@@ -14,10 +14,6 @@ export const OrderBlock = (props: Props) => {
   const orders = useUnit($orders);
   const loading = useUnit(getOrders.pending);
 
-  useEffect(() => {
-    if (!orders.length) getOrders();
-  });
-
   const order = orders[0];
 
   if (loading) {
