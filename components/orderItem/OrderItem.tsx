@@ -38,10 +38,12 @@ const OrderItem = ({ o }: Props) => {
           <span className={s.left}>Статус: </span>
           <span className={s.right}>{convertOrderStatus(o.status)}</span>
         </div>
-        <div className={s.line}>
-          <span className={s.left}>Заказ получен: </span>
-          <span className={s.right}>{o.receiving_date}</span>
-        </div>
+        {convertOrderStatus(o.status) === "Получен" && (
+          <div className={s.line}>
+            <span className={s.left}>Заказ получен: </span>
+            <span className={s.right}>{o.receiving_date}</span>
+          </div>
+        )}
         <div className={s.bottom}>
           <span className={s.left}>BAZA LOYALTY:</span>
           <span className={s.right}>{getLoyaltyCount(o)} ₽</span>
