@@ -46,6 +46,7 @@ export const ProductInfo = ({ product }: Props) => {
         <Button
           text="Добавить в корзину"
           style={{ width: "100%" }}
+          loading={loading}
           onClick={async () => {
             if (selectedSize === null) {
               alert("Выберите размер");
