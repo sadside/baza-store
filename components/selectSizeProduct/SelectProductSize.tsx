@@ -13,6 +13,7 @@ type Props = {
   sizes: {
     name: string;
     mod_id: number;
+    quantity: number
   }[];
 };
 
