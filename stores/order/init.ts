@@ -63,6 +63,11 @@ sample({
 })
 
 sample({
+  clock: getOrders.doneData,
+  target: $orders
+})
+
+sample({
   clock: getOrderPaymentDataFx.doneData,
   target: $orderPaymentData
 })
