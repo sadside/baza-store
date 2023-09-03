@@ -26,10 +26,6 @@ export type OrderType = {
 const Orders = () => {
   const orders = useUnit($orders);
 
-  useEffect(() => {
-    if (!orders.length) getOrders();
-  }, []);
-
   return (
     <>
       {!orders.length ? (

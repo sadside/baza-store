@@ -1,16 +1,32 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import s from "./OrderBlock.module.scss";
 import Link from "next/link";
-import { $orders } from "@/stores/order/init";
+import { $orders, getOrders } from "@/stores/order/init";
 import { useUnit } from "effector-react";
 import { getOrderPrice } from "@/utils/getOrderPrice";
 import { convertOrderStatus } from "@/utils/convertOrderStatus";
+import { Loader } from "../loader/Loader";
 type Props = {};
 
 export const OrderBlock = (props: Props) => {
-  const order = useUnit($orders)[0];
+  const orders = useUnit($orders);
+  const loading = useUnit(getOrders.pending);
+
+  useEffect(() => {
+    if (!orders.length) getOrders();
+  });
+
+  const order = orders[0];
+
+  if (loading) {
+    return (
+      <div className={s.block}>
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className={s.block}>
