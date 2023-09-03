@@ -19,7 +19,7 @@ const ProductItem = ({
   });
 
   const { ref, inView } = useInView({
-    threshold: 0.1,
+    threshold: 0.01,
     triggerOnce: true,
   });
 
