@@ -24,7 +24,7 @@ const OrderItem = ({ o }: Props) => {
               <SvgSelector id={open ? "arrowTop" : "arrowDown"} />
             </span>
             <span className={s.TxtDate}>
-              <span className={s.txt}>Заказ vs{o.id}</span>
+              <span className={s.txt}>Заказ vs {o.id}</span>
               <span className={s.date}> от {o.receiving_date}</span>
             </span>
           </div>
