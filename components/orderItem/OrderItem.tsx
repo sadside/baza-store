@@ -25,6 +25,7 @@ const OrderItem = ({ o }: Props) => {
             </span>
             <span className={s.TxtDate}>
               <span className={s.txt}>Заказ vs{o.id} </span>
+              <span> </span>
               <span className={s.date}> от {o.order_date}</span>
             </span>
           </div>
