@@ -14,4 +14,5 @@ export type Product = {
   size: string,
   color: string,
   old_price?: number
+  quantity: number
 }

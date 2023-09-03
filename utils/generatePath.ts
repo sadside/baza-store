@@ -5,7 +5,7 @@ export const generatePath = (link: LinkType) => {
     for (let option in link.options) {
         //@ts-ignore
         if (link.options[option]) {
-            //@ts-ignore
+            // @ts-ignore
             newObj[option] = link.options[option]
         }
     }

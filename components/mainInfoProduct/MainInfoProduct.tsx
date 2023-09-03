@@ -1,5 +1,3 @@
-import { useUnit } from "effector-react";
-import { IProduct } from "../productItem/productItem.interface";
 import { AddToFavorites } from "../ui/addToFavorites/AddToFavorites";
 import styles from "./MainInfoProduct.module.scss";
 import { IFullProduct } from "@/models/Product";

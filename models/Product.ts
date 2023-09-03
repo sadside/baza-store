@@ -42,7 +42,8 @@ export interface IFullProduct {
   },
   sizes: {
     name: string,
-    mod_id: number
+    mod_id: number,
+    quantity: number
   }[],
   current_color: {
     name: string,

@@ -1,7 +1,5 @@
-import clsx from "clsx";
 import styles from "./CancelButton.module.scss";
-import { AnimatePresence, motion, useAnimation } from "framer-motion";
-import { useState } from "react";
+import { motion, useAnimation } from "framer-motion";
 
 type Props = {
     open: boolean;
@@ -20,37 +18,19 @@ const path02Variants = {
 };
 
 export const CancelButton = ({ open, handleClick }: Props) => {
-    // return (
-    // {
-    /* <div className={styles.wrapper} onClick={handleClick}>
-                <div
-                    className={clsx({
-                        [styles.first]: true,
-                        [styles.activeFirst]: !open,
-                    })}
-                ></div>
-                <div
-                    className={clsx({
-                        [styles.second]: true,
-                        [styles.activeSecond]: !open,
-                    })}
-                ></div>
-            </div> */
-    // }
-
     const path01Controls = useAnimation();
     const path02Controls = useAnimation();
 
     const onClick = async () => {
-        handleClick();
+                handleClick();
         if (!open) {
             await path02Controls.start(path02Variants.moving);
-            path01Controls.start(path01Variants.open);
-            path02Controls.start(path02Variants.open);
+            await path01Controls.start(path01Variants.open);
+            await path02Controls.start(path02Variants.open);
         } else {
-            path01Controls.start(path01Variants.closed);
+            await path01Controls.start(path01Variants.closed);
             await path02Controls.start(path02Variants.moving);
-            path02Controls.start(path02Variants.closed);
+            await path02Controls.start(path02Variants.closed);
         }
     };
 

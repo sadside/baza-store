@@ -84,7 +84,7 @@ export const CartItem = ({
                   slug,
                 });
 
-                if (user) addToServerFx(id || 0);
+                if (user) addToServerFx(id || 0).catch(() => alert('Ошибка при добавлении товара.'))
               }
             }}
           >

@@ -1,4 +1,3 @@
-import { number, string } from "yup"
 import { IServerCart } from "./Cart"
 
 export interface IOrderPaymentData {

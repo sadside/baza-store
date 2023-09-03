@@ -16,7 +16,6 @@ export const heightChanged = createEvent<number>()
 export const $videoHeight = createStore(0).on(heightChanged, (_, paylaod) => paylaod)
 
 export const $stateOfMenu = createStore<'transparent' | 'color'>('transparent').on(menuChanged, (_, payload) => payload)
-
 export const categorySelected = createEvent<ICategory>()
 export const categoryCleared = createEvent()
 
@@ -33,7 +32,7 @@ sample({
 
 sample({
   clock: smallMenuOpened,
-  fn: () => (true),
+  fn: () => true,
   target: $showSmallMenu,
 })
 

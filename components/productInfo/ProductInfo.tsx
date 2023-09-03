@@ -8,6 +8,7 @@ import Button from "../ui/button/Button";
 import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
 import {
+  $cart,
   $user,
   addToServerFx,
   productAddedToCart,
@@ -29,6 +30,9 @@ type Props = {
 export const ProductInfo = ({ product }: Props) => {
   const selectedSize = useUnit($selectedSize);
   const user = useUnit($user);
+  const cart = useUnit($cart)
+
+  const activeProduct = cart.filter(item => item.slug === product.current_color.slug)
 
   const loading = useUnit(addToServerFx.pending);
 
@@ -53,7 +57,7 @@ export const ProductInfo = ({ product }: Props) => {
               return;
             }
 
-            // if (product.sizes.)
+            // if (selectedSize.quantity < activeProduct[0].)
 
             productAddedToCart({
               id: selectedSize.mod_id,

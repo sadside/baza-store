@@ -23,7 +23,7 @@ const LcBlock = ({ o }: Props) => {
   const router = useRouter();
   const { strokes } = { ...o };
   const { title, bottom, info } = { ...convertTypeOfObzor(o.type) };
-  const { color, data, rub } = { ...info };
+  const { color, data} = { ...info };
   const Rub = (
     color: boolean | undefined,
     i: number,
