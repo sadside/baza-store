@@ -23,6 +23,8 @@ import { menuMounted } from "@/stores/layout/menu/content/init";
 import { SmallMenu } from "../smallMenu/SmallMenu";
 import { mounted } from "@/stores/favotites/favorites";
 import { usePathname, useRouter } from "next/navigation";
+import Hamburger from "@/components/Hamburger/Hamburger";
+import CategoryHumb from "@/components/Hamburger/category/CategoryHumb";
 
 type Props = { links: any };
 
@@ -125,6 +127,8 @@ const Menu = ({ links }: Props) => {
         <SmallMenu links={links} />
         <Cart />
         <DropdownMenu />
+        <Hamburger links={links} />
+        <CategoryHumb />
       </div>
     </>
   );

@@ -11,7 +11,7 @@ import { disablePageScroll } from "scroll-lock";
 import { useSession, signOut } from "next-auth/react";
 import { useUnit } from "effector-react";
 import { IUser } from "@/models/User";
-import { $stateOfMenu } from "@/stores/layout/menu/init";
+import {$stateOfMenu, HamburgMenuOpened} from "@/stores/layout/menu/init";
 import { usePathname } from "next/navigation";
 
 type Props = {};
@@ -52,6 +52,15 @@ export const MenuIcons = ({}: Props) => {
           <MenuCart />
         </div>
       </Link>
+        <div className={styles.hamb} onClick={()=> HamburgMenuOpened()
+        }>
+            <SvgSelector  id={
+                menuState === "transparent" && pathname === "/"
+                    ? "hamburger-white"
+                    : "hamburger"
+            } />
+        </div>
     </div>
+
   );
 };

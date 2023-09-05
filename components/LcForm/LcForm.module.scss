@@ -100,3 +100,21 @@
   line-height: 20px; /* 142.857% */
 }
 
+.btn {
+  font-weight: 700;
+  font-size: 12px;
+  outline: none;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  height: 44px;
+  background-color: #000;
+  color: #fff;
+  button {
+    color: #fff;
+  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

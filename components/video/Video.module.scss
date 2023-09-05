@@ -9,6 +9,9 @@
      object-fit: cover;
   box-shadow: none !important;
   border: none !important;
+  @media (max-width: 725px) {
+    display: none;
+  }
 }
 
 .load {

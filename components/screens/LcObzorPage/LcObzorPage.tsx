@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import LcBlock, { ObjLc } from "../../lcBlock/LcBlock";
 import s from "./LcObzorPage.module.scss";
 import Welcome from "@/components/welcome/Welcome";
 import { LoyaltyBlock } from "@/components/reviewBlock/LoyaltyBlock";

@@ -8,6 +8,9 @@ body {
 	scrollbar-width: none;
 	max-width:100%;
 	overflow-x: hidden;
+	&:has(.hidden) {
+		overflow: hidden;
+	}
 }
 
 html {

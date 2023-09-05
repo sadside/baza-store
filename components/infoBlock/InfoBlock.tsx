@@ -5,6 +5,7 @@ import s from "./InfoBlock.module.scss";
 import Link from "next/link";
 import { useUnit } from "effector-react";
 import { $user } from "@/stores/cart/init";
+import {clickCategory} from "@/stores/lc/init";
 type Props = {};
 
 export const InfoBlock = (props: Props) => {
@@ -42,7 +43,7 @@ export const InfoBlock = (props: Props) => {
         </div>
       </div>
       <div className={s.bottom}>
-        <Link href="info">Больше данных</Link>
+        <Link href="info" onClick={()=> clickCategory(5)}>Больше данных</Link>
       </div>
     </div>
   );

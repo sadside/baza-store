@@ -28,7 +28,7 @@ const MethOplat = () => {
               className={s.item}
               onClick={() => clickOplata(o.type)}
             >
-              <span>
+              <span className={s.radio}>
                 <SvgSelector id={type === o.type ? "radioActive" : "radio"} />
               </span>
               <span className={s.text}>{o.name}</span>

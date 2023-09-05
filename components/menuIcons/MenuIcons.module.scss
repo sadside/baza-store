@@ -1,3 +1,4 @@
+
 .additional {
   height: 40px;
   margin-right: 40px;
@@ -6,19 +7,40 @@
   display: flex;
   align-items: center;
   position: relative;
-  
+  @media (max-width: 1000px) {
+    height: 28px;
+    padding-right: 0;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-right: 20px !important;
+  }
+  .hamb {
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+    display: none;
+    @media (max-width: 1000px) {
+      display: flex;
+      margin-left: 5px;
+    }
+  }
   .userIcon {
     cursor: pointer;
     display: flex;
     align-items: center;
     text-decoration: none;
     color: #000;
-    
+
     &:nth-child(2) {
       margin-left: 20px;
+      @media (max-width: 1000px) {
+        margin-left: 0;
+      }
     }
-  }
 
+  }
   .iconWrapper {
     position: relative;
     height: 22px !important;

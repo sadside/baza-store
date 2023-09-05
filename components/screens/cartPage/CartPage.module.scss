@@ -19,17 +19,24 @@
 }
 
 .right {
+  display: flex;
   flex: 0 0 380px;
+  @media (max-width: 1000px) {
+    justify-content: flex-end;
+  }
 }
 
 .makeOrder {
+  max-width: 500px;
   font-size: 14px !important;
   background-color: #F7F7F7;
   height: -webkit-min-content;
   height: -moz-min-content;
   height: min-content;
   padding: 20px 30px;
-
+  @media (max-width: 1000px) {
+    margin-right: 10px;
+  }
   .title {
     font-size: 14px;
     font-style: normal;
@@ -41,6 +48,9 @@
 .columns {
   display: flex;
   margin-bottom: 30px;
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 }
 
 .products {

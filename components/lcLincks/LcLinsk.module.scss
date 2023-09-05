@@ -15,15 +15,15 @@
   }
 
   ul {
+    @media (max-width: 730px) {
+      padding-left: 20px;
+    }
+    width: 700px;
     margin: auto;
     padding: 0;
-    @media (max-width: 1260px) {
-      width: 720px;
-    }
-    @media (max-width: 720px) {
-    }
-    display: flex;
 
+    display: flex;
+    justify-content: space-between;
     li {
       @media (max-width: 720px) {
         font-size: 13px;

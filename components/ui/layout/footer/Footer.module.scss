@@ -1,18 +1,28 @@
+
 .wrapper {
 	background-color: black;
 	height: 160px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	@media (max-width: 670px) {
+		height: 214px;
+	}
 }
 
 .blocks {
 	display: flex;
 	height: 96px;
+	justify-content: center;
+	@media (max-width: 670px) {
+		flex-direction: column-reverse;
+	}
 	.leftBlock {
 		margin-right: 160px;
+		@media (max-width: 670px) {
+			margin-right: 0;
+		}
 	}
-
 	.linkItem {
 		display: flex;
 		text-decoration: none;
@@ -26,12 +36,25 @@
 			font-size: 12px;
 			display: flex;
 			align-items: center;
-			text-decoration: none;
-			cursor: pointer;
 		}
 		.icon {
 			display: flex;
 			align-items: center;
+		}
+	}
+	.rightBlock {
+		@media (max-width: 670px) {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 60px;
+			margin-bottom: 20px;
+		}
+
+		.link {
+			@media (max-width: 670px) {
+				display: none;
+			}
 		}
 	}
 }

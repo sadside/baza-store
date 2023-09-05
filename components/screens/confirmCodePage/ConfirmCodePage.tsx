@@ -58,6 +58,7 @@ const ConfirmCodePage = (props: Props) => {
             Введите код, который мы выслали на номер {phoneNumber}
           </div>
           <InputCodeMask
+              style={{width:'100%'}}
             name="code"
             register={register}
             error={Boolean(errors?.code?.message)}

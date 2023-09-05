@@ -12,7 +12,9 @@
 	justify-content: space-around;
 	transition: transform border .2s ease-in-out ;
 	border-bottom: 1px solid #00000039;
-
+	@media (max-width: 1000px) {
+		justify-content: space-between;
+	}
 
 	.hide {
 		transform: translateY(-70px);
@@ -25,6 +27,9 @@
 		margin-left: 40px;
 		margin-right: 40px;
 		height: 40px;
+		@media (max-width: 1000px) {
+			margin-left: 20px;
+		}
 	}
 	
 	

@@ -5,7 +5,11 @@
   align-items: flex-start;
   gap: 22px;
 }
-
+.radio {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .btns {
   display: flex;
   flex-direction: column;

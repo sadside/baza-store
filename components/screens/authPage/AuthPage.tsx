@@ -65,6 +65,7 @@ const AuthPage = ({}: Props) => {
           <div className={styles.content}>
             <div className={styles.authTitle}>ВХОД / РЕГИСТРАЦИЯ</div>
             <InputPhoneMask
+                style={{width:'100%'}}
               type="tel"
               error={Boolean(errors?.phoneNumber?.message)}
               register={register}

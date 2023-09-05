@@ -3,6 +3,7 @@
 	
 	align-items: center;
 	justify-content: center;
+	width: 100%;
 }
 
 .test {
@@ -10,9 +11,11 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 100%;
 }
 .form {
 	height: 100%;
+	width: 100%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -26,6 +29,8 @@
 }
 
 .content {
+	max-width: 392px;
+	width: 80%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;

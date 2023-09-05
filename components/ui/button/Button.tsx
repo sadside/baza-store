@@ -10,8 +10,6 @@ interface Props extends HTMLAttributes<HTMLInputElement> {
 }
 
 const Button = ({
-  height = 44,
-  width = 392,
   text,
   loading = false,
   ...props
@@ -20,8 +18,6 @@ const Button = ({
     <div
       className={styles.wrapper}
       style={{
-        height,
-        width,
         backgroundColor: "#000000",
       }}
       {...props}

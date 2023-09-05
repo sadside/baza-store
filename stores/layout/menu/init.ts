@@ -9,6 +9,17 @@ const dropdownMenuOpened = createEvent()
 const smallMenuOpened = createEvent()
 export const menuChanged = createEvent<'transparent' | 'color'>()
 
+const HamburgMenuOpened = createEvent()
+const HamburgMenuClosed = createEvent()
+const categoryBurgerSelected = createEvent<ICategory>()
+const HamburgCategoryOpen = createEvent()
+const HamburgCategoryClose = createEvent()
+const $showHamburgMenu = createStore(false)
+const $showBurgerCategory = createStore(false)
+
+
+
+
 const $showSmallMenu = createStore(true)
 const $showDropdownMenu = createStore(false)
 export const heightChanged = createEvent<number>()
@@ -18,6 +29,7 @@ export const $videoHeight = createStore(0).on(heightChanged, (_, paylaod) => pay
 export const $stateOfMenu = createStore<'transparent' | 'color'>('transparent').on(menuChanged, (_, payload) => payload)
 export const categorySelected = createEvent<ICategory>()
 export const categoryCleared = createEvent()
+export const $activeCategoryBurger = createStore<ICategory | null>(null).on(categoryBurgerSelected, (_, payload) => payload)
 
 export const $activeCategory = createStore<ICategory | null>(null).on(categorySelected, (_, payload) => payload)
 
@@ -26,7 +38,7 @@ $activeCategory.watch(state => console.log(state))
 
 sample({
   clock: smallMenuClosed,
-  fn: () => (false),
+  fn: () => false,
   target: $showSmallMenu,
 })
 
@@ -38,7 +50,7 @@ sample({
 
 sample({
   clock: dropdownMenuClosed,
-  fn: () => (false),
+  fn: () => false,
   target: $showDropdownMenu,
 })
 
@@ -48,6 +60,31 @@ sample({
   target: $showDropdownMenu,
 })
 
+sample({
+  clock: HamburgMenuOpened,
+  fn: () => true,
+  target: $showHamburgMenu,
+})
+sample({
+  clock: HamburgMenuClosed,
+  fn: () => false,
+  target: $showHamburgMenu,
+})
+sample({
+  clock: HamburgCategoryOpen,
+  fn: () => true,
+  target: $showBurgerCategory,
+})
+sample({
+  clock: HamburgMenuClosed,
+  fn: () => false,
+  target: $showBurgerCategory,
+})
+sample({
+  clock: HamburgCategoryClose,
+  fn: () => false,
+  target: $showBurgerCategory,
+})
 sample({
   clock: categoryCleared,
   fn: () => false,
@@ -62,4 +99,6 @@ sample({
 
 
 export {$showDropdownMenu, $showSmallMenu, smallMenuClosed
-, dropdownMenuClosed, smallMenuOpened, dropdownMenuOpened}
+, dropdownMenuClosed, smallMenuOpened, dropdownMenuOpened, $showHamburgMenu,
+  HamburgMenuOpened, HamburgMenuClosed, $showBurgerCategory, HamburgCategoryClose,
+  categoryBurgerSelected, HamburgCategoryOpen}

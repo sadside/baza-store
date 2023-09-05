@@ -3,6 +3,11 @@
 	align-items: center;
 	justify-content: center;
 	height: calc(100vh - 230px);
+	form {
+		justify-content: center;
+		width: 100%;
+		align-items: center;
+	}
 }
 
 .errorMessage {
@@ -32,6 +37,9 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	width: 80%;
+	max-width: 392px;
+	margin: auto;
 }
 
 .subTitle {
@@ -39,4 +47,7 @@
 	font-size: 14px;
 	text-align: center;
 	margin-bottom: 24px;
+	@media(max-width: 400px) {
+		width: 250px;
+	}
 }

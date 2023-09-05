@@ -17,6 +17,7 @@ export const Video = ({ src }: { src: string }) => {
     if (node !== null) {
       setHeight(node.getBoundingClientRect().height);
       heightChanged(node.getBoundingClientRect().height);
+      console.log(node.getBoundingClientRect().height, 'h')
     }
   }, []);
 

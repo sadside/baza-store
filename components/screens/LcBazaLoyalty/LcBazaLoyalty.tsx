@@ -1,5 +1,4 @@
 import React from "react";
-import LcBlock from "../../lcBlock/LcBlock";
 
 import s from "./index.module.scss";
 import Welcome from "@/components/welcome/Welcome";

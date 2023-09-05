@@ -8,6 +8,7 @@ import { useUnit } from "effector-react";
 import { getOrderPrice } from "@/utils/getOrderPrice";
 import { convertOrderStatus } from "@/utils/convertOrderStatus";
 import { Loader } from "../loader/Loader";
+import {clickCategory} from "@/stores/lc/init";
 type Props = {};
 
 export const OrderBlock = (props: Props) => {
@@ -55,7 +56,7 @@ export const OrderBlock = (props: Props) => {
             </div>
           </div>
           <div className={s.bottom}>
-            <Link href="/lk/orders/">Список заказов</Link>
+            <Link href="/lk/orders/"  onClick={()=> clickCategory(3)}>Список заказов</Link>
           </div>
         </>
       ) : (

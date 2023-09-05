@@ -12,3 +12,14 @@
           object-fit: cover;
     
 }
+.swiper {
+  display: none;
+  @media (max-width: 666px) {
+    display: flex;
+  }
+}
+.imgList {
+  @media (max-width: 666px) {
+    display: none;
+  }
+}
