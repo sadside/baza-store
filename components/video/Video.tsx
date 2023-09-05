@@ -30,7 +30,7 @@ export const Video = ({ src }: { src: string }) => {
 
   return (
     <>
-      {state && Math.round(width) > 725 ? (
+      {state ? (
         //@ts-ignore
           <div className={styles.wrap} ref={measuredRef}>
               <video
