@@ -12,7 +12,7 @@ const MainPage = ({products}: Props) => {
     return (
         <div>
             <Video src={"./video.mp4"}/>
-            <Photo/>
+            <Photo />
             <Products products={products}/>
         </div>
     );
