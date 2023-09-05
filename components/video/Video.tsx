@@ -12,7 +12,7 @@ export const Video = ({ src }: { src: string }) => {
   useEffect(() => {
     setState("123");
     if (window) setWidth(window.innerWidth)
-
+    console.log(window.innerWidth)
   }, []);
 
   const [height, setHeight] = useState(0);
@@ -30,7 +30,7 @@ export const Video = ({ src }: { src: string }) => {
 
   return (
     <>
-      {state && width > 725 ? (
+      {state && Math.round(width) > 725 ? (
         //@ts-ignore
           <div className={styles.wrap} ref={measuredRef}>
               <video
