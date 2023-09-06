@@ -14,6 +14,7 @@ import {
 } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import Link from "next/link";
+import {formatMany} from "@/utils/formatMany";
 
 export const CartItem = ({
   name,
@@ -29,6 +30,7 @@ export const CartItem = ({
 
   const isLoading1 = useUnit(addToServerFx.pending);
   const isLoading2 = useUnit(removeCartItem.pending);
+
 
   return (
     <div className={styles.wrapper}>
@@ -92,7 +94,8 @@ export const CartItem = ({
           </span>
         </div>
       </div>
-      <div className={styles.price}>{`${price / 100} ₽`}</div>
+
+      <div className={styles.price}>{`${formatMany(count, price/100)} ₽`}</div>
     </div>
   );
 };
