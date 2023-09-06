@@ -4,7 +4,7 @@ const clickOut = createEvent()
 const clickOpen = createEvent()
 
 
-const $activeModal = createStore<boolean>(true)
+const $activeModal = createStore<boolean>(false)
 
 sample({
     clock: clickOut,
