@@ -8,6 +8,7 @@ import s from "./Welcome.module.scss";
 import ModalLoyalty from "@/components/modalLoyalty/ModalLoyalty";
 import {$orders, getOrders} from "@/stores/order/init";
 import {useUnit} from "effector-react";
+import MobileModal from "@/components/mobileModal/MobileModal";
 
 type Props = {
     children: any;
@@ -26,6 +27,7 @@ const Welcome = ({ children }: Props) => {
       <WelcomeText />
       <LcLinks />
       <div className={s.content}>
+          <MobileModal />
         <ModalLoyalty />
         {children}
       </div>
