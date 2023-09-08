@@ -107,7 +107,6 @@ export const CartPage = (props: Props) => {
                 text="ОФОРМИТЬ ЗАКАЗ"
                 style={{ marginTop: 40 }}
                 onClick={() => {
-
                   if (user) {
                     push("/order")
                   } else {
