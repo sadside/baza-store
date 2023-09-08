@@ -5,15 +5,13 @@ const getProducts = async () => {
   try {
     const res = await fetch(`${API_URL}products/products/`, {
       next: {
-        revalidate: 60,
+        revalidate: 3600,
       },
     });
 
-    if (!res.ok) throw new Error("erroe");
+    if (!res.ok) throw new Error("error");
 
     const products = await res.json();
-
-    console.table(products);
 
     return products;
   } catch {
