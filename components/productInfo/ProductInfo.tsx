@@ -71,7 +71,7 @@ export const ProductInfo = ({ product }: Props) => {
                 product.old_price > 0 ? product.old_price : product.price,
             });
 
-            toast.success("Товар добавлен в корзину!")
+
 
             if (user) {
               toast.promise(addToServerFx(selectedSize.mod_id), {
@@ -79,6 +79,8 @@ export const ProductInfo = ({ product }: Props) => {
                   success: 'Товар добавлен в корзину !',
                   error: 'При добавлении товара произошла ошибка...'
             })
+            } else {
+              toast.success("Товар добавлен в корзину!")
             }
           }}
         />
