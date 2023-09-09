@@ -59,8 +59,6 @@ export const ProductInfo = ({ product }: Props) => {
               return;
             }
 
-            // if (selectedSize.quantity < activeProduct[0].)
-
             productAddedToCart({
               id: selectedSize.mod_id,
               price: product.price,
@@ -71,13 +69,15 @@ export const ProductInfo = ({ product }: Props) => {
               slug: product.current_color.slug,
               old_price:
                 product.old_price > 0 ? product.old_price : product.price,
-            }); // ls-cart
+            });
+
+            toast.success("Товар добавлен в корзину!")
+
             if (user) {
-              // addToServerFx(selectedSize.mod_id);}
               toast.promise(addToServerFx(selectedSize.mod_id), {
-                  pending: 'Загрузка',
-                  success: 'Товар добавлен в корзину 👌',
-                  error: 'Произошла ошибка 🤯'
+                  pending: 'Добавление товара в корзину...',
+                  success: 'Товар добавлен в корзину !',
+                  error: 'При добавлении товара произошла ошибка...'
             })
             }
           }}
