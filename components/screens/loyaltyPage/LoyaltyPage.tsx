@@ -1,9 +1,12 @@
+"use client"
 import { TextBlock } from "@/components/textBlock/TextBlock";
 import styles from "./LoyaltyPage.module.scss";
+import {toast} from "react-toastify";
 
 type Props = {};
 
 export function LoyaltyPage({}: Props) {
+
   return (
     <div className={styles.wrapper}>
       <h1>Программа лояльности</h1>

@@ -1,11 +1,8 @@
 import Layout from "@/components/ui/layout/Layout";
 import "../styles/globals.scss";
-import CategoriesService from "@/services/CategoriesService";
-import AuthService from "@/services/AuthService";
-import { cookies } from "next/headers";
+import 'react-toastify/dist/ReactToastify.css';
 import { API_URL } from "@/http";
-import { IUser } from "@/models/User";
-import { ICategory } from "@/components/menuCategory/menuCategory.interface";
+import { ToastContainer } from "react-toastify";
 
 export const metadata = {
   title: "BAZA",
@@ -33,6 +30,7 @@ export default async function RootLayout({
   return (
     <html>
       <body>
+        <ToastContainer />
         <Layout children={children} links={links} />
       </body>
     </html>

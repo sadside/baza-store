@@ -4,6 +4,7 @@ import banner from "../../../assets/banner.jpg";
 import Image from "next/image";
 
 const Banner = () => {
+
   return (
     <div className={s.banner}>
       <Image src={banner} alt="Баннер" className={s.img} />

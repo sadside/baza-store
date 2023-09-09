@@ -22,6 +22,7 @@ import {
   pageUnMounted,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
+import {toast} from "react-toastify";
 
 type Props = {
   product: IFullProduct;
@@ -35,6 +36,7 @@ export const ProductInfo = ({ product }: Props) => {
   const activeProduct = cart.filter(item => item.slug === product.current_color.slug)
 
   const loading = useUnit(addToServerFx.pending);
+
 
   return (
     <div className={styles.productInfo}>
@@ -70,7 +72,14 @@ export const ProductInfo = ({ product }: Props) => {
               old_price:
                 product.old_price > 0 ? product.old_price : product.price,
             }); // ls-cart
-            if (user) addToServerFx(selectedSize.mod_id);
+            if (user) {
+              // addToServerFx(selectedSize.mod_id);}
+              toast.promise(addToServerFx(selectedSize.mod_id), {
+                  pending: 'Загрузка',
+                  success: 'Товар добавлен в корзину 👌',
+                  error: 'Произошла ошибка 🤯'
+            })
+            }
           }}
         />
         <SubProductInfo />
