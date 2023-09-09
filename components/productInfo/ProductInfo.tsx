@@ -19,10 +19,11 @@ import {
   $selectedColor,
   $selectedSize,
   colorSelected,
-  pageUnMounted,
+  pageUnMounted, sizeSelected,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
 import {toast} from "react-toastify";
+import {useEffect} from "react";
 
 type Props = {
   product: IFullProduct;
@@ -37,6 +38,13 @@ export const ProductInfo = ({ product }: Props) => {
 
   const loading = useUnit(addToServerFx.pending);
 
+
+  useEffect(() => {
+    sizeSelected(product.sizes[0])
+    return () => {
+      sizeSelected(null)
+    }
+  }, [])
 
   return (
     <div className={styles.productInfo}>
