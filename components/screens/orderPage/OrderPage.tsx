@@ -18,6 +18,7 @@ import { $user } from "@/stores/cart/init";
 import MethRec from "@/components/MethRec/MethRec";
 import ZakazDannie from "@/components/ZakazDannie/ZakazDannie";
 import { useRouter } from "next/navigation";
+import {toast} from "react-toastify";
 type Props = {};
 
 export type ZakazFormValues = {
@@ -75,14 +76,20 @@ export const OrderPage = ({}: Props) => {
       apartment: null,
     };
 
-    createOrderFx(body)
-      .then(() => {
-        push("/lk/orders");
-        alert("Заказ создан!");
-      })
-      .catch(() => {
-        alert("Произошла ошибка");
-      });
+    // createOrderFx(body)
+    //   .then(() => {
+    //     push("/lk/orders");
+    //     alert("Заказ создан!");
+    //   })
+    //   .catch(() => {
+    //     alert("Произошла ошибка");
+    //   });
+
+    toast.promise(createOrderFx(body), {
+      pending: "Создание заказа...",
+      error: "Упс... При создании заказа произошла ошибка...",
+      success: "Заказ успешно создан!"
+    }).then(() => push('/lk/orders'))
   };
 
   const user = useUnit($user);

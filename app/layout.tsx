@@ -30,7 +30,7 @@ export default async function RootLayout({
   return (
     <html>
       <body>
-        <ToastContainer />
+        <ToastContainer pauseOnHover={false}/>
         <Layout children={children} links={links} />
       </body>
     </html>

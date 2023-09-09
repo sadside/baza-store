@@ -18,6 +18,7 @@ import { IProductCart } from "@/stores/cart/cart.interface";
 import { getSalePriceFromCart } from "@/utils/getSalePrice";
 import { useRouter } from "next/navigation";
 import { EmptyCart } from "@/components/emptyCart/EmptyCart";
+import {toast} from "react-toastify";
 
 type Props = {};
 
@@ -110,7 +111,7 @@ export const CartPage = (props: Props) => {
                   if (user) {
                     push("/order")
                   } else {
-                    alert('Вы не авторизованы')
+                    toast.error("Войдите в аккаунт!")
                   }
                 }}
               />

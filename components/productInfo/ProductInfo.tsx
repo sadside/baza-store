@@ -55,7 +55,7 @@ export const ProductInfo = ({ product }: Props) => {
           loading={loading}
           onClick={async () => {
             if (selectedSize === null) {
-              alert("Выберите размер");
+              toast.error("Выберите размер!")
               return;
             }
 

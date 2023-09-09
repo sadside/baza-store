@@ -11,6 +11,7 @@ import InputForm from "../inputForm/InputForm";
 import {InputNameMask} from "../inputNameMask/InputNameMask";
 import {useUnit} from "effector-react";
 import {$user, postUserFx} from "@/stores/cart/init";
+import {toast} from "react-toastify";
 
 const schema = yup.object().shape({
     name: yup.string().required("Введите имя"),
@@ -74,7 +75,11 @@ const LcForm = () => {
     }, [user]);
 
     const onSubmit = async (data: any) => {
-        postUserFx(data);
+        toast.promise(postUserFx(data), {
+            pending: "Отправка данных на сервер...",
+            error: "Упс... При отправке произошла ошибка...",
+            success: "Данные успешно изменены!"
+        })
     };
 
     return (
