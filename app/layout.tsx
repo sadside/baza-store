@@ -1,11 +1,14 @@
 import Layout from "@/components/ui/layout/Layout";
 import "../styles/globals.scss";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { API_URL } from "@/http";
 import { ToastContainer } from "react-toastify";
+import Head from "next/head";
 
 export const metadata = {
   title: "BAZA",
+  manifest: "/manifest.json",
+  themeColor: "#ffffff",
 };
 
 const getData = async () => {
@@ -30,7 +33,7 @@ export default async function RootLayout({
   return (
     <html>
       <body>
-        <ToastContainer pauseOnHover={false}/>
+        <ToastContainer pauseOnHover={false} />
         <Layout children={children} links={links} />
       </body>
     </html>
