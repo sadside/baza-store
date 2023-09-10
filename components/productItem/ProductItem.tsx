@@ -18,29 +18,21 @@ const ProductItem = ({
     unitDisplay: "long",
   });
 
-  const { ref, inView } = useInView({
-    threshold: 0.01,
-    triggerOnce: true,
-  });
-
   return (
-    <Link className={styles.product} href={`/products/${slug}`} ref={ref}>
+    <Link className={styles.product} href={`/products/${slug}`}>
       <div>
-        {inView ? (
-          <Image
-            src={images[0].replace(
-              "http://127.0.0.1:8000/",
-              "http://thebaza.ru/"
-            )}
-            alt={"j"}
-            className={styles.img}
-            height={800}
-            width={250}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
-        ) : (
-          <div className={styles.sceleton}></div>
-        )}
+        <Image
+          src={images[0].replace(
+            "http://127.0.0.1:8000/",
+            "http://thebaza.ru/",
+          )}
+          alt={"j"}
+          className={styles.img}
+          height={800}
+          width={250}
+          priority={true}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
       </div>
 
       <div className={styles.infoWrap}>

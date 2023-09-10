@@ -25,6 +25,8 @@ import { mounted } from "@/stores/favotites/favorites";
 import { usePathname, useRouter } from "next/navigation";
 import Hamburger from "@/components/Hamburger/Hamburger";
 import CategoryHumb from "@/components/Hamburger/category/CategoryHumb";
+import { BrowserView, MobileView } from "react-device-detect";
+import { SmallMenuMobile } from "@/components/smallMenuMobile/SmallMenuMobile";
 
 type Props = { links: any };
 
@@ -37,26 +39,24 @@ const Menu = ({ links }: Props) => {
 
   let scroll = 0;
 
+  const scrollPosition = (): number =>
+    window.scrollY || document.documentElement.scrollTop;
+
+  const defaultOffset = 200;
+
   useEffect(() => {
     const h = videoHeight;
 
     mouseLeavedFromCart();
     categoryCleared();
     menuMounted();
-    // pageMounted();
     mounted();
 
-    const defaultOffset = 200;
-
-    const scrollPosition = (): number =>
-      window.scrollY || document.documentElement.scrollTop;
-
     const scrollListener = () => {
-      if (scroll >= h && showSmallMenu && menuState === "transparent") {
+      if (scroll >= h && showSmallMenu && menuState === "transparent")
         menuChanged("color");
-      } else {
-        menuChanged("transparent");
-      }
+
+      if (scroll < h) menuChanged("transparent");
 
       if (
         scrollPosition() > scroll &&
@@ -77,46 +77,6 @@ const Menu = ({ links }: Props) => {
     return () => window.removeEventListener("scroll", scrollListener);
   }, [videoHeight]);
 
-  useEffect(() => {
-    const h = videoHeight;
-
-    mouseLeavedFromCart();
-    categoryCleared();
-    menuMounted();
-    // pageMounted();
-    mounted();
-
-    const defaultOffset = 200;
-
-    const scrollPosition = (): number =>
-      window.scrollY || document.documentElement.scrollTop;
-
-    const scrollListener = () => {
-      if (scroll >= h && showSmallMenu && menuState === "transparent") {
-        menuChanged("color");
-      } else {
-        menuChanged("transparent");
-      }
-
-      if (
-        scrollPosition() > scroll &&
-        showSmallMenu &&
-        scroll >= defaultOffset &&
-        !showCart
-      ) {
-        dropdownMenuClosed();
-        smallMenuClosed();
-      } else {
-        smallMenuOpened();
-      }
-      scroll = scrollPosition();
-    };
-
-    window.addEventListener("scroll", scrollListener);
-
-    return () => window.removeEventListener("scroll", scrollListener);
-  }, []);
-
   return (
     <>
       <div
@@ -124,7 +84,12 @@ const Menu = ({ links }: Props) => {
           dropdownMenuClosed();
         }}
       >
-        <SmallMenu links={links} />
+        <BrowserView>
+          <SmallMenu links={links} />
+        </BrowserView>
+        <MobileView>
+          <SmallMenuMobile links={links} />
+        </MobileView>
         <Cart />
         <DropdownMenu />
         <Hamburger links={links} />

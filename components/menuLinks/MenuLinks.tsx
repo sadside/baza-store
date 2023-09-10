@@ -14,9 +14,9 @@ import {
 } from "@/stores/layout/menu/init";
 import { useUnit } from "effector-react";
 
-type Props = { links: any[] };
+type Props = { links: any[]; mobile: boolean };
 
-const MenuLinks = ({ links }: Props) => {
+const MenuLinks = ({ links, mobile }: Props) => {
   const activeCategory = useUnit($activeCategory);
   const showDropdownMenu = useUnit($showDropdownMenu);
   const menuState = useUnit($stateOfMenu);
@@ -30,8 +30,7 @@ const MenuLinks = ({ links }: Props) => {
               style={{ color: "#000" }}
               onMouseEnter={() => {
                 dropdownMenuOpened();
-                menuChanged("color");
-                // categorySelected(link);
+                if (!mobile) menuChanged("color");
               }}
               key={link.id}
             >
@@ -51,7 +50,7 @@ const MenuLinks = ({ links }: Props) => {
           href="/delivery"
           style={{ color: "#000" }}
           onMouseEnter={() => {
-            menuChanged("color");
+            if (!mobile) menuChanged("color");
             dropdownMenuClosed();
           }}
         >
@@ -61,7 +60,7 @@ const MenuLinks = ({ links }: Props) => {
           href="/loyalty"
           style={{ color: "#000" }}
           onMouseEnter={() => {
-            menuChanged("color");
+            if (!mobile) menuChanged("color");
             dropdownMenuClosed();
           }}
         >
