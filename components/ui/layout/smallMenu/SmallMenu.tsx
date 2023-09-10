@@ -68,8 +68,8 @@ export const SmallMenu = ({ links }: Props) => {
               }
             />
           </Link>
-          <MenuLinks links={links} />
-          <MenuIcons />
+          <MenuLinks links={links} mobile={false} />
+          <MenuIcons mobile={false} />
         </motion.div>
       )}
     </AnimatePresence>
