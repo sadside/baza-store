@@ -18,7 +18,13 @@ import { $user } from "@/stores/cart/init";
 import MethRec from "@/components/MethRec/MethRec";
 import ZakazDannie from "@/components/ZakazDannie/ZakazDannie";
 import { useRouter } from "next/navigation";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
+import { $activeMeth } from "@/stores/zakaz/init";
+import {
+  $selectedCity,
+  $selectedHouse,
+  $selectedStreet,
+} from "@/stores/orderSuggestions/orderSuggestions";
 type Props = {};
 
 export type ZakazFormValues = {
@@ -26,6 +32,8 @@ export type ZakazFormValues = {
   surname: string;
   mail: string;
   phone: string;
+  frame: string;
+  room: string;
 };
 
 const schema = yup.object().shape({
@@ -59,37 +67,44 @@ export const OrderPage = ({}: Props) => {
     resolver: yupResolver(schema),
   });
 
+  const method = useUnit($activeMeth);
+
   const { push } = useRouter();
 
+  const selectedCity = useUnit($selectedCity);
+  const selectedStreet = useUnit($selectedStreet);
+  const selectedHouse = useUnit($selectedHouse);
+
   const onSubmit = (data: ZakazFormValues) => {
+    if (
+      method === "delivery_address" &&
+      (!selectedCity || !selectedStreet || !selectedHouse)
+    ) {
+      alert("Заполните все поля");
+      return;
+    }
+
     const body = {
       name: data.name,
       surname: data.surname,
       email: data.mail,
       phone: data.phone,
-      receiving: "pickup",
+      receiving: method,
       payment_type: "cash",
-      city: null,
-      street: null,
-      house: null,
-      frame: null,
-      apartment: null,
+      city: selectedCity,
+      street: selectedStreet,
+      house: selectedHouse,
+      frame: data.frame,
+      apartment: data.room,
     };
 
-    // createOrderFx(body)
-    //   .then(() => {
-    //     push("/lk/orders");
-    //     alert("Заказ создан!");
-    //   })
-    //   .catch(() => {
-    //     alert("Произошла ошибка");
-    //   });
-
-    toast.promise(createOrderFx(body), {
-      pending: "Создание заказа...",
-      error: "Упс... При создании заказа произошла ошибка...",
-      success: "Заказ успешно создан!"
-    }).then(() => push('/lk/orders'))
+    toast
+      .promise(createOrderFx(body), {
+        pending: "Создание заказа...",
+        error: "Упс... При создании заказа произошла ошибка...",
+        success: "Заказ успешно создан!",
+      })
+      .then(() => push("/lk/orders"));
   };
 
   const user = useUnit($user);
@@ -121,6 +136,7 @@ export const OrderPage = ({}: Props) => {
             resetField={resetField}
             reset={reset}
             errors={errors}
+            setValue={setValue}
           />
           <MethRec
             adres={Zakaz.adres}
@@ -143,10 +159,10 @@ export const OrderPage = ({}: Props) => {
                 {orderPaymentData ? orderPaymentData.price / 100 : "Загрузка"} ₽
               </span>
             </div>
-            {/* <div className={s.item}>
+            <div className={s.item}>
               <span>Доставка </span>
-              <span className={s.itemPrice}> {orderPaymentData ? orderPaymentData. : "Загрузка"} ₽</span>
-            </div> */}
+              {/*<span className={s.itemPrice}> {orderPaymentData ? orderPaymentData. : "Загрузка"} ₽</span>*/}
+            </div>
             <div className={s.item}>
               <span className={s.Itog}>Итого </span>
               <span className={s.Itog}>

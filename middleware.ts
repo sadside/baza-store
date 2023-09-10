@@ -6,7 +6,8 @@ export function middleware(request: NextRequest) {
 
     let isLogin = request.cookies.get("token");
     if (!isLogin) {
-        if (request.nextUrl.pathname.startsWith("/lk") || request.nextUrl.pathname.startsWith("/order")) {
+    // || request.nextUrl.pathname.startsWith("/order")
+        if (request.nextUrl.pathname.startsWith("/lk") ) {
             return NextResponse.redirect(new URL("/auth", request.url));
         }
     }

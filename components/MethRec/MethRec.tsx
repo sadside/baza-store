@@ -38,7 +38,7 @@ const MethRec = ({
       { val: "97", type: "room" },
     ],
   };
-  let active = useUnit($activeMeth) === "sam";
+  const method = useUnit($activeMeth);
   return (
     <>
       <div className={s.root}>
@@ -46,18 +46,18 @@ const MethRec = ({
         <ul>
           <li
             onClick={() => clickSam()}
-            className={active ? s.active : undefined}
+            className={method === "pickup" ? s.active : undefined}
           >
             Самовывоз
           </li>
-          {/* <li
+          <li
             onClick={() => clickDost()}
-            className={!active ? s.active : undefined}
+            className={method === "delivery_address" ? s.active : undefined}
           >
             Доставка
-          </li> */}
+          </li>
         </ul>
-        {active ? (
+        {method === "pickup" && (
           <div className={s.sam}>
             <div className={s.content}>
               <div className={s.card}>
@@ -82,11 +82,13 @@ const MethRec = ({
               ></iframe>
             </div>
           </div>
-        ) : (
+        )}
+        {method === "delivery_address" && (
           <ZakazDannie
             register={register}
             resetField={resetField}
             reset={reset}
+            setValue={null}
             errors={errors}
           />
         )}

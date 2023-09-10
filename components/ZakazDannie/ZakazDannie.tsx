@@ -7,6 +7,31 @@ import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
 import InputForm from "@/components/inputForm/InputForm";
 import { InputNameMask } from "@/components/inputNameMask/InputNameMask";
 import { orderPageMounted } from "@/stores/order/init";
+import { convertType } from "@/utils/convertType";
+import {
+  $cityInputValue,
+  $citySuggestions,
+  $houseInputValue,
+  $houseSuggestions,
+  $selectedCity,
+  $selectedStreet,
+  $streetInputValue,
+  $streetSuggestions,
+  cityInputChanged,
+  citySelected,
+  getCitySuggestionsFx,
+  getHouseSuggestionsFx,
+  getStreetSuggestionsFx,
+  houseInputChanged,
+  houseSelected,
+  streetInputChanged,
+  streetSelected,
+} from "@/stores/orderSuggestions/orderSuggestions";
+import { convertTypeTwo } from "@/utils/convertTypeTwo";
+import { useUnit } from "effector-react";
+import { Loader } from "@/components/loader/Loader";
+import { toast } from "react-toastify";
+import useOutside from "@/utils/useOutside";
 
 interface IProps {
   title?: string;
@@ -15,6 +40,7 @@ interface IProps {
   reset?: any;
   register?: any;
   resetField?: any;
+  setValue: any;
 }
 const ZakazDannie = ({
   title,
@@ -23,10 +49,40 @@ const ZakazDannie = ({
   reset,
   register,
   resetField,
+  setValue,
 }: IProps) => {
+  const citySuggestions = useUnit($citySuggestions);
+  const value = useUnit($cityInputValue);
+
+  const streetSuggestions = useUnit($streetSuggestions);
+  const houseSuggestions = useUnit($houseSuggestions);
+  const streetInputValue = useUnit($streetInputValue);
+  const houseInputValue = useUnit($houseInputValue);
+
+  const loadingStreetSuggestions = useUnit(getStreetSuggestionsFx.pending);
+  const loadingCitySuggestions = useUnit(getCitySuggestionsFx.pending);
+  const loadingHouseSuggestions = useUnit(getHouseSuggestionsFx.pending);
+
+  const selectedCity = useUnit($selectedCity);
+  const selectedStreet = useUnit($selectedStreet);
+
+  const { isShow, ref, setIsShow } = useOutside(false);
+  const {
+    isShow: isShowCity,
+    ref: cityRef,
+    setIsShow: setIsShowCity,
+  } = useOutside(false);
+  const {
+    isShow: isShowStreet,
+    ref: streetRef,
+    setIsShow: setIsShowStreet,
+  } = useOutside(false);
+
+  console.log(citySuggestions);
+
   return (
     <div className={s.root}>
-      <span>{title}</span>
+      <span>Доставка до двери</span>
       <div className={s.form}>
         {main ? (
           <div className={s.inputs}>
@@ -96,27 +152,118 @@ const ZakazDannie = ({
         ) : (
           <>
             <div className={s.inputs}>
-              <InputForm
-                register={register}
-                type={"city"}
-                reset={resetField}
-                form={true}
-              />{" "}
-              <InputForm
-                register={register}
-                type={"street"}
-                reset={resetField}
-                form={true}
-              />
+              <div className={classNames(s.all, s.form)} ref={cityRef}>
+                <span className={s.title}>Город</span>
+                <span className={s.prov}>
+                  <input
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      cityInputChanged(e.target.value);
+                      setIsShowCity(true);
+                    }}
+                    value={value}
+                    className={classNames(s.input, errors.city && s.error)}
+                    placeholder={`Введите город`}
+                  />
+
+                  {isShowCity &&
+                    !loadingCitySuggestions &&
+                    citySuggestions.length > 0 && (
+                      <div className={s.select}>
+                        {citySuggestions.map((item) => {
+                          return (
+                            <li
+                              onClick={() => {
+                                citySelected(item);
+                              }}
+                            >
+                              {item}
+                            </li>
+                          );
+                        })}
+                        {isShowCity && loadingCitySuggestions && (
+                          <div>
+                            <Loader height={50} width={50} />
+                          </div>
+                        )}
+                      </div>
+                    )}
+                </span>
+              </div>
+              <div className={classNames(s.all, s.form)}>
+                <span className={s.title}>Улица</span>
+                <span className={s.prov}>
+                  <input
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      if (selectedCity) streetInputChanged(e.target.value);
+                      // else toast.error("Введите город");
+                      else alert("Введите город.");
+                    }}
+                    value={streetInputValue}
+                    className={classNames(s.input, errors.city && s.error)}
+                    placeholder={`Введите улицу`}
+                  />
+                  {streetSuggestions.length > 0 && (
+                    <div className={s.select}>
+                      {!loadingStreetSuggestions &&
+                        streetSuggestions.map((item) => {
+                          return (
+                            <li onClick={() => streetSelected(item)}>{item}</li>
+                          );
+                        })}
+                      {loadingStreetSuggestions && (
+                        <div>
+                          <Loader height={50} width={50} />
+                        </div>
+                      )}
+
+                      {streetSuggestions.length == 0 && streetInputValue && (
+                        <div>
+                          Ничего не найдено. Введите корректное значение
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </span>
+              </div>
             </div>
             <div className={s.bot}>
-              <InputForm
-                placeholder={"№"}
-                register={register}
-                type={"house"}
-                reset={resetField}
-                form={true}
-              />
+              <div className={classNames(s.all, s.form)} ref={ref}>
+                <span className={s.title}>Дом</span>
+                <span className={s.prov}>
+                  <input
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      if (selectedStreet) {
+                        houseInputChanged(e.target.value);
+                        setIsShow(true);
+                      } else alert("Введите улицу и город.");
+                    }}
+                    value={houseInputValue}
+                    className={classNames(s.input, errors.city && s.error)}
+                    placeholder={`Введите дом`}
+                  />
+                  {isShow && houseSuggestions.length > 0 && (
+                    <div className={s.select}>
+                      {!loadingHouseSuggestions &&
+                        houseSuggestions.map((item) => {
+                          return (
+                            <li onClick={() => houseSelected(item)}>{item}</li>
+                          );
+                        })}
+                      {loadingHouseSuggestions && (
+                        <div>
+                          <Loader height={50} width={50} />
+                        </div>
+                      )}
+
+                      {houseSuggestions.length == 0 && houseInputValue && (
+                        <div>
+                          Ничего не найдено. Введите корректное значение
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </span>
+              </div>
               <InputForm
                 register={register}
                 placeholder={"№"}

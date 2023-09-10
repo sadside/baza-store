@@ -50,6 +50,8 @@
   align-items: flex-start;
   align-self: stretch;
 }
+
+
 .error {
   border: 1px solid #B00000;
   background: var(--input-background, #FFF);
@@ -70,5 +72,44 @@
   justify-content: space-between;
   @media (max-width: 700px) {
     grid-template-columns: 25% 25% 25%;
+  }
+}
+
+.all {
+  position: relative;
+}
+
+.select {
+  position: absolute;
+  top: 115%;
+  z-index: 10;
+  left: 0;
+  background-color: #fff;
+  width: 100%;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 5px;
+  li {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0 10px;
+    font-size: 12px;
+
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: #F7F7F7;
+    }
+
+    &:first-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:last-child {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
 }

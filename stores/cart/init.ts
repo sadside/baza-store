@@ -10,6 +10,7 @@ import { IServerCart } from "@/models/Cart"
 import AuthService from "@/services/AuthService"
 import { addFavotitesToStorage } from "@/utils/localStorage/localStorage";
 import { IServerFavorite } from "@/models/Favorites"
+import {createOrderFx} from "@/stores/order/init";
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products)
@@ -150,13 +151,18 @@ export const logoutFx = createEffect(async () => {
 })
 
 const $showCart = createStore(false).on(mouseEnteredToCart, () => true).on(mouseLeavedFromCart, () => false)
-const $cart = createStore<IProductCart[]>([]).reset(logoutFx)
+const $cart = createStore<IProductCart[]>([]).reset(logoutFx, createOrderFx.doneData)
 
 sample({
   clock: [dropdownMenuOpened, smallMenuClosed],
   target: mouseLeavedFromCart
 })
 
+sample({
+  clock: createOrderFx.doneData,
+  fn: () => ([]),
+  target: addToStorageFx,
+})
 
 sample({ 
   clock: productCountIncremented,
