@@ -84,12 +84,8 @@ const Menu = ({ links }: Props) => {
           dropdownMenuClosed();
         }}
       >
-        <BrowserView>
-          <SmallMenu links={links} />
-        </BrowserView>
-        <MobileView>
-          <SmallMenuMobile links={links} />
-        </MobileView>
+        <SmallMenu links={links} />
+        <SmallMenuMobile links={links} />
         <Cart />
         <DropdownMenu />
         <Hamburger links={links} />

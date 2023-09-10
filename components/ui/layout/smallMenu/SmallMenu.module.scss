@@ -19,6 +19,10 @@
 	.hide {
 		transform: translateY(-70px);
 	}
+
+	@media (max-width: 1200px) {
+		display: none;
+	}
 	
 	.logo {
 		display: flex;
