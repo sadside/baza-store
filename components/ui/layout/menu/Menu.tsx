@@ -3,11 +3,7 @@
 import { useEffect } from "react";
 import { DropdownMenu } from "@/components/dropdownMenu/DropdownMenu";
 import { useUnit } from "effector-react";
-import {
-  $showCart,
-  mouseLeavedFromCart,
-  pageMounted,
-} from "@/stores/cart/init";
+import { $showCart, mouseLeavedFromCart } from "@/stores/cart/init";
 import { Cart } from "@/components/cart/Cart";
 import {
   $showSmallMenu,
@@ -22,10 +18,8 @@ import {
 import { menuMounted } from "@/stores/layout/menu/content/init";
 import { SmallMenu } from "../smallMenu/SmallMenu";
 import { mounted } from "@/stores/favotites/favorites";
-import { usePathname, useRouter } from "next/navigation";
 import Hamburger from "@/components/Hamburger/Hamburger";
 import CategoryHumb from "@/components/Hamburger/category/CategoryHumb";
-import { BrowserView, MobileView } from "react-device-detect";
 import { SmallMenuMobile } from "@/components/smallMenuMobile/SmallMenuMobile";
 
 type Props = { links: any };

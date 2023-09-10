@@ -5,6 +5,11 @@
   padding: 15px;
   flex: 1 0 100%;
 
+  @media (max-width: 1000px) {
+    height: min-content;
+  }
+
+
   h1 { 
     color: #000;
     font-size: 20px;
@@ -23,6 +28,8 @@
   flex: 0 0 380px;
   @media (max-width: 1000px) {
     justify-content: flex-end;
+    flex:  0 0;
+    height: min-content;
   }
 }
 
@@ -36,6 +43,8 @@
   padding: 20px 30px;
   @media (max-width: 1000px) {
     margin-right: 10px;
+    margin-top: 50px;
+    margin-bottom: 0 !important;
   }
   .title {
     font-size: 14px;
