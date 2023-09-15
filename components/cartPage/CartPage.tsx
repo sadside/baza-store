@@ -18,7 +18,7 @@ import { IProductCart } from "@/stores/cart/cart.interface";
 import { getSalePriceFromCart } from "@/utils/getSalePrice";
 import { useRouter } from "next/navigation";
 import { EmptyCart } from "@/components/emptyCart/EmptyCart";
-import {formatMany, formatManyofFull} from "@/utils/formatMany";
+import { formatMany, formatManyofFull } from "@/utils/formatMany";
 
 type Props = {};
 
@@ -57,12 +57,14 @@ export const CartPage = (props: Props) => {
                 color,
                 old_price = 0,
                 slug,
+                server_count,
               }) => (
                 <CartItem
                   size={size}
                   name={name}
                   count={count}
                   price={price}
+                  server_count={server_count}
                   key={id}
                   id={id}
                   slug={slug}
@@ -70,7 +72,7 @@ export const CartPage = (props: Props) => {
                   color={color}
                   old_price={old_price}
                 />
-              )
+              ),
             )}
           </div>
           <div className={styles.right}>
@@ -79,7 +81,9 @@ export const CartPage = (props: Props) => {
               <div className={styles.orderInfo}>
                 <div className={styles.columnsOrder}>
                   <div>Товары, {products.length} шт.</div>
-                  <div className={styles.price}>{formatManyofFull(fullPrice)} ₽</div>
+                  <div className={styles.price}>
+                    {formatManyofFull(fullPrice)} ₽
+                  </div>
                 </div>
                 {fullPrice - salePrice > 0 && (
                   <div className={styles.columnsOrder}>

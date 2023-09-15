@@ -19,11 +19,12 @@ import {
   $selectedColor,
   $selectedSize,
   colorSelected,
-  pageUnMounted, sizeSelected,
+  pageUnMounted,
+  sizeSelected,
 } from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@/models/Product";
-import {toast} from "react-toastify";
-import {useEffect} from "react";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 type Props = {
   product: IFullProduct;
@@ -32,20 +33,24 @@ type Props = {
 export const ProductInfo = ({ product }: Props) => {
   const selectedSize = useUnit($selectedSize);
   const user = useUnit($user);
-  const cart = useUnit($cart)
+  const cart = useUnit($cart);
 
-  const activeProduct = cart.filter(item => item.slug === product.current_color.slug)
+  const activeProduct =
+    cart.filter((item) => item.slug === product.current_color.slug) || null;
 
   const loading = useUnit(addToServerFx.pending);
 
-
   useEffect(() => {
-    sizeSelected(product.sizes[0])
+    sizeSelected(product.sizes[0]);
     return () => {
-      sizeSelected(null)
-    }
-  }, [])
+      sizeSelected(null);
+    };
+  }, []);
 
+  console.log(product.current_color.slug);
+  console.log(cart);
+
+  // @ts-ignore
   return (
     <div className={styles.productInfo}>
       <div className={styles.wrapper}>
@@ -58,12 +63,16 @@ export const ProductInfo = ({ product }: Props) => {
         <Hr />
         <SelectProductSize sizes={product.sizes} />
         <Button
-          text="Добавить в корзину"
+          text={
+            selectedSize?.quantity == 0 ? "Нет в наличии" : "Добавить в корзину"
+          }
           style={{ width: "100%" }}
           loading={loading}
           onClick={async () => {
+            if (!selectedSize?.quantity) return;
+
             if (selectedSize === null) {
-              toast.error("Выберите размер!")
+              toast.error("Выберите размер!");
               return;
             }
 
@@ -74,21 +83,19 @@ export const ProductInfo = ({ product }: Props) => {
               image: product.images[0],
               size: selectedSize.name,
               color: product.current_color.name,
+              count: activeProduct[0]?.count || 0,
               slug: product.current_color.slug,
               old_price:
                 product.old_price > 0 ? product.old_price : product.price,
+              server_count: selectedSize.quantity,
             });
-
-
 
             if (user) {
               toast.promise(addToServerFx(selectedSize.mod_id), {
-                  pending: 'Добавление товара в корзину...',
-                  success: 'Товар добавлен в корзину !',
-                  error: 'При добавлении товара произошла ошибка...'
-            })
-            } else {
-              toast.success("Товар добавлен в корзину!")
+                pending: "Добавление товара в корзину...",
+                success: "Товар добавлен в корзину !",
+                error: "При добавлении товара произошла ошибка...",
+              });
             }
           }}
         />

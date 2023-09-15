@@ -18,12 +18,14 @@ import { IProductCart } from "@/stores/cart/cart.interface";
 import { getSalePriceFromCart } from "@/utils/getSalePrice";
 import { useRouter } from "next/navigation";
 import { EmptyCart } from "@/components/emptyCart/EmptyCart";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 export const CartPage = (props: Props) => {
   const products = useUnit($cart);
+
+  console.log(products);
   const { push } = useRouter();
   const user = useUnit($user);
 
@@ -57,6 +59,7 @@ export const CartPage = (props: Props) => {
                 color,
                 old_price = 0,
                 slug,
+                server_count,
               }) => (
                 <CartItem
                   size={size}
@@ -67,10 +70,11 @@ export const CartPage = (props: Props) => {
                   id={id}
                   slug={slug}
                   image={image}
+                  server_count={server_count}
                   color={color}
                   old_price={old_price}
                 />
-              )
+              ),
             )}
           </div>
           <div className={styles.right}>
@@ -109,9 +113,9 @@ export const CartPage = (props: Props) => {
                 style={{ marginTop: 40 }}
                 onClick={() => {
                   if (user) {
-                    push("/order")
+                    push("/order");
                   } else {
-                    toast.error("Войдите в аккаунт!")
+                    toast.error("Войдите в аккаунт!");
                   }
                 }}
               />

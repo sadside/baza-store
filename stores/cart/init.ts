@@ -1,63 +1,72 @@
-import { addProductToStorage } from "@/utils/localStorage/localStorage"
-import { createEffect, createEvent, createStore, sample } from "effector"
-import { IProductCart } from "./cart.interface"
-import { dropdownMenuOpened, smallMenuClosed } from "../layout/menu/init"
-import { createListWithNewProduct, decrementProductCount, incrementProductCount } from "./cart.helper"
-import { IUser } from "@/models/User"
-import axios from "axios"
-import { API_URL_CLIENT } from "@/http"
-import { IServerCart } from "@/models/Cart"
-import AuthService from "@/services/AuthService"
+import { addProductToStorage } from "@/utils/localStorage/localStorage";
+import { createEffect, createEvent, createStore, sample } from "effector";
+import { IProductCart } from "./cart.interface";
+import { dropdownMenuOpened, smallMenuClosed } from "../layout/menu/init";
+import {
+  createListWithNewProduct,
+  decrementProductCount,
+  incrementProductCount,
+  normilzeProductCount,
+} from "./cart.helper";
+import { IUser } from "@/models/User";
+import axios from "axios";
+import { API_URL_CLIENT } from "@/http";
+import { IServerCart } from "@/models/Cart";
+import AuthService from "@/services/AuthService";
 import { addFavotitesToStorage } from "@/utils/localStorage/localStorage";
-import { IServerFavorite } from "@/models/Favorites"
-import {createOrderFx} from "@/stores/order/init";
+import { IServerFavorite } from "@/models/Favorites";
+import { createOrderFx } from "@/stores/order/init";
+import { toast } from "react-toastify";
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
-  addProductToStorage(products)
-})
+  addProductToStorage(products);
+});
 
 export const addToServerFx = createEffect(async (id: number) => {
   try {
-    const res = await axios.post(`${API_URL_CLIENT}profile/cart/add/`, {
-      modification_id: id,
-    }, {
-      withCredentials: true
-    })
+    const res = await axios.post(
+      `${API_URL_CLIENT}profile/cart/add/`,
+      {
+        modification_id: id,
+      },
+      {
+        withCredentials: true,
+      },
+    );
 
-
-    return res.data as IServerCart[]
+    return res.data as IServerCart[];
   } catch (e) {
     // throw new Error('Ошибка')
     //@ts-ignore
-    console.log(e.message())
-    return []
+    console.log(e.message());
+    return [];
   }
-})
+});
 
 export const synchronizationWithLocalStorage = createEffect(async () => {
-  const products = localStorage.getItem('products') as string
+  const products = localStorage.getItem("products") as string;
 
-  const cart = JSON.parse(products)
+  const cart = JSON.parse(products);
 
   const body: {
-    modifications: number[],
-    quantities: number[]
+    modifications: number[];
+    quantities: number[];
   } = {
     modifications: [],
-    quantities: []
-  }
+    quantities: [],
+  };
 
   cart.forEach((item: any) => {
-    body.modifications.push(item.id)
-    body.quantities.push(item.count)
-  })
+    body.modifications.push(item.id);
+    body.quantities.push(item.count);
+  });
 
   try {
     const { data } = await axios.post(`${API_URL_CLIENT}profile/cart/`, body, {
-      withCredentials: true
-    })
+      withCredentials: true,
+    });
 
-    const result: IProductCart[] = []
+    const result: IProductCart[] = [];
 
     data.forEach((item: IServerCart) => {
       result.push({
@@ -70,61 +79,67 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
         color: item.product.color,
         slug: item.product.slug,
         old_price: item.product.old_price || item.product.price,
-      })
-    })
+        server_count: item.product.quantity,
+      });
+    });
 
-    return result
-
-  } catch(e: any) {
-    console.log(e.message())
-    return []
+    return result;
+  } catch (e: any) {
+    console.log(e.message());
+    return [];
   }
-})
+});
 
-export const decrementProductCountServer = createEffect(async ({id, quantity}: {id: number, quantity: number}) => {
-  try {
-    const res = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
-      modification_id: id,
-    })
+export const decrementProductCountServer = createEffect(
+  async ({ id, quantity }: { id: number; quantity: number }) => {
+    try {
+      const res = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
+        modification_id: id,
+      });
 
-    return res.data as IServerCart[]
-  } catch {
-    // throw new Error('Ошибка.')
-    return []
-  }
-})
+      return res.data as IServerCart[];
+    } catch {
+      // throw new Error('Ошибка.')
+      return [];
+    }
+  },
+);
+
+export const productNormalized = createEvent<IProductCart>();
 
 export const getCartFromServerFx = createEffect(async () => {
   try {
-    const res = await axios.get(`${API_URL_CLIENT}profile/cart/`)
+    const res = await axios.get(`${API_URL_CLIENT}profile/cart/`);
 
-    return res.data as IServerCart[]
+    return res.data as IServerCart[];
   } catch {
-    return []
+    return [];
   }
-})
+});
 
+export const getCartFromLocalStorageFx = createEffect<void, IProductCart[]>(
+  () => {
+    return JSON.parse(
+      localStorage.getItem("products") || "[]",
+    ) as IProductCart[];
+  },
+);
 
-
-export const getCartFromLocalStorageFx = createEffect<void, IProductCart[]>(() => {
-  return JSON.parse(localStorage.getItem('products') || '[]') as IProductCart[]
-})
-
-const productAddedToCart = createEvent<IProductCart>()
-const pageMounted = createEvent<IUser>()
-const mouseLeavedFromCart = createEvent<any>()
-const mouseEnteredToCart = createEvent<any>()
-const productCountIncremented = createEvent<IProductCart>()
-const productCounDecremented = createEvent<IProductCart>()
-export const logouted = createEffect()
+const productAddedToCart = createEvent<IProductCart>();
+const pageMounted = createEvent<IUser>();
+const mouseLeavedFromCart = createEvent<any>();
+const mouseEnteredToCart = createEvent<any>();
+const productCountIncremented = createEvent<IProductCart>();
+const productCounDecremented = createEvent<IProductCart>();
+export const logouted = createEffect();
 
 export const removeCartItem = createEffect(async (id: number) => {
-	try {
-    const {data} = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
+  try {
+    const { data } = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
       modification_id: id,
-    })
+    });
 
-    const result: IProductCart[] = []
+    const result: IProductCart[] = [];
 
     data.forEach((item: IServerCart) => {
       result.push({
@@ -136,68 +151,128 @@ export const removeCartItem = createEffect(async (id: number) => {
         size: item.product.size,
         color: item.product.color,
         slug: item.product.slug,
-        old_price: item.product.old_price || item.product.price
-      })
-    })
+        old_price: item.product.old_price || item.product.price,
+        server_count: item.product.quantity,
+      });
+    });
 
-    return result
+    return result;
   } catch {
-    return []
+    return [];
   }
-})
+});
 
 export const logoutFx = createEffect(async () => {
-	await AuthService.logout()
-})
+  await AuthService.logout();
+});
 
-const $showCart = createStore(false).on(mouseEnteredToCart, () => true).on(mouseLeavedFromCart, () => false)
-const $cart = createStore<IProductCart[]>([]).reset(logoutFx, createOrderFx.doneData)
+const $showCart = createStore(false)
+  .on(mouseEnteredToCart, () => true)
+  .on(mouseLeavedFromCart, () => false);
+const $cart = createStore<IProductCart[]>([]).reset(
+  logoutFx,
+  createOrderFx.doneData,
+);
 
 sample({
   clock: [dropdownMenuOpened, smallMenuClosed],
-  target: mouseLeavedFromCart
-})
+  target: mouseLeavedFromCart,
+});
 
 sample({
   clock: createOrderFx.doneData,
-  fn: () => ([]),
+  fn: () => [],
   target: addToStorageFx,
-})
+});
 
-sample({ 
-  clock: productCountIncremented,
+sample({
+  // @ts-ignore
+  clock: productNormalized,
   source: $cart,
+  fn: normilzeProductCount,
+  target: $cart,
+});
+
+sample({
+  clock: productCountIncremented,
+  source: {
+    cart: $cart,
+  },
+  filter: ({ cart }, product) => {
+    const addedProduct = cart.find((item) => item.slug === product.slug);
+
+    if (addedProduct && product.count) {
+      if (addedProduct.server_count - product.count > 0) {
+        return true;
+      } else {
+        toast.error("Нет в наличии");
+      }
+    }
+
+    return false;
+  },
   fn: incrementProductCount,
-  target: [addToStorageFx, $cart]
-})
+  target: [addToStorageFx, $cart],
+});
 
 sample({
   //@ts-ignore
   clock: productCounDecremented,
-  source: $cart,
+  source: {
+    cart: $cart,
+  },
+  filter: ({ cart }: { cart: IProductCart[] }, product: IProductCart) => {
+    const addedProduct = cart.find((item) => item.slug === product.slug);
+
+    if (addedProduct && product.count) {
+      if (addedProduct.server_count - product.count >= 0) {
+        return true;
+      } else {
+        normilzeProductCount();
+      }
+    }
+
+    return false;
+  },
   fn: decrementProductCount,
-  target: [addToStorageFx, $cart]
-})
+  target: [addToStorageFx, $cart],
+});
 
 sample({
   clock: getCartFromLocalStorageFx,
-  fn: () => (JSON.parse(localStorage.getItem('products') || '[]') as IProductCart[]),
+  fn: () =>
+    JSON.parse(localStorage.getItem("products") || "[]") as IProductCart[],
   target: $cart,
-})
- 
-sample({ 
+});
+
+sample({
   clock: productAddedToCart,
   source: $cart,
+  filter: (cart, product) => {
+    const addedProduct = cart.find((item) => item.slug === product.slug);
+
+    if (addedProduct && product.count) {
+      if (addedProduct.server_count - product.count > 0) {
+        return true;
+      } else {
+        toast.error("Нет в наличии");
+        return false;
+      }
+    } else {
+      return true;
+    }
+  },
   fn: createListWithNewProduct,
-  target: [addToStorageFx, $cart]
-})
+  target: [addToStorageFx, $cart],
+});
+
+$cart.watch((state) => console.log(state));
 
 sample({
   clock: [addToServerFx.doneData, getCartFromServerFx.doneData],
   fn: (items) => {
-
     if (items.length) {
-      const cart: IProductCart[] = items.map(item => {
+      const cart: IProductCart[] = items.map((item) => {
         return {
           id: item.product.id,
           name: item.product.name,
@@ -207,19 +282,23 @@ sample({
           size: item.product.size,
           color: item.product.color,
           slug: item.product.slug,
-          old_price: item.product.old_price || item.product.price
-        }
-      })
-      return cart
+          old_price: item.product.old_price || item.product.price,
+          server_count: item.product.quantity,
+        };
+      });
+      return cart;
     }
 
-    return []
+    return [];
   },
   target: [$cart, addToStorageFx],
-})
+});
 
-export const phoneInputSubmitted = createEvent<string>()
-export const codeInputSubmitted = createEvent<{phone: string, code: string}>()
+export const phoneInputSubmitted = createEvent<string>();
+export const codeInputSubmitted = createEvent<{
+  phone: string;
+  code: string;
+}>();
 
 // sample({
 //   clock: synchronizationWithLocalStorage.doneData,
@@ -246,13 +325,11 @@ export const codeInputSubmitted = createEvent<{phone: string, code: string}>()
 //   target: $cart,
 // })
 
-
 export const postUserFx = createEffect(async (data: any) => {
   try {
+    // const date = data.date.split('.').reverse().join('-')
 
-		// const date = data.date.split('.').reverse().join('-')
-
-		data = {
+    data = {
       name: data.name,
       surname: data.surname,
       birthday_date: data.date,
@@ -261,84 +338,82 @@ export const postUserFx = createEffect(async (data: any) => {
       house: data.house,
       frame: data.frame,
       apartment: data.room,
-			email: data.mail,
-    }
+      email: data.mail,
+    };
 
-		console.log(data)
+    console.log(data);
 
     const res = await axios.post(`${API_URL_CLIENT}profile/info/`, data);
 
-		console.log(res)
+    console.log(res);
 
-    return res.data
-  } catch(error) {
-		if (axios.isAxiosError(error)) {
-      console.log(error.status)
+    return res.data;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.log(error.status);
       console.error(error.response);
     } else {
       console.error(error);
     }
   }
-})
+});
 
-
-
-export const saveUser = createEvent()
-
+export const saveUser = createEvent();
 
 sample({
   clock: logouted,
-  target: logoutFx
-})
+  target: logoutFx,
+});
 
-export const $user = createStore<IUser | null >(null).on(saveUser, (_, state) => state).on(postUserFx.doneData, (_, payload) => payload).reset(logoutFx.doneData)
+export const $user = createStore<IUser | null>(null)
+  .on(saveUser, (_, state) => state)
+  .on(postUserFx.doneData, (_, payload) => payload)
+  .reset(logoutFx.doneData);
 
-export const loginFx = createEffect(async ({phone, code}: {phone: string, code: string}) => {
-	try {
-		const res = await AuthService.login(phone, code)
+export const loginFx = createEffect(
+  async ({ phone, code }: { phone: string; code: string }) => {
+    try {
+      const res = await AuthService.login(phone, code);
 
-		return res.data
-	} catch (e: any) {
-		console.log(e.message())
-		return null
-	}
-})
+      return res.data;
+    } catch (e: any) {
+      console.log(e.message());
+      return null;
+    }
+  },
+);
 
 export const getUserFx = createEffect(async () => {
-	try {
-		const res = await AuthService.getUser()
+  try {
+    const res = await AuthService.getUser();
 
-		return res.data
-	} catch (e: any) {
-		console.log(e.message())
-		return null
-	}
-})
+    return res.data;
+  } catch (e: any) {
+    console.log(e.message());
+    return null;
+  }
+});
 
-export const $loading = createStore(true).on(getUserFx.finally, () => false)
+export const $loading = createStore(true).on(getUserFx.finally, () => false);
 
-export const $phoneNumber = createStore<string>('')
-	.on(phoneInputSubmitted, (_, newState) => newState)
-	.reset(loginFx.doneData)
-
-sample({
-	clock: codeInputSubmitted,
-	target: loginFx,
-})
-
+export const $phoneNumber = createStore<string>("")
+  .on(phoneInputSubmitted, (_, newState) => newState)
+  .reset(loginFx.doneData);
 
 sample({
-	clock: getUserFx.doneData,
-	target: [$user, getCartFromServerFx],
-})
-
+  clock: codeInputSubmitted,
+  target: loginFx,
+});
 
 sample({
-	clock: loginFx.doneData, 
-	target: $user
-})
+  clock: getUserFx.doneData,
+  target: [$user, getCartFromServerFx],
+});
 
-
+sample({
+  clock: loginFx.doneData,
+  target: $user,
+});
 
 // sample({
 
@@ -346,115 +421,139 @@ sample({
 
 sample({
   clock: loginFx.doneData,
-  target: synchronizationWithLocalStorage
-})
+  target: synchronizationWithLocalStorage,
+});
 
 sample({
   //@ts-ignore
   clock: synchronizationWithLocalStorage.doneData,
-  target: $cart
-})
+  target: $cart,
+});
 
 sample({
-	clock: postUserFx.doneData,
-	target: $user,
-})
-
+  clock: postUserFx.doneData,
+  target: $user,
+});
 
 // favotites
 
-const $favorites = createStore<string[]>([]).reset(logouted)
-export const $favoritesItems = createStore<IServerFavorite[]>([])
-const mounted = createEvent()
-const addFavorite = createEvent<string>()
-const removeFavorite = createEvent<string>()
+const $favorites = createStore<string[]>([]).reset(logouted);
+export const $favoritesItems = createStore<IServerFavorite[]>([]);
+const mounted = createEvent();
+const addFavorite = createEvent<string>();
+const removeFavorite = createEvent<string>();
 
 const addFavoriteToStorageFx = createEffect((favorites: IProductCart[]) => {
-  addFavotitesToStorage(favorites)
-})
-
+  addFavotitesToStorage(favorites);
+});
 
 export const getFavoritesFx = createEffect(async () => {
   try {
-    const res = await axios.get(`${API_URL_CLIENT}profile/favorites/`)
+    const res = await axios.get(`${API_URL_CLIENT}profile/favorites/`);
 
-    return res.data as IServerFavorite[]
+    return res.data as IServerFavorite[];
   } catch {
-    return []
+    return [];
   }
-})
+});
 
-export const addFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
-  try {
-    const res = await axios.post(`${API_URL_CLIENT}profile/favorites/`, {
-      slug,
-    }, {withCredentials: true})
+export const addFavoriteToServerFx = createEffect(
+  async (slug: string | string[]) => {
+    try {
+      const res = await axios.post(
+        `${API_URL_CLIENT}profile/favorites/`,
+        {
+          slug,
+        },
+        { withCredentials: true },
+      );
 
-    return res.data as IServerFavorite[]
-  } catch {
-    return []
-  }
-})
+      return res.data as IServerFavorite[];
+    } catch {
+      return [];
+    }
+  },
+);
 
-export const deleteFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
-  try {
-    const res = await axios.delete(`${API_URL_CLIENT}profile/favorites/?slug=${slug}`)
+export const deleteFavoriteToServerFx = createEffect(
+  async (slug: string | string[]) => {
+    try {
+      const res = await axios.delete(
+        `${API_URL_CLIENT}profile/favorites/?slug=${slug}`,
+      );
 
-    return res.data as IServerFavorite[]
-  } catch {
-    return []
-  }
-})
+      return res.data as IServerFavorite[];
+    } catch {
+      return [];
+    }
+  },
+);
 
 sample({
   clock: mounted,
-  fn: () => (JSON.parse(localStorage.getItem('favorites') || '[]')),
-  target: $favorites
-})
+  fn: () => JSON.parse(localStorage.getItem("favorites") || "[]"),
+  target: $favorites,
+});
 
 sample({
   clock: loginFx.doneData,
   source: $favorites,
   target: addFavoriteToServerFx,
-})
+});
 
 sample({
-  clock: [addFavoriteToServerFx.doneData, deleteFavoriteToServerFx.doneData, getFavoritesFx.doneData],
-  target: $favoritesItems
-})
+  clock: [
+    addFavoriteToServerFx.doneData,
+    deleteFavoriteToServerFx.doneData,
+    getFavoritesFx.doneData,
+  ],
+  target: $favoritesItems,
+});
 
 sample({
-  clock: logouted
-})
+  clock: logouted,
+});
 
 sample({
   clock: addFavorite,
   source: $favorites,
   fn: (favorites, item) => {
-    favorites.push(item)
+    favorites.push(item);
 
-    const settedFavorites = new Set(favorites)
+    const settedFavorites = new Set(favorites);
 
-    return Array.from(settedFavorites)
+    return Array.from(settedFavorites);
   },
-  target: [$favorites, addFavoriteToStorageFx]
-})
-
+  target: [$favorites, addFavoriteToStorageFx],
+});
 
 sample({
   clock: removeFavorite,
   source: $favorites,
   fn: (favorites, item) => {
-    return favorites.filter(favorite => favorite !== item)
+    return favorites.filter((favorite) => favorite !== item);
   },
-  target: [$favorites, addFavoriteToStorageFx]
-})
+  target: [$favorites, addFavoriteToStorageFx],
+});
 
-//  watch 
+//  watch
 
-$user.watch(state => console.log(state))
-$cart.watch(state => console.log('cart: ', state))
-$favorites.watch(state => console.log('fav', state))
+$user.watch((state) => console.log(state));
+$cart.watch((state) => console.log("cart: ", state));
+$favorites.watch((state) => console.log("fav", state));
 
-
-export {$favorites, mounted, addFavorite, removeFavorite, mouseEnteredToCart, mouseLeavedFromCart, $cart, $showCart, addToStorageFx, productAddedToCart, pageMounted, productCountIncremented, productCounDecremented}
+export {
+  $favorites,
+  mounted,
+  addFavorite,
+  removeFavorite,
+  mouseEnteredToCart,
+  mouseLeavedFromCart,
+  $cart,
+  $showCart,
+  addToStorageFx,
+  productAddedToCart,
+  pageMounted,
+  productCountIncremented,
+  productCounDecremented,
+};

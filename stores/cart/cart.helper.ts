@@ -1,63 +1,89 @@
-import { IProductCart } from "./cart.interface"
+import { IProductCart } from "./cart.interface";
+import { toast } from "react-toastify";
 
-const createListWithNewProduct = (products: IProductCart[], product: IProductCart) => {
+const createListWithNewProduct = (
+  products: IProductCart[],
+  product: IProductCart,
+) => {
   if (products.length) {
     products = products.map((item) => {
       if (product.id === item.id && product.size === item.size) {
-        return {...item, count: item.count ? item.count + 1 : 1}
+        return { ...item, count: item.count ? item.count + 1 : 1 };
       } else {
-        return {...item, count: item.count ? item.count : 1}
+        return { ...item, count: item.count ? item.count : 1 };
       }
-    })
+    });
 
-    
-    let flag = true
+    let flag = true;
 
-    products.forEach(item => {
-      if (item.id === product.id && product.size === item.size) flag = false
-    })
+    products.forEach((item) => {
+      if (item.id === product.id && product.size === item.size) flag = false;
+    });
 
-    if (flag) products.push({...product, count: 1})
+    if (flag) products.push({ ...product, count: 1 });
+    toast.success("Товар добавлен в корзину!");
 
-    return products
-
+    return products;
   } else {
-    return [{...product, count: 1}]
+    toast.success("Товар добавлен в корзину!");
+    return [{ ...product, count: 1 }];
   }
-}
+};
 
-const incrementProductCount = (products: IProductCart[], {id, size}: IProductCart) => {
-  return products.map(product => {
-    if (product.id === id && product.size == size) {
-      return ({
-        ...product,
-        count: product.count ? product.count + 1 : 1
-      })
+export const normilzeProductCount =
+  () => (products: IProductCart[], product: IProductCart) => {
+    if (products.length) {
+      products = products.map((item) => {
+        if (product.id === item.id && product.size === item.size) {
+          return { ...item, count: item.server_count };
+        } else {
+          return item;
+        }
+      });
+
+      return products;
     }
-    return product
-  })
 
-}
+    return products;
+  };
 
-const decrementProductCount = (products: IProductCart[], {id, size}: IProductCart) => {
-  let res = products.map(product => {
-
+const incrementProductCount = (
+  { cart }: { cart: IProductCart[] },
+  { id, size }: IProductCart,
+) => {
+  return cart.map((product) => {
     if (product.id === id && product.size == size) {
-
-      if (product.count && product.count - 1 == 0) return null
-
-      return ({
+      return {
         ...product,
-        count: product.count ? product.count - 1 : 1
-      })
+        count: product.count ? product.count + 1 : 1,
+      };
     }
-    return product
-  })
+    return product;
+  });
+};
 
-  res = res.filter(item => !!item)
-  return res
+const decrementProductCount = (
+  { cart }: { cart: IProductCart[] },
+  { id, size }: IProductCart,
+) => {
+  let res = cart.map((product) => {
+    if (product.id === id && product.size == size) {
+      if (product.count && product.count - 1 == 0) return null;
 
-}
+      return {
+        ...product,
+        count: product.count ? product.count - 1 : 1,
+      };
+    }
+    return product;
+  });
 
+  res = res.filter((item) => !!item);
+  return res;
+};
 
-export {createListWithNewProduct, incrementProductCount, decrementProductCount}
+export {
+  createListWithNewProduct,
+  incrementProductCount,
+  decrementProductCount,
+};

@@ -14,7 +14,8 @@ import {
 } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import Link from "next/link";
-import {formatMany} from "@/utils/formatMany";
+import { formatMany } from "@/utils/formatMany";
+import { toast } from "react-toastify";
 
 export const CartItem = ({
   name,
@@ -25,12 +26,12 @@ export const CartItem = ({
   id,
   color,
   slug,
+  server_count,
 }: IProductCart) => {
   const user = useUnit($user);
 
   const isLoading1 = useUnit(addToServerFx.pending);
   const isLoading2 = useUnit(removeCartItem.pending);
-
 
   return (
     <div className={styles.wrapper}>
@@ -62,6 +63,7 @@ export const CartItem = ({
                   color,
                   old_price: price,
                   slug,
+                  server_count,
                 });
 
                 if (user) removeCartItem(id || 0);
@@ -84,9 +86,13 @@ export const CartItem = ({
                   color,
                   old_price: price,
                   slug,
+                  server_count,
                 });
 
-                if (user) addToServerFx(id || 0).catch(() => alert('Ошибка при добавлении товара.'))
+                if (user)
+                  addToServerFx(id || 0).catch(() =>
+                    alert("Ошибка при добавлении товара."),
+                  );
               }
             }}
           >
@@ -95,7 +101,10 @@ export const CartItem = ({
         </div>
       </div>
 
-      <div className={styles.price}>{`${formatMany(count, price/100)} ₽`}</div>
+      <div className={styles.price}>{`${formatMany(
+        count,
+        price / 100,
+      )} ₽`}</div>
     </div>
   );
 };
