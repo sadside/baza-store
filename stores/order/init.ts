@@ -318,6 +318,24 @@ sample({
   target: $orderPaymentData,
 });
 
+sample({
+  //@ts-ignore
+  clock: [houseInputChanged, $selectedHouse],
+  source: $orderPaymentData,
+  fn: (order) => {
+    if (order) {
+      return {
+        ...order,
+        delivery: {
+          ...order.delivery,
+          price: 0,
+        },
+      };
+    }
+  },
+  target: $orderPaymentData,
+});
+
 export {
   clickSam,
   clickDost,
