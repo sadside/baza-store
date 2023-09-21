@@ -90,16 +90,7 @@ export const getOrderPriceInfoFx = createEffect(async (address = "") => {
       },
     });
 
-    //TODO: вынести в интерфейс
-
-    return response.data as {
-      price: number;
-      delivery?: {
-        price: number;
-        period_min: number;
-        period_max: number;
-      };
-    };
+    return response.data as IOrderPaymentData;
   } catch {
     return null;
   }
@@ -320,6 +311,11 @@ sample({
     else return "";
   },
   target: getOrderPriceInfoFx,
+});
+
+sample({
+  clock: getOrderPriceInfoFx.doneData,
+  target: $orderPaymentData,
 });
 
 export {

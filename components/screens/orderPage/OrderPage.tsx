@@ -162,10 +162,10 @@ export const OrderPage = ({}: Props) => {
             </div>
             <div className={s.item}>
               <span>Доставка </span>
-              {deliveryPrice?.delivery?.price && (
+              {orderPaymentData?.delivery?.price && (
                 <span className={s.itemPrice}>
                   {" "}
-                  {deliveryPrice?.delivery?.price} ₽
+                  {orderPaymentData?.delivery?.price} ₽
                 </span>
               )}
             </div>
