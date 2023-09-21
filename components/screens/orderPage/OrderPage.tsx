@@ -74,7 +74,6 @@ export const OrderPage = ({}: Props) => {
   const selectedCity = useUnit($selectedCity);
   const selectedStreet = useUnit($selectedStreet);
   const selectedHouse = useUnit($selectedHouse);
-  const deliveryPrice = useUnit($orderPriceData);
 
   const onSubmit = (data: ZakazFormValues) => {
     if (
@@ -115,6 +114,8 @@ export const OrderPage = ({}: Props) => {
   }, []);
 
   const orderPaymentData = useUnit($orderPaymentData);
+
+  const deliveryPrice = orderPaymentData?.delivery?.price || 0;
 
   useEffect(() => {
     if (user) {
@@ -157,18 +158,18 @@ export const OrderPage = ({}: Props) => {
               <span>Стоимость </span>
               <span className={s.itemPrice}>
                 {" "}
-                {orderPaymentData ? orderPaymentData.price / 100 : "Загрузка"} ₽
+                {orderPaymentData
+                  ? orderPaymentData.price / 100 + deliveryPrice
+                  : "Загрузка"}{" "}
+                ₽
               </span>
             </div>
-            <div className={s.item}>
-              <span>Доставка </span>
-              {orderPaymentData?.delivery?.price && (
-                <span className={s.itemPrice}>
-                  {" "}
-                  {orderPaymentData?.delivery?.price} ₽
-                </span>
-              )}
-            </div>
+            {deliveryPrice && (
+              <div className={s.item}>
+                <span>Доставка </span>
+                <span className={s.itemPrice}> {deliveryPrice} ₽</span>
+              </div>
+            )}
             <div className={s.item}>
               <span className={s.Itog}>Итого </span>
               <span className={s.Itog}>
