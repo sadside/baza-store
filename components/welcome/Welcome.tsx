@@ -1,33 +1,32 @@
-"use client"
+"use client";
 
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Banner from "./banner/Banner";
 import WelcomeText from "./welcomeTxt/WelcomeText";
 import LcLinks from "../lcLincks/LcLincks";
 import s from "./Welcome.module.scss";
 import ModalLoyalty from "@/components/modalLoyalty/ModalLoyalty";
-import {$orders, getOrders} from "@/stores/order/init";
-import {useUnit} from "effector-react";
+import { $orders, getOrders } from "@/stores/order/init";
+import { useUnit } from "effector-react";
 import MobileModal from "@/components/mobileModal/MobileModal";
 
 type Props = {
-    children: any;
+  children: any;
 };
 const Welcome = ({ children }: Props) => {
+  const orders = useUnit($orders);
 
-    const orders = useUnit($orders)
+  useEffect(() => {
+    if (!orders.length) getOrders();
+  }, []);
 
-    useEffect(() => {
-        if (!orders.length) getOrders();
-    });
-
-    return (
+  return (
     <div className={s.wrapper}>
       <Banner />
       <WelcomeText />
       <LcLinks />
       <div className={s.content}>
-          <MobileModal />
+        <MobileModal />
         <ModalLoyalty />
         {children}
       </div>

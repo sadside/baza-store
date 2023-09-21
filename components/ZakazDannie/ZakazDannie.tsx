@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useDeferredValue, useEffect } from "react";
 import s from "./index.module.scss";
 import classNames from "classnames";
 import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
@@ -26,12 +26,13 @@ import {
   houseSelected,
   streetInputChanged,
   streetSelected,
-} from "@/stores/orderSuggestions/orderSuggestions";
+} from "@/stores/order/init";
 import { convertTypeTwo } from "@/utils/convertTypeTwo";
 import { useUnit } from "effector-react";
 import { Loader } from "@/components/loader/Loader";
 import { toast } from "react-toastify";
 import useOutside from "@/utils/useOutside";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface IProps {
   title?: string;
@@ -53,6 +54,8 @@ const ZakazDannie = ({
 }: IProps) => {
   const citySuggestions = useUnit($citySuggestions);
   const value = useUnit($cityInputValue);
+
+  const cityValue = useDeferredValue(value);
 
   const streetSuggestions = useUnit($streetSuggestions);
   const houseSuggestions = useUnit($houseSuggestions);
@@ -160,33 +163,52 @@ const ZakazDannie = ({
                       cityInputChanged(e.target.value);
                       setIsShowCity(true);
                     }}
-                    value={value}
+                    value={cityValue}
                     className={classNames(s.input, errors.city && s.error)}
                     placeholder={`Введите город`}
                   />
 
-                  {isShowCity &&
-                    !loadingCitySuggestions &&
-                    citySuggestions.length > 0 && (
-                      <div className={s.select}>
-                        {citySuggestions.map((item) => {
-                          return (
-                            <li
-                              onClick={() => {
-                                citySelected(item);
-                              }}
-                            >
-                              {item}
-                            </li>
-                          );
-                        })}
+                  <AnimatePresence>
+                    {isShowCity && citySuggestions.length > 0 && (
+                      <motion.div
+                        className={s.select}
+                        initial={{ height: 0, opacity: 0 }}
+                        style={{
+                          overflow: "hidden",
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          type: "tween",
+                        }}
+                        animate={{
+                          height: "min-content",
+                          opacity: 1,
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                        }}
+                      >
+                        {!loadingCitySuggestions &&
+                          citySuggestions.map((item) => {
+                            return (
+                              <li
+                                onClick={() => {
+                                  citySelected(item);
+                                }}
+                              >
+                                {item}
+                              </li>
+                            );
+                          })}
                         {isShowCity && loadingCitySuggestions && (
                           <div>
                             <Loader height={50} width={50} />
                           </div>
                         )}
-                      </div>
+                      </motion.div>
                     )}
+                  </AnimatePresence>
                 </span>
               </div>
               <div className={classNames(s.all, s.form)}>
@@ -202,27 +224,49 @@ const ZakazDannie = ({
                     className={classNames(s.input, errors.city && s.error)}
                     placeholder={`Введите улицу`}
                   />
-                  {streetSuggestions.length > 0 && (
-                    <div className={s.select}>
-                      {!loadingStreetSuggestions &&
-                        streetSuggestions.map((item) => {
-                          return (
-                            <li onClick={() => streetSelected(item)}>{item}</li>
-                          );
-                        })}
-                      {loadingStreetSuggestions && (
-                        <div>
-                          <Loader height={50} width={50} />
-                        </div>
-                      )}
+                  <AnimatePresence>
+                    {streetSuggestions.length > 0 && (
+                      <motion.div
+                        className={s.select}
+                        initial={{ height: 0, opacity: 0 }}
+                        style={{
+                          overflow: "hidden",
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          type: "tween",
+                        }}
+                        animate={{
+                          height: "min-content",
+                          opacity: 1,
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                        }}
+                      >
+                        {!loadingStreetSuggestions &&
+                          streetSuggestions.map((item) => {
+                            return (
+                              <li onClick={() => streetSelected(item)}>
+                                {item}
+                              </li>
+                            );
+                          })}
+                        {loadingStreetSuggestions && (
+                          <div>
+                            <Loader height={50} width={50} />
+                          </div>
+                        )}
 
-                      {streetSuggestions.length == 0 && streetInputValue && (
-                        <div>
-                          Ничего не найдено. Введите корректное значение
-                        </div>
-                      )}
-                    </div>
-                  )}
+                        {streetSuggestions.length == 0 && streetInputValue && (
+                          <div>
+                            Ничего не найдено. Введите корректное значение
+                          </div>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </span>
               </div>
             </div>
@@ -241,27 +285,49 @@ const ZakazDannie = ({
                     className={classNames(s.input, errors.city && s.error)}
                     placeholder={`Введите дом`}
                   />
-                  {isShow && houseSuggestions.length > 0 && (
-                    <div className={s.select}>
-                      {!loadingHouseSuggestions &&
-                        houseSuggestions.map((item) => {
-                          return (
-                            <li onClick={() => houseSelected(item)}>{item}</li>
-                          );
-                        })}
-                      {loadingHouseSuggestions && (
-                        <div>
-                          <Loader height={50} width={50} />
-                        </div>
-                      )}
+                  <AnimatePresence>
+                    {isShow && houseSuggestions.length > 0 && (
+                      <motion.div
+                        className={s.select}
+                        initial={{ height: 0, opacity: 0 }}
+                        style={{
+                          overflow: "hidden",
+                        }}
+                        transition={{
+                          duration: 0.3,
+                          type: "tween",
+                        }}
+                        animate={{
+                          height: "min-content",
+                          opacity: 1,
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                        }}
+                      >
+                        {!loadingHouseSuggestions &&
+                          houseSuggestions.map((item) => {
+                            return (
+                              <li onClick={() => houseSelected(item)}>
+                                {item}
+                              </li>
+                            );
+                          })}
+                        {loadingHouseSuggestions && (
+                          <div>
+                            <Loader height={50} width={50} />
+                          </div>
+                        )}
 
-                      {houseSuggestions.length == 0 && houseInputValue && (
-                        <div>
-                          Ничего не найдено. Введите корректное значение
-                        </div>
-                      )}
-                    </div>
-                  )}
+                        {houseSuggestions.length == 0 && houseInputValue && (
+                          <div>
+                            Ничего не найдено. Введите корректное значение
+                          </div>
+                        )}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </span>
               </div>
               <InputForm

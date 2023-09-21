@@ -370,6 +370,8 @@ export const $user = createStore<IUser | null>(null)
   .on(postUserFx.doneData, (_, payload) => payload)
   .reset(logoutFx.doneData);
 
+$user.watch((state) => console.log("user: ", state));
+
 export const loginFx = createEffect(
   async ({ phone, code }: { phone: string; code: string }) => {
     try {

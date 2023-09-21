@@ -11,6 +11,9 @@ import * as yup from "yup";
 import { useUnit } from "effector-react";
 import {
   $orderPaymentData,
+  $selectedCity,
+  $selectedHouse,
+  $selectedStreet,
   createOrderFx,
   orderPageMounted,
 } from "@/stores/order/init";
@@ -20,11 +23,7 @@ import ZakazDannie from "@/components/ZakazDannie/ZakazDannie";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { $activeMeth } from "@/stores/zakaz/init";
-import {
-  $selectedCity,
-  $selectedHouse,
-  $selectedStreet,
-} from "@/stores/orderSuggestions/orderSuggestions";
+
 type Props = {};
 
 export type ZakazFormValues = {

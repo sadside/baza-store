@@ -3,7 +3,6 @@ import "../styles/globals.scss";
 import "react-toastify/dist/ReactToastify.css";
 import { API_URL } from "@/http";
 import { ToastContainer } from "react-toastify";
-import Head from "next/head";
 
 export const metadata = {
   title: "BAZA",
