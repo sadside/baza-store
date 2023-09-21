@@ -164,7 +164,7 @@ export const OrderPage = ({}: Props) => {
                 ₽
               </span>
             </div>
-            {deliveryPrice && (
+            {deliveryPrice > 0 && (
               <div className={s.item}>
                 <span>Доставка </span>
                 <span className={s.itemPrice}> {deliveryPrice} ₽</span>
