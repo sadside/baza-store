@@ -11,6 +11,7 @@ import * as yup from "yup";
 import { useUnit } from "effector-react";
 import {
   $orderPaymentData,
+  $orderPriceData,
   $selectedCity,
   $selectedHouse,
   $selectedStreet,
@@ -73,6 +74,7 @@ export const OrderPage = ({}: Props) => {
   const selectedCity = useUnit($selectedCity);
   const selectedStreet = useUnit($selectedStreet);
   const selectedHouse = useUnit($selectedHouse);
+  const deliveryPrice = useUnit($orderPriceData);
 
   const onSubmit = (data: ZakazFormValues) => {
     if (
@@ -160,7 +162,12 @@ export const OrderPage = ({}: Props) => {
             </div>
             <div className={s.item}>
               <span>Доставка </span>
-              {/*<span className={s.itemPrice}> {orderPaymentData ? orderPaymentData. : "Загрузка"} ₽</span>*/}
+              {deliveryPrice?.delivery?.price && (
+                <span className={s.itemPrice}>
+                  {" "}
+                  {deliveryPrice?.delivery?.price} ₽
+                </span>
+              )}
             </div>
             <div className={s.item}>
               <span className={s.Itog}>Итого </span>
