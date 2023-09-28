@@ -53,18 +53,19 @@ export const CartItem = ({
           <span
             onClick={() => {
               if (!isLoading2 && !isLoading1) {
-                productCounDecremented({
-                  name,
-                  price,
-                  size,
-                  image,
-                  count,
-                  id,
-                  color,
-                  old_price: price,
-                  slug,
-                  server_count,
-                });
+                if (!user)
+                  productCounDecremented({
+                    name,
+                    price,
+                    size,
+                    image,
+                    count,
+                    id,
+                    color,
+                    old_price: price,
+                    slug,
+                    server_count,
+                  });
 
                 if (user) removeCartItem(id || 0);
               }
@@ -76,18 +77,19 @@ export const CartItem = ({
           <span
             onClick={() => {
               if (!isLoading2 && !isLoading1) {
-                productCountIncremented({
-                  name,
-                  price,
-                  size,
-                  image,
-                  count,
-                  id,
-                  color,
-                  old_price: price,
-                  slug,
-                  server_count,
-                });
+                if (!user)
+                  productCountIncremented({
+                    name,
+                    price,
+                    size,
+                    image,
+                    count,
+                    id,
+                    color,
+                    old_price: price,
+                    slug,
+                    server_count,
+                  });
 
                 if (user)
                   addToServerFx(id || 0).catch(() =>
