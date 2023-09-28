@@ -75,20 +75,21 @@ export const ProductInfo = ({ product }: Props) => {
               toast.error("Выберите размер!");
               return;
             }
-
-            productAddedToCart({
-              id: selectedSize.mod_id,
-              price: product.price,
-              name: product.name,
-              image: product.images[0],
-              size: selectedSize.name,
-              color: product.current_color.name,
-              count: activeProduct[0]?.count || 0,
-              slug: product.current_color.slug,
-              old_price:
-                product.old_price > 0 ? product.old_price : product.price,
-              server_count: selectedSize.quantity,
-            });
+            if (!user) {
+              productAddedToCart({
+                id: selectedSize.mod_id,
+                price: product.price,
+                name: product.name,
+                image: product.images[0],
+                size: selectedSize.name,
+                color: product.current_color.name,
+                count: activeProduct[0]?.count || 0,
+                slug: product.current_color.slug,
+                old_price:
+                  product.old_price > 0 ? product.old_price : product.price,
+                server_count: selectedSize.quantity,
+              });
+            }
 
             if (user) {
               toast.promise(addToServerFx(selectedSize.mod_id), {
