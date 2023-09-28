@@ -76,7 +76,7 @@ export const CartItem = ({
           {count}
           <span
             onClick={() => {
-              if (!isLoading2 && !isLoading1) {
+              if (!isLoading2 && !isLoading1 && count && count < server_count) {
                 if (!user)
                   productCountIncremented({
                     name,
@@ -91,10 +91,8 @@ export const CartItem = ({
                     server_count,
                   });
 
-                if (user)
-                  addToServerFx(id || 0).catch(() =>
-                    alert("Ошибка при добавлении товара."),
-                  );
+                if (user && count && count < server_count)
+                  addToServerFx(id || 0);
               }
             }}
           >

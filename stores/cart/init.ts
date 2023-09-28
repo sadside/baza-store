@@ -36,9 +36,6 @@ export const addToServerFx = createEffect(async (id: number) => {
 
     return res.data as IServerCart[];
   } catch (e) {
-    // throw new Error('Ошибка')
-    //@ts-ignore
-    console.log(e.message());
     return [];
   }
 });
