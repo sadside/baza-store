@@ -13,7 +13,7 @@ import {
 } from "@/stores/cart/init";
 import { CartItem } from "@/components/cartItem/CartItem";
 import { getPriceFromCart } from "@/utils/getFullPrice";
-import ButtonWrapper from "@/shared/ui/button/ui/button-wrapper";
+// import ButtonWrapper from "@/shared/ui/button/ui/button-wrapper";
 import { IProductCart } from "@/stores/cart/cart.interface";
 import { getSalePriceFromCart } from "@/utils/getSalePrice";
 import { useRouter } from "next/navigation";
@@ -108,11 +108,11 @@ export const CartPage = (props: Props) => {
                 </div>
               </div>
 
-              <ButtonWrapper
-                text="ОФОРМИТЬ ЗАКАЗ"
-                style={{ marginTop: 40 }}
-                onClick={() => push("/order")}
-              />
+              {/*<ButtonWrapper*/}
+              {/*  text="ОФОРМИТЬ ЗАКАЗ"*/}
+              {/*  style={{ marginTop: 40 }}*/}
+              {/*  onClick={() => push("/order")}*/}
+              {/*/>*/}
             </div>
           </div>
         </div>

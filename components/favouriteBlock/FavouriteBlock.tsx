@@ -3,7 +3,6 @@
 import React from "react";
 import s from "./FavouriteBlock.module.scss";
 import classNames from "classnames";
-import { Favour } from "@/components/screens/favorites/favorites";
 import SvgSelector from "@/utils/SvgSelector";
 import { IServerFavorite } from "@/models/Favorites";
 import { deleteFavoriteToServerFx, removeFavorite } from "@/stores/cart/init";

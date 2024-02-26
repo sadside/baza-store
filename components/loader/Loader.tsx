@@ -6,14 +6,14 @@ type Props = {
   color?: string;
   height?: number;
   width?: number;
-  variant: BUTTON_VARIANTS;
+  variant?: BUTTON_VARIANTS;
 };
 
 export const Loader = ({
   color = "#28292f",
   height = 88,
   width = 88,
-  variant,
+  variant = BUTTON_VARIANTS.SECONDARY,
 }: Props) => {
   switch (variant) {
     case BUTTON_VARIANTS.SECONDARY || BUTTON_VARIANTS.COUNT:
