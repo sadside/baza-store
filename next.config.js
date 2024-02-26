@@ -1,10 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-// const withPWA = require("next-pwa")({
-//   dest: "public",
-//   register: true,
-//   skipWaiting: true,
-// });
+const path = require("path");
 
 const nextConfig = {
   images: {
@@ -21,16 +17,10 @@ const nextConfig = {
       "127.0.0.1",
     ],
   },
-};
-
-const path = require("path");
-
-module.exports = {
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
     reactStrictMode: false,
   },
 };
 
-// module.exports = withPWA(nextConfig);
 module.exports = nextConfig;

@@ -4,7 +4,7 @@ import { MainInfoProduct } from "../mainInfoProduct/MainInfoProduct";
 import { Hr } from "../ui/hr/Hr";
 import { SelectProductColor } from "../selectProductColor/SelectProductColor";
 import { SelectProductSize } from "../selectSizeProduct/SelectProductSize";
-import Button from "../ui/button/Button";
+// import ButtonWrapper from "@/shared/ui/button/ui/button-wrapper";
 import { SubProductInfo } from "../subProductInfo/SubProductInfo";
 import { ProductDetails } from "../productDetails/ProductDetails";
 import {
@@ -25,6 +25,7 @@ import {
 import { IFullProduct } from "@/models/Product";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import Link from "next/link";
 
 type Props = {
   product: IFullProduct;
@@ -47,9 +48,6 @@ export const ProductInfo = ({ product }: Props) => {
     };
   }, []);
 
-  console.log(product.current_color.slug);
-  console.log(cart);
-
   // @ts-ignore
   return (
     <div className={styles.productInfo}>
@@ -62,44 +60,44 @@ export const ProductInfo = ({ product }: Props) => {
         />
         <Hr />
         <SelectProductSize sizes={product.sizes} />
-        <Button
-          text={
-            selectedSize?.quantity == 0 ? "Нет в наличии" : "Добавить в корзину"
-          }
-          style={{ width: "100%" }}
-          loading={loading}
-          onClick={async () => {
-            if (!selectedSize?.quantity) return;
+        {/*<ButtonWrapper*/}
+        {/*  text={*/}
+        {/*    selectedSize?.quantity == 0 ? "Нет в наличии" : "Добавить в корзину"*/}
+        {/*  }*/}
+        {/*  style={{ width: "100%" }}*/}
+        {/*  loading={loading}*/}
+        {/*  onClick={async () => {*/}
+        {/*    if (!selectedSize?.quantity) return;*/}
 
-            if (selectedSize === null) {
-              toast.error("Выберите размер!");
-              return;
-            }
-            if (!user) {
-              productAddedToCart({
-                id: selectedSize.mod_id,
-                price: product.price,
-                name: product.name,
-                image: product.images[0],
-                size: selectedSize.name,
-                color: product.current_color.name,
-                count: activeProduct[0]?.count || 0,
-                slug: product.current_color.slug,
-                old_price:
-                  product.old_price > 0 ? product.old_price : product.price,
-                server_count: selectedSize.quantity,
-              });
-            }
+        {/*    if (selectedSize === null) {*/}
+        {/*      toast.error("Выберите размер!");*/}
+        {/*      return;*/}
+        {/*    }*/}
+        {/*    if (!user) {*/}
+        {/*      productAddedToCart({*/}
+        {/*        id: selectedSize.mod_id,*/}
+        {/*        price: product.price,*/}
+        {/*        name: product.name,*/}
+        {/*        image: product.images[0],*/}
+        {/*        size: selectedSize.name,*/}
+        {/*        color: product.current_color.name,*/}
+        {/*        count: activeProduct[0]?.count || 0,*/}
+        {/*        slug: product.current_color.slug,*/}
+        {/*        old_price:*/}
+        {/*          product.old_price > 0 ? product.old_price : product.price,*/}
+        {/*        server_count: selectedSize.quantity,*/}
+        {/*      });*/}
+        {/*    }*/}
 
-            if (user) {
-              toast.promise(addToServerFx(selectedSize.mod_id), {
-                pending: "Добавление товара в корзину...",
-                success: "Товар добавлен в корзину !",
-                error: "При добавлении товара произошла ошибка...",
-              });
-            }
-          }}
-        />
+        {/*    if (user) {*/}
+        {/*      toast.promise(addToServerFx(selectedSize.mod_id), {*/}
+        {/*        pending: "Добавление товара в корзину...",*/}
+        {/*        success: "Товар добавлен в корзину !",*/}
+        {/*        error: "При добавлении товара произошла ошибка...",*/}
+        {/*      });*/}
+        {/*    }*/}
+        {/*  }}*/}
+        {/*/>*/}
         <SubProductInfo />
         <Hr />
         <ProductDetails descrition={product.description} />

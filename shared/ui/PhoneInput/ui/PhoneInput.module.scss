@@ -1,0 +1,101 @@
+.wrapper {
+  position: relative;
+  width: 392px;
+}
+
+.input {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 44px;
+  padding: 0 15px 0 74px;
+  outline: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  &:focus {
+    border: 1px solid #000;
+  }
+
+  &:hover {
+    border: 1ps solid #777777;
+  }
+
+  &::placeholder {
+    color: #777777;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+}
+
+.regionCodeHandler {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  border-right: 1px solid #777777;
+  cursor: pointer;
+
+  img {
+    margin-right: 7px;
+  }
+
+  &.focused {
+    border-right: 1px solid #000;
+
+    .regionCode {
+      color: #000;
+    }
+  }
+
+  &:hover {
+    .regionCode {
+      color: #000000;
+    }
+  }
+}
+
+.regionCode {
+  color: #777777;
+  margin-right: 7px;
+  font-weight: 300;
+  font-size: 14px;
+  width: 30px;
+  border: none;
+  outline: none;
+  transition: color 0.2s ease-in;
+}
+
+.error {
+  border: 1px solid #b00000 !important;
+}
+
+.errorMessage {
+  color: #b00000;
+  margin-top: 3px;
+}
+
+.codeSelect {
+  position: absolute;
+  top: 48px;
+  left: 0;
+  background-color: #ffffff;
+  z-index: 100;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  &.focused {
+    border: 1px solid #000;
+  }
+}
+
+.selectCodeItem {
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  padding: 8px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

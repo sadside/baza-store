@@ -1,5 +1,5 @@
-import LcFavourPage from "@/components/screens/LcFavourPage/LcFavourPage";
+import { FavoritesPage } from "@/app-pages/favorites";
 
 export default function Favourite() {
-  return <LcFavourPage />;
+  return <FavoritesPage />;
 }

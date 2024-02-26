@@ -1,0 +1,23 @@
+.wrapper {
+  background-color: #000000;
+  width: 100%;
+  color: #FFFFFF;
+  height: 100%;
+
+  &:hover {
+    background-color: #4E4E4E;
+  }
+
+  &.focused {
+    border: 2px solid #9747FF !important;
+  }
+
+  &.disabled {
+    background-color: #D0D0D0;
+    cursor: not-allowed;
+  }
+
+  &:active {
+    background-color: #292929;
+  }
+}

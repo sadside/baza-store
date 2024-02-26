@@ -1,8 +1,7 @@
 import { IProduct } from "@/components/productItem/productItem.interface";
-import { ProductPage } from "@/components/screens/productPage/ProductPage";
 import { IFullProduct } from "@/models/Product";
 import ProductService from "@/services/ProductService";
-import axios from "axios";
+import { ProductPage } from "@/app-pages/product";
 
 export interface IProductPageProps {
   product: IProduct;

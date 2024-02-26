@@ -1,9 +1,11 @@
 import axios from "axios";
 
-
 export const API_URL_CLIENT = "https://thebaza.ru/api/";
-// export const API_URL_CLIENT = "http://127.0.0.1:8000/api/";
 export const API_URL = "http://127.0.0.1:8000/api/";
+
+export const $apiWithoutGuard = axios.create({
+  baseURL: API_URL,
+});
 
 const $api = axios.create({
   withCredentials: true,
@@ -29,7 +31,7 @@ $api.interceptors.response.use(
           {},
           {
             withCredentials: true,
-          }
+          },
         );
         localStorage.setItem("token", response.data.access);
         return $api.request(originalRequest);
@@ -40,7 +42,7 @@ $api.interceptors.response.use(
       }
     }
     throw error;
-  }
+  },
 );
 
 export default $api;

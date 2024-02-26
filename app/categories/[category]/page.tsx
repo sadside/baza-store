@@ -1,7 +1,6 @@
-import CategoriesPage from "@/components/screens/categoriesPage/CategoriesPage";
-import MainPage from "@/components/screens/mainPage/MainPage";
 import { IProduct } from "@/models/Product";
 import CategoriesService from "@/services/CategoriesService";
+import { CategoriesPage } from "@/app-pages/categories";
 
 export default async function Category({ params: { category } }: any) {
   const products: IProduct[] = await getProducts(category);

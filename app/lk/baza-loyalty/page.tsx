@@ -1,5 +1,5 @@
-import LcBazaLoyalty from "@/components/screens/LcBazaLoyalty/LcBazaLoyalty";
+import { LoyaltyPage } from "@/app-pages/loyalty";
 
 export default function Loyalty() {
-  return <LcBazaLoyalty />;
+  return <LoyaltyPage />;
 }

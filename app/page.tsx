@@ -1,5 +1,5 @@
-import MainPage from "@/components/screens/mainPage/MainPage";
 import { API_URL } from "@/http";
+import { HomePage } from "@/app-pages/home";
 
 const getProducts = async () => {
   try {
@@ -22,5 +22,5 @@ const getProducts = async () => {
 export default async function Home() {
   const products = await getProducts();
 
-  return <MainPage products={products} />;
+  return <HomePage products={products} />;
 }

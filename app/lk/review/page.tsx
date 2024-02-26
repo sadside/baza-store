@@ -1,5 +1,5 @@
-import LcObzorPage from "@/components/screens/LcObzorPage/LcObzorPage";
+import { LkReviewPage } from "@/app-pages/lk-review";
 
 export default function Review() {
-  return <LcObzorPage />;
+  return <LkReviewPage />;
 }

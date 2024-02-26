@@ -1,5 +1,5 @@
-import LcOrderPage from "@/components/screens/LcOrderPage/LcOrderPage";
+import { LkOrderPage } from "@/app-pages/lk-order";
 
 export default function Orders() {
-  return <LcOrderPage />;
+  return <LkOrderPage />;
 }

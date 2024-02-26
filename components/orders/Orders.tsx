@@ -23,7 +23,7 @@ export type OrderType = {
   baza: string;
   children: miniOrder[];
 };
-const Orders = () => {
+export const Orders = () => {
   const orders = useUnit($orders);
 
   return (
@@ -50,5 +50,3 @@ const Orders = () => {
     </>
   );
 };
-
-export default Orders;

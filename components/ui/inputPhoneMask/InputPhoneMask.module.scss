@@ -1,12 +1,50 @@
-.input {
-	border: 1px solid #999999;
-	height: 44px;
+.wrapper {
+	position: relative;
 	width: 392px;
-	padding: 0 15px;
+
+}
+
+.input {
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	height: 44px;
+	padding: 0 15px 0 65px;
 	outline: none;
+	font-size: 14px;
 	&:focus {
 		border: 1px solid #000;
 	}
+
+	&:hover {
+		border: 1ps solid #777777;
+	}
+
+	&::placeholder {
+		color: #777777;
+		font-weight: 400;
+		text-transform: uppercase;
+		font-size: 14px;
+	}
+}
+
+.regionCodeHandler {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	display: flex;
+	align-items: center;
+	height: 20px;
+	border-right: 1px solid #777777;
+	cursor: pointer;
+
+	img {
+		margin-right: 7px;
+	}
+}
+
+.regionCode {
+	color: #777777;
+	margin-right: 7px;
+	font-weight: 300;
 }
 
 .error {

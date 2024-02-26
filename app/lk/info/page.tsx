@@ -1,5 +1,5 @@
-import LcInfoPage from "@/components/screens/LcInfoPage/LcInfoPage";
+import { UserInfo } from "@/app-pages/user-info";
 
 export default function Info() {
-  return <LcInfoPage />;
+  return <UserInfo />;
 }

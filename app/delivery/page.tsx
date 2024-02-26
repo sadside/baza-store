@@ -1,4 +1,4 @@
-import { DeliveryPage } from "@/components/screens/deliveryPage/DeliveryPage";
+import { DeliveryPage } from "@/app-pages/delivery";
 
 export default function Delivery() {
   return <DeliveryPage />;

@@ -1,5 +1,11 @@
 import { addProductToStorage } from "@/utils/localStorage/localStorage";
-import { createEffect, createEvent, createStore, sample } from "effector";
+import {
+  createApi,
+  createEffect,
+  createEvent,
+  createStore,
+  sample,
+} from "effector";
 import { IProductCart } from "./cart.interface";
 import { dropdownMenuOpened, smallMenuClosed } from "../layout/menu/init";
 import {
@@ -9,7 +15,7 @@ import {
   normilzeProductCount,
 } from "./cart.helper";
 import { IUser } from "@/models/User";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { API_URL_CLIENT } from "@/http";
 import { IServerCart } from "@/models/Cart";
 import AuthService from "@/services/AuthService";
@@ -17,6 +23,9 @@ import { addFavotitesToStorage } from "@/utils/localStorage/localStorage";
 import { IServerFavorite } from "@/models/Favorites";
 import { createOrderFx } from "@/stores/order/init";
 import { toast } from "react-toastify";
+import { $currentCountryCode } from "@/shared/ui/PhoneInput/model/countryCodes";
+import { log } from "node:util";
+import { status } from "patronum";
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products);
@@ -294,7 +303,7 @@ sample({
 export const phoneInputSubmitted = createEvent<string>();
 export const codeInputSubmitted = createEvent<{
   phone: string;
-  code: string;
+  code: string[];
 }>();
 
 // sample({
@@ -367,7 +376,17 @@ export const $user = createStore<IUser | null>(null)
   .on(postUserFx.doneData, (_, payload) => payload)
   .reset(logoutFx.doneData);
 
-$user.watch((state) => console.log("user: ", state));
+export const $loginError = createStore<string | null>(null);
+export const showToastErrorF = createEffect((error: string) => {
+  toast.error(error);
+});
+
+export const loginErrorChanged = createEvent<string | null>();
+
+sample({
+  clock: loginErrorChanged,
+  target: $loginError,
+});
 
 export const loginFx = createEffect(
   async ({ phone, code }: { phone: string; code: string }) => {
@@ -375,12 +394,21 @@ export const loginFx = createEffect(
       const res = await AuthService.login(phone, code);
 
       return res.data;
-    } catch (e: any) {
-      console.log(e.message());
-      return null;
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        throw new Error(err?.response?.data.error);
+      } else {
+        throw new Error("Произошла неизвестная ошибка ошибка...");
+      }
     }
   },
 );
+
+sample({
+  clock: loginFx.fail,
+  fn: (error) => error.error.message,
+  target: [$loginError, showToastErrorF],
+});
 
 export const getUserFx = createEffect(async () => {
   try {
@@ -393,14 +421,19 @@ export const getUserFx = createEffect(async () => {
   }
 });
 
-export const $loading = createStore(true).on(getUserFx.finally, () => false);
-
 export const $phoneNumber = createStore<string>("")
   .on(phoneInputSubmitted, (_, newState) => newState)
   .reset(loginFx.doneData);
 
 sample({
   clock: codeInputSubmitted,
+  source: $currentCountryCode,
+  fn: (phoneCode, loginData) => {
+    return {
+      phone: phoneCode + loginData.phone,
+      code: loginData.code.join(""),
+    };
+  },
   target: loginFx,
 });
 

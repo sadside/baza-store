@@ -1,4 +1,4 @@
-import { OrderPage } from "@/components/screens/orderPage/OrderPage";
+import { OrderPage } from "@/app-pages/order";
 
 export default function Order() {
   return <OrderPage />;

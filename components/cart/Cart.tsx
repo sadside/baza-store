@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import styles from "./Cart.module.scss";
 import { DropdownCartItem } from "../ui/dropdownCartItem/DropdownCartItem";
 import { IProductCart } from "@/stores/cart/cart.interface";
-import Button from "../ui/button/Button";
+import ButtonWrapper from "@/shared/ui/button/ui/button-wrapper";
 type Props = {};
 
 export const Cart = (props: Props) => {
@@ -74,7 +74,7 @@ export const Cart = (props: Props) => {
               <div>Итоговая цена без учета доставки:</div>
               <div className={styles.tPrice}>{`${totalPrice} ₽`}</div>
             </div>
-            <Button
+            <ButtonWrapper
               text="Оформить заказ"
               style={{
                 width: "100%",
