@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import React from "react";
 import { API_URL } from "@/source/shared/api/http/custom-instance";
 import { Layout } from "@/source/layouts/main-layout";
+import "@shared/styles/globals.scss";
 
 export const metadata = {
   title: "BAZA",
