@@ -14,8 +14,8 @@ import {
 } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import Link from "next/link";
-import { formatMany } from "@/utils/formatMany";
 import { toast } from "react-toastify";
+import { formatMany } from "@shared/utils/formatMany";
 
 export const CartItem = ({
   name,
@@ -36,7 +36,7 @@ export const CartItem = ({
   return (
     <div className={styles.wrapper}>
       <Image
-        src={image}
+        src={image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
         width={300}
         height={300}
         alt={"img"}
@@ -73,7 +73,7 @@ export const CartItem = ({
           >
             -
           </span>
-          {count}
+          <span>{count}</span>
           <span
             onClick={() => {
               if (!isLoading2 && !isLoading1 && count && count < server_count) {
@@ -101,10 +101,10 @@ export const CartItem = ({
         </div>
       </div>
 
-      <div className={styles.price}>{`${formatMany(
-        count,
-        price / 100,
-      )} ₽`}</div>
+      {/*<div className={styles.price}>{`${formatMany(*/}
+      {/*  count,*/}
+      {/*  price / 100,*/}
+      {/*)} ₽`}</div>*/}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Loader.module.scss";
-import { BUTTON_VARIANTS } from "@/shared/ui/button/ui/button-wrapper";
+import { BUTTON_VARIANTS } from "@/source/shared/ui/button/ui/button-wrapper";
 
 type Props = {
   color?: string;

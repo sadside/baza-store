@@ -1,10 +1,10 @@
 import { MenuIcons } from "@/components/menuIcons/MenuIcons";
 import MenuLinks from "@/components/menuLinks/MenuLinks";
-import SvgSelector from "@/utils/SvgSelector";
 import Link from "next/link";
 import React from "react";
 
 import styles from "./SmallMenuMobile.module.scss";
+import SvgSelector from "@shared/utils/SvgSelector";
 
 type Props = { links: any[] };
 

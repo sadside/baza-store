@@ -1,8 +1,8 @@
-import { API_URL_CLIENT } from "@/http";
-import { IOrder, IOrderPaymentData } from "@/models/Order";
+import { IOrder, IOrderPaymentData } from "@shared/types/models/Order";
 import OrderServise from "@/services/OrderService";
 import axios from "axios";
 import { createEffect, createEvent, createStore, sample } from "effector";
+import { API_URL_CLIENT } from "@/source/shared/api/http/custom-instance";
 
 const clickSam = createEvent();
 const clickDost = createEvent();

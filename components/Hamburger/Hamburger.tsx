@@ -1,6 +1,5 @@
 import React from "react";
 import { useUnit } from "effector-react";
-import SvgSelector from "@/utils/SvgSelector";
 import s from "./Hamburger.module.scss";
 import Link from "next/link";
 import {
@@ -14,6 +13,7 @@ import {
 import { ICategory } from "@/components/menuCategory/menuCategory.interface";
 import { router } from "next/client";
 import classNames from "classnames";
+import SvgSelector from "@shared/utils/SvgSelector";
 
 type Props = { links: any[] };
 const Hamburger = ({ links }: Props) => {

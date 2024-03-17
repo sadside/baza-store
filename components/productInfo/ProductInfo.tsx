@@ -22,10 +22,11 @@ import {
   pageUnMounted,
   sizeSelected,
 } from "@/stores/ui/products/productSize";
-import { IFullProduct } from "@/models/Product";
+import { IFullProduct } from "@shared/types/models/Product";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 import Link from "next/link";
+import { Button } from "@shared/theme/button";
 
 type Props = {
   product: IFullProduct;
@@ -48,6 +49,38 @@ export const ProductInfo = ({ product }: Props) => {
     };
   }, []);
 
+  const handleClick = () => {
+    if (!selectedSize?.quantity) return;
+
+    if (selectedSize === null) {
+      toast.error("Выберите размер!");
+      return;
+    }
+
+    if (!user) {
+      productAddedToCart({
+        id: selectedSize.mod_id,
+        price: product.price,
+        name: product.name,
+        image: product.images[0],
+        size: selectedSize.name,
+        color: product.current_color.name,
+        count: activeProduct[0]?.count || 0,
+        slug: product.current_color.slug,
+        old_price: product.old_price > 0 ? product.old_price : product.price,
+        server_count: selectedSize.quantity,
+      });
+    }
+
+    if (user) {
+      toast.promise(addToServerFx(selectedSize.mod_id), {
+        pending: "Добавление товара в корзину...",
+        success: "Товар добавлен в корзину !",
+        error: "При добавлении товара произошла ошибка...",
+      });
+    }
+  };
+
   // @ts-ignore
   return (
     <div className={styles.productInfo}>
@@ -60,44 +93,9 @@ export const ProductInfo = ({ product }: Props) => {
         />
         <Hr />
         <SelectProductSize sizes={product.sizes} />
-        {/*<ButtonWrapper*/}
-        {/*  text={*/}
-        {/*    selectedSize?.quantity == 0 ? "Нет в наличии" : "Добавить в корзину"*/}
-        {/*  }*/}
-        {/*  style={{ width: "100%" }}*/}
-        {/*  loading={loading}*/}
-        {/*  onClick={async () => {*/}
-        {/*    if (!selectedSize?.quantity) return;*/}
-
-        {/*    if (selectedSize === null) {*/}
-        {/*      toast.error("Выберите размер!");*/}
-        {/*      return;*/}
-        {/*    }*/}
-        {/*    if (!user) {*/}
-        {/*      productAddedToCart({*/}
-        {/*        id: selectedSize.mod_id,*/}
-        {/*        price: product.price,*/}
-        {/*        name: product.name,*/}
-        {/*        image: product.images[0],*/}
-        {/*        size: selectedSize.name,*/}
-        {/*        color: product.current_color.name,*/}
-        {/*        count: activeProduct[0]?.count || 0,*/}
-        {/*        slug: product.current_color.slug,*/}
-        {/*        old_price:*/}
-        {/*          product.old_price > 0 ? product.old_price : product.price,*/}
-        {/*        server_count: selectedSize.quantity,*/}
-        {/*      });*/}
-        {/*    }*/}
-
-        {/*    if (user) {*/}
-        {/*      toast.promise(addToServerFx(selectedSize.mod_id), {*/}
-        {/*        pending: "Добавление товара в корзину...",*/}
-        {/*        success: "Товар добавлен в корзину !",*/}
-        {/*        error: "При добавлении товара произошла ошибка...",*/}
-        {/*      });*/}
-        {/*    }*/}
-        {/*  }}*/}
-        {/*/>*/}
+        <Button.Primary loading={loading} onClick={handleClick}>
+          {selectedSize?.quantity == 0 ? "Нет в наличии" : "Добавить в корзину"}
+        </Button.Primary>
         <SubProductInfo />
         <Hr />
         <ProductDetails descrition={product.description} />

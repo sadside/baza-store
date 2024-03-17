@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./ProductItem.module.scss";
-import { IProduct } from "@/models/Product";
+import { IProduct } from "@shared/types/models/Product";
 import { useInView } from "react-intersection-observer";
 
 const ProductItem = ({

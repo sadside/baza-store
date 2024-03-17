@@ -19,6 +19,11 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
+      "@shared/*": ["./source/shared/*"],
+      "@app/*": ["./source/app/*"],
+      "@entities/*": ["./source/entities/*"],
+      "@pages/*": ["./source/pages/*"],
+      "@widgets/*": ["./source/widgets/*"],
       "@/*": [
         "./*"
       ]
@@ -30,6 +35,7 @@
     ]
   },
   "include": [
+    "source/shared/types/declarations/svgr.d.ts",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",

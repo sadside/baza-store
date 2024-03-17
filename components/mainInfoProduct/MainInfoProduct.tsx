@@ -1,6 +1,6 @@
 import { AddToFavorites } from "../ui/addToFavorites/AddToFavorites";
 import styles from "./MainInfoProduct.module.scss";
-import { IFullProduct } from "@/models/Product";
+import { IFullProduct } from "@shared/types/models/Product";
 
 type Props = {
   product: IFullProduct;

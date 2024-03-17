@@ -1,26 +1,31 @@
-import { API_URL } from "@/http";
-import { HomePage } from "@/app-pages/home";
+import React from "react";
+import { API_URL } from "@/source/shared/api/http/custom-instance";
+import { HomePage } from "@/source/pages/home";
 
-const getProducts = async () => {
-  try {
-    const res = await fetch(`${API_URL}products/products/`, {
-      next: {
-        revalidate: 3600,
-      },
-    });
+export interface Category {
+  id: number;
+  name: string;
+  slug: string;
+  children: Category[];
+}
 
-    if (!res.ok) throw new Error("error");
+const getData = async (): Promise<Category[]> => {
+  const res = await fetch(`${API_URL}products/path/`);
 
-    const products = await res.json();
+  if (!res.ok) throw new Error("error");
 
-    return products;
-  } catch {
-    throw new Error("Ошибка загрузки товаров, попробуйте позже");
-  }
+  return await res.json();
+};
+const getVideoBlob = async () => {
+  const res = await fetch("");
+
+  if (!res.ok) throw new Error("error");
+
+  return await res.json();
 };
 
 export default async function Home() {
-  const products = await getProducts();
+  const links = await getData();
 
-  return <HomePage products={products} />;
+  return <HomePage links={links} />;
 }

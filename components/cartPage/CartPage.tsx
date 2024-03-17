@@ -12,13 +12,12 @@ import {
   removeCartItem,
 } from "@/stores/cart/init";
 import { CartItem } from "@/components/cartItem/CartItem";
-import { getPriceFromCart } from "@/utils/getFullPrice";
-// import ButtonWrapper from "@/shared/ui/button/ui/button-wrapper";
 import { IProductCart } from "@/stores/cart/cart.interface";
-import { getSalePriceFromCart } from "@/utils/getSalePrice";
 import { useRouter } from "next/navigation";
 import { EmptyCart } from "@/components/emptyCart/EmptyCart";
-import { formatMany, formatManyofFull } from "@/utils/formatMany";
+import { getSalePriceFromCart } from "@shared/utils/getSalePrice";
+import { getPriceFromCart } from "@shared/utils/getFullPrice";
+import { formatManyofFull } from "@shared/utils/formatMany";
 
 type Props = {};
 

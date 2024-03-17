@@ -1,4 +1,3 @@
-import { addProductToStorage } from "@/utils/localStorage/localStorage";
 import {
   createApi,
   createEffect,
@@ -14,18 +13,21 @@ import {
   incrementProductCount,
   normilzeProductCount,
 } from "./cart.helper";
-import { IUser } from "@/models/User";
+import { IUser } from "@shared/types/models/User";
 import axios, { AxiosError } from "axios";
-import { API_URL_CLIENT } from "@/http";
-import { IServerCart } from "@/models/Cart";
+import { IServerCart } from "@shared/types/models/Cart";
 import AuthService from "@/services/AuthService";
-import { addFavotitesToStorage } from "@/utils/localStorage/localStorage";
-import { IServerFavorite } from "@/models/Favorites";
+import { IServerFavorite } from "@shared/types/models/Favorites";
 import { createOrderFx } from "@/stores/order/init";
 import { toast } from "react-toastify";
-import { $currentCountryCode } from "@/shared/ui/PhoneInput/model/countryCodes";
 import { log } from "node:util";
 import { status } from "patronum";
+import { API_URL_CLIENT } from "@/source/shared/api/http/custom-instance";
+import { $currentCountryCode } from "@/source/shared/ui/PhoneInput/model/countryCodes";
+import {
+  addFavotitesToStorage,
+  addProductToStorage,
+} from "@shared/utils/localStorage/localStorage";
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products);

@@ -7,13 +7,13 @@ import {
   $selectedSize,
   sizeSelected,
 } from "@/stores/ui/products/productSize";
-import { Modification } from "@/models/Product";
+import { Modification } from "@shared/types/models/Product";
 
 type Props = {
   sizes: {
     name: string;
     mod_id: number;
-    quantity: number
+    quantity: number;
   }[];
 };
 

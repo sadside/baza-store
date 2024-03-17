@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./MiniOrder.module.scss";
-import { IServerCart } from "@/models/Cart";
+import { IServerCart } from "@shared/types/models/Cart";
 import Image from "next/image";
 
 type Props = {

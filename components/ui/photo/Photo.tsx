@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Photo.module.scss";
-import photo from "../../../assets/Men.jpg";
 import Image from "next/image";
+import photo from "@/source/shared/assets/Men.jpg";
 
 const Photo = () => {
   return (

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import img from "../svg-loaders/2.svg";
+import Loader from "@/source/shared/assets/svg-loaders/2.svg";
 
 export default function Loading() {
   return (
@@ -12,7 +12,7 @@ export default function Loading() {
         alignItems: "center",
       }}
     >
-      <Image src={img} alt="222" />
+      <Loader />
     </div>
   );
 }

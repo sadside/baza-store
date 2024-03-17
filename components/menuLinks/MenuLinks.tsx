@@ -46,26 +46,26 @@ const MenuLinks = ({ links, mobile }: Props) => {
             </div>
           );
         })}
-        <Link
-          href="/delivery"
-          style={{ color: "#000" }}
-          onMouseEnter={() => {
-            if (!mobile) menuChanged("color");
-            dropdownMenuClosed();
-          }}
-        >
-          <li>ДОСТАВКА</li>
-        </Link>
-        <Link
-          href="/loyalty"
-          style={{ color: "#000" }}
-          onMouseEnter={() => {
-            if (!mobile) menuChanged("color");
-            dropdownMenuClosed();
-          }}
-        >
-          <li>ПРОГРАММА ЛОЯЛЬНОСТИ</li>
-        </Link>
+        {/*<Link*/}
+        {/*  href="/delivery"*/}
+        {/*  style={{ color: "#000" }}*/}
+        {/*  onMouseEnter={() => {*/}
+        {/*    if (!mobile) menuChanged("color");*/}
+        {/*    dropdownMenuClosed();*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  <li>ДОСТАВКА</li>*/}
+        {/*</Link>*/}
+        {/*<Link*/}
+        {/*  href="/loyalty"*/}
+        {/*  style={{ color: "#000" }}*/}
+        {/*  onMouseEnter={() => {*/}
+        {/*    if (!mobile) menuChanged("color");*/}
+        {/*    dropdownMenuClosed();*/}
+        {/*  }}*/}
+        {/*>*/}
+        {/*  <li>ПРОГРАММА ЛОЯЛЬНОСТИ</li>*/}
+        {/*</Link>*/}
       </ul>
     </div>
   );

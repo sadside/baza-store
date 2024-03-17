@@ -1,6 +1,6 @@
 "use client";
 
-import SvgSelector from "@/utils/SvgSelector";
+import SvgSelector from "@shared/utils/SvgSelector";
 
 type Props = {
   product: IFullProduct;
@@ -14,7 +14,7 @@ import {
   $selectedColor,
   $selectedSize,
 } from "@/stores/ui/products/productSize";
-import { IFullProduct } from "@/models/Product";
+import { IFullProduct } from "@shared/types/models/Product";
 import {
   $favorites,
   $user,

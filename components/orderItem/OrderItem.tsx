@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { OrderType } from "@/components/orders/Orders";
 import { getCountPrice } from "@/utils/getCountPrice";
 import { convertDate } from "@/utils/convertDate";
-import { IOrder } from "@/models/Order";
+import { IOrder } from "@shared/types/models/Order";
 import { getOrderPrice } from "@/utils/getOrderPrice";
 import { getLoyaltyCount } from "@/utils/getLoyaltyCount";
 import { convertOrderStatus } from "@/utils/convertOrderStatus";
