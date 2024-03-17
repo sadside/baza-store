@@ -4,8 +4,6 @@ import styles from "./Products.module.scss";
 import { IProduct } from "@shared/types/models/Product";
 
 const Products = ({ products }: { products: IProduct[] }) => {
-  console.log(products);
-
   return (
     <div className={styles.productsWrapper}>
       {products?.length &&

@@ -1,21 +1,4 @@
-.wrap {
-  //position: relative;
-  //padding-bottom: 56.25%;
-  //margin: 0 auto;
-  //// max-width: 2560px;
-  //pointer-events: none;
-  //-o-object-fit: cover;
-  //   object-fit: cover;
-  //box-shadow: none !important;
-  //border: none !important;
-  //@media (max-width: 725px) {
-  //  display: none;
-  //}
 
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
 
 .load {
   position: relative;
@@ -32,21 +15,13 @@
 }
 
 .video {
-  //position: absolute;
-  //top: 0;
-  //left: 0;
-  //width: 100% !important;
-  //border: none !important;
-  //box-shadow: none !important;
-  //height: 100% !important;
-
-  position: absolute;
-  min-width: 100%;
-  min-height: 100%;
-  left: 50%;
-  top: 50%;
-  z-index: -1;
-  transform: translate(-50%, -50%);
+  position: absolute !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  left: 50% !important;
+  top: 50% !important;
+  z-index: -1 !important;
+  transform: translate(-50%, -50%) !important;
 }
 
 .header {

@@ -57,7 +57,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
                 exit="hidden"
                 variants={LIST_ITEM_VARIANTS}
               >
-                {links[0].children.map((link) => (
+                {links[0]?.children.map((link) => (
                   <Link
                     href={`${links[0].slug}/${link.slug}`}
                     className={styles.category}
@@ -72,7 +72,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
             className={styles.categoryTitle}
             onMouseEnter={() => setShowWomenCategories(true)}
           >
-            {links[0].name}
+            <Link href="/women">{links[0]?.name}</Link>
           </motion.h2>
         </div>
         <div
@@ -88,7 +88,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
                 exit="hidden"
                 variants={LIST_ITEM_VARIANTS}
               >
-                {links[1].children.map((link) => (
+                {links[1]?.children?.map((link) => (
                   <Link href={link.slug} className={styles.categoryRight}>
                     {link.name}
                   </Link>
@@ -100,7 +100,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
             className={styles.categoryTitleRight}
             onMouseEnter={() => setShowManCategories(true)}
           >
-            {links[1].name}
+            {links[1]?.name}
           </motion.h2>
         </div>
       </div>
