@@ -5,13 +5,10 @@ import Link from "next/link";
 import {
   $showHamburgMenu,
   categoryBurgerSelected,
-  dropdownMenuClosed,
   HamburgCategoryOpen,
-  HamburgMenuClosed,
-  menuChanged,
+  HamburgMenuClosed
 } from "@/stores/layout/menu/init";
 import { ICategory } from "@/components/menuCategory/menuCategory.interface";
-import { router } from "next/client";
 import classNames from "classnames";
 import SvgSelector from "@shared/utils/SvgSelector";
 

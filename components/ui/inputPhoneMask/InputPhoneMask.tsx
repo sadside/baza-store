@@ -2,12 +2,7 @@ import styles from "./InputPhoneMask.module.scss";
 import Icon from "../../../assets/icons/authInputArrow.svg";
 
 import classNames from "classnames";
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  HTMLAttributes,
-  KeyboardEvent,
-} from "react";
+import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, KeyboardEvent } from "react";
 import Image from "next/image";
 
 interface IProps
@@ -26,14 +21,14 @@ interface IProps
 export const PATTERN = /\D/g;
 
 export const InputPhoneMask = ({
-  className,
-  name,
-  type,
-  error,
-  register,
-  resetFiled,
-  ...rest
-}: IProps) => {
+                                 className,
+                                 name,
+                                 type,
+                                 error,
+                                 register,
+                                 resetFiled,
+                                 ...rest
+                               }: IProps) => {
   const getInputNumbersValue = (value: string) => {
     return value.replace(PATTERN, "");
   };
@@ -102,7 +97,7 @@ export const InputPhoneMask = ({
     <div className={styles.wrapper}>
       <input
         className={classNames(`${styles.input}`, {
-          [styles.error]: error,
+          [styles.error]: error
         })}
         placeholder="Номер телефона"
         type={type}

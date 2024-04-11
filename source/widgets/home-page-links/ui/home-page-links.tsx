@@ -20,13 +20,13 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
     hidden: {
       opacity: 0,
       y: 15,
-      type: "spring",
+      type: "spring"
     },
     visible: {
       opacity: 1,
       y: 0,
-      type: "spring",
-    },
+      type: "spring"
+    }
   };
 
   return (

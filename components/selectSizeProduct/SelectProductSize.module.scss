@@ -1,43 +1,43 @@
 .wrapper {
-    margin-top: 25px;
-    margin-bottom: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 
-    .sizeTitle {
-        display: flex;
-        margin-bottom: 20px;
-    }
+  .sizeTitle {
+    display: flex;
+    margin-bottom: 20px;
+  }
 
-    .title {
-        color: #000;
-        font-size: 14px;
-        font-family: Montserrat;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-right: 15px;
-    }
+  .title {
+    color: #000;
+    font-size: 14px;
+    font-family: Montserrat;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-right: 15px;
+  }
 
-    .gid {
-        text-decoration: underline;
-        cursor: pointer;
-        font-size: 14px;
-    }
+  .gid {
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;
+  }
 
-    .sizeItem {
-        height: 25px;
-        width: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-transform: uppercase;
-        cursor: pointer;
-    }
+  .sizeItem {
+    height: 25px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
 
-    .sizeItems {
-        display: flex;
-    }
+  .sizeItems {
+    display: flex;
+  }
 
 
-    .active {
-        border: 1px solid #000;
-    }
+  .active {
+    border: 1px solid #000;
+  }
 }

@@ -7,5 +7,5 @@ export const getSalePriceFromCart = (arr: IProductCart[]) => {
     totalPrice += count ? (old_price / 100) * count : old_price;
   });
 
-  return totalPrice
-}
+  return totalPrice;
+};

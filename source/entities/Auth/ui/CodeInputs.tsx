@@ -1,23 +1,13 @@
 import styles from "./CodeInputs.module.scss";
 import { useUnit } from "effector-react";
-import {
-  $codeDigits,
-  clearDigits,
-  digitIntroduced,
-  digitRemoved,
-} from "@/stores/auth/auth";
-import React, {
-  ChangeEvent,
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-} from "react";
+import { $codeDigits, clearDigits, digitIntroduced, digitRemoved } from "@/stores/auth/auth";
+import React, { ChangeEvent, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
 import classNames from "classnames/bind";
 import { $loginError, loginErrorChanged } from "@/stores/cart/init";
 
-interface CodeInputsProps {}
+interface CodeInputsProps {
+}
 
 const cx = classNames.bind(styles);
 
@@ -31,11 +21,11 @@ export const CodeInputs = forwardRef(({}: CodeInputsProps, ref) => {
 
   const inputClassname = cx({
     error: error !== null,
-    codeInput: true,
+    codeInput: true
   });
 
   useImperativeHandle(ref, () => ({
-    focus: () => inputRefs.current[0].focus(),
+    focus: () => inputRefs.current[0].focus()
   }));
 
   useEffect(() => {
@@ -54,7 +44,7 @@ export const CodeInputs = forwardRef(({}: CodeInputsProps, ref) => {
 
     digitIntroduced({
       value,
-      position: index,
+      position: index
     });
 
     if (index < length - 1) {

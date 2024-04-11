@@ -2,13 +2,7 @@ import styles from "./PhoneInput.module.scss";
 import arrow from "@shared/assets/icons/authInputArrow.svg";
 
 import classNames from "classnames/bind";
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  HTMLAttributes,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, useState } from "react";
 import Image from "next/image";
 import { handlePhoneDelete, handlePhoneInput } from "../lib/inputLogic";
 
@@ -20,7 +14,7 @@ import {
   $currentCountryCode,
   $isSelectCodeOpened,
   codeClicked,
-  codesSelectOpened,
+  codesSelectOpened
 } from "@shared/ui/PhoneInput/model/countryCodes";
 
 interface InputProps
@@ -39,14 +33,14 @@ interface InputProps
 const cx = classNames.bind(styles);
 
 export const PhoneInput = ({
-  className,
-  name,
-  type,
-  error,
-  register,
-  resetFiled,
-  ...props
-}: InputProps) => {
+                             className,
+                             name,
+                             type,
+                             error,
+                             register,
+                             resetFiled,
+                             ...props
+                           }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
   const { isShow, setIsShow, ref } = useOutside(false);
 
@@ -66,17 +60,17 @@ export const PhoneInput = ({
 
   const inputClassName = cx({
     input: true,
-    error: error,
+    error: error
   });
 
   const regionCodeHandlerClassName = cx({
     regionCodeHandler: true,
-    focused: isFocused,
+    focused: isFocused
   });
 
   const regionCodeSelectClassName = cx({
     codeSelect: true,
-    focused: isFocused,
+    focused: isFocused
   });
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {

@@ -11,10 +11,7 @@ import axios from "axios";
 import { useUnit } from "effector-react";
 import { useLayoutEffect } from "react";
 import { $user, phoneInputSubmitted } from "@/stores/cart/init";
-import {
-  $currentCountryCode,
-  $isSelectCodeOpened,
-} from "@/source/shared/ui/PhoneInput/model/countryCodes";
+import { $currentCountryCode, $isSelectCodeOpened } from "@/source/shared/ui/PhoneInput/model/countryCodes";
 import { API_URL_CLIENT } from "@/source/shared/api/http/custom-instance";
 import { PhoneInput } from "@/source/shared/ui/PhoneInput";
 import { Button } from "@/source/shared/theme/button";
@@ -26,7 +23,7 @@ export type RegisterFormValues = {
 };
 
 const schema = yup.object().shape({
-  phoneNumber: yup.string().required("Введите номер телефона"),
+  phoneNumber: yup.string().required("Введите номер телефона")
 });
 
 export const AuthPage = ({}: Props) => {
@@ -43,17 +40,17 @@ export const AuthPage = ({}: Props) => {
     register,
     handleSubmit,
     resetField,
-    formState: { errors },
+    formState: { errors }
   } = useForm<RegisterFormValues>({
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onChange"
   });
 
   //TODO: ВЫНЕСТИ В СТМ
 
   const onSubmit = handleSubmit(async (data) => {
     const res = await axios.post(`${API_URL_CLIENT}auth/send-code/`, {
-      phone: phoneCode + data.phoneNumber,
+      phone: phoneCode + data.phoneNumber
     });
 
     if (res.status === 201) {

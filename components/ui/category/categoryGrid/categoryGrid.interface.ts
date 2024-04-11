@@ -1,11 +1,11 @@
 export interface ICategoryGrid {
-	firstColumnItems?: IColumnItem[]
-	secondColumnItems?: IColumnItem[]
-	thirdColumnItems?: IColumnItem[]
+  firstColumnItems?: IColumnItem[];
+  secondColumnItems?: IColumnItem[];
+  thirdColumnItems?: IColumnItem[];
 }
 
 export interface IColumnItem {
-	title: string
-	link: string
-	image: string
+  title: string;
+  link: string;
+  image: string;
 }

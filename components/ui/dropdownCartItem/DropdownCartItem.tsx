@@ -5,12 +5,12 @@ import { IProductCart } from "@/stores/cart/cart.interface";
 import Image from "next/image";
 
 export const DropdownCartItem = ({
-  name,
-  price,
-  image,
-  count,
-  size,
-}: IProductCart) => {
+                                   name,
+                                   price,
+                                   image,
+                                   count,
+                                   size
+                                 }: IProductCart) => {
   return (
     <div className={styles.wrapper}>
       <Image

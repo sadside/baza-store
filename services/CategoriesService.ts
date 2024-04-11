@@ -1,5 +1,4 @@
 import { notAuthApi } from "@/api/api";
-import axios from "axios";
 import { API_URL } from "@/source/shared/api/http/custom-instance";
 
 export default class CategoriesService {

@@ -1,9 +1,7 @@
 "use client";
 
 import styles from "./breadcrumbs.module.scss";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-import classNames from "classnames";
 
 interface Path {
   id: number;
@@ -32,9 +30,9 @@ const mock = {
     children: {
       id: 3,
       name: "Белые",
-      slug: "women",
-    },
-  },
+      slug: "women"
+    }
+  }
 };
 
 function createBreadcrumbs(path: Path) {
@@ -44,7 +42,7 @@ function createBreadcrumbs(path: Path) {
 
   result.push({
     name: currentPath.name,
-    slug: loadedPath + currentPath.slug,
+    slug: loadedPath + currentPath.slug
   });
 
   while (currentPath?.children?.id) {
@@ -54,7 +52,7 @@ function createBreadcrumbs(path: Path) {
 
       result.push({
         name: currentPath.name,
-        slug: loadedPath + currentPath.slug,
+        slug: loadedPath + currentPath.slug
       });
     }
   }

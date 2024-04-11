@@ -8,12 +8,11 @@ import * as yup from "yup";
 import { useUnit } from "effector-react";
 import {
   $orderPaymentData,
-  $orderPriceData,
   $selectedCity,
   $selectedHouse,
   $selectedStreet,
   createOrderFx,
-  orderPageMounted,
+  orderPageMounted
 } from "@/stores/order/init";
 import { $user } from "@/stores/cart/init";
 import MethRec from "@/components/MethRec/MethRec";
@@ -45,7 +44,7 @@ const schema = yup.object().shape({
   phone: yup
     .string()
     .required("Введите номер телефона")
-    .min(5, "Введите номер телефона"),
+    .min(5, "Введите номер телефона")
 });
 
 export const OrderPage = ({}: Props) => {
@@ -53,7 +52,7 @@ export const OrderPage = ({}: Props) => {
     price: { delivery: 700, cost: 12200 },
     adres: "Оренбург, Поляничко 9",
     timeOfHran: "3 Дня",
-    gifted: "Забрать можно 8 февраля после 17:00",
+    gifted: "Забрать можно 8 февраля после 17:00"
   };
   const {
     register,
@@ -61,9 +60,9 @@ export const OrderPage = ({}: Props) => {
     formState: { errors },
     resetField,
     reset,
-    setValue,
+    setValue
   } = useForm<ZakazFormValues>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   });
 
   const method = useUnit($activeMeth);
@@ -94,14 +93,14 @@ export const OrderPage = ({}: Props) => {
       street: selectedStreet,
       house: selectedHouse,
       frame: data.frame,
-      apartment: data.room,
+      apartment: data.room
     };
 
     toast
       .promise(createOrderFx(body), {
         pending: "Создание заказа...",
         error: "Упс... При создании заказа произошла ошибка...",
-        success: "Заказ успешно создан!",
+        success: "Заказ успешно создан!"
       })
       .then(() => push("/lk/orders"));
   };

@@ -1,0 +1,1 @@
+export { StatusLoyalty } from "./ui/StatusLoyalty";

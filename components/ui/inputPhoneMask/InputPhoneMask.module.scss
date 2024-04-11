@@ -1,57 +1,58 @@
 .wrapper {
-	position: relative;
-	width: 392px;
+  position: relative;
+  width: 392px;
 
 }
 
 .input {
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	height: 44px;
-	padding: 0 15px 0 65px;
-	outline: none;
-	font-size: 14px;
-	&:focus {
-		border: 1px solid #000;
-	}
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  height: 44px;
+  padding: 0 15px 0 65px;
+  outline: none;
+  font-size: 14px;
 
-	&:hover {
-		border: 1ps solid #777777;
-	}
+  &:focus {
+    border: 1px solid #000;
+  }
 
-	&::placeholder {
-		color: #777777;
-		font-weight: 400;
-		text-transform: uppercase;
-		font-size: 14px;
-	}
+  &:hover {
+    border: 1 ps solid #777777;
+  }
+
+  &::placeholder {
+    color: #777777;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
 }
 
 .regionCodeHandler {
-	position: absolute;
-	top: 12px;
-	left: 12px;
-	display: flex;
-	align-items: center;
-	height: 20px;
-	border-right: 1px solid #777777;
-	cursor: pointer;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  height: 20px;
+  border-right: 1px solid #777777;
+  cursor: pointer;
 
-	img {
-		margin-right: 7px;
-	}
+  img {
+    margin-right: 7px;
+  }
 }
 
 .regionCode {
-	color: #777777;
-	margin-right: 7px;
-	font-weight: 300;
+  color: #777777;
+  margin-right: 7px;
+  font-weight: 300;
 }
 
 .error {
-	border: 1px solid #b00000 !important;
+  border: 1px solid #b00000 !important;
 }
 
 .errorMessage {
-	color: #b00000;
-	margin-top: 3px;
+  color: #b00000;
+  margin-top: 3px;
 }

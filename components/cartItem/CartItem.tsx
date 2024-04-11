@@ -10,24 +10,22 @@ import {
   addToServerFx,
   productCounDecremented,
   productCountIncremented,
-  removeCartItem,
+  removeCartItem
 } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import Link from "next/link";
-import { toast } from "react-toastify";
-import { formatMany } from "@shared/utils/formatMany";
 
 export const CartItem = ({
-  name,
-  price,
-  size,
-  image,
-  count,
-  id,
-  color,
-  slug,
-  server_count,
-}: IProductCart) => {
+                           name,
+                           price,
+                           size,
+                           image,
+                           count,
+                           id,
+                           color,
+                           slug,
+                           server_count
+                         }: IProductCart) => {
   const user = useUnit($user);
 
   const isLoading1 = useUnit(addToServerFx.pending);
@@ -64,7 +62,7 @@ export const CartItem = ({
                     color,
                     old_price: price,
                     slug,
-                    server_count,
+                    server_count
                   });
 
                 if (user) removeCartItem(id || 0);
@@ -88,7 +86,7 @@ export const CartItem = ({
                     color,
                     old_price: price,
                     slug,
-                    server_count,
+                    server_count
                   });
 
                 if (user && count && count < server_count)

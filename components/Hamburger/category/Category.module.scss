@@ -1,5 +1,4 @@
 
-
 .title {
   display: flex;
   padding-left: 0px;
@@ -14,13 +13,15 @@
   align-items: center;
   gap: 10px;
   width: 88px;
-  flex: 1 0 ;
+  flex: 1 0;
 }
+
 .btn {
   cursor: pointer;
   display: flex;
   justify-content: center;
 }
+
 .items {
   text-decoration: none;
   display: flex;
@@ -39,6 +40,7 @@
   line-height: 100%; /* 12px */
 
 }
+
 .item {
   display: flex;
   padding: 5px 0px;
@@ -54,12 +56,14 @@
   text-decoration: none;
 
 }
+
 .top {
   align-items: center;
   display: flex;
   height: 68px;
   padding: 0px 20px;
   width: 100%;
+
   .contentTOP {
     width: 100%;
     display: flex;
@@ -69,6 +73,7 @@
     align-self: stretch;
   }
 }
+
 .root {
   display: none;
   @media (max-width: 790px) {
@@ -86,6 +91,7 @@
   flex-direction: column;
   align-items: flex-start;
 }
+
 .content {
   display: flex;
   padding: 0px 20px 20px 20px;

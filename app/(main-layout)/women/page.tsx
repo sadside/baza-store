@@ -11,7 +11,7 @@ async function getProducts(category: string) {
   return products;
 }
 
-export default async function () {
+export default async function() {
   const products = await getProducts("zhenshchiny");
 
   console.log(products);

@@ -2,20 +2,19 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./ProductItem.module.scss";
 import { IProduct } from "@shared/types/models/Product";
-import { useInView } from "react-intersection-observer";
 
 const ProductItem = ({
-  images,
-  product_id,
-  name,
-  price,
-  colors_count,
-  slug,
-}: IProduct) => {
+                       images,
+                       product_id,
+                       name,
+                       price,
+                       colors_count,
+                       slug
+                     }: IProduct) => {
   const formatter = new Intl.NumberFormat("ru", {
     style: "unit",
     unit: "meter",
-    unitDisplay: "long",
+    unitDisplay: "long"
   });
 
   return (
@@ -24,7 +23,7 @@ const ProductItem = ({
         <Image
           src={images[0].replace(
             "http://127.0.0.1:8000/",
-            "http://thebaza.ru/",
+            "http://thebaza.ru/"
           )}
           alt={"j"}
           className={styles.img}

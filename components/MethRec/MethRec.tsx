@@ -4,7 +4,8 @@ import React from "react";
 import s from "./index.module.scss";
 import ZakazDannie from "../ZakazDannie/ZakazDannie";
 import { useUnit } from "effector-react";
-import { $activeMeth, clickSam, clickDost } from "@/stores/zakaz/init";
+import { $activeMeth, clickDost, clickSam } from "@/stores/zakaz/init";
+
 type Props = {
   adres: string;
   timeOfHran: string;
@@ -15,28 +16,28 @@ type Props = {
   resetField?: any;
 };
 const MethRec = ({
-  adres,
-  timeOfHran,
-  gifted,
-  errors,
-  reset,
-  register,
-  resetField,
-}: Props) => {
+                   adres,
+                   timeOfHran,
+                   gifted,
+                   errors,
+                   reset,
+                   register,
+                   resetField
+                 }: Props) => {
   let aaaarrrr = {
     main: [
       { val: "Геннадий", type: "name" },
       { val: "Васькин", type: "surname" },
       { val: "ebanarot@gmail.com", type: "mail" },
-      { val: "+7(123) 123‒45‒67", type: "phoneNumber" },
+      { val: "+7(123) 123‒45‒67", type: "phoneNumber" }
     ],
     adres: [
       { val: "Самара", type: "city" },
       { val: "пр-т Кирова", type: "street" },
       { val: "322a", type: "house" },
       { val: "6", type: "frame" },
-      { val: "97", type: "room" },
-    ],
+      { val: "97", type: "room" }
+    ]
   };
   const method = useUnit($activeMeth);
   return (

@@ -4,7 +4,7 @@ import {
   addToServerFx,
   productCounDecremented,
   productCountIncremented,
-  removeCartItem,
+  removeCartItem
 } from "@/stores/cart/init";
 import React from "react";
 import { useUnit } from "effector-react";

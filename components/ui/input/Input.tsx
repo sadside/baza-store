@@ -1,37 +1,37 @@
-import styles from './Input.module.scss'
+import styles from "./Input.module.scss";
 
 type InputProps = {
-	width?: number
-	height?: number
-	placeholder?: string
-	errorMessage?: string
-	margin?: number
-	padding?: number
+  width?: number
+  height?: number
+  placeholder?: string
+  errorMessage?: string
+  margin?: number
+  padding?: number
 }
 
 const Input = ({
-	               placeholder = '',
-	               width = 392,
-	               height = 44,
-	               errorMessage = '',
-	               margin = 0,
+                 placeholder = "",
+                 width = 392,
+                 height = 44,
+                 errorMessage = "",
+                 margin = 0
                }: InputProps) => {
-	console.log(Boolean(errorMessage && errorMessage.length))
-	
-	return (
-		<div style={{width, height, margin}}>
-			<label>
-				<input
-					type='text'
-					className={`${styles.input} ${errorMessage && styles.error}`}
-					placeholder={placeholder}
-				/>
-				{errorMessage && (
-					<div className={styles.errorMessage}>{errorMessage}</div>
-				)}
-			</label>
-		</div>
-	)
-}
+  console.log(Boolean(errorMessage && errorMessage.length));
 
-export default Input
+  return (
+    <div style={{ width, height, margin }}>
+      <label>
+        <input
+          type="text"
+          className={`${styles.input} ${errorMessage && styles.error}`}
+          placeholder={placeholder}
+        />
+        {errorMessage && (
+          <div className={styles.errorMessage}>{errorMessage}</div>
+        )}
+      </label>
+    </div>
+  );
+};
+
+export default Input;

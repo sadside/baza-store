@@ -8,7 +8,7 @@ const getInputNumbersValue = (value: string) => {
 
 const handlePhoneInput = (
   event: ChangeEvent<HTMLInputElement>,
-  currentCountry: string,
+  currentCountry: string
 ) => {
   const input = event.target;
 
@@ -25,7 +25,7 @@ const handlePhoneInput = (
     if (inputNumbersValue.length === 11) {
       inputNumbersValue = inputNumbersValue.substring(
         1,
-        inputNumbersValue.length,
+        inputNumbersValue.length
       );
     }
 
@@ -57,7 +57,7 @@ const handlePhoneInput = (
 
 const handlePhoneDelete = (
   event: KeyboardEvent<HTMLInputElement>,
-  resetFiled: (inputName: string) => void,
+  resetFiled: (inputName: string) => void
 ) => {
   const input = event.target as HTMLInputElement;
 

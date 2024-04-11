@@ -3,10 +3,10 @@ import CategoryItem from "@/components/ui/category/categoryItem/CategoryItem";
 import styles from "./CategoryGrid.module.scss";
 
 const CategoryGrid = ({
-  firstColumnItems,
-  thirdColumnItems,
-  secondColumnItems,
-}: ICategoryGrid) => {
+                        firstColumnItems,
+                        thirdColumnItems,
+                        secondColumnItems
+                      }: ICategoryGrid) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.threeItems}>

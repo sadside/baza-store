@@ -9,12 +9,12 @@ import "@shared/styles/globals.scss";
 export const metadata = {
   title: "BAZA",
   manifest: "/manifest.json",
-  themeColor: "#ffffff",
+  themeColor: "#ffffff"
 };
 
 const getData = async () => {
   const res = await fetch(`${API_URL}products/path/`, {
-    cache: "no-store",
+    cache: "no-store"
   });
 
   const links = await res.json();
@@ -25,8 +25,8 @@ const getData = async () => {
 };
 
 export default async function MainLayout({
-  children,
-}: {
+                                           children
+                                         }: {
   children: React.ReactNode;
 }) {
   const links = await getData();

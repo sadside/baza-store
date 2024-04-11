@@ -1,5 +1,4 @@
 import styles from "./cart-item-price.module.scss";
-import { useCallback } from "react";
 
 interface CartItemPriceProps {
   originalPrice: number;
@@ -7,9 +6,9 @@ interface CartItemPriceProps {
 }
 
 export const CartItemPrice = ({
-  originalPrice,
-  salePrice,
-}: CartItemPriceProps) => {
+                                originalPrice,
+                                salePrice
+                              }: CartItemPriceProps) => {
   const saleValue = ((originalPrice - salePrice) / originalPrice) * 100;
 
   return (

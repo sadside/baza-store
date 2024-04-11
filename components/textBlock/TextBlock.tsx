@@ -10,7 +10,8 @@ type Props = {
 };
 
 export const TextBlock = ({ title, text, type = "p" }: Props) => {
-  useEffect(() => {}, []);
+  useEffect(() => {
+  }, []);
 
   const paragraphs = text.split("\n");
 

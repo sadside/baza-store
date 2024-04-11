@@ -43,27 +43,27 @@ const getCountryCodesById = createEffect(async (phoneCode: string) => {
 
 sample({
   clock: [codesSelectOpened, codesSelectClosed],
-  target: $isSelectCodeOpened,
+  target: $isSelectCodeOpened
 });
 
 sample({
   clock: codesSelectOpened,
-  target: getCountryCodesFx,
+  target: getCountryCodesFx
 });
 
 sample({
   clock: [getCountryCodesFx.doneData, getCountryCodesById.doneData],
-  target: $countryCodes,
+  target: $countryCodes
 });
 
 sample({
   clock: codeClicked,
-  target: $currentCountryCode,
+  target: $currentCountryCode
 });
 
 sample({
   clock: codeInputChanged,
-  target: [$codeInputValue],
+  target: [$codeInputValue]
 });
 
 export {
@@ -74,5 +74,5 @@ export {
   codeClicked,
   getCountryCodesById,
   $codeInputValue,
-  codeInputChanged,
+  codeInputChanged
 };

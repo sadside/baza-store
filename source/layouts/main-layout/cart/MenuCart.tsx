@@ -1,10 +1,8 @@
 "use client";
 
-import { IProductCart } from "@/stores/cart/cart.interface";
 import { $cart } from "@/stores/cart/init";
 import { useUnit } from "effector-react";
 import React from "react";
-import { number } from "yup";
 
 import styles from "./MenuCart.module.scss";
 

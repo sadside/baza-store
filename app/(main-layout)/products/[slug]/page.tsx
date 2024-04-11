@@ -20,7 +20,7 @@ export async function generateMetadata({ params: { slug } }: params) {
     title: product.name,
     description: `${
       product.description ? product.description : "Скоро мы добавим описание"
-    }`,
+    }`
   };
 }
 
@@ -38,7 +38,7 @@ async function getProduct(slug: string) {
   }
 }
 
-export default async function ({ params: { slug } }: params) {
+export default async function({ params: { slug } }: params) {
   const product: IFullProduct = await getProduct(slug);
   console.log(product);
 

@@ -3,14 +3,7 @@
 import React, { useEffect } from "react";
 import styles from "./CartPage.module.scss";
 import { useUnit } from "effector-react";
-import {
-  $cart,
-  $user,
-  addToServerFx,
-  getCartFromLocalStorageFx,
-  getCartFromServerFx,
-  removeCartItem,
-} from "@/stores/cart/init";
+import { $cart, $user, getCartFromLocalStorageFx, getCartFromServerFx } from "@/stores/cart/init";
 import { CartItem } from "@/components/cartItem/CartItem";
 import { IProductCart } from "@/stores/cart/cart.interface";
 import { useRouter } from "next/navigation";
@@ -26,7 +19,7 @@ export const CartPage = (props: Props) => {
   const { push } = useRouter();
   const user = useUnit($user);
 
-  const res = products.sort(function (a: IProductCart, b: IProductCart) {
+  const res = products.sort(function(a: IProductCart, b: IProductCart) {
     if (a.id && b.id) return a.id - b.id;
     else return 0;
   });
@@ -47,17 +40,17 @@ export const CartPage = (props: Props) => {
           <div className={styles.products}>
             {res.map(
               ({
-                size,
-                name,
-                count,
-                price,
-                id,
-                image,
-                color,
-                old_price = 0,
-                slug,
-                server_count,
-              }) => (
+                 size,
+                 name,
+                 count,
+                 price,
+                 id,
+                 image,
+                 color,
+                 old_price = 0,
+                 slug,
+                 server_count
+               }) => (
                 <CartItem
                   size={size}
                   name={name}
@@ -71,7 +64,7 @@ export const CartPage = (props: Props) => {
                   color={color}
                   old_price={old_price}
                 />
-              ),
+              )
             )}
           </div>
           <div className={styles.right}>

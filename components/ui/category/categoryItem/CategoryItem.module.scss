@@ -1,28 +1,28 @@
 .columnItem {
   display: block;
-	text-decoration: none;
-	flex: 0 0 50%;
-	color: #000;
-	position: relative;
+  text-decoration: none;
+  flex: 0 0 50%;
+  color: #000;
+  position: relative;
   padding-bottom: 50%;
-	
-	.image {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: -webkit-fit-content !important;
-		height: -moz-fit-content !important;
-		height: fit-content !important;
-		-o-object-fit: cover;
-		   object-fit: cover;
-	}
+
+  .image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: -webkit-fit-content !important;
+    height: -moz-fit-content !important;
+    height: fit-content !important;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
 }
 
 .title {
-	position: absolute;
-	left: 20px;
-	top: 20px;
-	font-size: 14px;
-	font-weight: bold;
-	text-transform: uppercase;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
 }

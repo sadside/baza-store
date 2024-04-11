@@ -1,53 +1,54 @@
 .wrapper {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: calc(100vh - 336px);
-	form {
-		justify-content: center;
-		width: 100%;
-		align-items: center;
-	}
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 336px);
+
+  form {
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+  }
 }
 
 .errorMessage {
-	color: #b00000;
-	margin-top: 3px;
-	text-align: left;
-	width: 100%;
-	font-size: 14px;
-	margin-top: 5px;
+  color: #b00000;
+  margin-top: 3px;
+  text-align: left;
+  width: 100%;
+  font-size: 14px;
+  margin-top: 5px;
 }
 
 
 .goBack {
-	font-size: 12px;
-	text-align: left;
-	width: 100%;
-	cursor: pointer;
+  font-size: 12px;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
 }
 
 .authTitle {
-	font-size: 20px;
-	margin-bottom: 12px;
-	font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: bold;
 }
 
 .content {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	width: 80%;
-	max-width: 392px;
-	margin: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 80%;
+  max-width: 392px;
+  margin: auto;
 }
 
 .subTitle {
-	width: 300px;
-	font-size: 14px;
-	text-align: center;
-	margin-bottom: 24px;
-	@media(max-width: 400px) {
-		width: 250px;
-	}
+  width: 300px;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 24px;
+  @media(max-width: 400px) {
+    width: 250px;
+  }
 }

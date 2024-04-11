@@ -1,7 +1,7 @@
 .active {
   &:after {
     width: 100% !important;
-	}
+  }
 }
 
 .nav {
@@ -15,11 +15,12 @@
   @media (max-width: 1000px) {
     display: none;
   }
+
   ul {
     display: flex;
     margin: 0 !important;
     padding: 0 !important;
-    
+
     li {
       list-style: none;
       display: inline-block;
@@ -51,6 +52,7 @@
         -moz--transition: width .4s ease-in-out;
         transition: width .4s ease-in-out;
       }
+
       &:hover:after,
       &:focus:after {
         width: 100%;
@@ -68,6 +70,7 @@
         -moz--transition: width .4s ease-in-out;
         transition: width .4s ease-in-out;
       }
+
       &:hover:after,
       &:focus:after {
         width: 100%;

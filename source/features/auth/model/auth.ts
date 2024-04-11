@@ -4,5 +4,5 @@ import { $phoneNumber } from "@/stores/cart/init";
 
 export const $fullPhoneNumber = combine({
   code: $currentCountryCode,
-  phoneNumber: $phoneNumber,
+  phoneNumber: $phoneNumber
 });

@@ -1,23 +1,25 @@
 .images {
-    flex: 0 0 50%;
-    z-index: 1;
+  flex: 0 0 50%;
+  z-index: 1;
 }
 
 .productImage {
-    width: 100% !important;
-    -o-object-fit: cover;
-       object-fit: cover;
-       height: calc(100vh - 70px) !important;
-       -o-object-fit: cover;
-          object-fit: cover;
-    
+  width: 100% !important;
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: calc(100vh - 70px) !important;
+  -o-object-fit: cover;
+  object-fit: cover;
+
 }
+
 .swiper {
   display: none;
   @media (max-width: 666px) {
     display: flex;
   }
 }
+
 .imgList {
   @media (max-width: 666px) {
     display: none;

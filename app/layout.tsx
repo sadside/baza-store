@@ -8,20 +8,20 @@ import "@shared/styles/globals.scss";
 export const metadata = {
   title: "BAZA",
   manifest: "/manifest.json",
-  themeColor: "#ffffff",
+  themeColor: "#ffffff"
 };
 
 export default async function RootLayout({
-  children,
-}: {
+                                           children
+                                         }: {
   children: React.ReactNode;
 }) {
   return (
     <html>
-      <body>
-        <ToastContainer pauseOnHover={false} />
-        <Layout>{children}</Layout>
-      </body>
+    <body>
+    <ToastContainer pauseOnHover={false} />
+    <Layout>{children}</Layout>
+    </body>
     </html>
   );
 }

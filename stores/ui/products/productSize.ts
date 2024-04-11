@@ -1,6 +1,5 @@
 import { IColor } from "@/components/selectProductColor/SelectProductColor.interface";
-import { Modification } from "@shared/types/models/Product";
-import { createEvent, createStore, sample } from "effector";
+import { createEvent, createStore } from "effector";
 
 export const sizeSelected = createEvent<{
   name: string;
@@ -18,7 +17,7 @@ export const $selectedSize = createStore<{
 
 export const $selectedColor = createStore<IColor | null>(null).on(
   colorSelected,
-  (_, payload) => payload,
+  (_, payload) => payload
 );
 
 $selectedColor.watch((state) => console.log(state));

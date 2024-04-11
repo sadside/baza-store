@@ -1,3 +1,3 @@
 export interface ICategoryTitle {
-	title: string
+  title: string;
 }

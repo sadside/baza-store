@@ -13,15 +13,16 @@ const addToStorageFx = createEffect((favorites: IProductCart[]) => {
   addFavotitesToStorage(favorites);
 });
 
-export const getFavoritesFx = createEffect(async () => {});
+export const getFavoritesFx = createEffect(async () => {
+});
 
 const addToServerFx = createEffect(async (id: number) => {
   const res = await axios.post(
     `${API_URL_CLIENT}profile/favorites/`,
     {
-      product_id: id,
+      product_id: id
     },
-    { withCredentials: true },
+    { withCredentials: true }
   );
 
   if (res.status < 300) throw new Error("err");
@@ -30,7 +31,7 @@ const addToServerFx = createEffect(async (id: number) => {
 sample({
   clock: mounted,
   fn: () => JSON.parse(localStorage.getItem("favorites") || "[]"),
-  target: $favorites,
+  target: $favorites
 });
 
 sample({
@@ -46,7 +47,7 @@ sample({
     if (flag) return [item, ...favorites];
     else return favorites;
   },
-  target: [$favorites, addToStorageFx],
+  target: [$favorites, addToStorageFx]
 });
 
 sample({
@@ -55,7 +56,7 @@ sample({
   fn: (favorites, item) => {
     return favorites.filter((favorit) => item.id !== favorit.id);
   },
-  target: [$favorites, addToStorageFx],
+  target: [$favorites, addToStorageFx]
 });
 
 export { $favorites, mounted, addFavorite, removeFavorite, addToServerFx };

@@ -14,7 +14,7 @@ export const Cart = (props: Props) => {
 
   if (typeof window !== "undefined") {
     const products: IProductCart[] = JSON.parse(
-      localStorage.getItem("products") || "[]",
+      localStorage.getItem("products") || "[]"
     );
   }
 
@@ -37,23 +37,23 @@ export const Cart = (props: Props) => {
           animate={{ x: 0 }}
           exit={{ x: "100%" }}
           transition={{
-            duration: 0.35,
+            duration: 0.35
           }}
           onMouseLeave={handleMouseLeave}
         >
           <div className={styles.items}>
             {products?.map(
               ({
-                name,
-                price,
-                id,
-                image,
-                count,
-                size,
-                color,
-                old_price,
-                server_count,
-              }) => (
+                 name,
+                 price,
+                 id,
+                 image,
+                 count,
+                 size,
+                 color,
+                 old_price,
+                 server_count
+               }) => (
                 <DropdownCartItem
                   server_count={server_count}
                   name={name}
@@ -66,7 +66,7 @@ export const Cart = (props: Props) => {
                   color={color}
                   old_price={old_price}
                 />
-              ),
+              )
             )}
           </div>
           <div className={styles.makeOrder}>

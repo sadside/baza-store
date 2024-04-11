@@ -4,7 +4,7 @@ import {
   $activeCategoryBurger,
   $showBurgerCategory,
   HamburgCategoryClose,
-  HamburgMenuClosed,
+  HamburgMenuClosed
 } from "@/stores/layout/menu/init";
 import s from "./Category.module.scss";
 import Link from "next/link";

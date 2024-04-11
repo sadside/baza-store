@@ -1,10 +1,9 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import classNames from "classnames";
-import { InputPhoneMask } from "../inputPhoneMask/InputPhoneMask";
 import s from "./InputForm.module.scss";
-import { convertType } from "@/utils/convertType";
+import { convertType } from "@shared/utils/convertType";
+import { convertTypeTwo } from "@shared/utils/convertTypeTwo";
 
-import { convertTypeTwo } from "@/utils/convertTypeTwo";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -32,7 +31,7 @@ const InputForm = ({ type, error, register, form }: IProps) => {
     <Baze>
       <input
         {...register(type, {
-          required: `Введите ${convertType(type)}`,
+          required: `Введите ${convertType(type)}`
         })}
         className={classNames(s.input, error && s.error)}
         placeholder={`Введите ${convertTypeTwo(type)}`}

@@ -1,4 +1,4 @@
-import { LkOrderPage } from "@/app-pages/lk-order";
+import { LkOrderPage } from "@pages//lk-order";
 
 export default function Orders() {
   return <LkOrderPage />;

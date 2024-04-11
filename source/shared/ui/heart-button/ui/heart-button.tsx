@@ -16,12 +16,12 @@ interface HeartButtonProps
 }
 
 export const HeartButton = ({
-  checked,
-  onClick,
-  height = 20,
-  fill = "#A2A2A2",
-  width = 20,
-}: HeartButtonProps) => {
+                              checked,
+                              onClick,
+                              height = 20,
+                              fill = "#A2A2A2",
+                              width = 20
+                            }: HeartButtonProps) => {
   return (
     <button className={styles.wrapper}>
       {checked ? (

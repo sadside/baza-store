@@ -1,5 +1,6 @@
-import Welcome from "@/components/welcome/Welcome";
+import React from "react";
+import { LkLayout } from "@/source/layouts/lk-layout";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <Welcome children={children} />;
+  return <LkLayout children={children} />;
 }

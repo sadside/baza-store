@@ -1,16 +1,11 @@
 "use client";
-import Link from "next/link";
-import { ICategory } from "../menuCategory/menuCategory.interface";
-
 import styles from "./MenuLinks.module.scss";
 import {
   $activeCategory,
   $showDropdownMenu,
   $stateOfMenu,
-  categorySelected,
-  dropdownMenuClosed,
   dropdownMenuOpened,
-  menuChanged,
+  menuChanged
 } from "@/stores/layout/menu/init";
 import { useUnit } from "effector-react";
 

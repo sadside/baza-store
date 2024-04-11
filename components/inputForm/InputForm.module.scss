@@ -4,14 +4,16 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 3px;
-  @media ( max-width: 470px) {
+  @media (max-width: 470px) {
     width: 292px;
   }
 
 }
+
 .form {
   width: 100%;
 }
+
 .title {
   color: var(--input-label, #000);
   font-family: Montserrat;
@@ -20,6 +22,7 @@
   font-weight: 400;
   line-height: 20px; /* 142.857% */
 }
+
 .input {
   outline: none;
   height: 44px;
@@ -29,23 +32,28 @@
   align-self: stretch;
   border: 1px solid var(--input-border-default, #999);
   background: var(--input-background, #FFF);
+
   &:hover {
     border: 1px solid var(--input-border-focus, #000);
   }
+
   &:focus {
     border: 1px solid var(--input-border-focus, #000);
   }
 }
+
 .prov {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
 }
+
 .error {
   border: 1px solid #B00000;
   background: var(--input-background, #FFF);
 }
+
 .txt {
   color: #B00000;
   font-family: Montserrat;

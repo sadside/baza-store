@@ -1,20 +1,20 @@
-import {createEvent, createStore, sample} from "effector";
+import { createEvent, createStore, sample } from "effector";
 
-const clickOut = createEvent()
-const clickOpen = createEvent()
+const clickOut = createEvent();
+const clickOpen = createEvent();
 
 
-const $activeModal = createStore<boolean>(false)
+const $activeModal = createStore<boolean>(false);
 
 sample({
-    clock: clickOut,
-    fn: () => false,
-    target: $activeModal,
-})
+  clock: clickOut,
+  fn: () => false,
+  target: $activeModal
+});
 sample({
-    clock: clickOpen,
-    fn: () => true,
-    target: $activeModal,
-})
+  clock: clickOpen,
+  fn: () => true,
+  target: $activeModal
+});
 
-export {clickOut, clickOpen, $activeModal}
+export { clickOut, clickOpen, $activeModal };

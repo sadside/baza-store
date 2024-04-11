@@ -1,11 +1,10 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
+import Link from "next/link";
+import { LkActualOrder } from "@widgets/lk-actual-order";
+import LkActualInfo from "@/source/features/lk-actual-info/ui/LkActualInfo";
 
-import s from "./Orders.module.scss";
-import OrderItem from "../orderItem/OrderItem";
-import { useUnit } from "effector-react";
-import { $orders, getOrders } from "@/stores/order/init";
 export type miniOrder = {
   name: string;
   id: number;
@@ -24,27 +23,210 @@ export type OrderType = {
   children: miniOrder[];
 };
 export const Orders = () => {
-  const orders = useUnit($orders);
+  // const orders = useUnit($orders);
+  const orders = [
+    {
+      id: "vs026775134",
+      state: "завершен",
+      date: "5 декабря 2022",
+      products: [
+        {
+          id: 123,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 124,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 125,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 126,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        }
+      ]
+    },
+    {
+      id: "vs026775135",
+      state: "завершен",
+      date: "5 декабря 2022",
+      products: [
+        {
+          id: 123,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 124,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 125,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 126,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        }
+      ]
+    },
+    {
+      id: "vs026775634",
+      state: "завершен",
+      date: "5 декабря 2022",
+      products: [
+        {
+          id: 123,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 124,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 125,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 126,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        }
+      ]
+    },
+    {
+      id: "vs026777134",
+      state: "завершен",
+      date: "5 декабря 2022",
+      products: [
+        {
+          id: 123,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 124,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 125,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 126,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        }
+      ]
+    },
+    {
+      id: "vs026975134",
+      state: "завершен",
+      date: "5 декабря 2022",
+      products: [
+        {
+          id: 123,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 124,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 125,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        },
+        {
+          id: 126,
+          price: 3000,
+          image: "/dress.png",
+          name: "Сумка Catherine из букле",
+          count: 1
+        }
+      ]
+    }
 
+  ];
   return (
     <>
       {!orders.length ? (
-        <div className={s.block}>
-          <div className={s.none}>
-            <div className={s.top}>
-              <span className={s.item}>Количество Ваших заказов сейчас: 0</span>
-              <span className={s.item}>
-                Отслеживайте свои заказы и просматривайте журнал отправки.
-              </span>
-            </div>
-            <div className={s.bottom}>История начислений баллов</div>
+        <>
+          <div className="font-medium text-[14px] leading-5 uppercase">Заказы</div>
+          <div className=" ont-medium text-[12px] mt-2.5 ">
+            У вас пока нет заказов.<br />Для оформления перейдите в каталог
           </div>
-        </div>
+          <div className="mt-[30px]">
+            <Link
+              className="  font-semibold text-[12px] uppercase px-[50px] w-[270px] py-[14px] bg-black text-white mt-[50px]"
+              href={"/"}>
+              Перейти в каталог
+            </Link>
+          </div>
+        </>
       ) : (
-        <div className={s.orders}>
-          {orders.map((o) => (
-            <OrderItem key={o.id} o={o} />
-          ))}
+        <div className="w-full">
+          <LkActualOrder />
+
+          <div className="gap-5 flex flex-col mt-5">
+            {orders.map((o) => (
+              <LkActualInfo key={o.id} actualOrder={o} />
+            ))}
+          </div>
         </div>
       )}
     </>

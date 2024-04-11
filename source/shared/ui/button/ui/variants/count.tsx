@@ -17,31 +17,31 @@ export interface countProps
 const cx = classNames.bind(styles);
 
 export const Count = ({
-  loading,
-  value,
-  plusAction,
-  minusAction,
-  minusNotAllowed,
-  plusNotAllowed,
-  ...props
-}: countProps) => {
+                        loading,
+                        value,
+                        plusAction,
+                        minusAction,
+                        minusNotAllowed,
+                        plusNotAllowed,
+                        ...props
+                      }: countProps) => {
   const [focused, setIsFocused] = useState(false);
 
   const buttonCls = cx({
     wrapper: true,
-    focused,
+    focused
   });
 
   const actionPlusCls = cx({
     action: true,
     plusNotAllowed,
-    loading,
+    loading
   });
 
   const actionMinusCls = cx({
     action: true,
     minusNotAllowed,
-    loading,
+    loading
   });
 
   const handlePlusCLick = () => {

@@ -10,11 +10,11 @@ type Props = {
 };
 
 export const Loader = ({
-  color = "#28292f",
-  height = 88,
-  width = 88,
-  variant = BUTTON_VARIANTS.SECONDARY,
-}: Props) => {
+                         color = "#28292f",
+                         height = 88,
+                         width = 88,
+                         variant = BUTTON_VARIANTS.SECONDARY
+                       }: Props) => {
   switch (variant) {
     case BUTTON_VARIANTS.SECONDARY || BUTTON_VARIANTS.COUNT:
       color = "#28292f";

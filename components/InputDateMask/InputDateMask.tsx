@@ -1,12 +1,7 @@
 import styles from "../inputPhoneMask/InputPhoneMask.module.scss";
 
 import classNames from "classnames";
-import {
-  ChangeEvent,
-  DetailedHTMLProps,
-  HTMLAttributes,
-  KeyboardEvent,
-} from "react";
+import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, KeyboardEvent } from "react";
 
 interface IProps
   extends DetailedHTMLProps<
@@ -24,14 +19,14 @@ interface IProps
 export const PATTERN = /\D/g;
 
 export const InputDateMask = ({
-  className,
-  name,
-  type,
-  error,
-  register,
-  resetFiled,
-  ...rest
-}: IProps) => {
+                                className,
+                                name,
+                                type,
+                                error,
+                                register,
+                                resetFiled,
+                                ...rest
+                              }: IProps) => {
   const getInputNumbersValue = (value: string) => {
     return value.replace(PATTERN, "");
   };
@@ -129,7 +124,7 @@ export const InputDateMask = ({
     <>
       <input
         className={classNames(`${styles.input}`, {
-          [styles.error]: error,
+          [styles.error]: error
         })}
         type={type}
         maxLength={18}

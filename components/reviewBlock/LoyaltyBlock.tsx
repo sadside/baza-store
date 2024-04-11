@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./LoyaltyBlock.module.scss";
-import Link from "next/link";
+
 type Props = {};
 
 export const LoyaltyBlock = (props: Props) => {

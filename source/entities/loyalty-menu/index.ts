@@ -1,0 +1,1 @@
+export { LoyaltySmallMenu } from "./ui/LoyaltySmallMenu";

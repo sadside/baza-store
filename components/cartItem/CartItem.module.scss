@@ -32,15 +32,17 @@
     font-style: normal;
     font-weight: 700;
     text-decoration: none;
-    color: #000;  
+    color: #000;
     margin-bottom: 15px;
 
   }
+
   .count {
     -webkit-user-select: none;
-         -moz-user-select: none;
-          -ms-user-select: none;
-              user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
     span {
       cursor: pointer;
       margin: 0 5px;
@@ -56,6 +58,7 @@
 
   }
 }
+
 .img {
   object-fit: cover;
   @media (max-width: 500px) {

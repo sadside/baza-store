@@ -2,7 +2,6 @@ import styles from "./Footer.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import appLogo from "@shared/assets/app_logo.png";
-import parts from "@/assets/dolyami.svg";
 
 type Props = {};
 

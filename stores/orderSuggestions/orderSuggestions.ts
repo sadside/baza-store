@@ -1,7 +1,3 @@
-import { createEvent, createStore, sample } from "effector";
-import axios from "axios";
-import { API_URL_CLIENT } from "@/http";
-import { createEffect } from "effector/effector.umd";
 //
 // export const cityInputChanged = createEvent<string>();
 // export const citySelected = createEvent<string>();
