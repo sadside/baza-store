@@ -1,11 +1,15 @@
-"use client";
-import { createEvent, createStore, sample } from "effector";
-import { $loginError } from "@/stores/cart/init";
+'use client';
+import { createEvent, createStore, sample } from 'effector';
+import { $loginError } from '@/stores/cart/init';
 
 export const clearDigits = createEvent<void>();
+<<<<<<< HEAD
+export const $codeDigits = createStore(['', '', '', '', '', '']).reset(clearDigits);
+=======
 export const $codeDigits = createStore(["", "", "", "", "", ""]).reset(
   clearDigits
 );
+>>>>>>> main
 
 export const digitIntroduced = createEvent<{
   value: string;
@@ -13,7 +17,7 @@ export const digitIntroduced = createEvent<{
 }>();
 
 export const digitRemoved = createEvent<number>();
-
+// [!countViews? &type=`counter` &id=`[*id*]` &tvid=`102`!]
 sample({
   clock: [digitRemoved, digitIntroduced],
   source: $loginError,
@@ -27,7 +31,7 @@ sample({
   source: $codeDigits,
   fn: (digits, newDigit) => {
     const oldDigit = digits[newDigit.position];
-    const newDigitValue = newDigit.value.trim().replace(oldDigit, "");
+    const newDigitValue = newDigit.value.trim().replace(oldDigit, '');
     const newDigits = [...digits];
     newDigits[newDigit.position] = newDigitValue;
     return newDigits;
@@ -40,7 +44,7 @@ sample({
   source: $codeDigits,
   fn: (digits, index) => {
     const newDigits = [...digits];
-    newDigits[index] = "";
+    newDigits[index] = '';
     return newDigits;
   },
   target: $codeDigits

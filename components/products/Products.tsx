@@ -1,12 +1,13 @@
-import ProductItem from "@/components/productItem/ProductItem";
+import ProductItem from '@/components/productItem/ProductItem';
 
-import styles from "./Products.module.scss";
-import { IProduct } from "@shared/types/models/Product";
+import styles from './Products.module.scss';
+import { IProduct } from '@shared/types/models/Product';
 
 const Products = ({ products }: { products: IProduct[] }) => {
+  console.log(products);
   return (
     <div className={styles.productsWrapper}>
-      {products?.length &&
+      {products?.length ? (
         products.map((product) => (
           <ProductItem
             product_id={product.product_id}
@@ -20,7 +21,10 @@ const Products = ({ products }: { products: IProduct[] }) => {
             path={product.path}
             old_price={product.old_price}
           />
-        ))}
+        ))
+      ) : (
+        <div>Товаров нет</div>
+      )}
     </div>
   );
 };

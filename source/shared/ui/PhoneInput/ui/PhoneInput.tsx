@@ -101,9 +101,9 @@ export const PhoneInput = ({
         {...props}
         onBlur={inputUnFocused}
       />
-      <div className={regionCodeHandlerClassName} onClick={handlePhoneCode}>
+      <div className={regionCodeHandlerClassName}>
         <div className={styles.regionCode}>{currentCountry}</div>
-        <Image src={arrow} alt="icon" />
+        {/*<Image src={arrow} alt="icon" />*/}
       </div>
       {isSelectOpened && isShow && (
         <div

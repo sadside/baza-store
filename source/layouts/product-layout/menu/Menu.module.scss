@@ -1,0 +1,40 @@
+.wrapper {
+	flex: 0 0 auto;
+	height: 70px;
+	display: flex;
+	z-index: 50;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: #fff;
+	align-items: center;
+	justify-content: space-around;
+	transition: transform border .2s ease-in-out ;
+	border-bottom: 1px solid #00000039;
+
+
+	.hide {
+		transform: translateY(-70px);
+	}
+	
+	.logo {
+		display: flex;
+		// width: 200px;
+		align-items: center;
+		margin-left: 40px;
+		margin-right: 40px;
+		height: 40px;
+	}
+	
+	
+	
+	.userIcon {
+		a {
+			margin: 0;
+			padding: 0;
+			height: 25px;
+		}
+	}
+}
+

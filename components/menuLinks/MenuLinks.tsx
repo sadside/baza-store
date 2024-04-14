@@ -1,13 +1,14 @@
-"use client";
-import styles from "./MenuLinks.module.scss";
+'use client';
+
+import styles from './MenuLinks.module.scss';
 import {
   $activeCategory,
   $showDropdownMenu,
   $stateOfMenu,
   dropdownMenuOpened,
-  menuChanged
-} from "@/stores/layout/menu/init";
-import { useUnit } from "effector-react";
+  menuChanged,
+} from '@/stores/layout/menu/init';
+import { useUnit } from 'effector-react';
 
 type Props = { links: any[]; mobile: boolean };
 
@@ -22,45 +23,19 @@ const MenuLinks = ({ links, mobile }: Props) => {
         {links.map((link: any) => {
           return (
             <div
-              style={{ color: "#000" }}
+              style={{ color: '#000' }}
               onMouseEnter={() => {
                 dropdownMenuOpened();
-                if (!mobile) menuChanged("color");
+                if (!mobile) menuChanged('color');
               }}
               key={link.id}
             >
-              <li
-                className={`${
-                  activeCategory?.name === link.name &&
-                  showDropdownMenu &&
-                  styles.active
-                }`}
-              >
+              <li className={`${activeCategory?.name === link.name && showDropdownMenu && styles.active}`}>
                 {link.name}
               </li>
             </div>
           );
         })}
-        {/*<Link*/}
-        {/*  href="/delivery"*/}
-        {/*  style={{ color: "#000" }}*/}
-        {/*  onMouseEnter={() => {*/}
-        {/*    if (!mobile) menuChanged("color");*/}
-        {/*    dropdownMenuClosed();*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  <li>ДОСТАВКА</li>*/}
-        {/*</Link>*/}
-        {/*<Link*/}
-        {/*  href="/loyalty"*/}
-        {/*  style={{ color: "#000" }}*/}
-        {/*  onMouseEnter={() => {*/}
-        {/*    if (!mobile) menuChanged("color");*/}
-        {/*    dropdownMenuClosed();*/}
-        {/*  }}*/}
-        {/*>*/}
-        {/*  <li>ПРОГРАММА ЛОЯЛЬНОСТИ</li>*/}
-        {/*</Link>*/}
       </ul>
     </div>
   );
