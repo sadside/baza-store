@@ -1,7 +1,6 @@
 "use client";
 import { TextBlock } from "@/components/textBlock/TextBlock";
 import styles from "./loyalty-info-page.module.scss";
-import { toast } from "react-toastify";
 
 type Props = {};
 

@@ -7,7 +7,7 @@ paths:
     post:
       operationId: auth_login_create
       tags:
-      - auth
+        - auth
       requestBody:
         content:
           application/json:
@@ -21,8 +21,8 @@ paths:
               $ref: '#/components/schemas/Login'
         required: true
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
@@ -34,9 +34,9 @@ paths:
     get:
       operationId: auth_logout_retrieve
       tags:
-      - auth
+        - auth
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           description: No response body
@@ -44,10 +44,10 @@ paths:
     get:
       operationId: auth_phone_code_retrieve
       tags:
-      - auth
+        - auth
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           description: No response body
@@ -55,7 +55,7 @@ paths:
     post:
       operationId: auth_send_code_create
       tags:
-      - auth
+        - auth
       requestBody:
         content:
           application/json:
@@ -69,8 +69,8 @@ paths:
               $ref: '#/components/schemas/PhoneNumber'
         required: true
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
@@ -82,9 +82,9 @@ paths:
     get:
       operationId: orders_calculate_retrieve
       tags:
-      - orders
+        - orders
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           description: No response body
@@ -92,9 +92,9 @@ paths:
     get:
       operationId: orders_orders_retrieve
       tags:
-      - orders
+        - orders
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -105,7 +105,7 @@ paths:
     post:
       operationId: orders_orders_create
       tags:
-      - orders
+        - orders
       requestBody:
         content:
           application/json:
@@ -119,7 +119,7 @@ paths:
               $ref: '#/components/schemas/ViewOrder'
         required: true
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -131,10 +131,10 @@ paths:
     get:
       operationId: orders_payment_retrieve
       tags:
-      - orders
+        - orders
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
@@ -146,10 +146,10 @@ paths:
     get:
       operationId: orders_payment_status_retrieve
       tags:
-      - orders
+        - orders
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
@@ -161,16 +161,16 @@ paths:
     get:
       operationId: products_detail_retrieve
       parameters:
-      - in: path
-        name: slug
-        schema:
-          type: string
-        required: true
+        - in: path
+          name: slug
+          schema:
+            type: string
+          required: true
       tags:
-      - products
+        - products
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           description: No response body
@@ -178,23 +178,23 @@ paths:
     get:
       operationId: products_filter_list
       parameters:
-      - name: page
-        required: false
-        in: query
-        description: A page number within the paginated result set.
-        schema:
-          type: integer
-      - name: page_size
-        required: false
-        in: query
-        description: Number of results to return per page.
-        schema:
-          type: integer
+        - name: page
+          required: false
+          in: query
+          description: A page number within the paginated result set.
+          schema:
+            type: integer
+        - name: page_size
+          required: false
+          in: query
+          description: Number of results to return per page.
+          schema:
+            type: integer
       tags:
-      - products
+        - products
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
@@ -206,10 +206,10 @@ paths:
     get:
       operationId: products_path_retrieve
       tags:
-      - products
+        - products
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           description: No response body
@@ -217,16 +217,16 @@ paths:
     get:
       operationId: products_product_retrieve
       parameters:
-      - in: path
-        name: id
-        schema:
-          type: integer
-        required: true
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
       tags:
-      - products
+        - products
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
@@ -238,10 +238,10 @@ paths:
     get:
       operationId: products_products_list
       tags:
-      - products
+        - products
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
@@ -255,9 +255,9 @@ paths:
     get:
       operationId: profile_cart_retrieve
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -268,7 +268,7 @@ paths:
     post:
       operationId: profile_cart_create
       tags:
-      - profile
+        - profile
       requestBody:
         content:
           application/json:
@@ -281,7 +281,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Cart'
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -292,9 +292,9 @@ paths:
     delete:
       operationId: profile_cart_destroy
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '204':
           description: No response body
@@ -302,7 +302,7 @@ paths:
     post:
       operationId: profile_cart_add_create
       tags:
-      - profile
+        - profile
       requestBody:
         content:
           application/json:
@@ -315,7 +315,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Cart'
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -327,9 +327,9 @@ paths:
     get:
       operationId: profile_cart_clear_retrieve
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           description: No response body
@@ -337,9 +337,9 @@ paths:
     get:
       operationId: profile_cart_maximization_retrieve
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -351,7 +351,7 @@ paths:
     post:
       operationId: profile_cart_remove_create
       tags:
-      - profile
+        - profile
       requestBody:
         content:
           application/json:
@@ -364,7 +364,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Cart'
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -376,27 +376,27 @@ paths:
     get:
       operationId: profile_favorites_retrieve
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           description: No response body
     post:
       operationId: profile_favorites_create
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           description: No response body
     delete:
       operationId: profile_favorites_destroy
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '204':
           description: No response body
@@ -404,9 +404,9 @@ paths:
     get:
       operationId: profile_info_retrieve
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -417,7 +417,7 @@ paths:
     post:
       operationId: profile_info_create
       tags:
-      - profile
+        - profile
       requestBody:
         content:
           application/json:
@@ -431,7 +431,7 @@ paths:
               $ref: '#/components/schemas/UserDataSerialzier'
         required: true
       security:
-      - tokenAuth: []
+        - tokenAuth: [ ]
       responses:
         '200':
           content:
@@ -443,10 +443,10 @@ paths:
     get:
       operationId: profile_search_address_retrieve
       tags:
-      - profile
+        - profile
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           description: No response body
@@ -459,141 +459,141 @@ paths:
         - YAML: application/vnd.oai.openapi
         - JSON: application/vnd.oai.openapi+json
       parameters:
-      - in: query
-        name: format
-        schema:
-          type: string
-          enum:
-          - json
-          - yaml
-      - in: query
-        name: lang
-        schema:
-          type: string
-          enum:
-          - af
-          - ar
-          - ar-dz
-          - ast
-          - az
-          - be
-          - bg
-          - bn
-          - br
-          - bs
-          - ca
-          - ckb
-          - cs
-          - cy
-          - da
-          - de
-          - dsb
-          - el
-          - en
-          - en-au
-          - en-gb
-          - eo
-          - es
-          - es-ar
-          - es-co
-          - es-mx
-          - es-ni
-          - es-ve
-          - et
-          - eu
-          - fa
-          - fi
-          - fr
-          - fy
-          - ga
-          - gd
-          - gl
-          - he
-          - hi
-          - hr
-          - hsb
-          - hu
-          - hy
-          - ia
-          - id
-          - ig
-          - io
-          - is
-          - it
-          - ja
-          - ka
-          - kab
-          - kk
-          - km
-          - kn
-          - ko
-          - ky
-          - lb
-          - lt
-          - lv
-          - mk
-          - ml
-          - mn
-          - mr
-          - ms
-          - my
-          - nb
-          - ne
-          - nl
-          - nn
-          - os
-          - pa
-          - pl
-          - pt
-          - pt-br
-          - ro
-          - ru
-          - sk
-          - sl
-          - sq
-          - sr
-          - sr-latn
-          - sv
-          - sw
-          - ta
-          - te
-          - tg
-          - th
-          - tk
-          - tr
-          - tt
-          - udm
-          - ug
-          - uk
-          - ur
-          - uz
-          - vi
-          - zh-hans
-          - zh-hant
+        - in: query
+          name: format
+          schema:
+            type: string
+            enum:
+              - json
+              - yaml
+        - in: query
+          name: lang
+          schema:
+            type: string
+            enum:
+              - af
+              - ar
+              - ar-dz
+              - ast
+              - az
+              - be
+              - bg
+              - bn
+              - br
+              - bs
+              - ca
+              - ckb
+              - cs
+              - cy
+              - da
+              - de
+              - dsb
+              - el
+              - en
+              - en-au
+              - en-gb
+              - eo
+              - es
+              - es-ar
+              - es-co
+              - es-mx
+              - es-ni
+              - es-ve
+              - et
+              - eu
+              - fa
+              - fi
+              - fr
+              - fy
+              - ga
+              - gd
+              - gl
+              - he
+              - hi
+              - hr
+              - hsb
+              - hu
+              - hy
+              - ia
+              - id
+              - ig
+              - io
+              - is
+              - it
+              - ja
+              - ka
+              - kab
+              - kk
+              - km
+              - kn
+              - ko
+              - ky
+              - lb
+              - lt
+              - lv
+              - mk
+              - ml
+              - mn
+              - mr
+              - ms
+              - my
+              - nb
+              - ne
+              - nl
+              - nn
+              - os
+              - pa
+              - pl
+              - pt
+              - pt-br
+              - ro
+              - ru
+              - sk
+              - sl
+              - sq
+              - sr
+              - sr-latn
+              - sv
+              - sw
+              - ta
+              - te
+              - tg
+              - th
+              - tk
+              - tr
+              - tt
+              - udm
+              - ug
+              - uk
+              - ur
+              - uz
+              - vi
+              - zh-hans
+              - zh-hant
       tags:
-      - schema
+        - schema
       security:
-      - tokenAuth: []
-      - {}
+        - tokenAuth: [ ]
+        - { }
       responses:
         '200':
           content:
             application/vnd.oai.openapi:
               schema:
                 type: object
-                additionalProperties: {}
+                additionalProperties: { }
             application/yaml:
               schema:
                 type: object
-                additionalProperties: {}
+                additionalProperties: { }
             application/vnd.oai.openapi+json:
               schema:
                 type: object
-                additionalProperties: {}
+                additionalProperties: { }
             application/json:
               schema:
                 type: object
-                additionalProperties: {}
+                additionalProperties: { }
           description: ''
 components:
   schemas:
@@ -613,8 +613,8 @@ components:
           maxLength: 50
           pattern: ^[-a-zA-Z0-9_]+$
       required:
-      - id
-      - name
+        - id
+        - name
     Cart:
       type: object
       properties:
@@ -627,7 +627,7 @@ components:
           minimum: 0
           title: Количество
       required:
-      - product
+        - product
     ListProduct:
       type: object
       properties:
@@ -656,12 +656,12 @@ components:
           type: string
           readOnly: true
       required:
-      - colours
-      - id
-      - modifications
-      - name
-      - path
-      - price
+        - colours
+        - id
+        - modifications
+        - name
+        - path
+        - price
     ListProducts:
       type: object
       properties:
@@ -693,15 +693,15 @@ components:
           type: string
           readOnly: true
       required:
-      - colors_count
-      - images
-      - modification_id
-      - name
-      - old_price
-      - path
-      - price
-      - product_id
-      - slug
+        - colors_count
+        - images
+        - modification_id
+        - name
+        - old_price
+        - path
+        - price
+        - product_id
+        - slug
     Login:
       type: object
       properties:
@@ -710,8 +710,8 @@ components:
         code:
           type: string
       required:
-      - code
-      - phone
+        - code
+        - phone
     PaginatedListProductList:
       type: object
       properties:
@@ -781,22 +781,22 @@ components:
           readOnly: true
           title: Подробное описание ошибки
       required:
-      - amount
-      - description
-      - details
-      - error_code
-      - id
-      - message
-      - order_id
-      - payment_id
-      - payment_url
-      - status
-      - success
+        - amount
+        - description
+        - details
+        - error_code
+        - id
+        - message
+        - order_id
+        - payment_id
+        - payment_url
+        - status
+        - success
     PaymentTypeEnum:
       enum:
-      - online
-      - cash
-      - fps
+        - online
+        - cash
+        - fps
       type: string
       description: |-
         * `online` - Картой онлайн
@@ -808,7 +808,7 @@ components:
         phone:
           type: string
       required:
-      - phone
+        - phone
     Product:
       type: object
       properties:
@@ -850,20 +850,20 @@ components:
           type: string
           readOnly: true
       required:
-      - category
-      - color_images
-      - full_path
-      - id
-      - modifications
-      - name
-      - path
-      - price
-      - slug_path
+        - category
+        - color_images
+        - full_path
+        - id
+        - modifications
+        - name
+        - path
+        - price
+        - slug_path
     ReceivingEnum:
       enum:
-      - delivery_address
-      - delivery_stock
-      - pickup
+        - delivery_address
+        - delivery_stock
+        - pickup
       type: string
       description: |-
         * `delivery_address` - Доставка до двери
@@ -871,11 +871,11 @@ components:
         * `pickup` - Самовывоз
     StatusEnum:
       enum:
-      - created
-      - paid
-      - in_delivery
-      - delivered
-      - received
+        - created
+        - paid
+        - in_delivery
+        - delivered
+        - received
       type: string
       description: |-
         * `created` - Created
@@ -935,10 +935,10 @@ components:
           title: Квартира
           maxLength: 16
       required:
-      - birthday_date
-      - email
-      - id
-      - phone
+        - birthday_date
+        - email
+        - id
+        - phone
     ViewOrder:
       type: object
       properties:
@@ -964,11 +964,11 @@ components:
           maxLength: 11
         receiving:
           allOf:
-          - $ref: '#/components/schemas/ReceivingEnum'
+            - $ref: '#/components/schemas/ReceivingEnum'
           title: Способ получения
         payment_type:
           allOf:
-          - $ref: '#/components/schemas/PaymentTypeEnum'
+            - $ref: '#/components/schemas/PaymentTypeEnum'
           title: Способ оплаты
         city:
           type: string
@@ -1010,7 +1010,7 @@ components:
           title: Дата заказа
         status:
           allOf:
-          - $ref: '#/components/schemas/StatusEnum'
+            - $ref: '#/components/schemas/StatusEnum'
           title: Статус
         receiving_date:
           type: string
@@ -1023,14 +1023,14 @@ components:
           minimum: -2147483648
           title: Бонусная программа
       required:
-      - email
-      - id
-      - name
-      - payment_type
-      - phone
-      - products
-      - receiving
-      - surname
+        - email
+        - id
+        - name
+        - payment_type
+        - phone
+        - products
+        - receiving
+        - surname
   securitySchemes:
     tokenAuth:
       type: apiKey

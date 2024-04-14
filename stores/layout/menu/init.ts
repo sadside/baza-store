@@ -1,5 +1,4 @@
 import { ICategory } from "@/components/menuCategory/menuCategory.interface";
-import { mouseLeavedFromCart } from "@/stores/cart/init";
 import { createEvent, createStore, sample } from "effector";
 
 const smallMenuClosed = createEvent();
@@ -22,22 +21,22 @@ export const heightChanged = createEvent<number>();
 
 export const $videoHeight = createStore(0).on(
   heightChanged,
-  (_, paylaod) => paylaod,
+  (_, paylaod) => paylaod
 );
 
 export const $stateOfMenu = createStore<"transparent" | "color">(
-  "transparent",
+  "transparent"
 ).on(menuChanged, (_, payload) => payload);
 export const categorySelected = createEvent<ICategory>();
 export const categoryCleared = createEvent();
 export const $activeCategoryBurger = createStore<ICategory | null>(null).on(
   categoryBurgerSelected,
-  (_, payload) => payload,
+  (_, payload) => payload
 );
 
 export const $activeCategory = createStore<ICategory | null>(null).on(
   categorySelected,
-  (_, payload) => payload,
+  (_, payload) => payload
 );
 
 $activeCategory.watch((state) => console.log(state));
@@ -45,61 +44,61 @@ $activeCategory.watch((state) => console.log(state));
 sample({
   clock: smallMenuClosed,
   fn: () => false,
-  target: $showSmallMenu,
+  target: $showSmallMenu
 });
 
 sample({
   clock: smallMenuOpened,
   fn: () => true,
-  target: $showSmallMenu,
+  target: $showSmallMenu
 });
 
 sample({
   clock: dropdownMenuClosed,
   fn: () => false,
-  target: $showDropdownMenu,
+  target: $showDropdownMenu
 });
 
 sample({
   clock: categorySelected,
   fn: () => true,
-  target: $showDropdownMenu,
+  target: $showDropdownMenu
 });
 
 sample({
   clock: HamburgMenuOpened,
   fn: () => true,
-  target: $showHamburgMenu,
+  target: $showHamburgMenu
 });
 sample({
   clock: HamburgMenuClosed,
   fn: () => false,
-  target: $showHamburgMenu,
+  target: $showHamburgMenu
 });
 sample({
   clock: HamburgCategoryOpen,
   fn: () => true,
-  target: $showBurgerCategory,
+  target: $showBurgerCategory
 });
 sample({
   clock: HamburgMenuClosed,
   fn: () => false,
-  target: $showBurgerCategory,
+  target: $showBurgerCategory
 });
 sample({
   clock: HamburgCategoryClose,
   fn: () => false,
-  target: $showBurgerCategory,
+  target: $showBurgerCategory
 });
 sample({
   clock: categoryCleared,
   fn: () => false,
-  target: $showDropdownMenu,
+  target: $showDropdownMenu
 });
 
 sample({
   clock: dropdownMenuClosed,
-  target: categoryCleared,
+  target: categoryCleared
 });
 
 export {
@@ -115,5 +114,5 @@ export {
   $showBurgerCategory,
   HamburgCategoryClose,
   categoryBurgerSelected,
-  HamburgCategoryOpen,
+  HamburgCategoryOpen
 };

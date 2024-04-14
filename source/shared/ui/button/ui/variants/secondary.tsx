@@ -2,12 +2,7 @@
 
 import styles from "./styles/secondary.module.scss";
 import { Loader } from "@/components/loader/Loader";
-import {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  ReactNode,
-  useState,
-} from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, useState } from "react";
 import classNames from "classnames/bind";
 import { BUTTON_VARIANTS } from "@shared/ui/button/ui/button-wrapper";
 
@@ -24,17 +19,17 @@ export interface primaryProps
 const cx = classNames.bind(styles);
 
 export const Secondary = ({
-  children,
-  loading,
-  disabled,
-  ...props
-}: primaryProps) => {
+                            children,
+                            loading,
+                            disabled,
+                            ...props
+                          }: primaryProps) => {
   const [focused, setIsFocused] = useState(false);
 
   const buttonCls = cx({
     wrapper: true,
     disabled,
-    focused,
+    focused
   });
 
   return (

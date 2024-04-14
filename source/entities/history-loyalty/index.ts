@@ -1,0 +1,1 @@
+export { HistoryLoyalty } from "./ui/HistoryLoyalty";

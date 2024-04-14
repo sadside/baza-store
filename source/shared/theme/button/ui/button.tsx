@@ -1,14 +1,7 @@
 "use client";
-import React, {
-  ButtonHTMLAttributes,
-  DetailedHTMLProps,
-  FormEventHandler,
-} from "react";
+import React from "react";
 import { ButtonWrapper } from "@/source/shared/ui/button";
-import {
-  Primary,
-  primaryProps,
-} from "@/source/shared/ui/button/ui/variants/primary";
+import { Primary, primaryProps } from "@/source/shared/ui/button/ui/variants/primary";
 import { Secondary } from "@/source/shared/ui/button/ui/variants/secondary";
 import { Count, countProps } from "@/source/shared/ui/button/ui/variants/count";
 
@@ -35,5 +28,5 @@ function createButton<T>(ButtonComponent: React.FC<T>) {
 export const Button = {
   Primary: createButton<primaryProps>(Primary),
   Secondary: createButton<primaryProps>(Secondary),
-  Count: createButton<countProps>(Count),
+  Count: createButton<countProps>(Count)
 };

@@ -5,7 +5,7 @@
   padding: 15px;
   flex: 1 0 100%;
 
-  h1 { 
+  h1 {
     color: #000;
     font-size: 20px;
     font-family: Montserrat;
@@ -38,6 +38,7 @@
     margin-right: 10px;
     margin-top: 10px;
   }
+
   .title {
     font-size: 14px;
     font-style: normal;
@@ -61,11 +62,13 @@
 
 .orderInfo {
   margin-top: 30px;
+
   .columnsOrder {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    span  {
+
+    span {
       font-weight: bold;
     }
 
@@ -97,6 +100,6 @@
   padding: 0 10px;
   margin-top: 30px;
   color: #333;
-font-family: Montserrat;
-font-style: normal;
+  font-family: Montserrat;
+  font-style: normal;
 }

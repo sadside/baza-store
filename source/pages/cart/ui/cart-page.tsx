@@ -3,20 +3,9 @@
 import React, { useEffect } from "react";
 import styles from "./cart-page.module.scss";
 import { useUnit } from "effector-react";
-import {
-  $cart,
-  $user,
-  addToServerFx,
-  getCartFromLocalStorageFx,
-  getCartFromServerFx,
-  removeCartItem,
-} from "@/stores/cart/init";
+import { $cart, $user, getCartFromLocalStorageFx, getCartFromServerFx } from "@/stores/cart/init";
 import { IProductCart } from "@/stores/cart/cart.interface";
-import { useRouter } from "next/navigation";
 import { EmptyCart } from "@/components/emptyCart/EmptyCart";
-import { toast } from "react-toastify";
-import { getPriceFromCart } from "@shared/utils/getFullPrice";
-import { getSalePriceFromCart } from "@shared/utils/getSalePrice";
 import { OrderDetails } from "@/source/features/order-details";
 import { ClearCart } from "@/source/features/clear-cart/";
 import { CartItem } from "@/source/features/cart-item";
@@ -28,7 +17,7 @@ export const CartPage = (props: Props) => {
 
   const user = useUnit($user);
 
-  const res = products.sort(function (a: IProductCart, b: IProductCart) {
+  const res = products.sort(function(a: IProductCart, b: IProductCart) {
     if (a.id && b.id) return a.id - b.id;
     else return 0;
   });

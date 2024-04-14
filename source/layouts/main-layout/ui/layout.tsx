@@ -6,13 +6,8 @@ import styles from "./layout.module.scss";
 import Menu from "../menu/Menu";
 import "@shared/styles/globals.scss";
 import { usePathname } from "next/navigation";
-import { dropdownMenuClosed, menuChanged } from "@/stores/layout/menu/init";
-import {
-  getCartFromLocalStorageFx,
-  getFavoritesFx,
-  getUserFx,
-  mounted,
-} from "@/stores/cart/init";
+import { dropdownMenuClosed } from "@/stores/layout/menu/init";
+import { getCartFromLocalStorageFx, getFavoritesFx, getUserFx, mounted } from "@/stores/cart/init";
 
 interface LayoutProps {
   children?: ReactNode;

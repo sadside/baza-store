@@ -7,16 +7,8 @@ import React from "react";
 
 import styles from "./SmallMenu.module.scss";
 import { useUnit } from "effector-react";
-import {
-  $showDropdownMenu,
-  $showSmallMenu,
-  $stateOfMenu,
-  dropdownMenuClosed,
-} from "@/stores/layout/menu/init";
-
-import { IUser } from "@shared/types/models/User";
+import { $showDropdownMenu, $showSmallMenu, $stateOfMenu, dropdownMenuClosed } from "@/stores/layout/menu/init";
 import { usePathname } from "next/navigation";
-import SvgSelector from "@shared/utils/SvgSelector";
 
 type Props = { links: any[] };
 
@@ -33,13 +25,13 @@ export const SmallMenu = ({ links }: Props) => {
           initial={{ y: "-120%" }}
           transition={{
             duration: 0.3,
-            type: "tween",
+            type: "tween"
           }}
           animate={{
-            y: 0,
+            y: 0
           }}
           exit={{
-            y: "-120%",
+            y: "-120%"
           }}
           className={`${styles.wrapper}`}
           // ${

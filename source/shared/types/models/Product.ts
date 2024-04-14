@@ -11,7 +11,7 @@ export interface IProduct {
     name: string,
     slug: string
   },
-  slug:string
+  slug: string
 }
 
 export type Modification = {
@@ -36,9 +36,9 @@ export interface IFullProduct {
   },
   old_price: number,
   path: {
-      id: number,
-      name: string,
-      slug: string
+    id: number,
+    name: string,
+    slug: string
   },
   sizes: {
     name: string,

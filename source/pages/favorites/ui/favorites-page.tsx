@@ -1,10 +1,9 @@
 "use client";
 
 import React from "react";
-import s from "./favorites-page.module.scss";
 import { useUnit } from "effector-react";
-import { $favorites } from "@/stores/favotites/favorites";
 import { $favoritesItems } from "@/stores/cart/init";
+import { LkFavourite } from "@widgets/lk-favourite";
 
 export type Favour = {
   name: string;
@@ -15,20 +14,43 @@ export type Favour = {
 
 export const FavoritesPage = () => {
   const favorites = useUnit($favoritesItems);
+  const favourites = [
+    {
+      id: 1,
+      price: 4500,
+      name: "СУМКА-АВОСЬКА МИДИ ИЗ ПЛАЩЕВКИ",
+      image: "/dress.png",
+      sale: 1100
+    },
+    {
+      id: 2,
+      price: 4500,
+      name: "СУМКА-АВОСЬКА МИДИ ИЗ ПЛАЩЕВКИ",
+      image: "/dress.png"
+    },
+    {
+      id: 3,
+      price: 4500,
+      name: "СУМКА-АВОСЬКА МИДИ ИЗ ПЛАЩЕВКИ",
+      image: "/dress.png",
+      sale: 1100
+    },
+    {
+      id: 4,
+      price: 4500,
+      name: "СУМКА-АВОСЬКА МИДИ ИЗ ПЛАЩЕВКИ",
+      image: "/dress.png"
+    },
+    {
+      id: 5,
+      price: 4500,
+      name: "СУМКА-АВОСЬКА МИДИ ИЗ ПЛАЩЕВКИ",
+      image: "/dress.png",
+      sale: 1100
+    }
+
+  ];
   return (
-    <>
-      {favorites.length ? (
-        <div className={s.content}>
-          {/*{favorites.map((o) => (*/}
-          {/*  <FavouriteBlock key={o.slug} o={o} />*/}
-          {/*))}*/}
-        </div>
-      ) : (
-        <div className={s.none}>
-          Чтобы добавить товар в избранное нужно нажать на сердечко на странице
-          товара
-        </div>
-      )}
-    </>
+    <LkFavourite favourites={favourites} />
   );
 };

@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./offer-page.module.scss";
 import { TextBlock } from "@/components/textBlock/TextBlock";
+
 type Props = {};
 
 export const OfferPage = (props: Props) => {

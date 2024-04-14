@@ -5,5 +5,5 @@ import { $currentCountryCode } from "@shared/ui/PhoneInput/model/countryCodes";
 
 export const $fullPhoneNumber = combine({
   code: $currentCountryCode,
-  phoneNumber: $phoneNumber,
+  phoneNumber: $phoneNumber
 });

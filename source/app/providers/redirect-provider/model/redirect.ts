@@ -6,7 +6,7 @@ const redirect = createEvent<string>();
 
 sample({
   clock: redirect,
-  target: $redirectPath,
+  target: $redirectPath
 });
 
 export { $redirectPath };

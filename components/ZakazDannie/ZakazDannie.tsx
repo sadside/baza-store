@@ -1,13 +1,11 @@
 "use client";
 
-import React, { useDeferredValue, useEffect } from "react";
+import React, { useDeferredValue } from "react";
 import s from "./index.module.scss";
 import classNames from "classnames";
 import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
 import InputForm from "@/components/inputForm/InputForm";
 import { InputNameMask } from "@/components/inputNameMask/InputNameMask";
-import { orderPageMounted } from "@/stores/order/init";
-import { convertType } from "@/utils/convertType";
 import {
   $cityInputValue,
   $citySuggestions,
@@ -25,12 +23,10 @@ import {
   houseInputChanged,
   houseSelected,
   streetInputChanged,
-  streetSelected,
+  streetSelected
 } from "@/stores/order/init";
-import { convertTypeTwo } from "@/utils/convertTypeTwo";
 import { useUnit } from "effector-react";
 import { Loader } from "@/components/loader/Loader";
-import { toast } from "react-toastify";
 import useOutside from "@/utils/useOutside";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -43,15 +39,16 @@ interface IProps {
   resetField?: any;
   setValue: any;
 }
+
 const ZakazDannie = ({
-  title,
-  main,
-  errors,
-  reset,
-  register,
-  resetField,
-  setValue,
-}: IProps) => {
+                       title,
+                       main,
+                       errors,
+                       reset,
+                       register,
+                       resetField,
+                       setValue
+                     }: IProps) => {
   const citySuggestions = useUnit($citySuggestions);
   const value = useUnit($cityInputValue);
 
@@ -73,12 +70,12 @@ const ZakazDannie = ({
   const {
     isShow: isShowCity,
     ref: cityRef,
-    setIsShow: setIsShowCity,
+    setIsShow: setIsShowCity
   } = useOutside(false);
   const {
     isShow: isShowStreet,
     ref: streetRef,
-    setIsShow: setIsShowStreet,
+    setIsShow: setIsShowStreet
   } = useOutside(false);
 
   console.log(citySuggestions);
@@ -124,7 +121,7 @@ const ZakazDannie = ({
               <span className={s.prov}>
                 <input
                   {...register("mail", {
-                    required: "Введите E-mail",
+                    required: "Введите E-mail"
                   })}
                   className={classNames(s.input, errors.mail && s.error)}
                   placeholder={"Введите E-mail.."}
@@ -174,19 +171,19 @@ const ZakazDannie = ({
                         className={s.select}
                         initial={{ height: 0, opacity: 0 }}
                         style={{
-                          overflow: "hidden",
+                          overflow: "hidden"
                         }}
                         transition={{
                           duration: 0.3,
-                          type: "tween",
+                          type: "tween"
                         }}
                         animate={{
                           height: "min-content",
-                          opacity: 1,
+                          opacity: 1
                         }}
                         exit={{
                           height: 0,
-                          opacity: 0,
+                          opacity: 0
                         }}
                       >
                         {!loadingCitySuggestions &&
@@ -230,19 +227,19 @@ const ZakazDannie = ({
                         className={s.select}
                         initial={{ height: 0, opacity: 0 }}
                         style={{
-                          overflow: "hidden",
+                          overflow: "hidden"
                         }}
                         transition={{
                           duration: 0.3,
-                          type: "tween",
+                          type: "tween"
                         }}
                         animate={{
                           height: "min-content",
-                          opacity: 1,
+                          opacity: 1
                         }}
                         exit={{
                           height: 0,
-                          opacity: 0,
+                          opacity: 0
                         }}
                       >
                         {!loadingStreetSuggestions &&
@@ -291,19 +288,19 @@ const ZakazDannie = ({
                         className={s.select}
                         initial={{ height: 0, opacity: 0 }}
                         style={{
-                          overflow: "hidden",
+                          overflow: "hidden"
                         }}
                         transition={{
                           duration: 0.3,
-                          type: "tween",
+                          type: "tween"
                         }}
                         animate={{
                           height: "min-content",
-                          opacity: 1,
+                          opacity: 1
                         }}
                         exit={{
                           height: 0,
-                          opacity: 0,
+                          opacity: 0
                         }}
                       >
                         {!loadingHouseSuggestions &&

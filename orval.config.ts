@@ -9,9 +9,9 @@ export default defineConfig({
       override: {
         mutator: {
           path: "shared/api/http/custom-instance.ts",
-          name: "$api",
-        },
-      },
-    },
-  },
+          name: "$api"
+        }
+      }
+    }
+  }
 });

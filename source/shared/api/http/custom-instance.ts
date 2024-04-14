@@ -1,13 +1,11 @@
 import axios, { AxiosError } from "axios";
-import { CamelCase } from "type-fest";
-import { cookies } from "next/headers";
 
 export const API_URL_CLIENT = "https://thebaza.ru/api/";
 export const API_URL = "https://thebaza.ru/api/";
 
 export const $api = axios.create({
   withCredentials: true,
-  baseURL: API_URL,
+  baseURL: API_URL
 });
 
 $api.interceptors.response.use(
@@ -28,8 +26,8 @@ $api.interceptors.response.use(
           `${API_URL}auth/token/refresh/`,
           {},
           {
-            withCredentials: true,
-          },
+            withCredentials: true
+          }
         );
         localStorage.setItem("token", response.data.access);
         return $api.request(originalRequest);
@@ -40,7 +38,7 @@ $api.interceptors.response.use(
       }
     }
     throw error;
-  },
+  }
 );
 
 export type ErrorType<Error> = AxiosError<Error>;

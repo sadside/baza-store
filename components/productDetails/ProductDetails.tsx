@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import styles from "./ProductDetails.module.scss";
-import SvgSelector from "@/utils/SvgSelector";
 import { CancelButton } from "../cancelButton/CancelButton";
 import { AnimatePresence, motion } from "framer-motion";
 import { Gid } from "../gid/Gid";

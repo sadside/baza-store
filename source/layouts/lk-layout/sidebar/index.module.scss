@@ -1,0 +1,9 @@
+.mobile {
+  display: none;
+  justify-content: center;
+  margin-bottom: 25px;
+  width: 100%;
+  @media (max-width: 1050px) {
+    display: flex;
+  }
+}

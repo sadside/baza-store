@@ -3,7 +3,13 @@ import { createEvent, createStore, sample } from 'effector';
 import { $loginError } from '@/stores/cart/init';
 
 export const clearDigits = createEvent<void>();
+<<<<<<< HEAD
 export const $codeDigits = createStore(['', '', '', '', '', '']).reset(clearDigits);
+=======
+export const $codeDigits = createStore(["", "", "", "", "", ""]).reset(
+  clearDigits
+);
+>>>>>>> main
 
 export const digitIntroduced = createEvent<{
   value: string;
@@ -17,7 +23,7 @@ sample({
   source: $loginError,
   filter: (err) => err !== null,
   fn: () => null,
-  target: $loginError,
+  target: $loginError
 });
 
 sample({
@@ -30,7 +36,7 @@ sample({
     newDigits[newDigit.position] = newDigitValue;
     return newDigits;
   },
-  target: $codeDigits,
+  target: $codeDigits
 });
 
 sample({
@@ -41,5 +47,5 @@ sample({
     newDigits[index] = '';
     return newDigits;
   },
-  target: $codeDigits,
+  target: $codeDigits
 });

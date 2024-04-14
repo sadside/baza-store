@@ -23,7 +23,7 @@ const schema = yup.object().shape({
   mail: yup
     .string()
     .required("Введите почту")
-    .email("Введите корректную почту"),
+    .email("Введите корректную почту")
   //   phone: yup
   //     .string()
   //     .required("Введите номер телефона")
@@ -38,7 +38,7 @@ const LcForm = () => {
       { val: "Геннадий", type: "name" },
       { val: "Васькин", type: "surname" },
       { val: "24.04.2022", type: "dateOfBth" },
-      { val: "ebanarot@gmail.com", type: "mail" },
+      { val: "ebanarot@gmail.com", type: "mail" }
       //   { val: "+7(123) 123‒45‒67", type: "phoneNumber" },
     ],
     adres: [
@@ -46,8 +46,8 @@ const LcForm = () => {
       { val: "пр-т Кирова", type: "street" },
       { val: "322a", type: "house" },
       { val: "6", type: "frame" },
-      { val: "97", type: "room" },
-    ],
+      { val: "97", type: "room" }
+    ]
   };
 
   const {
@@ -55,9 +55,9 @@ const LcForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
+    setValue
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   });
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const LcForm = () => {
     toast.promise(postUserFx(data), {
       pending: "Отправка данных на сервер...",
       error: "Упс... При отправке произошла ошибка...",
-      success: "Данные успешно изменены!",
+      success: "Данные успешно изменены!"
     });
   };
 
@@ -102,7 +102,7 @@ const LcForm = () => {
               />
               {errors.name && (
                 //@ts-ignore
-                <span className={s.txt}>{errors.name?.message}</span>
+                <span className={s.txt}>{errors.name.message}</span>
               )}
             </span>
           </div>
@@ -144,7 +144,7 @@ const LcForm = () => {
             <span className={s.prov}>
               <input
                 {...register("mail", {
-                  required: "Введите E-mail",
+                  required: "Введите E-mail"
                 })}
                 className={classNames(s.input, errors.mail && s.error)}
                 placeholder={"Введите E-mail.."}
@@ -187,7 +187,7 @@ const LcForm = () => {
           style={{
             backgroundColor: "white",
             color: "black",
-            border: "1px solid black",
+            border: "1px solid black"
           }}
         >
           Отменить

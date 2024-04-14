@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "./EmptyCart.module.scss";
-import SvgSelector from "@shared/utils/SvgSelector";
 import { Button } from "@shared/theme/button";
 import Link from "next/link";
 

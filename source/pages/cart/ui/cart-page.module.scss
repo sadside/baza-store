@@ -10,7 +10,7 @@
   }
 
 
-  h1 { 
+  h1 {
     color: #000;
     font-size: 20px;
     font-family: Montserrat;
@@ -27,7 +27,7 @@
   flex: 0 0 380px;
   @media (max-width: 1000px) {
     justify-content: flex-end;
-    flex:  0 0;
+    flex: 0 0;
     height: min-content;
   }
 }
@@ -45,6 +45,7 @@
     margin-top: 50px;
     margin-bottom: 0 !important;
   }
+
   .title {
     font-size: 14px;
     font-style: normal;
@@ -68,11 +69,13 @@
 
 .orderInfo {
   margin-top: 30px;
+
   .columnsOrder {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
-    span  {
+
+    span {
       font-weight: bold;
     }
 
@@ -104,6 +107,6 @@
   padding: 0 10px;
   margin-top: 30px;
   color: #333;
-font-family: Montserrat;
-font-style: normal;
+  font-family: Montserrat;
+  font-style: normal;
 }

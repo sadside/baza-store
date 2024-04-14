@@ -1,26 +1,25 @@
 "use client";
 
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useUnit } from "effector-react";
 import { useRouter } from "next/navigation";
-import { FormEvent, FormEventHandler, useEffect, useRef } from "react";
-import { useForm } from "react-hook-form";
+import { FormEvent, useEffect, useRef } from "react";
 import * as yup from "yup";
 import styles from "./confirm-code-page.module.scss";
-import { $phoneNumber, $user, codeInputSubmitted } from "@/stores/cart/init";
+import { $user, codeInputSubmitted } from "@/stores/cart/init";
 import { $codeDigits } from "@/stores/auth/auth";
 import { Button } from "@/source/shared/theme/button";
 import { $fullPhoneNumber } from "@/source/features/auth/model/auth";
 import { CodeInputs } from "@/source/entities/Auth/ui/CodeInputs";
 
-interface Props {}
+interface Props {
+}
 
 export type ConfirmCodeFormValue = {
   code: string;
 };
 
 const schema = yup.object().shape({
-  code: yup.string().required("Введите код").min(7, "Длина кода 6 цифр"),
+  code: yup.string().required("Введите код").min(7, "Длина кода 6 цифр")
 });
 
 export const ConfirmCodePage = (props: Props) => {

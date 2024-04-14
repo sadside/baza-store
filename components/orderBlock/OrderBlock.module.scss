@@ -9,8 +9,8 @@
   flex: 1 0 0;
   background: var(--background-color-2, #F7F7F7);
   @media (max-width: 725px) {
-      align-self: stretch;
-      flex: auto;
+    align-self: stretch;
+    flex: auto;
   }
 }
 
@@ -25,12 +25,14 @@
   text-transform: uppercase;
   margin-bottom: 10px;
 }
+
 .content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   align-self: stretch;
 }
+
 .line {
   display: flex;
   align-items: flex-start;
@@ -57,6 +59,7 @@
 .green {
   color: green;
 }
+
 .frame {
   display: flex;
   padding: 0px 30px 30px 30px;
@@ -66,9 +69,11 @@
   background-color: white;
   align-self: stretch;
 }
+
 .data {
   font-weight: 400;
 }
+
 .bottom {
   color: rgba(0, 0, 0, 0.60);
   font-family: Montserrat;
@@ -77,11 +82,13 @@
   flex: 0 0;
   font-weight: 400;
   cursor: pointer;
-  a { 
+
+  a {
     color: var(--card-action, rgba(0, 0, 0, 0.60));
     text-decoration: none;
   }
 }
+
 .red {
   color: red;
 }
@@ -92,12 +99,15 @@
   align-items: center;
   justify-content: center;
   height: 100%;
+
   a {
     color: #000 !important;
     text-decoration: none;
     font-weight: 700;
   }
+
   width: 100%;
+
   .notFoundContent {
     font-size: 16px;
     display: flex;
@@ -105,42 +115,22 @@
     flex-direction: column;
   }
 }
+
 .order {
   display: flex;
   align-items: center;
   gap: 10px;
   align-self: stretch;
+
   .left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      align-self: stretch;
-      .title {
-          color: var(--card-primary, #000);
-          text-align: center;
-          font-family: Montserrat;
-          font-size: 14px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 20px; /* 142.857% */
-          font-variant: all-small-caps;
-          letter-spacing: -0.3px;
-      }
-      .date {
-          color: var(--card-primary, #000);
-          text-align: center;
-          font-family: Montserrat;
-          font-size: 10px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 120%; /* 12px */
-          font-variant: all-small-caps;
-          letter-spacing: -0.3px;
-      }
-  }
-  .right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+
+    .title {
       color: var(--card-primary, #000);
-      text-align: right;
+      text-align: center;
       font-family: Montserrat;
       font-size: 14px;
       font-style: normal;
@@ -148,10 +138,36 @@
       line-height: 20px; /* 142.857% */
       font-variant: all-small-caps;
       letter-spacing: -0.3px;
-      display: flex;
-      align-self: stretch;
+    }
+
+    .date {
+      color: var(--card-primary, #000);
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 120%; /* 12px */
+      font-variant: all-small-caps;
+      letter-spacing: -0.3px;
+    }
+  }
+
+  .right {
+    color: var(--card-primary, #000);
+    text-align: right;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+    font-variant: all-small-caps;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-self: stretch;
   }
 }
+
 .done {
   color: #478C02;
 }

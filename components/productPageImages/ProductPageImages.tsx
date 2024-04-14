@@ -8,6 +8,7 @@ import { A11y, Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+
 type Props = {
   product: IFullProduct;
 };
@@ -38,7 +39,7 @@ export const ProductPageImages = ({ product }: Props) => {
               <Image
                 src={image.replace(
                   "http://127.0.0.1:8000/",
-                  "http://thebaza.ru/",
+                  "http://thebaza.ru/"
                 )}
                 width={500}
                 height={1150}
@@ -58,7 +59,7 @@ export const ProductPageImages = ({ product }: Props) => {
             "--swiper-pagination-bullet-inactive-color": "white",
             "--swiper-pagination-bullet-inactive-opacity": "1",
             "--swiper-pagination-bullet-size": "10px",
-            "--swiper-pagination-bullet-horizontal-gap": "6px",
+            "--swiper-pagination-bullet-horizontal-gap": "6px"
           }}
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={50}
@@ -77,7 +78,7 @@ export const ProductPageImages = ({ product }: Props) => {
                 <Image
                   src={image.replace(
                     "http://127.0.0.1:8000/",
-                    "http://thebaza.ru/",
+                    "http://thebaza.ru/"
                   )}
                   width={2500}
                   height={1150}

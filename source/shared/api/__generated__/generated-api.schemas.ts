@@ -3,118 +3,118 @@
  * Do not edit manually.
  * OpenAPI spec version: 0.0.0
  */
-export type SchemaRetrieve200Four = {[key: string]: {}};
+export type SchemaRetrieve200Four = { [key: string]: {} };
 
-export type SchemaRetrieve200Three = {[key: string]: {}};
+export type SchemaRetrieve200Three = { [key: string]: {} };
 
-export type SchemaRetrieve200Two = {[key: string]: {}};
+export type SchemaRetrieve200Two = { [key: string]: {} };
 
-export type SchemaRetrieve200One = {[key: string]: {}};
+export type SchemaRetrieve200One = { [key: string]: {} };
 
 export type SchemaRetrieveLang = typeof SchemaRetrieveLang[keyof typeof SchemaRetrieveLang];
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const SchemaRetrieveLang = {
-  af: 'af',
-  ar: 'ar',
-  'ar-dz': 'ar-dz',
-  ast: 'ast',
-  az: 'az',
-  be: 'be',
-  bg: 'bg',
-  bn: 'bn',
-  br: 'br',
-  bs: 'bs',
-  ca: 'ca',
-  ckb: 'ckb',
-  cs: 'cs',
-  cy: 'cy',
-  da: 'da',
-  de: 'de',
-  dsb: 'dsb',
-  el: 'el',
-  en: 'en',
-  'en-au': 'en-au',
-  'en-gb': 'en-gb',
-  eo: 'eo',
-  es: 'es',
-  'es-ar': 'es-ar',
-  'es-co': 'es-co',
-  'es-mx': 'es-mx',
-  'es-ni': 'es-ni',
-  'es-ve': 'es-ve',
-  et: 'et',
-  eu: 'eu',
-  fa: 'fa',
-  fi: 'fi',
-  fr: 'fr',
-  fy: 'fy',
-  ga: 'ga',
-  gd: 'gd',
-  gl: 'gl',
-  he: 'he',
-  hi: 'hi',
-  hr: 'hr',
-  hsb: 'hsb',
-  hu: 'hu',
-  hy: 'hy',
-  ia: 'ia',
-  id: 'id',
-  ig: 'ig',
-  io: 'io',
-  is: 'is',
-  it: 'it',
-  ja: 'ja',
-  ka: 'ka',
-  kab: 'kab',
-  kk: 'kk',
-  km: 'km',
-  kn: 'kn',
-  ko: 'ko',
-  ky: 'ky',
-  lb: 'lb',
-  lt: 'lt',
-  lv: 'lv',
-  mk: 'mk',
-  ml: 'ml',
-  mn: 'mn',
-  mr: 'mr',
-  ms: 'ms',
-  my: 'my',
-  nb: 'nb',
-  ne: 'ne',
-  nl: 'nl',
-  nn: 'nn',
-  os: 'os',
-  pa: 'pa',
-  pl: 'pl',
-  pt: 'pt',
-  'pt-br': 'pt-br',
-  ro: 'ro',
-  ru: 'ru',
-  sk: 'sk',
-  sl: 'sl',
-  sq: 'sq',
-  sr: 'sr',
-  'sr-latn': 'sr-latn',
-  sv: 'sv',
-  sw: 'sw',
-  ta: 'ta',
-  te: 'te',
-  tg: 'tg',
-  th: 'th',
-  tk: 'tk',
-  tr: 'tr',
-  tt: 'tt',
-  udm: 'udm',
-  ug: 'ug',
-  uk: 'uk',
-  ur: 'ur',
-  uz: 'uz',
-  vi: 'vi',
-  'zh-hans': 'zh-hans',
-  'zh-hant': 'zh-hant',
+  af: "af",
+  ar: "ar",
+  "ar-dz": "ar-dz",
+  ast: "ast",
+  az: "az",
+  be: "be",
+  bg: "bg",
+  bn: "bn",
+  br: "br",
+  bs: "bs",
+  ca: "ca",
+  ckb: "ckb",
+  cs: "cs",
+  cy: "cy",
+  da: "da",
+  de: "de",
+  dsb: "dsb",
+  el: "el",
+  en: "en",
+  "en-au": "en-au",
+  "en-gb": "en-gb",
+  eo: "eo",
+  es: "es",
+  "es-ar": "es-ar",
+  "es-co": "es-co",
+  "es-mx": "es-mx",
+  "es-ni": "es-ni",
+  "es-ve": "es-ve",
+  et: "et",
+  eu: "eu",
+  fa: "fa",
+  fi: "fi",
+  fr: "fr",
+  fy: "fy",
+  ga: "ga",
+  gd: "gd",
+  gl: "gl",
+  he: "he",
+  hi: "hi",
+  hr: "hr",
+  hsb: "hsb",
+  hu: "hu",
+  hy: "hy",
+  ia: "ia",
+  id: "id",
+  ig: "ig",
+  io: "io",
+  is: "is",
+  it: "it",
+  ja: "ja",
+  ka: "ka",
+  kab: "kab",
+  kk: "kk",
+  km: "km",
+  kn: "kn",
+  ko: "ko",
+  ky: "ky",
+  lb: "lb",
+  lt: "lt",
+  lv: "lv",
+  mk: "mk",
+  ml: "ml",
+  mn: "mn",
+  mr: "mr",
+  ms: "ms",
+  my: "my",
+  nb: "nb",
+  ne: "ne",
+  nl: "nl",
+  nn: "nn",
+  os: "os",
+  pa: "pa",
+  pl: "pl",
+  pt: "pt",
+  "pt-br": "pt-br",
+  ro: "ro",
+  ru: "ru",
+  sk: "sk",
+  sl: "sl",
+  sq: "sq",
+  sr: "sr",
+  "sr-latn": "sr-latn",
+  sv: "sv",
+  sw: "sw",
+  ta: "ta",
+  te: "te",
+  tg: "tg",
+  th: "th",
+  tk: "tk",
+  tr: "tr",
+  tt: "tt",
+  udm: "udm",
+  ug: "ug",
+  uk: "uk",
+  ur: "ur",
+  uz: "uz",
+  vi: "vi",
+  "zh-hans": "zh-hans",
+  "zh-hant": "zh-hant"
 } as const;
 
 export type SchemaRetrieveFormat = typeof SchemaRetrieveFormat[keyof typeof SchemaRetrieveFormat];
@@ -122,24 +122,24 @@ export type SchemaRetrieveFormat = typeof SchemaRetrieveFormat[keyof typeof Sche
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const SchemaRetrieveFormat = {
-  json: 'json',
-  yaml: 'yaml',
+  json: "json",
+  yaml: "yaml"
 } as const;
 
 export type SchemaRetrieveParams = {
-format?: SchemaRetrieveFormat;
-lang?: SchemaRetrieveLang;
+  format?: SchemaRetrieveFormat;
+  lang?: SchemaRetrieveLang;
 };
 
 export type ProductsFilterListParams = {
-/**
- * A page number within the paginated result set.
- */
-page?: number;
-/**
- * Number of results to return per page.
- */
-page_size?: number;
+  /**
+   * A page number within the paginated result set.
+   */
+  page?: number;
+  /**
+   * Number of results to return per page.
+   */
+  page_size?: number;
 };
 
 export interface ViewOrder {
@@ -180,36 +180,36 @@ export interface UserDataSerialzier {
 
 /**
  * * `created` - Created
-* `paid` - Paid
-* `in_delivery` - In Delivery
-* `delivered` - Delivered
-* `received` - Received
+ * `paid` - Paid
+ * `in_delivery` - In Delivery
+ * `delivered` - Delivered
+ * `received` - Received
  */
 export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const StatusEnum = {
-  created: 'created',
-  paid: 'paid',
-  in_delivery: 'in_delivery',
-  delivered: 'delivered',
-  received: 'received',
+  created: "created",
+  paid: "paid",
+  in_delivery: "in_delivery",
+  delivered: "delivered",
+  received: "received"
 } as const;
 
 /**
  * * `delivery_address` - Доставка до двери
-* `delivery_stock` - Доставка до склада
-* `pickup` - Самовывоз
+ * `delivery_stock` - Доставка до склада
+ * `pickup` - Самовывоз
  */
 export type ReceivingEnum = typeof ReceivingEnum[keyof typeof ReceivingEnum];
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ReceivingEnum = {
-  delivery_address: 'delivery_address',
-  delivery_stock: 'delivery_stock',
-  pickup: 'pickup',
+  delivery_address: "delivery_address",
+  delivery_stock: "delivery_stock",
+  pickup: "pickup"
 } as const;
 
 export interface Product {
@@ -232,17 +232,17 @@ export interface PhoneNumber {
 
 /**
  * * `online` - Картой онлайн
-* `cash` - Наличными
-* `fps` - СБП
+ * `cash` - Наличными
+ * `fps` - СБП
  */
 export type PaymentTypeEnum = typeof PaymentTypeEnum[keyof typeof PaymentTypeEnum];
 
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PaymentTypeEnum = {
-  online: 'online',
-  cash: 'cash',
-  fps: 'fps',
+  online: "online",
+  cash: "cash",
+  fps: "fps"
 } as const;
 
 export interface Payment {

@@ -1,5 +1,4 @@
 
-
 .poluch {
   color: #000;
   font-family: Montserrat;
@@ -8,12 +7,14 @@
   font-weight: 700;
   line-height: 130%; /* 20.8px */
 }
+
 .root {
   display: flex;
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
   gap: 22px;
+
   ul {
     padding: 0;
     @media (max-width: 720px) {
@@ -59,6 +60,7 @@
     }
   }
 }
+
 .active {
   &:after {
     width: 100% !important;
@@ -71,6 +73,7 @@
   align-items: flex-start;
   gap: 10px;
   border: 1px solid var(--input-border-default, #999);
+
   .content {
     display: flex;
     align-items: flex-start;
@@ -84,16 +87,19 @@
       align-self: stretch;
     }
   }
+
   .img {
     width: 225px;
     height: 214px;
   }
+
   .card {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
   }
+
   .title {
     color: #000;
     font-family: Montserrat;
@@ -102,6 +108,7 @@
     font-weight: 600;
     line-height: 120%; /* 14.4px */
   }
+
   .adres {
     color: #333;
     font-family: Montserrat;
@@ -110,11 +117,13 @@
     font-weight: 400;
     line-height: 120%; /* 14.4px */
   }
+
   .frame {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+
     .bolt {
       color: #333;
       font-family: Montserrat;
@@ -123,6 +132,7 @@
       font-weight: 500;
       line-height: 120%; /* 14.4px */
     }
+
     .def {
       color: #333;
       font-family: Montserrat;
@@ -132,6 +142,7 @@
       line-height: 120%; /* 14.4px */
     }
   }
+
   .bottom {
     color: #333;
     font-family: Montserrat;

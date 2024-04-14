@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Loader from "@/source/shared/assets/svg-loaders/2.svg";
 
 export default function Loading() {
@@ -9,7 +8,7 @@ export default function Loading() {
         flex: "1 1 100%",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center",
+        alignItems: "center"
       }}
     >
       <Loader />

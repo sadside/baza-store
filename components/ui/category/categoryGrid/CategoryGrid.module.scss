@@ -1,18 +1,20 @@
 .wrapper {
-	.twoItems {
-		display: flex;
-		overflow: hidden;
-		margin-top: -17%;
-		&:last-child {
-			margin-bottom: -17%;
-		}
-	}
-	.threeItems {
-		display: flex;
-		overflow: hidden;
+  .twoItems {
+    display: flex;
+    overflow: hidden;
+    margin-top: -17%;
 
-		a {
-			flex: 0 0 33.3% !important;
-		}
-	}
+    &:last-child {
+      margin-bottom: -17%;
+    }
+  }
+
+  .threeItems {
+    display: flex;
+    overflow: hidden;
+
+    a {
+      flex: 0 0 33.3% !important;
+    }
+  }
 }

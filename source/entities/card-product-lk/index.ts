@@ -1,0 +1,1 @@
+export { CardProductLk } from "./ui/CardProductLk";

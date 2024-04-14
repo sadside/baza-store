@@ -1,4 +1,4 @@
-import { createEvent, createStore, sample } from "effector";
+import { createEvent, createStore } from "effector";
 
 const clickSam = createEvent();
 const clickDost = createEvent();
@@ -11,7 +11,7 @@ const $activeMeth = createStore<string>("pickup")
 
 const $activeOplata = createStore<string>("Nal").on(
   clickOplata,
-  (_, payload) => payload,
+  (_, payload) => payload
 );
 
 export { clickSam, clickDost, $activeMeth, $activeOplata, clickOplata };

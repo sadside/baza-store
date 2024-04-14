@@ -2,7 +2,6 @@ import styles from "./cart-item.module.scss";
 import { IProductCart } from "@/stores/cart/cart.interface";
 import test from "@shared/assets/pic.png";
 import Image from "next/image";
-import HeartIcon from "@shared/assets/icons/123.svg";
 import { CartItemPrice } from "@/source/features/cart-item/ui/cart-item-price/ui/cart-item-price";
 import { HeartButton } from "@shared/ui/heart-button/ui/heart-button";
 import { CartItemsActions } from "@/source/features/cart-items-actions";

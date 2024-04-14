@@ -2,10 +2,10 @@
 
 import React from "react";
 import s from "./FavouriteBlock.module.scss";
-import classNames from "classnames";
 import { IServerFavorite } from "@shared/types/models/Favorites";
 import { deleteFavoriteToServerFx, removeFavorite } from "@/stores/cart/init";
 import SvgSelector from "@shared/utils/SvgSelector";
+
 type Props = {
   o: IServerFavorite;
 };

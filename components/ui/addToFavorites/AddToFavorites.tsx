@@ -1,19 +1,9 @@
 "use client";
 
 import SvgSelector from "@shared/utils/SvgSelector";
-
-type Props = {
-  product: IFullProduct;
-};
-
 import styles from "./AddToFavorites.module.scss";
 import { useEffect, useState } from "react";
-import { IProduct } from "@/components/productItem/productItem.interface";
 import { useUnit } from "effector-react";
-import {
-  $selectedColor,
-  $selectedSize,
-} from "@/stores/ui/products/productSize";
 import { IFullProduct } from "@shared/types/models/Product";
 import {
   $favorites,
@@ -21,8 +11,12 @@ import {
   addFavorite,
   addFavoriteToServerFx,
   deleteFavoriteToServerFx,
-  removeFavorite,
+  removeFavorite
 } from "@/stores/cart/init";
+
+type Props = {
+  product: IFullProduct;
+};
 
 export const AddToFavorites = ({ product }: Props) => {
   const user = useUnit($user);

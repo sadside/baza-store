@@ -1,4 +1,3 @@
-import { translatePath } from "@/utils/translatePath";
 import styles from "./breadcrumbs.module.scss";
 
 type Props = {

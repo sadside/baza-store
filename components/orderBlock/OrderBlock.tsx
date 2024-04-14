@@ -1,14 +1,16 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import s from "./OrderBlock.module.scss";
 import Link from "next/link";
 import { $orders, getOrders } from "@/stores/order/init";
 import { useUnit } from "effector-react";
-import { getOrderPrice } from "@/utils/getOrderPrice";
-import { convertOrderStatus } from "@/utils/convertOrderStatus";
+
 import { Loader } from "../loader/Loader";
-import {clickCategory} from "@/stores/lc/init";
+import { clickCategory } from "@/stores/lc/init";
+import { getOrderPrice } from "@shared/utils/getOrderPrice";
+import { convertOrderStatus } from "@shared/utils/convertOrderStatus";
+
 type Props = {};
 
 export const OrderBlock = (props: Props) => {
@@ -56,7 +58,7 @@ export const OrderBlock = (props: Props) => {
             </div>
           </div>
           <div className={s.bottom}>
-            <Link href="/lk/orders/"  onClick={()=> clickCategory(3)}>Список заказов</Link>
+            <Link href="/lk/orders/" onClick={() => clickCategory(3)}>Список заказов</Link>
           </div>
         </>
       ) : (

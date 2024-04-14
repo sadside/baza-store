@@ -33,7 +33,7 @@ export const SelectProductColor = ({ colours, current_color }: Props) => {
               className={clsx({
                 [styles.colorPrickerBtn]: true,
                 [styles.selectedColorBtn]:
-                  color.hex_code === current_color.hex_code,
+                color.hex_code === current_color.hex_code
               })}
               key={color.hex_code}
             ></Link>

@@ -2,27 +2,27 @@
 
 
 .wrapper {
-    margin-top: 25px;
+  margin-top: 25px;
 
-    .header {
-        display: flex;
-        margin-bottom: 21px;
-        align-items: center;
+  .header {
+    display: flex;
+    margin-bottom: 21px;
+    align-items: center;
 
-        div:first-child {
-            flex: 1 1 auto;
-            font-size: 16px;
-            height: -webkit-min-content;
-            height: -moz-min-content;
-            height: min-content;
-            font-family: Montserrat;
-            font-weight: 700;
-        }
+    div:first-child {
+      flex: 1 1 auto;
+      font-size: 16px;
+      height: -webkit-min-content;
+      height: -moz-min-content;
+      height: min-content;
+      font-family: Montserrat;
+      font-weight: 700;
     }
+  }
 
-    .productDetail {
-        @media (min-width: 1200px) and (max-width: 2600px) {
-            font-size: 14px;
-        }
+  .productDetail {
+    @media (min-width: 1200px) and (max-width: 2600px) {
+      font-size: 14px;
     }
+  }
 }

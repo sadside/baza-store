@@ -13,7 +13,7 @@ const LcLinks = () => {
     { name: "избранное", id: 2, path: "favourite" },
     { name: "заказы", id: 3, path: "orders" },
     { name: "baza loyalty", id: 4, path: "baza-loyalty" },
-    { name: "учетные данные", id: 5, path: "info" },
+    { name: "учетные данные", id: 5, path: "info" }
   ];
   const activeCategory = useStore($activeCategory);
   React.useEffect(() => {

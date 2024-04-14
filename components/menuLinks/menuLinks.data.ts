@@ -14,35 +14,35 @@ export const links: LinkType[] = [
     title: "Женщины",
     link: "zhenskoe",
     options: {
-      categories: true,
-    },
+      categories: true
+    }
   },
   {
     title: "Мужчины",
     link: "muzhskoe",
     options: {
-      categories: true,
-    },
+      categories: true
+    }
   },
   {
     title: "Дети",
     link: "kids",
     options: {
-      categories: true,
-    },
+      categories: true
+    }
   },
   {
     title: "Доставка",
     link: "delivery",
     options: {
-      categories: false,
-    },
+      categories: false
+    }
   },
   {
     title: "Программа лояльности",
     link: "loyalty",
     options: {
-      categories: false,
-    },
-  },
+      categories: false
+    }
+  }
 ];

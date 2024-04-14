@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 
 const createListWithNewProduct = (
   products: IProductCart[],
-  product: IProductCart,
+  product: IProductCart
 ) => {
   if (products.length) {
     products = products.map((item) => {
@@ -49,13 +49,13 @@ export const normilzeProductCount =
 
 const incrementProductCount = (
   { cart }: { cart: IProductCart[] },
-  { id, size }: IProductCart,
+  { id, size }: IProductCart
 ) => {
   return cart.map((product) => {
     if (product.id === id && product.size == size) {
       return {
         ...product,
-        count: product.count ? product.count + 1 : 1,
+        count: product.count ? product.count + 1 : 1
       };
     }
     return product;
@@ -64,7 +64,7 @@ const incrementProductCount = (
 
 const decrementProductCount = (
   { cart }: { cart: IProductCart[] },
-  { id, size }: IProductCart,
+  { id, size }: IProductCart
 ) => {
   let res = cart.map((product) => {
     if (product.id === id && product.size == size) {
@@ -72,7 +72,7 @@ const decrementProductCount = (
 
       return {
         ...product,
-        count: product.count ? product.count - 1 : 1,
+        count: product.count ? product.count - 1 : 1
       };
     }
     return product;
@@ -85,5 +85,5 @@ const decrementProductCount = (
 export {
   createListWithNewProduct,
   incrementProductCount,
-  decrementProductCount,
+  decrementProductCount
 };
