@@ -1,27 +1,14 @@
-<<<<<<< HEAD
 'use client';
-import Link from 'next/link';
-import { ICategory } from '../menuCategory/menuCategory.interface';
 
 import styles from './MenuLinks.module.scss';
-=======
-"use client";
-import styles from "./MenuLinks.module.scss";
->>>>>>> main
 import {
   $activeCategory,
   $showDropdownMenu,
   $stateOfMenu,
   dropdownMenuOpened,
-<<<<<<< HEAD
   menuChanged,
 } from '@/stores/layout/menu/init';
 import { useUnit } from 'effector-react';
-=======
-  menuChanged
-} from "@/stores/layout/menu/init";
-import { useUnit } from "effector-react";
->>>>>>> main
 
 type Props = { links: any[]; mobile: boolean };
 

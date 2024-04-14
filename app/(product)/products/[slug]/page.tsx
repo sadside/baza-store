@@ -18,13 +18,7 @@ export async function generateMetadata({ params: { slug } }: params) {
 
   return {
     title: product.name,
-<<<<<<< HEAD:app/(product)/products/[slug]/page.tsx
     description: `${product.description ? product.description : 'Скоро мы добавим описание'}`,
-=======
-    description: `${
-      product.description ? product.description : "Скоро мы добавим описание"
-    }`
->>>>>>> main:app/(main-layout)/products/[slug]/page.tsx
   };
 }
 
@@ -42,7 +36,7 @@ async function getProduct(slug: string) {
   }
 }
 
-export default async function({ params: { slug } }: params) {
+export default async function ({ params: { slug } }: params) {
   const product: IFullProduct = await getProduct(slug);
 
   return <ProductPage product={product} />;

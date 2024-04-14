@@ -7,24 +7,14 @@ import { Layout } from '@/source/layouts/main-layout';
 import '@shared/styles/globals.scss';
 
 export const metadata = {
-<<<<<<< HEAD
   title: 'BAZA',
   manifest: '/manifest.json',
   themeColor: '#ffffff',
-=======
-  title: "BAZA",
-  manifest: "/manifest.json",
-  themeColor: "#ffffff"
->>>>>>> main
 };
 
 const getData = async () => {
   const res = await fetch(`${API_URL}products/path/`, {
-<<<<<<< HEAD
     cache: 'no-store',
-=======
-    cache: "no-store"
->>>>>>> main
   });
 
   const links = await res.json();
@@ -34,15 +24,7 @@ const getData = async () => {
   return links;
 };
 
-<<<<<<< HEAD
 export default async function MainLayout({ children }: { children: React.ReactNode }) {
-=======
-export default async function MainLayout({
-                                           children
-                                         }: {
-  children: React.ReactNode;
-}) {
->>>>>>> main
   const links = await getData();
 
   return (
