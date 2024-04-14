@@ -1,10 +1,15 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   darkMode: ['class'],
-  content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './source/**/*.{ts,tsx}'],
+  content: [
+    './pages/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './src/**/*.{ts,tsx}',
+    './source/**/*.{ts,tsx}',
+  ],
   prefix: '',
   theme: {
-    fontFamily: {},
     container: {
       center: true,
       padding: '2rem',
@@ -14,6 +19,25 @@ module.exports = {
     },
     extend: {
       colors: {
+        black: {
+          200: '#777777',
+          400: 'rgba(41, 41, 41, 1)',
+          5: '#F0F0F0',
+          300: '#4E4E4E',
+          25: '#DEDEDE',
+          100: '#A2A2A2',
+          50: '#D0D0D0',
+          DEFAULT: 'black',
+        },
+        white: {
+          600: 'rgba(247, 247, 247, 1)',
+          DEFAULT: 'white',
+        },
+        green: '#77BD8B',
+        yellow: '#FFEB7F',
+        lightGray: '#F0F0F0',
+        backBazaLogo: 'rgba(1, 1, 1, 0.1)',
+        red: '#C01111',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -63,6 +87,9 @@ module.exports = {
           to: { height: '0' },
         },
       },
+      fontFamily: {
+        Montserrat: 'Montserrat',
+      },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
@@ -70,7 +97,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-  // corePlugins: {
-  //   preflight: false,
-  // },
 };
