@@ -2,12 +2,13 @@
 	flex: 0 0 auto;
 	height: 70px;
 	display: flex;
-	z-index: 50;
+	z-index: 2;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	align-items: center;
+	margin-right: 0 !important;
 	justify-content: space-around;
 	@media (max-width: 1000px) {
 		justify-content: space-between;
@@ -39,6 +40,7 @@
 
 	.linksWrapper {
 		flex: 1 1 50%;
+		margin-right: 0 !important;
 		padding: 0 30px;
 		display: flex;
 		align-items: center;

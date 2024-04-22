@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { IFullProduct } from "@shared/types/models/Product";
-import styles from "./ProductPageImages.module.scss";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { IFullProduct } from '@shared/types/models/Product';
+import styles from './ProductPageImages.module.scss';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { A11y, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 type Props = {
   product: IFullProduct;
@@ -37,15 +37,13 @@ export const ProductPageImages = ({ product }: Props) => {
           return (
             <>
               <Image
-                src={image.replace(
-                  "http://127.0.0.1:8000/",
-                  "http://thebaza.ru/"
-                )}
+                src={image.replace('http://127.0.0.1:8000/', 'http://thebaza.ru/')}
                 width={500}
                 height={1150}
-                alt="ssss"
+                alt="Изображение товара"
                 className={styles.productImage}
                 key={index}
+                priority
               />
             </>
           );
@@ -55,11 +53,11 @@ export const ProductPageImages = ({ product }: Props) => {
         <Swiper
           style={{
             // @ts-ignore
-            "--swiper-pagination-color": "black",
-            "--swiper-pagination-bullet-inactive-color": "white",
-            "--swiper-pagination-bullet-inactive-opacity": "1",
-            "--swiper-pagination-bullet-size": "10px",
-            "--swiper-pagination-bullet-horizontal-gap": "6px"
+            '--swiper-pagination-color': 'black',
+            '--swiper-pagination-bullet-inactive-color': 'white',
+            '--swiper-pagination-bullet-inactive-opacity': '1',
+            '--swiper-pagination-bullet-size': '10px',
+            '--swiper-pagination-bullet-horizontal-gap': '6px',
           }}
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={50}
@@ -70,16 +68,13 @@ export const ProductPageImages = ({ product }: Props) => {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log("slide change")}
+          onSlideChange={() => console.log('slide change')}
         >
           {product.images.map((image, index) => {
             return (
               <SwiperSlide>
                 <Image
-                  src={image.replace(
-                    "http://127.0.0.1:8000/",
-                    "http://thebaza.ru/"
-                  )}
+                  src={image.replace('http://127.0.0.1:8000/', 'http://thebaza.ru/')}
                   width={2500}
                   height={1150}
                   alt="ssss"

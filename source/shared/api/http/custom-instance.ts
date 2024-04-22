@@ -1,11 +1,11 @@
-import axios, { AxiosError } from "axios";
+import axios, { AxiosError } from 'axios';
 
-export const API_URL_CLIENT = "https://thebaza.ru/api/";
-export const API_URL = "https://thebaza.ru/api/";
+export const API_URL_CLIENT = 'http://127.0.0.1:8000/api/';
+export const API_URL = 'https://thebaza.ru/api/';
 
 export const $api = axios.create({
   withCredentials: true,
-  baseURL: API_URL
+  baseURL: API_URL,
 });
 
 $api.interceptors.response.use(
@@ -14,11 +14,7 @@ $api.interceptors.response.use(
   },
   async (error) => {
     const originalRequest = error.config;
-    if (
-      error.response.status == 401 &&
-      error.config &&
-      !error.config._isRetry
-    ) {
+    if (error.response.status == 401 && error.config && !error.config._isRetry) {
       originalRequest._isRetry = true;
 
       try {
@@ -26,10 +22,10 @@ $api.interceptors.response.use(
           `${API_URL}auth/token/refresh/`,
           {},
           {
-            withCredentials: true
+            withCredentials: true,
           }
         );
-        localStorage.setItem("token", response.data.access);
+        localStorage.setItem('token', response.data.access);
         return $api.request(originalRequest);
       } catch (e: any) {
         if (e.response.status === 400) {

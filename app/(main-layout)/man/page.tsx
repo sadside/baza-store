@@ -12,7 +12,7 @@ async function getProducts(category: string) {
 }
 
 export default async function () {
-  const products = await getProducts('muzhskoe');
+  const products = await getProducts('man');
 
   return <CategoryPage products={products.products} breadcrumbs={products.breadcrumbs} />;
 }

@@ -22,9 +22,9 @@
       cursor: pointer;
       font-size: 22px;
 
-      &:focus {
-        border: 2px solid #9747FF !important;
-      }
+      //&:focus {
+      //  border: 2px solid #9747FF !important;
+      //}
 
       &.plusNotAllowed, &.loading {
         color: #D0D0D0 !important;

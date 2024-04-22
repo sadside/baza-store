@@ -1,14 +1,10 @@
-import styles from "./cart-items-actions.module.scss";
-import {
-  $user,
-  addToServerFx,
-  productCounDecremented,
-  productCountIncremented,
-  removeCartItem
-} from "@/stores/cart/init";
-import React from "react";
-import { useUnit } from "effector-react";
-import { IProductCart } from "@/stores/cart/cart.interface";
+import styles from './cart-items-actions.module.scss';
+import { $user } from '@/stores/cart/init';
+import React from 'react';
+import { useUnit } from 'effector-react';
+import { IProductCart } from '@/stores/cart/cart.interface';
+import { MinusIcon, PlusIcon } from 'lucide-react';
+import { productDecremented, productIncremented } from '@entities/cart/model/cart';
 
 interface CartItemsActionsProps {
   product: IProductCart;
@@ -17,44 +13,36 @@ interface CartItemsActionsProps {
 export const CartItemsActions = ({ product }: CartItemsActionsProps) => {
   const user = useUnit($user);
 
-  const { count, server_count } = product;
+  const { quantityInCart, quantityInShop, slug, price } = product;
 
-  const isLoading1 = useUnit(addToServerFx.pending);
-  const isLoading2 = useUnit(removeCartItem.pending);
+  const handlePlusClick = () => {
+    productIncremented(slug);
+  };
+
+  const handleMinusClick = () => {
+    productDecremented(slug);
+  };
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <div className={styles.count}>
-          Количество:
-          <span
-            onClick={() => {
-              if (!isLoading2 && !isLoading1) {
-                if (!user) {
-                  productCounDecremented(product);
-                }
-
-                if (user && product?.id) removeCartItem(product.id);
-              }
-            }}
+      <div className="w-full flex justify-between">
+        <div className="flex items-center">
+          <p className="text-[12px] mr-2">Количество</p>
+          <button
+            className="py-2 bg-gray-100 w-5 rounded h-3 flex items-center justify-center mx-1"
+            onClick={handleMinusClick}
           >
-            -
-          </span>
-          <span>{count}</span>
-          <span
-            onClick={() => {
-              if (!isLoading2 && !isLoading1 && count && count < server_count) {
-                if (!user) productCountIncremented(product);
-
-                if (user && count && count < server_count)
-                  product?.id && addToServerFx(product.id);
-              }
-            }}
+            <MinusIcon width={13} />
+          </button>
+          <p className="mx-2 font-semibold text-[12px]">{quantityInCart}</p>
+          <button
+            className=" py-2 bg-gray-100 w-5 rounded h-3 flex items-center justify-center mx-1"
+            onClick={handlePlusClick}
+            disabled={quantityInCart + 1 > quantityInShop}
           >
-            +
-          </span>
+            <PlusIcon width={13} color={quantityInCart + 1 > quantityInShop ? 'gray' : 'black'} />
+          </button>
         </div>
-        <div className={styles.removeProduct}>Удалить</div>
       </div>
     </>
   );

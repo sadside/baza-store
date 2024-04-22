@@ -1,12 +1,12 @@
-import styles from "./order-details.module.scss";
-import React from "react";
-import { getSalePriceFromCart } from "@shared/utils/getSalePrice";
-import { getPriceFromCart } from "@shared/utils/getFullPrice";
-import { useUnit } from "effector-react";
-import { $cart } from "@/stores/cart/init";
-import PartsLogo from "@shared/assets/icons/parts.svg";
-import RightArrow from "@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg";
-import { Button } from "@shared/theme/button";
+import styles from './order-details.module.scss';
+import React from 'react';
+import { getSalePriceFromCart } from '@shared/utils/getSalePrice';
+import { getPriceFromCart } from '@shared/utils/getFullPrice';
+import { useUnit } from 'effector-react';
+import PartsLogo from '@shared/assets/icons/parts.svg';
+import RightArrow from '@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg';
+import { Button } from '@shared/theme/button';
+import { $cart } from '@entities/cart/model/cart';
 
 interface OrderDetailsProps {
   className?: string;
@@ -48,12 +48,8 @@ export const OrderDetails = ({}: OrderDetailsProps) => {
         <div className={styles.value}>4 платежа по {salePrice / 4}</div>
         <RightArrow />
       </button>
-      <Button.Primary style={{ marginBottom: 16 }}>
-        Оформить заказ
-      </Button.Primary>
-      <p className={styles.loyaltyInfo}>
-        АВТОРИЗУЙТЕСЬ, ЧТОБЫ СПИСАТЬ ИЛИ НАКОПИТЬ БАЛЛЫ
-      </p>
+      <Button.Primary style={{ marginBottom: 16 }}>Оформить заказ</Button.Primary>
+      <p className={styles.loyaltyInfo}>АВТОРИЗУЙТЕСЬ, ЧТОБЫ СПИСАТЬ ИЛИ НАКОПИТЬ БАЛЛЫ</p>
     </div>
   );
 };

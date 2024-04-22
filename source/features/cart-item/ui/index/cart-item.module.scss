@@ -1,6 +1,7 @@
 .wrapper {
   display: flex;
   gap: 18px;
+  @apply border-b border-gray-100;
 }
 
 .content {

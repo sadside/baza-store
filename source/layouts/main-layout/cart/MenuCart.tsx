@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import { $cart } from "@/stores/cart/init";
-import { useUnit } from "effector-react";
-import React from "react";
+import { useUnit } from 'effector-react';
+import React from 'react';
 
-import styles from "./MenuCart.module.scss";
+import styles from './MenuCart.module.scss';
+import { $cart } from '@entities/cart/model/cart';
 
 type Props = {};
 
@@ -12,7 +12,7 @@ export const MenuCart = (props: Props) => {
   const products = useUnit($cart);
   console.log(products);
 
-  const countsProducts = products.map((item) => (item.count ? item.count : 0));
+  const countsProducts = products.map((item) => (item.quantityInCart ? item.quantityInCart : 0));
 
   const initialValue = 0;
 
@@ -20,5 +20,5 @@ export const MenuCart = (props: Props) => {
     return prev + current;
   }, initialValue);
 
-  return <div className={styles.count}>{count}</div>;
+  return <div className={styles.count}>{count ? count : 0}</div>;
 };

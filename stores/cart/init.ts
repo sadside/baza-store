@@ -1,22 +1,30 @@
-import { createEffect, createEvent, createStore, sample } from "effector";
-import { IProductCart } from "./cart.interface";
-import { dropdownMenuOpened, smallMenuClosed } from "../layout/menu/init";
+'use client';
+
+import { createEffect, createEvent, createStore, sample } from 'effector';
+import { IProductCart } from './cart.interface';
+import { dropdownMenuOpened, smallMenuClosed } from '../layout/menu/init';
 import {
   createListWithNewProduct,
   decrementProductCount,
   incrementProductCount,
-  normilzeProductCount
-} from "./cart.helper";
-import { IUser } from "@shared/types/models/User";
-import axios from "axios";
-import { IServerCart } from "@shared/types/models/Cart";
-import AuthService from "@/services/AuthService";
-import { IServerFavorite } from "@shared/types/models/Favorites";
-import { createOrderFx } from "@/stores/order/init";
-import { toast } from "react-toastify";
-import { API_URL_CLIENT } from "@/source/shared/api/http/custom-instance";
-import { $currentCountryCode } from "@/source/shared/ui/PhoneInput/model/countryCodes";
-import { addFavotitesToStorage, addProductToStorage } from "@shared/utils/localStorage/localStorage";
+  normalizeProductCount,
+} from './cart.helper';
+import { IUser } from '@shared/types/models/User';
+import axios from 'axios';
+import { IServerCart } from '@shared/types/models/Cart';
+import AuthService from '@/services/AuthService';
+import { IServerFavorite } from '@shared/types/models/Favorites';
+import { createOrderFx } from '@/stores/order/init';
+import { toast } from 'react-toastify';
+import { API_URL_CLIENT } from '@/source/shared/api/http/custom-instance';
+import { $currentCountryCode } from '@/source/shared/ui/PhoneInput/model/countryCodes';
+import { addFavotitesToStorage, addProductToStorage } from '@shared/utils/localStorage/localStorage';
+import { createGate } from 'effector-react';
+import { AppRouterInstance, NavigateOptions } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import {
+  cartCleanConfirmed,
+  cartCleanNotConfirmed,
+} from '@/source/features/clear-cart-confirm/model/clear-cart-confirm-model';
 
 const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products);
@@ -27,10 +35,10 @@ export const addToServerFx = createEffect(async (id: number) => {
     const res = await axios.post(
       `${API_URL_CLIENT}profile/cart/add/`,
       {
-        modification_id: id
+        modification_id: id,
       },
       {
-        withCredentials: true
+        withCredentials: true,
       }
     );
 
@@ -40,8 +48,16 @@ export const addToServerFx = createEffect(async (id: number) => {
   }
 });
 
+export const testGate = createGate<AppRouterInstance>();
+
+export const redirectFx = createEffect(
+  ({ path, action }: { path: string; action: (href: string, options?: NavigateOptions | undefined) => void }) => {
+    action(path);
+  }
+);
+
 export const synchronizationWithLocalStorage = createEffect(async () => {
-  const products = localStorage.getItem("products") as string;
+  const products = localStorage.getItem('products') as string;
 
   const cart = JSON.parse(products);
 
@@ -50,7 +66,7 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
     quantities: number[];
   } = {
     modifications: [],
-    quantities: []
+    quantities: [],
   };
 
   cart.forEach((item: any) => {
@@ -60,7 +76,7 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
 
   try {
     const { data } = await axios.post(`${API_URL_CLIENT}profile/cart/`, body, {
-      withCredentials: true
+      withCredentials: true,
     });
 
     const result: IProductCart[] = [];
@@ -71,12 +87,12 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
         name: item.product.name,
         image: item.product.image,
         price: item.product.price,
-        count: item.quantity,
+        quantityInCart: item.quantity,
         size: item.product.size,
         color: item.product.color,
         slug: item.product.slug,
         old_price: item.product.old_price || item.product.price,
-        server_count: item.product.quantity
+        quantityInShop: item.product.quantity,
       });
     });
 
@@ -87,20 +103,18 @@ export const synchronizationWithLocalStorage = createEffect(async () => {
   }
 });
 
-export const decrementProductCountServer = createEffect(
-  async ({ id, quantity }: { id: number; quantity: number }) => {
-    try {
-      const res = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
-        modification_id: id
-      });
+export const decrementProductCountServer = createEffect(async ({ id, quantity }: { id: number; quantity: number }) => {
+  try {
+    const res = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
+      modification_id: id,
+    });
 
-      return res.data as IServerCart[];
-    } catch {
-      // throw new Error('Ошибка.')
-      return [];
-    }
+    return res.data as IServerCart[];
+  } catch {
+    // throw new Error('Ошибка.')
+    return [];
   }
-);
+});
 
 export const productNormalized = createEvent<IProductCart>();
 
@@ -114,26 +128,21 @@ export const getCartFromServerFx = createEffect(async () => {
   }
 });
 
-export const getCartFromLocalStorageFx = createEffect<void, IProductCart[]>(
-  () => {
-    return JSON.parse(
-      localStorage.getItem("products") || "[]"
-    ) as IProductCart[];
-  }
-);
+export const getCartFromLocalStorageFx = createEffect<void, IProductCart[]>(() => {
+  return JSON.parse(localStorage.getItem('products') || '[]') as IProductCart[];
+});
 
 const productAddedToCart = createEvent<IProductCart>();
 const pageMounted = createEvent<IUser>();
 const mouseLeavedFromCart = createEvent<any>();
 const mouseEnteredToCart = createEvent<any>();
-const productCountIncremented = createEvent<IProductCart>();
-const productCounDecremented = createEvent<IProductCart>();
+
 export const logouted = createEffect();
 
 export const removeCartItem = createEffect(async (id: number) => {
   try {
     const { data } = await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
-      modification_id: id
+      modification_id: id,
     });
 
     const result: IProductCart[] = [];
@@ -144,12 +153,12 @@ export const removeCartItem = createEffect(async (id: number) => {
         name: item.product.name,
         image: item.product.image,
         price: item.product.price,
-        count: item.quantity,
+        quantityInCart: item.quantity,
         size: item.product.size,
         color: item.product.color,
         slug: item.product.slug,
         old_price: item.product.old_price || item.product.price,
-        server_count: item.product.quantity
+        quantityInShop: item.product.quantity,
       });
     });
 
@@ -166,130 +175,126 @@ export const logoutFx = createEffect(async () => {
 const $showCart = createStore(false)
   .on(mouseEnteredToCart, () => true)
   .on(mouseLeavedFromCart, () => false);
-const $cart = createStore<IProductCart[]>([]).reset(
-  logoutFx,
-  createOrderFx.doneData
-);
+const $cart = createStore<IProductCart[]>([]).reset(logoutFx, createOrderFx.doneData);
 
 sample({
   clock: [dropdownMenuOpened, smallMenuClosed],
-  target: mouseLeavedFromCart
+  target: mouseLeavedFromCart,
 });
 
 sample({
   clock: createOrderFx.doneData,
   fn: () => [],
-  target: addToStorageFx
+  target: addToStorageFx,
 });
 
 sample({
   // @ts-ignore
   clock: productNormalized,
   source: $cart,
-  fn: normilzeProductCount,
-  target: $cart
+  fn: normalizeProductCount,
+  target: $cart,
 });
 
-sample({
-  clock: productCountIncremented,
-  source: {
-    cart: $cart
-  },
-  filter: ({ cart }, product) => {
-    const addedProduct = cart.find((item) => item.slug === product.slug);
-
-    if (addedProduct && product.count) {
-      if (addedProduct.server_count - product.count > 0) {
-        return true;
-      } else {
-        toast.error("Нет в наличии");
-      }
-    }
-
-    return false;
-  },
-  fn: incrementProductCount,
-  target: [addToStorageFx, $cart]
-});
-
-sample({
-  //@ts-ignore
-  clock: productCounDecremented,
-  source: {
-    cart: $cart
-  },
-  filter: ({ cart }: { cart: IProductCart[] }, product: IProductCart) => {
-    const addedProduct = cart.find((item) => item.slug === product.slug);
-
-    if (addedProduct && product.count) {
-      if (addedProduct.server_count - product.count >= 0) {
-        return true;
-      } else {
-        normilzeProductCount();
-      }
-    }
-
-    return false;
-  },
-  fn: decrementProductCount,
-  target: [addToStorageFx, $cart]
-});
+// sample({
+//   clock: productCountIncremented,
+//   source: {
+//     cart: $cart,
+//   },
+//   filter: ({ cart }, product) => {
+//     const addedProduct = cart.find((item) => item.slug === product.slug);
+//
+//     if (addedProduct && product.count) {
+//       if (addedProduct.server_count - product.count > 0) {
+//         return true;
+//       } else {
+//         toast.error('Нет в наличии');
+//       }
+//     }
+//
+//     return false;
+//   },
+//   fn: incrementProductCount,
+//   target: [addToStorageFx, $cart],
+// });
+//
+// sample({
+//   //@ts-ignore
+//   clock: productCounDecremented,
+//   source: {
+//     cart: $cart,
+//   },
+//   filter: ({ cart }: { cart: IProductCart[] }, product: IProductCart) => {
+//     const addedProduct = cart.find((item) => item.slug === product.slug);
+//
+//     if (addedProduct && product.count) {
+//       if (addedProduct.server_count - product.count >= 0) {
+//         return true;
+//       } else {
+//         normalizeProductCount();
+//       }
+//     }
+//
+//     return false;
+//   },
+//   fn: decrementProductCount,
+//   target: [addToStorageFx, $cart],
+// });
 
 sample({
   clock: getCartFromLocalStorageFx,
-  fn: () =>
-    JSON.parse(localStorage.getItem("products") || "[]") as IProductCart[],
-  target: $cart
+  fn: () => JSON.parse(localStorage.getItem('products') || '[]') as IProductCart[],
+  target: $cart,
 });
 
-sample({
-  clock: productAddedToCart,
-  source: $cart,
-  filter: (cart, product) => {
-    const addedProduct = cart.find((item) => item.slug === product.slug);
-
-    if (addedProduct && product.count) {
-      if (addedProduct.server_count - product.count > 0) {
-        return true;
-      } else {
-        toast.error("Нет в наличии");
-        return false;
-      }
-    } else {
-      return true;
-    }
-  },
-  fn: createListWithNewProduct,
-  target: [addToStorageFx, $cart]
-});
+// sample({
+//   clock: productAddedToCart,
+//   source: $cart,
+//   filter: (cart, product) => {
+//     const addedProduct = cart.find((item) => item.slug === product.slug);
+//
+//     if (addedProduct && product.quantityInCart) {
+//       if (addedProduct.q - product.count > 0) {
+//         return true;
+//       } else {
+//         toast.error('Нет в наличии');
+//         return false;
+//       }
+//     } else {
+//       return true;
+//     }
+//   },
+//   fn: createListWithNewProduct,
+//   target: [addToStorageFx, $cart],
+// });
 
 $cart.watch((state) => console.log(state));
 
-sample({
-  clock: [addToServerFx.doneData, getCartFromServerFx.doneData],
-  fn: (items) => {
-    if (items.length) {
-      const cart: IProductCart[] = items.map((item) => {
-        return {
-          id: item.product.id,
-          name: item.product.name,
-          image: item.product.image,
-          price: item.product.price,
-          count: item.quantity,
-          size: item.product.size,
-          color: item.product.color,
-          slug: item.product.slug,
-          old_price: item.product.old_price || item.product.price,
-          server_count: item.product.quantity
-        };
-      });
-      return cart;
-    }
-
-    return [];
-  },
-  target: [$cart, addToStorageFx]
-});
+// sample({
+//   clock: [addToServerFx.doneData, getCartFromServerFx.doneData],
+//   fn: (items) => {
+//     if (items.length) {
+//       const cart: IProductCart[] = items.map((item) => {
+//         return {
+//           id: item.product.id,
+//           name: item.product.name,
+//           image: item.product.image,
+//           price: item.product.price,
+//           count: item.quantity,
+//           size: item.product.size,
+//           color: item.product.color,
+//           slug: item.product.slug,
+//           old_price: item.product.old_price || item.product.price,
+//           server_count: item.product.quantity,
+//         };
+//       });
+//       return cart;
+//     }
+//
+//     return [];
+//   },
+//   target: [$cart, addToStorageFx],
+// });
 
 export const phoneInputSubmitted = createEvent<string>();
 export const codeInputSubmitted = createEvent<{
@@ -335,7 +340,7 @@ export const postUserFx = createEffect(async (data: any) => {
       house: data.house,
       frame: data.frame,
       apartment: data.room,
-      email: data.mail
+      email: data.mail,
     };
 
     console.log(data);
@@ -359,7 +364,7 @@ export const saveUser = createEvent();
 
 sample({
   clock: logouted,
-  target: logoutFx
+  target: logoutFx,
 });
 
 export const $user = createStore<IUser | null>(null)
@@ -376,29 +381,27 @@ export const loginErrorChanged = createEvent<string | null>();
 
 sample({
   clock: loginErrorChanged,
-  target: $loginError
+  target: $loginError,
 });
 
-export const loginFx = createEffect(
-  async ({ phone, code }: { phone: string; code: string }) => {
-    try {
-      const res = await AuthService.login(phone, code);
+export const loginFx = createEffect(async ({ phone, code }: { phone: string; code: string }) => {
+  try {
+    const res = await AuthService.login(phone, code);
 
-      return res.data;
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        throw new Error(err?.response?.data.error);
-      } else {
-        throw new Error("Произошла неизвестная ошибка ошибка...");
-      }
+    return res.data;
+  } catch (err) {
+    if (axios.isAxiosError(err)) {
+      throw new Error(err?.response?.data.error);
+    } else {
+      throw new Error('Произошла неизвестная ошибка ошибка...');
     }
   }
-);
+});
 
 sample({
   clock: loginFx.fail,
   fn: (error) => error.error.message,
-  target: [$loginError, showToastErrorF]
+  target: [$loginError, showToastErrorF],
 });
 
 export const getUserFx = createEffect(async () => {
@@ -412,7 +415,7 @@ export const getUserFx = createEffect(async () => {
   }
 });
 
-export const $phoneNumber = createStore<string>("")
+export const $phoneNumber = createStore<string>('')
   .on(phoneInputSubmitted, (_, newState) => newState)
   .reset(loginFx.doneData);
 
@@ -422,20 +425,20 @@ sample({
   fn: (phoneCode, loginData) => {
     return {
       phone: phoneCode + loginData.phone,
-      code: loginData.code.join("")
+      code: loginData.code.join(''),
     };
   },
-  target: loginFx
+  target: loginFx,
 });
 
 sample({
   clock: getUserFx.doneData,
-  target: [$user, getCartFromServerFx]
+  target: [$user, getCartFromServerFx],
 });
 
 sample({
   clock: loginFx.doneData,
-  target: $user
+  target: $user,
 });
 
 // sample({
@@ -444,18 +447,18 @@ sample({
 
 sample({
   clock: loginFx.doneData,
-  target: synchronizationWithLocalStorage
+  target: synchronizationWithLocalStorage,
 });
 
 sample({
   //@ts-ignore
   clock: synchronizationWithLocalStorage.doneData,
-  target: $cart
+  target: $cart,
 });
 
 sample({
   clock: postUserFx.doneData,
-  target: $user
+  target: $user,
 });
 
 // favotites
@@ -480,61 +483,51 @@ export const getFavoritesFx = createEffect(async () => {
   }
 });
 
-export const addFavoriteToServerFx = createEffect(
-  async (slug: string | string[]) => {
-    try {
-      const res = await axios.post(
-        `${API_URL_CLIENT}profile/favorites/`,
-        {
-          slug
-        },
-        { withCredentials: true }
-      );
+export const addFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
+  try {
+    const res = await axios.post(
+      `${API_URL_CLIENT}profile/favorites/`,
+      {
+        slug,
+      },
+      { withCredentials: true }
+    );
 
-      return res.data as IServerFavorite[];
-    } catch {
-      return [];
-    }
+    return res.data as IServerFavorite[];
+  } catch {
+    return [];
   }
-);
+});
 
-export const deleteFavoriteToServerFx = createEffect(
-  async (slug: string | string[]) => {
-    try {
-      const res = await axios.delete(
-        `${API_URL_CLIENT}profile/favorites/?slug=${slug}`
-      );
+export const deleteFavoriteToServerFx = createEffect(async (slug: string | string[]) => {
+  try {
+    const res = await axios.delete(`${API_URL_CLIENT}profile/favorites/?slug=${slug}`);
 
-      return res.data as IServerFavorite[];
-    } catch {
-      return [];
-    }
+    return res.data as IServerFavorite[];
+  } catch {
+    return [];
   }
-);
+});
 
 sample({
   clock: mounted,
-  fn: () => JSON.parse(localStorage.getItem("favorites") || "[]"),
-  target: $favorites
+  fn: () => JSON.parse(localStorage.getItem('favorites') || '[]'),
+  target: $favorites,
 });
 
 sample({
   clock: loginFx.doneData,
   source: $favorites,
-  target: addFavoriteToServerFx
+  target: addFavoriteToServerFx,
 });
 
 sample({
-  clock: [
-    addFavoriteToServerFx.doneData,
-    deleteFavoriteToServerFx.doneData,
-    getFavoritesFx.doneData
-  ],
-  target: $favoritesItems
+  clock: [addFavoriteToServerFx.doneData, deleteFavoriteToServerFx.doneData, getFavoritesFx.doneData],
+  target: $favoritesItems,
 });
 
 sample({
-  clock: logouted
+  clock: logouted,
 });
 
 sample({
@@ -547,7 +540,7 @@ sample({
 
     return Array.from(settedFavorites);
   },
-  target: [$favorites, addFavoriteToStorageFx]
+  target: [$favorites, addFavoriteToStorageFx],
 });
 
 sample({
@@ -556,14 +549,14 @@ sample({
   fn: (favorites, item) => {
     return favorites.filter((favorite) => favorite !== item);
   },
-  target: [$favorites, addFavoriteToStorageFx]
+  target: [$favorites, addFavoriteToStorageFx],
 });
 
 //  watch
 
-$user.watch((state) => console.log(state));
-$cart.watch((state) => console.log("cart: ", state));
-$favorites.watch((state) => console.log("fav", state));
+$user.watch((state) => console.log('USER:', state));
+$cart.watch((state) => console.log('cart: ', state));
+$favorites.watch((state) => console.log('fav', state));
 
 export {
   $favorites,
@@ -577,6 +570,6 @@ export {
   addToStorageFx,
   productAddedToCart,
   pageMounted,
-  productCountIncremented,
-  productCounDecremented
+  // productCountIncremented,
+  // productCounDecremented,
 };

@@ -1,22 +1,18 @@
-import { MenuIcons } from "@/components/menuIcons/MenuIcons";
-import MenuLinks from "@/components/menuLinks/MenuLinks";
-import { AnimatePresence, motion } from "framer-motion";
-import Logo from "@shared/assets/logo.svg";
-import Link from "next/link";
-import React from "react";
+import { MenuIcons } from '@/components/menuIcons/MenuIcons';
+import MenuLinks from '@/components/menuLinks/MenuLinks';
+import { AnimatePresence, motion } from 'framer-motion';
+import Logo from '@shared/assets/logo.svg';
+import Link from 'next/link';
+import React from 'react';
 
-import styles from "./SmallMenu.module.scss";
-import { useUnit } from "effector-react";
-import {
-  $showDropdownMenu,
-  $showSmallMenu,
-  $stateOfMenu,
-  dropdownMenuClosed,
-} from "@/stores/layout/menu/init";
+import styles from './SmallMenu.module.scss';
+import { useUnit } from 'effector-react';
+import { $showDropdownMenu, $showSmallMenu, $stateOfMenu, dropdownMenuClosed } from '@/stores/layout/menu/init';
 
-import { IUser } from "@shared/types/models/User";
-import { usePathname } from "next/navigation";
-import SvgSelector from "@shared/utils/SvgSelector";
+import { IUser } from '@shared/types/models/User';
+import { usePathname } from 'next/navigation';
+import SvgSelector from '@shared/utils/SvgSelector';
+import { NavigationMenu } from '@shared/ui/shadcn/ui/navigation-menu';
 
 type Props = { links: any[] };
 
@@ -30,23 +26,18 @@ export const SmallMenu = ({ links }: Props) => {
     <AnimatePresence initial={false}>
       {showSmallMenu && (
         <motion.div
-          initial={{ y: "-120%" }}
+          initial={{ y: '-120%' }}
           transition={{
             duration: 0.3,
-            type: "tween",
+            type: 'tween',
           }}
           animate={{
             y: 0,
           }}
           exit={{
-            y: "-120%",
+            y: '-120%',
           }}
           className={styles.wrapper}
-          // style={
-          //   showDropdownMenu
-          //     ? { borderBottom: "1px solid #fff" }
-          //     : { borderBottom: "1px solid #ccc" }
-          // }
         >
           <div className={styles.logoWrapper}>
             <Link

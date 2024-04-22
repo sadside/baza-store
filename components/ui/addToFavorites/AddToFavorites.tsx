@@ -1,18 +1,19 @@
-"use client";
+'use client';
 
-import SvgSelector from "@shared/utils/SvgSelector";
-import styles from "./AddToFavorites.module.scss";
-import { useEffect, useState } from "react";
-import { useUnit } from "effector-react";
-import { IFullProduct } from "@shared/types/models/Product";
+import SvgSelector from '@shared/utils/SvgSelector';
+import styles from './AddToFavorites.module.scss';
+import { useEffect, useState } from 'react';
+import { useUnit } from 'effector-react';
+import { IFullProduct } from '@shared/types/models/Product';
 import {
   $favorites,
   $user,
   addFavorite,
   addFavoriteToServerFx,
   deleteFavoriteToServerFx,
-  removeFavorite
-} from "@/stores/cart/init";
+  removeFavorite,
+} from '@/stores/cart/init';
+import { cn } from '@/lib/utils';
 
 type Props = {
   product: IFullProduct;
@@ -47,11 +48,8 @@ export const AddToFavorites = ({ product }: Props) => {
   };
 
   return (
-    <div className={styles.wrapper} onClick={handleClick}>
-      <SvgSelector
-        id={isFavorite ? "favoriteHeart" : "heart"}
-        style={{ height: 25, width: 25 }}
-      />
+    <div className={cn(styles.wrapper, 'hover:animate-pulse')} onClick={handleClick}>
+      <SvgSelector id={isFavorite ? 'favoriteHeart' : 'heart'} style={{ height: 25, width: 25 }} />
     </div>
   );
 };

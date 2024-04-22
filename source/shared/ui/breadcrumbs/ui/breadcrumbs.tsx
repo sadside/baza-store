@@ -15,7 +15,10 @@ export const Breadcrumbs = ({ path }: BreadcrumbsProps) => {
     <div className={styles.wrapper}>
       {path?.map((item, index) => {
         return (
-          <Link className={`${index === path.length - 1 ? 'text-black' : ''}`} href={item.slug}>
+          <Link
+            className={`${index === path.length - 1 ? 'text-black' : ''}`}
+            href={index === 0 ? `/${item.slug}` : `${item.slug}`}
+          >
             {item.name} {index !== path.length - 1 ? ' /' : null}
           </Link>
         );

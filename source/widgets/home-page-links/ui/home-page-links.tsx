@@ -14,7 +14,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
   const [showWomenCategories, setShowWomenCategories] = useState(false);
   const [showManCategories, setShowManCategories] = useState(false);
 
-  console.log(links);
+  console.log('links: ', links);
 
   const LIST_ITEM_VARIANTS: Variants = {
     hidden: {
@@ -51,7 +51,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
             {showWomenCategories && (
               <motion.div initial="hidden" animate="visible" exit="hidden" variants={LIST_ITEM_VARIANTS}>
                 {links[0]?.children.map((link) => (
-                  <Link href={`woman/${link.slug}`} className={styles.category}>
+                  <Link href={`${links[0].slug}/${link.slug}`} className={styles.category}>
                     {link.name}
                   </Link>
                 ))}
@@ -59,7 +59,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
             )}
           </AnimatePresence>
           <motion.h2 className={styles.categoryTitle} onMouseEnter={() => setShowWomenCategories(true)}>
-            <Link href="/woman">{links[0]?.name}</Link>
+            <Link href="/man">{links[0]?.name}</Link>
           </motion.h2>
         </div>
         <div className={styles.block} onMouseLeave={() => setShowManCategories(false)}>
@@ -72,8 +72,8 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
                 exit="hidden"
                 variants={LIST_ITEM_VARIANTS}
               >
-                {links[1]?.children?.map((link) => (
-                  <Link href={link.slug} className={styles.categoryRight}>
+                {links[1]?.children.map((link) => (
+                  <Link href={`${links[1].slug}/${link.slug}`} className={styles.category}>
                     {link.name}
                   </Link>
                 ))}
@@ -81,7 +81,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
             )}
           </AnimatePresence>
           <motion.h2 className={styles.categoryTitleRight} onMouseEnter={() => setShowManCategories(true)}>
-            <Link href="/man">{links[1]?.name}</Link>
+            <Link href="/woman">{links[1]?.name}</Link>
           </motion.h2>
         </div>
       </div>

@@ -19,6 +19,7 @@
 
   .selectedColor {
     font-size: 14px;
+    @apply text-black-300;
     @media (min-width: 2600px) {
       font-size: 16px;
     }
@@ -33,7 +34,7 @@
   width: 26px;
   border-radius: 100%;
   margin-right: 25px;
-  border: 1px solid #ccc;
+  border: 1px solid #cccccc;
   cursor: pointer;
   position: relative;
 
@@ -47,7 +48,8 @@
     height: 38px;
     width: 38px;
     border-radius: 100%;
-    border: 2px solid #ddd;
+    border: 2px solid;
+    @apply border-black-100;
   }
 
   &:hover::before {
