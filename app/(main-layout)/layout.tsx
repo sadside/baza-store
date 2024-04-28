@@ -2,7 +2,7 @@ import '@/source/shared/styles/globals.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import React from 'react';
-import { API_URL } from '@/source/shared/api/http/custom-instance';
+import { API_URL } from '@shared/api/http/axios-instance';
 import { Layout } from '@/source/layouts/main-layout';
 import '@shared/styles/globals.scss';
 
@@ -21,7 +21,7 @@ const getData = async () => {
 
   if (!res.ok) throw new Error('error');
 
-  return links;
+  return links || [];
 };
 
 export default async function MainLayout({ children }: { children: React.ReactNode }) {

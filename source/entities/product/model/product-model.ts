@@ -67,13 +67,12 @@ sample({
   target: [$fullProduct, $selectedSize, $productInCart],
 });
 
-$selectedSize.watch((state) => console.log(state === null));
-
 sample({
   clock: $fullProduct,
   filter: (product) => !!product?.sizes?.length,
   fn: (product) => {
     return {
+      //@ts-ignore
       ...product.sizes[0],
     };
   },
@@ -86,6 +85,7 @@ sample({
 });
 
 sample({
+  //@ts-ignore
   clock: [$cart, $fullProduct, $selectedSize],
   source: {
     cart: $cart,
@@ -93,7 +93,6 @@ sample({
   },
   filter: ({ cart, size }) => !!size?.slug,
   fn: ({ cart, size }) => {
-    console.log(cart, size);
     return { ...cart.find((item) => item.slug === size?.slug) } || null;
   },
   target: $productInCart,

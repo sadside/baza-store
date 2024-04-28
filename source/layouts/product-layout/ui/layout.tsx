@@ -5,9 +5,8 @@ import Footer from '../footer/Footer';
 import styles from './layout.module.scss';
 import Menu from '../menu/Menu';
 import '@shared/styles/globals.scss';
-import { usePathname, useRouter } from 'next/navigation';
-import { dropdownMenuClosed, menuChanged } from '@/stores/layout/menu/init';
-import { getCartFromLocalStorageFx, getFavoritesFx, getUserFx, mounted, testGate } from '@/stores/cart/init';
+import { usePathname } from 'next/navigation';
+import { dropdownMenuClosed } from '@/stores/layout/menu/init';
 
 interface LayoutProps {
   children?: ReactNode;
@@ -18,18 +17,8 @@ export const Layout = ({ children, links = [] }: LayoutProps) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    getUserFx();
-    getCartFromLocalStorageFx();
-    getFavoritesFx();
-    mounted();
-
     if (!localStorage.getItem('products')) localStorage.setItem('products', '[]');
   }, []);
-
-  useEffect(() => {
-    // if (pathname === "/") menuChanged("transparent");
-    dropdownMenuClosed();
-  }, [pathname]);
 
   return (
     <div className={styles.wrapper}>

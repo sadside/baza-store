@@ -14,24 +14,8 @@ type Props = {
 };
 
 export const ProductPageImages = ({ product }: Props) => {
-  console.log(product);
-
-  // @ts-ignore
   return (
     <div className={styles.images}>
-      {/* {product?.image?.map((image: string) => {
-        return (
-          <Image
-            src={image}
-            width={2500}
-            height={1150}
-            alt="ssss"
-            className={styles.productImage}
-            key={Math.random() * 100}
-          />
-        );
-      })} */}
-
       <div className={styles.imgList}>
         {product?.images?.map((image, index) => {
           return (
@@ -67,8 +51,6 @@ export const ProductPageImages = ({ product }: Props) => {
           className={styles.swiper}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          onSwiper={(swiper) => console.log(swiper)}
-          onSlideChange={() => console.log('slide change')}
         >
           {product.images.map((image, index) => {
             return (

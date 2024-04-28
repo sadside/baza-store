@@ -1,23 +1,17 @@
-import React from "react";
+import React from 'react';
+import { LoyaltyHistory } from '@shared/api/__generated__/generated-api.schemas';
 
-type Props = {
-  obj: {
-    time: string
-    operation: string
-    history: number
-    result: number
-    id: number
-  }
-
+interface ItemHistoryProps {
+  historyItem: LoyaltyHistory;
 }
 
-export const ItemHistory = ({ obj }: Props) => {
+export const ItemHistory = ({ historyItem }: ItemHistoryProps) => {
   return (
     <div className="border-b-black-50 border-b-2 py-[10px] font-medium text-[12px] grid grid-cols-4">
-      <div className="text-center">{obj.time}</div>
-      <div className="text-center">{obj.operation}</div>
-      <div className="text-center">{obj.history}</div>
-      <div className="text-center">{obj.result}</div>
+      <div className="text-center">{historyItem.datetime}</div>
+      <div className="text-center">{historyItem.operation}</div>
+      <div className="text-center">{historyItem.value}</div>
+      <div className="text-center">{historyItem.total}</div>
     </div>
   );
 };

@@ -1,11 +1,11 @@
-import { API_URL } from "@shared/api/http/custom-instance";
+import { API_URL } from '@shared/api/http/axios-instance';
 
 export default class ProductService {
   static async getProductBySlug(slug: string) {
     return await fetch(`${API_URL}products/detail/${slug}/`, {
       next: {
-        revalidate: 3600
-      }
+        revalidate: 3600,
+      },
     });
   }
 }

@@ -17,6 +17,3 @@ export const $selectedSize = createStore<{
 } | null>(null).on(sizeSelected, (_, state) => state);
 
 export const $selectedColor = createStore<IColor | null>(null).on(colorSelected, (_, payload) => payload);
-
-$selectedColor.watch((state) => console.log(state));
-$selectedSize.watch((state) => console.log(state));

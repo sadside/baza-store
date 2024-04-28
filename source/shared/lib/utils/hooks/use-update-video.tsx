@@ -1,5 +1,5 @@
-"use client";
-import { useCallback, useEffect, useState } from "react";
+'use client';
+import { useCallback, useEffect, useState } from 'react';
 
 export function useUpdateVideo() {
   const [state, setState] = useState(false);
@@ -12,7 +12,6 @@ export function useUpdateVideo() {
   const measuredRef = useCallback((node: any) => {
     if (node !== null) {
       const height = node.getBoundingClientRect().height;
-      console.log(height);
       if (height) {
         setHeight(height);
       }

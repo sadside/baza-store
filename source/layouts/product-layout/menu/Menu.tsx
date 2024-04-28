@@ -1,23 +1,8 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { DropdownMenu } from '@/components/dropdownMenu/DropdownMenu';
-import { useUnit } from 'effector-react';
-import { $showCart, mouseLeavedFromCart } from '@/stores/cart/init';
-import { Cart } from '@/components/cart/Cart';
-import {
-  $showSmallMenu,
-  $stateOfMenu,
-  $videoHeight,
-  categoryCleared,
-  dropdownMenuClosed,
-  menuChanged,
-  smallMenuClosed,
-  smallMenuOpened,
-} from '@/stores/layout/menu/init';
-import { menuMounted } from '@/stores/layout/menu/content/init';
+import { dropdownMenuClosed } from '@/stores/layout/menu/init';
 import { SmallMenu } from '../smallMenu/SmallMenu';
-import { mounted } from '@/stores/favotites/favorites';
 import Hamburger from '@/components/Hamburger/Hamburger';
 import CategoryHumb from '@/components/Hamburger/category/CategoryHumb';
 import { SmallMenuMobile } from '@/components/smallMenuMobile/SmallMenuMobile';

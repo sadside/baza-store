@@ -1,10 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import s from "./FavouriteBlock.module.scss";
-import { IServerFavorite } from "@shared/types/models/Favorites";
-import { deleteFavoriteToServerFx, removeFavorite } from "@/stores/cart/init";
-import SvgSelector from "@shared/utils/SvgSelector";
+import React from 'react';
+import s from './FavouriteBlock.module.scss';
+import { IServerFavorite } from '@shared/types/models/Favorites';
+import SvgSelector from '@shared/utils/SvgSelector';
 
 type Props = {
   o: IServerFavorite;
@@ -15,10 +14,7 @@ const FavouriteBlock = ({ o }: Props) => {
   return (
     <div className={s.root}>
       <div className={s.img}>
-        <img
-          src={image.replace("http://127.0.0.1:8000/", "http://thebaza.ru/")}
-          alt="img"
-        />
+        <img src={image.replace('http://127.0.0.1:8000/', 'http://thebaza.ru/')} alt="img" />
       </div>
       <div className={s.card}>
         <div className={s.content}>
@@ -27,11 +23,11 @@ const FavouriteBlock = ({ o }: Props) => {
             <span
               className={s.heart}
               onClick={() => {
-                removeFavorite(slug);
-                deleteFavoriteToServerFx(slug);
+                // removeFavorite(slug);
+                // deleteFavoriteToServerFx(slug);
               }}
             >
-              <SvgSelector id={"favoriteHeart"} />
+              <SvgSelector id={'favoriteHeart'} />
             </span>
           </div>
           <div className={s.description}>
@@ -47,7 +43,7 @@ const FavouriteBlock = ({ o }: Props) => {
           </div>
         </div>
         <div className={s.bottom}>
-          <span className={s.setting} style={{ cursor: "pointer" }}>
+          <span className={s.setting} style={{ cursor: 'pointer' }}>
             Изменить
           </span>
           <span className={s.price}>{price / 100} ₽</span>

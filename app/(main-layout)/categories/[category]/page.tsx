@@ -1,11 +1,9 @@
-import { IProduct } from "@shared/types/models/Product";
-import CategoriesService from "@/services/CategoriesService";
-import { CategoriesPage } from "@/source/pages/categories";
+import { IProduct } from '@shared/types/models/Product';
+import CategoriesService from '@/services/CategoriesService';
+import { CategoriesPage } from '@/source/pages/categories';
 
 export default async function Category({ params: { category } }: any) {
   const products: IProduct[] = await getProducts(category);
-
-  console.log(products);
 
   return <CategoriesPage products={products} />;
 }
@@ -13,7 +11,7 @@ export default async function Category({ params: { category } }: any) {
 async function getProducts(category: string) {
   const response = await CategoriesService.getProductsByCategory(category);
 
-  if (!response.ok) throw new Error("error");
+  if (!response.ok) throw new Error('error');
 
   const products = await response.json();
 

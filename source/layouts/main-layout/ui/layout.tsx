@@ -1,13 +1,11 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import Footer from '../footer/Footer';
 import styles from './layout.module.scss';
 import Menu from '../menu/Menu';
 import '@shared/styles/globals.scss';
 import { usePathname } from 'next/navigation';
-import { dropdownMenuClosed } from '@/stores/layout/menu/init';
-import { getCartFromLocalStorageFx, getFavoritesFx, getUserFx, mounted } from '@/stores/cart/init';
 
 interface LayoutProps {
   children?: ReactNode;

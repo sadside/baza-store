@@ -1,11 +1,10 @@
-import classNames from "classnames/bind";
-import styles from "@shared/ui/button/ui/variants/styles/count.module.scss";
-import { DetailedHTMLProps, HTMLAttributes, useState } from "react";
-import { Loader } from "@/components/loader/Loader";
-import { BUTTON_VARIANTS } from "@/source/shared/ui/button/ui/button-wrapper";
+import classNames from 'classnames/bind';
+import styles from '@shared/ui/button/ui/variants/styles/count.module.scss';
+import { ButtonHTMLAttributes, DetailedHTMLProps, HTMLAttributes, useState } from 'react';
+import { Loader } from '@/components/loader/Loader';
+import { BUTTON_VARIANTS } from '@/source/shared/ui/button/ui/button-wrapper';
 
-export interface countProps
-  extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+export interface countProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   loading?: boolean;
   value?: number;
   plusAction?: () => void;
@@ -17,31 +16,31 @@ export interface countProps
 const cx = classNames.bind(styles);
 
 export const Count = ({
-                        loading,
-                        value,
-                        plusAction,
-                        minusAction,
-                        minusNotAllowed,
-                        plusNotAllowed,
-                        ...props
-                      }: countProps) => {
+  loading,
+  value,
+  plusAction,
+  minusAction,
+  minusNotAllowed,
+  plusNotAllowed,
+  ...props
+}: countProps) => {
   const [focused, setIsFocused] = useState(false);
 
   const buttonCls = cx({
     wrapper: true,
-    focused
+    focused,
   });
 
   const actionPlusCls = cx({
     action: true,
     plusNotAllowed,
-    loading
+    loading,
   });
 
   const actionMinusCls = cx({
     action: true,
     minusNotAllowed,
-    loading
+    loading,
   });
 
   const handlePlusCLick = () => {
@@ -59,6 +58,7 @@ export const Count = ({
   };
 
   return (
+    //@ts-ignore
     <div className={buttonCls} {...props} tabIndex={0}>
       {/*{count}*/}
       <div className={styles.actions}>
@@ -66,15 +66,7 @@ export const Count = ({
           -
         </div>
         <div className={styles.value}>
-          {loading ? (
-            <Loader
-              variant={BUTTON_VARIANTS.SECONDARY}
-              height={30}
-              width={30}
-            />
-          ) : (
-            value
-          )}
+          {loading ? <Loader variant={BUTTON_VARIANTS.SECONDARY} height={30} width={30} /> : value}
         </div>
         <div className={actionPlusCls} onClick={handlePlusCLick} tabIndex={0}>
           +

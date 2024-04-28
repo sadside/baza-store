@@ -4,20 +4,24 @@ import { createDomain, createEffect, createEvent, createStore, merge, sample, sp
 import { IProductCart } from '@/stores/cart/cart.interface';
 import { addProductToStorage } from '@shared/utils/localStorage/localStorage';
 import axios from 'axios';
-import { API_URL_CLIENT } from '@shared/api/http/custom-instance';
+import { $apiWithGuard, API_URL_CLIENT } from '@shared/api/http/axios-instance';
 import { IServerCart } from '@shared/types/models/Cart';
 import { normalizeProductCount } from '@/stores/cart/cart.helper';
 import { createOrderFx } from '@/stores/order/init';
-import { $user, logoutFx } from '@/stores/cart/init';
-import { condition } from 'patronum';
+import { $user, getUserFx, loginFx } from '@/stores/cart/init';
+import '../../../../stores/cart/init';
+
 import { toast } from 'sonner';
-import { createGate } from 'effector-react';
 import {
   cartCleanConfirmed,
   cartCleanNotConfirmed,
   cartModalStateChanged,
   resetModal,
 } from '@/source/features/clear-cart-confirm/model/clear-cart-confirm-model';
+import { appStarted } from '@shared/lib/utils/helpers/app-status';
+import { pending } from 'patronum/pending';
+import { getLoyaltyHistoryFx, getLoyaltyInfoFx } from '@entities/loyalty/model/loyalty-model';
+import { getFavoritesFx } from '@entities/favorite/model/favorite-model';
 
 export const addToStorageFx = createEffect((products: IProductCart[]) => {
   addProductToStorage(products);
@@ -30,7 +34,8 @@ function getInitialCart() {
   } else return [];
 }
 
-export const $cart = createStore<IProductCart[]>([]).reset(logoutFx, createOrderFx.doneData);
+export const $cart = createStore<IProductCart[]>([]);
+// .reset(logoutFx, createOrderFx.doneData);
 
 export const $cartTotalPrice = createStore(0);
 
@@ -49,7 +54,7 @@ sample({
 export const cartMounted = createEvent();
 
 sample({
-  clock: cartMounted,
+  clock: appStarted,
   fn: () => getInitialCart(),
   target: $cart,
 });
@@ -59,19 +64,11 @@ sample({
   target: addToStorageFx,
 });
 
-$cart.watch((state) => console.log(state));
-
-export const addProductToServerFx = createEffect(async (id: string) => {
+export const addProductToServerFx = createEffect(async (slug: string) => {
   try {
-    const res = await axios.post(
-      `${API_URL_CLIENT}profile/cart/add/`,
-      {
-        modification_id: id,
-      },
-      {
-        withCredentials: true,
-      }
-    );
+    const res = await $apiWithGuard.post(`profile/cart/add/`, {
+      slug: slug,
+    });
 
     return res.data as IServerCart[];
   } catch (e) {
@@ -135,11 +132,11 @@ export const productNormalized = createEvent<IProductCart>();
 
 export const getCartFromServerFx = createEffect(async () => {
   try {
-    const res = await axios.get(`${API_URL_CLIENT}profile/cart/`);
+    const res = await $apiWithGuard.get(`profile/cart/`);
 
     return res.data as IServerCart[];
   } catch {
-    return [];
+    throw new Error('Ошибка получения товаров с сервера');
   }
 });
 
@@ -150,19 +147,33 @@ export const getCartFromLocalStorageFx = createEffect<void, IProductCart[]>(() =
 const productCountIncremented = createEvent<IProductCart>();
 const productCountDecremented = createEvent<IProductCart>();
 
-export const removeCartItemFx = createEffect(async (id: string) => {
+export const removeCartItemFx = createEffect(async (slug: string) => {
   try {
-    await axios.post(`${API_URL_CLIENT}profile/cart/remove/`, {
-      modification_id: id,
+    await $apiWithGuard.post(`profile/cart/remove/`, {
+      slug: slug,
     });
   } catch {
     throw new Error('Ошибка удаления товара.');
   }
 });
 
+export const $productsLoading = pending([removeCartItemFx, addProductToServerFx, getCartFromServerFx]);
+
+const cartWasChanged = merge([addProductToServerFx.doneData, removeCartItemFx.doneData, clearCartFx.doneData]);
+
 sample({
-  clock: [removeCartItemFx.doneData, synchronizationWithLocalStorageFx.doneData],
+  clock: cartWasChanged,
   target: getCartFromServerFx,
+});
+
+split({
+  clock: getUserFx.done,
+  source: $user,
+  match: (user) => (user ? 'authorized' : 'notAuthorized'),
+  cases: {
+    authorized: [$user, getCartFromServerFx, getLoyaltyInfoFx, getLoyaltyHistoryFx, getFavoritesFx],
+    notAuthorized: [getCartFromLocalStorageFx],
+  },
 });
 
 sample({
@@ -174,8 +185,6 @@ sample({
   target: $cart,
 });
 // cart toasts
-
-// Логика уменьшения/увелечения товара на 1
 
 //work with slug
 export const productIncremented = createEvent<string>();
@@ -198,9 +207,18 @@ sample({
 
 sample({
   clock: productAddedToCart,
-  source: $cart,
-  fn: (cart, item) => [...cart, item],
+  source: { user: $user, cart: $cart },
+  filter: (data) => data.user === null,
+  fn: (data, item) => [...data.cart, item],
   target: [$cart, showProductAddedToastFx],
+});
+
+sample({
+  clock: productAddedToCart,
+  source: { user: $user, cart: $cart },
+  filter: (data) => data.user !== null,
+  fn: (_, product) => product.slug,
+  target: addProductToServerFx,
 });
 
 sample({
@@ -268,11 +286,19 @@ sample({
   target: [addProductToServerFx],
 });
 
-const cartWasChanged = merge([addProductToServerFx.doneData, removeCartItemFx.doneData, clearCartFx.doneData]);
-
 sample({
-  clock: cartWasChanged,
-  target: getCartFromServerFx,
+  clock: getCartFromServerFx.doneData,
+  fn: (serverProducts) =>
+    serverProducts.map((item) => {
+      const { quantity, ...product } = item.product;
+
+      return {
+        ...product,
+        quantityInCart: item.quantity,
+        quantityInShop: quantity,
+      };
+    }),
+  target: $cart,
 });
 
 function isCanIncrement(cartItems: IProductCart[], slug: string) {

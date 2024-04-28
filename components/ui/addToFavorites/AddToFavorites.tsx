@@ -5,15 +5,9 @@ import styles from './AddToFavorites.module.scss';
 import { useEffect, useState } from 'react';
 import { useUnit } from 'effector-react';
 import { IFullProduct } from '@shared/types/models/Product';
-import {
-  $favorites,
-  $user,
-  addFavorite,
-  addFavoriteToServerFx,
-  deleteFavoriteToServerFx,
-  removeFavorite,
-} from '@/stores/cart/init';
+import { $user } from '@/stores/cart/init';
 import { cn } from '@/lib/utils';
+import { $favorites, favoriteAdded, favoriteRemoved } from '@entities/favorite/model/favorite-model';
 
 type Props = {
   product: IFullProduct;
@@ -27,8 +21,8 @@ export const AddToFavorites = ({ product }: Props) => {
   const [isFavorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    favorites.forEach((item) => {
-      if (item === product.current_color.slug) {
+    favorites?.forEach((item) => {
+      if (item.slug === product.current_color.slug) {
         setFavorite(true);
       }
     });
@@ -38,12 +32,9 @@ export const AddToFavorites = ({ product }: Props) => {
     setFavorite(!isFavorite);
 
     if (!isFavorite) {
-      addFavorite(product.current_color.slug);
-
-      if (user) addFavoriteToServerFx(product.current_color.slug);
+      favoriteAdded(product.current_color.slug);
     } else {
-      removeFavorite(product.current_color.slug);
-      if (user) deleteFavoriteToServerFx(product.current_color.slug);
+      favoriteRemoved(product.current_color.slug);
     }
   };
 

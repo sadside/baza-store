@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import styles from './MenuIcons.module.scss';
 import { $user } from '@/stores/cart/init';
@@ -23,7 +23,7 @@ export const MenuIcons = ({ mobile }: Props) => {
 
   return (
     <div className={styles.additional}>
-      <Link className={styles.userIcon} href={userStm ? '/lk/review' : '/auth'}>
+      <Link className={styles.userIcon} href={userStm !== null ? '/lk' : '/auth'}>
         <SvgSelector id={'user'} />
       </Link>
       <div className={styles.userIcon} onClick={() => cartDrawerOpened()}>
