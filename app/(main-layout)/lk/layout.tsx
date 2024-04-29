@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { LkLayout } from '@/source/layouts/lk-layout';
-import { useGate, useUnit } from 'effector-react';
-import { $user, getUserFx } from '@/stores/cart/init';
-import { useRouter } from 'next/navigation';
+import { useGate } from 'effector-react';
 import { lkGate } from '@entities/order';
 
 export default function Layout({ children }: { children: React.ReactNode }) {

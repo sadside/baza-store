@@ -11,7 +11,7 @@ import {
 } from '@shared/ui/shadcn/ui/sheet';
 import { $isCartDrawerVisible, cartDrawerStateChanged, drawerGate } from '@widgets/cart-drawer/model/cart-drawer-model';
 import { useGate, useUnit } from 'effector-react';
-import { $cart, $cartTotalPrice, $productsLoading } from '@entities/cart/model/cart';
+import { $cart, $cartTotalPrice, $productsLoading } from '@entities/cart/model/cart-model';
 import { CartItem } from '@widgets/cart-drawer/cart-item/ui/cart-item';
 import { Button } from '@shared/theme/button';
 import { Hr } from '@/components/ui/hr/Hr';

@@ -10,12 +10,12 @@ import styles from './auth-page.module.scss';
 import axios from 'axios';
 import { useUnit } from 'effector-react';
 import { useLayoutEffect } from 'react';
-import { $user, phoneInputSubmitted } from '@/stores/cart/init';
 import { $currentCountryCode, $isSelectCodeOpened } from '@/source/shared/ui/PhoneInput/model/countryCodes';
 import { $api, API_URL_CLIENT } from '@shared/api/http/axios-instance';
 import { PhoneInput } from '@/source/shared/ui/PhoneInput';
 import { Button } from '@/source/shared/theme/button';
 import { toast } from 'sonner';
+import { $user, phoneInputSubmitted } from '@entities/user/model/user-model';
 
 type Props = {};
 

@@ -8,8 +8,8 @@ import { changeVisibleExit } from '@/stores/areYouSure/exit';
 import ShowModalMb from '@entities/show-modal-mb/ui/ShowModalMb';
 import { Select } from '@shared/ui/select';
 import s from './index.module.scss';
-import { $user, logoutFx } from '@/stores/cart/init';
 import { useUnit } from 'effector-react';
+import { $user, logoutFx } from '@entities/user/model/user-model';
 
 const Sidebar = () => {
   const links = [
@@ -30,10 +30,6 @@ const Sidebar = () => {
   ];
   const url = usePathname().split('/');
   const value = options.find((v) => v.value === '/' + url[1] + '/' + url[2])?.value;
-  const { push } = useRouter();
-
-  const user = useUnit($user);
-  if (!user) push('/');
 
   return (
     <>

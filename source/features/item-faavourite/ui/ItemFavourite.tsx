@@ -6,7 +6,7 @@ import Image from 'next/image';
 import SvgSelector from '@shared/utils/SvgSelector';
 import { Favorite, favoriteAdded, favoriteRemoved } from '@entities/favorite/model/favorite-model';
 import Link from 'next/link';
-import { addProductToServerFx, productIncremented } from '@entities/cart/model/cart';
+import { addProductToServerFx, productIncremented } from '@entities/cart/model/cart-model';
 
 export const ItemFavourite = ({ item }: { item: Favorite }) => {
   const removeHandleCLick = () => {

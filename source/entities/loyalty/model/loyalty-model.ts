@@ -28,11 +28,6 @@ export const $loyalty = createStore<Loyalty | null>(null);
 export const $loyaltyHistory = createStore<LoyaltyHistory[] | null>(null);
 
 sample({
-  clock: lkGate.open,
-  target: getLoyaltyInfoFx,
-});
-
-sample({
   clock: getLoyaltyInfoFx.doneData,
   target: $loyalty,
 });

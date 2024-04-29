@@ -1,7 +1,7 @@
 import { sample } from 'effector';
 import { lkGate } from '@entities/order';
-import { $user } from '@/stores/cart/init';
 import { redirectFx } from '@shared/lib/utils/helpers/router-instance';
+import { $user } from '@entities/user/model/user-model';
 
 sample({
   clock: lkGate.open,

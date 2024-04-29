@@ -1,10 +1,9 @@
-import styles from './cart-items-actions.module.scss';
-import { $user } from '@/stores/cart/init';
 import React from 'react';
 import { useUnit } from 'effector-react';
 import { IProductCart } from '@/stores/cart/cart.interface';
 import { MinusIcon, PlusIcon } from 'lucide-react';
-import { productDecremented, productIncremented } from '@entities/cart/model/cart';
+import { $user } from '@entities/user/model/user-model';
+import { productDecremented, productIncremented } from '@/source/features/cart-mutation/model/cart-mutation';
 
 interface CartItemsActionsProps {
   product: IProductCart;

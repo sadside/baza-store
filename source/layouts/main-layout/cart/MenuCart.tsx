@@ -4,9 +4,8 @@ import { useUnit } from 'effector-react';
 import React from 'react';
 
 import styles from './MenuCart.module.scss';
-import { $cart, addProductToServerFx, getCartFromServerFx } from '@entities/cart/model/cart';
+import { $cart, addProductToServerFx, getCartFromServerFx } from '@entities/cart/model/cart-model';
 import { Loader } from '@/components/loader/Loader';
-import { getUserFx } from '@/stores/cart/init';
 
 type Props = {};
 

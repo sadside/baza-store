@@ -6,7 +6,7 @@ import { useUnit } from 'effector-react';
 import PartsLogo from '@shared/assets/icons/parts.svg';
 import RightArrow from '@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg';
 import { Button } from '@shared/theme/button';
-import { $cart } from '@entities/cart/model/cart';
+import { $cart } from '@entities/cart/model/cart-model';
 
 interface OrderDetailsProps {
   className?: string;

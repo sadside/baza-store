@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { IUser } from '@shared/types/models/User';
-import { $api, $apiWithGuard, API_URL_CLIENT } from '@shared/api/http/axios-instance';
+import { $api, $apiWithGuard } from '@shared/api/http/axios-instance';
 
 interface LoginResponse {
   user: IUser;
@@ -26,6 +26,6 @@ export default class AuthService {
   }
 
   static async logout() {
-    return $apiWithGuard.get(`auth/logout/`);
+    return $apiWithGuard.post<LoginResponse>(`auth/logout/`, {});
   }
 }

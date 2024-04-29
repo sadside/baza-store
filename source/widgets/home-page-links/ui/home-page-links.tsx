@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Category } from '@/app/page';
 import SvgSelector from '@/source/shared/utils/SvgSelector';
 import { useUnit } from 'effector-react';
-import { $user } from '@/stores/cart/init';
+import { $user } from '@entities/user/model/user-model';
 
 interface categoryLinksProps {
   links: Category[];

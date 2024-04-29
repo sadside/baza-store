@@ -2,11 +2,12 @@ import { IProductCart } from '@/stores/cart/cart.interface';
 import Image from 'next/image';
 import styles from './cart-item.module.scss';
 import { MinusIcon, PlusIcon } from 'lucide-react';
-import { $productsLoading, productDecremented, productIncremented } from '@entities/cart/model/cart';
+import { $productsLoading } from '@entities/cart/model/cart-model';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
 import { useUnit } from 'effector-react';
 import { Loader } from '@/components/loader/Loader';
+import { productDecremented, productIncremented } from '@/source/features/cart-mutation/model/cart-mutation';
 
 interface CartItemProps extends IProductCart {}
 

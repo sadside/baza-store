@@ -8,7 +8,7 @@ import {
   cartPageGate,
 } from '@/source/features/clear-cart-confirm/model/clear-cart-confirm-model';
 import { Button } from '@shared/theme/button';
-import { clearCartFx } from '@entities/cart/model/cart';
+import { clearCartFx } from '@entities/cart/model/cart-model';
 
 export const ClearCartConfirm = () => {
   useGate(cartPageGate);

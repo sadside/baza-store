@@ -11,9 +11,9 @@ import s from '@/components/LcForm/LcForm.module.scss';
 import classNames from 'classnames';
 import { PhoneInput } from '@shared/ui/PhoneInput';
 import { useUnit } from 'effector-react';
-import { $user, postUserFx, userInfoEdited } from '@/stores/cart/init';
 import { IUser } from '@shared/types/models/User';
 import { handlePhoneInput } from '@shared/ui/PhoneInput/lib/inputLogic';
+import { $user, postUserFx, userInfoEdited } from '@entities/user/model/user-model';
 
 const schema = yup.object().shape({
   name: yup.string().required('Введите имя'),

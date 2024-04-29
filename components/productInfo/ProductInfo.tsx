@@ -4,22 +4,17 @@ import { MainInfoProduct } from '../mainInfoProduct/MainInfoProduct';
 import { Hr } from '../ui/hr/Hr';
 import { SelectProductColor } from '../selectProductColor/SelectProductColor';
 import { SelectProductSize } from '../selectSizeProduct/SelectProductSize';
-import { SubProductInfo } from '../subProductInfo/SubProductInfo';
 import { ProductDetails } from '../productDetails/ProductDetails';
 import { useGate, useUnit } from 'effector-react';
 import { IFullProduct } from '@shared/types/models/Product';
-import { useEffect } from 'react';
 import { Button } from '@shared/theme/button';
+import { $productsLoading } from '@entities/cart/model/cart-model';
+import { $productInCart, $selectedSize, productGate } from '@entities/product/model/product-model';
 import {
-  $productsLoading,
-  addProductToServerFx,
-  getCartFromServerFx,
   productAddedToCart,
   productDecremented,
   productIncremented,
-  removeCartItemFx,
-} from '@entities/cart/model/cart';
-import { $productInCart, $selectedSize, productGate, sizeSelected } from '@entities/product/model/product-model';
+} from '@/source/features/cart-mutation/model/cart-mutation';
 
 type Props = {
   product: IFullProduct;

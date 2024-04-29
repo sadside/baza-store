@@ -5,7 +5,6 @@ import styles from './AddToFavorites.module.scss';
 import { useEffect, useState } from 'react';
 import { useUnit } from 'effector-react';
 import { IFullProduct } from '@shared/types/models/Product';
-import { $user } from '@/stores/cart/init';
 import { cn } from '@/lib/utils';
 import { $favorites, favoriteAdded, favoriteRemoved } from '@entities/favorite/model/favorite-model';
 
@@ -14,8 +13,6 @@ type Props = {
 };
 
 export const AddToFavorites = ({ product }: Props) => {
-  const user = useUnit($user);
-
   const favorites = useUnit($favorites);
 
   const [isFavorite, setFavorite] = useState(false);

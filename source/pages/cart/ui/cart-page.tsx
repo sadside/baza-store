@@ -2,13 +2,12 @@
 
 import styles from './cart-page.module.scss';
 import { useUnit } from 'effector-react';
-import { $user } from '@/stores/cart/init';
 import { IProductCart } from '@/stores/cart/cart.interface';
 import { EmptyCart } from '@/components/emptyCart/EmptyCart';
 import { OrderDetails } from '@/source/features/order-details';
 import { ClearCart } from '@/source/features/clear-cart/';
 import { CartItem } from '@/source/features/cart-item';
-import { $cart } from '@entities/cart/model/cart';
+import { $cart } from '@entities/cart/model/cart-model';
 import { ClearCartConfirm } from '@/source/features/clear-cart-confirm/ui/clear-cart-confirm';
 
 type Props = {};

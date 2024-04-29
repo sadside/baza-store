@@ -2,7 +2,7 @@
 import React from 'react';
 import { ShowWelcome } from '@entities/show-welcome';
 import { useUnit } from 'effector-react';
-import { $user } from '@/stores/cart/init';
+import { $user } from '@entities/user/model/user-model';
 
 const Welcome = () => {
   const user = useUnit($user);

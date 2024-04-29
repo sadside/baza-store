@@ -1,7 +1,6 @@
 'use client';
 
 import { trackMediaQuery } from '@withease/web-api';
-import { cartMounted } from '@entities/cart/model/cart';
 import { appStarted } from '@shared/lib/utils/helpers/app-status';
 
 const { mobile, desktop } = trackMediaQuery(

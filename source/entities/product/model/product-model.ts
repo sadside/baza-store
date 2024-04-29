@@ -5,9 +5,7 @@ import { createEvent, createStore, sample } from 'effector';
 import { IFullProduct } from '@shared/types/models/Product';
 import { createGate } from 'effector-react';
 import { IProductCart } from '@/stores/cart/cart.interface';
-import { $cart, cartMounted } from '@entities/cart/model/cart';
-import { testGate } from '@/stores/cart/init';
-import { trackMediaQuery } from '@withease/web-api';
+import { $cart } from '@entities/cart/model/cart-model';
 import { desktop, mobile } from '@shared/lib/utils/helpers/device-matcher';
 
 export const sizeSelected = createEvent<{

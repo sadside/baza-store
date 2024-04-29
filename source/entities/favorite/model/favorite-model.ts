@@ -2,10 +2,7 @@
 import { createEvent, createStore, sample, split } from 'effector';
 import { createEffect } from 'effector';
 import { $apiWithGuard } from '@shared/api/http/axios-instance';
-import { IServerFavorite } from '@shared/types/models/Favorites';
-import { lkGate } from '@entities/order';
-import { getLoyaltyHistoryFx } from '@entities/loyalty/model/loyalty-model';
-import { $user } from '@/stores/cart/init';
+import { loginFx } from '@entities/user/model/user-model';
 
 export interface Favorite {
   name: string;
@@ -65,8 +62,3 @@ sample({
   clock: [getFavoritesFx.doneData, deleteFavoriteFx.doneData, addFavoriteFx.doneData],
   target: $favorites,
 });
-//
-// sample({
-//   clock: lkGate.open,
-//   target: [getFavoritesFx, getLoyaltyHistoryFx],
-// });

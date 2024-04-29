@@ -75,7 +75,7 @@ export const ordersCalculateRetrieve = () => {
 };
 
 export const ordersOrdersRetrieve = () => {
-  return $apiWithGuard<ViewOrder>({ url: `/orders/orders/`, method: 'GET' });
+  return $apiWithGuard<ViewOrder[]>({ url: `/orders/orders/`, method: 'GET' });
 };
 
 export const ordersOrdersCreate = (viewOrder: BodyType<NonReadonly<ViewOrder>>) => {
