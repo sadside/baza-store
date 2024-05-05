@@ -1,17 +1,17 @@
 import { sample } from 'effector';
 import { redirectFx } from '@shared/lib/utils/helpers/router-instance';
-import { $user, getUserFxStatus, logoutFx } from '@entities/user/model/user-model';
+import { $user, getUserFx, getUserFxStatus, logoutFx } from '@entities/user/model/user-model';
 import { createGate } from 'effector-react';
 
 export const lkGate = createGate();
 
 sample({
-  clock: lkGate.open,
+  clock: getUserFx.done,
   source: {
     user: $user,
-    status: getUserFxStatus,
+    opened: lkGate.state,
   },
-  filter: ({ user, status }) => user === null && (status === 'done' || status === 'fail'),
+  filter: ({ user, opened }) => !user && !!opened,
   fn: () => '/',
   target: redirectFx,
 });

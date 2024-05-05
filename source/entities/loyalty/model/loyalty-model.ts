@@ -2,7 +2,6 @@ import { createStore, sample } from 'effector';
 import { Loyalty, LoyaltyHistory } from '@shared/api/__generated__/generated-api.schemas';
 import { createEffect } from 'effector';
 import { profileLoyaltyHistoryList, profileLoyaltyRetrieve } from '@shared/api/__generated__/generated-api';
-import { lkGate } from '@entities/order';
 
 export const getLoyaltyInfoFx = createEffect(async () => {
   try {

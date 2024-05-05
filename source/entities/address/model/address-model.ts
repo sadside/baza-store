@@ -3,7 +3,6 @@ import { profileAddressDestroy, profileAddressList } from '@shared/api/__generat
 import { Address } from '@shared/api/__generated__/generated-api.schemas';
 import { createEffect } from 'effector';
 import { status } from 'patronum';
-import { lkGate } from '@entities/order';
 import { createCourierAddressFx } from '@/source/features/add-address-courier/model/add-address-courier-model';
 import {
   addressRemoveConfirmed,
