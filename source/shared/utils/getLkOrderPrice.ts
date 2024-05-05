@@ -1,9 +1,8 @@
-import { ItemOrderLk } from "@/source/features/lk-actual-info/ui/LkActualInfo";
-import { formatManyofFull } from "@shared/utils/formatMany";
+import { formatManyofFull } from '@shared/utils/formatMany';
+import { IProductCart } from '@/stores/cart/cart.interface';
 
-
-export const getLkOrderPrice = (arr: ItemOrderLk[]) => {
+export const getLkOrderPrice = (arr: any) => {
   let price = 0;
-  arr.forEach(o => price += o.price * o.count);
-  return formatManyofFull(price) + "₽";
+  arr.forEach((o: any) => (price += o.product.price * o.product.quantity));
+  return formatManyofFull(price) + '₽';
 };

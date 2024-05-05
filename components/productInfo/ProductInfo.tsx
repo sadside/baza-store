@@ -4,15 +4,17 @@ import { MainInfoProduct } from '../mainInfoProduct/MainInfoProduct';
 import { Hr } from '../ui/hr/Hr';
 import { SelectProductColor } from '../selectProductColor/SelectProductColor';
 import { SelectProductSize } from '../selectSizeProduct/SelectProductSize';
-import { SubProductInfo } from '../subProductInfo/SubProductInfo';
 import { ProductDetails } from '../productDetails/ProductDetails';
 import { useGate, useUnit } from 'effector-react';
 import { IFullProduct } from '@shared/types/models/Product';
-import { useEffect } from 'react';
 import { Button } from '@shared/theme/button';
-import { $cart, productAddedToCart, productDecremented, productIncremented } from '@entities/cart/model/cart';
-import { $productInCart, $selectedSize, productGate, sizeSelected } from '@entities/product/model/product-model';
-import { CartDrawer } from '@widgets/cart-drawer/ui/cart-drawer';
+import { $productsLoading } from '@entities/cart/model/cart-model';
+import { $productInCart, $selectedSize, productGate } from '@entities/product/model/product-model';
+import {
+  productAddedToCart,
+  productDecremented,
+  productIncremented,
+} from '@/source/features/cart-mutation/model/cart-mutation';
 
 type Props = {
   product: IFullProduct;
@@ -30,7 +32,7 @@ export const ProductInfo = ({ product }: Props) => {
 
   const productInCart = useUnit($productInCart);
 
-  const loading = false;
+  const loading = useUnit($productsLoading);
 
   const handleAddToCartClick = () => {
     productAddedToCart({
@@ -68,18 +70,28 @@ export const ProductInfo = ({ product }: Props) => {
             value={productInCart?.quantityInCart}
             plusAction={handlePlusClick}
             minusAction={handleMinusClick}
+            loading={loading}
             plusNotAllowed={
               selectedSize?.quantity ? selectedSize?.quantity - productInCart?.quantityInCart === 0 : false
             }
+            disabled={loading}
           >
             {productInCart?.quantityInCart}
           </Button.Count>
         ) : (
-          <Button.Primary loading={loading} onClick={handleAddToCartClick} disabled={selectedSize?.quantity <= 0}>
+          <Button.Primary
+            loading={loading}
+            onClick={handleAddToCartClick}
+            disabled={selectedSize?.quantity <= 0 || loading}
+          >
             {selectedSize?.quantity <= 0 ? 'Нет в наличии' : 'Добавить в корзину'}
           </Button.Primary>
         )}
-        <ProductDetails />
+        <ProductDetails
+          details={product.description}
+          delivery="Руководство по доставке."
+          useAdvice={product.composition_and_care}
+        />
       </div>
     </div>
   );

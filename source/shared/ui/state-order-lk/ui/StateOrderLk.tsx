@@ -1,29 +1,48 @@
-import React from "react";
+import { ViewOrderStatusEnum } from '@shared/api/__generated__/generated-api.schemas';
 
-export const StateOrderLk = ({ state }: { state: string }) => {
-  switch (state.toLowerCase()) {
-    case "в пути":
+interface StateOrderLkProps {
+  status: ViewOrderStatusEnum;
+}
+
+export const StateOrderLk = ({ status }: StateOrderLkProps) => {
+  switch (status) {
+    case ViewOrderStatusEnum.in_delivery:
       return (
-        <div
-          className="bg-green min-w-[88px] overflow-visible  text-white uppercase px-[20px] text-[12px] font-semibold py-[4px]">
+        <div className="bg-green min-w-[88px] overflow-visible  text-white uppercase px-[20px] text-[12px] font-semibold flex justify-center">
           в пути
         </div>
       );
-    case "завершен":
+    case ViewOrderStatusEnum.received:
       return (
-        <div className="bg-black-25 min-w-[88px] text-black uppercase px-[20px] text-[12px] font-semibold py-[4px]">
+        <div className="bg-black-25 min-w-[88px] text-black uppercase px-[20px] text-[12px] font-semibold flex justify-center">
           завершен
         </div>
       );
-    case "не оплачен":
+    case ViewOrderStatusEnum.created:
       return (
-        <div className="bg-yellow min-w-[120px] text-black-300 uppercase px-[20px] text-[12px] font-semibold py-[4px]">
-          не оплачен
+        <div className="bg-yellow min-w-[120px] text-black-300 uppercase px-[20px] text-[12px] font-semibold flex justify-center">
+          создан
+        </div>
+      );
+    case ViewOrderStatusEnum.delivered:
+      return (
+        <div className="bg-green min-w-[120px] text-black-300 uppercase px-[20px] text-[12px] font-semibold flex justify-center">
+          доставлен
+        </div>
+      );
+    case ViewOrderStatusEnum.paid:
+      return (
+        <div className="bg-green min-w-[120px] text-black-300 uppercase px-[20px] text-[12px] font-semibold flex justify-center">
+          оплачен
+        </div>
+      );
+    case ViewOrderStatusEnum.cancelled:
+      return (
+        <div className="bg-red min-w-[120px] text-white uppercase px-[20px] text-[12px] font-semibold flex justify-center">
+          отменен
         </div>
       );
     default:
-      return (
-        <></>
-      );
+      return <></>;
   }
 };

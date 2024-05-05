@@ -27,8 +27,6 @@ const MenuLinks = ({ links, mobile }: Props) => {
   const showDropdownMenu = useUnit($showDropdownMenu);
   const menuState = useUnit($stateOfMenu);
 
-  console.log(links);
-
   return (
     <div className={styles.nav}>
       <NavigationMenu>
@@ -43,7 +41,7 @@ const MenuLinks = ({ links, mobile }: Props) => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="w-[600px]">
                   <div className="grid w-[400px] p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                    {link.children.map((item) => {
+                    {link.children.map((item: any) => {
                       return (
                         <Link
                           href={`/${link.slug}/${item.slug}`}

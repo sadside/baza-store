@@ -1,15 +1,13 @@
 'use client';
 
-import React, { useEffect } from 'react';
 import styles from './cart-page.module.scss';
 import { useUnit } from 'effector-react';
-import { $user, getCartFromLocalStorageFx, getCartFromServerFx } from '@/stores/cart/init';
 import { IProductCart } from '@/stores/cart/cart.interface';
 import { EmptyCart } from '@/components/emptyCart/EmptyCart';
 import { OrderDetails } from '@/source/features/order-details';
 import { ClearCart } from '@/source/features/clear-cart/';
 import { CartItem } from '@/source/features/cart-item';
-import { $cart } from '@entities/cart/model/cart';
+import { $cart } from '@entities/cart/model/cart-model';
 import { ClearCartConfirm } from '@/source/features/clear-cart-confirm/ui/clear-cart-confirm';
 
 type Props = {};
@@ -17,17 +15,10 @@ type Props = {};
 export const CartPage = (props: Props) => {
   const products = useUnit($cart);
 
-  const user = useUnit($user);
-
   const res = products.sort(function (a: IProductCart, b: IProductCart) {
     if (a.id && b.id) return a.id - b.id;
     else return 0;
   });
-
-  useEffect(() => {
-    if (user) getCartFromServerFx();
-    else getCartFromLocalStorageFx();
-  }, []);
 
   return (
     <div className={styles.wrapper}>

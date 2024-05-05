@@ -1,13 +1,9 @@
-import styles from "../inputPhoneMask/InputPhoneMask.module.scss";
+import styles from '../inputPhoneMask/InputPhoneMask.module.scss';
 
-import classNames from "classnames";
-import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, KeyboardEvent } from "react";
+import classNames from 'classnames';
+import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, KeyboardEvent } from 'react';
 
-interface IProps
-  extends DetailedHTMLProps<
-    HTMLAttributes<HTMLInputElement>,
-    HTMLInputElement
-  > {
+interface IProps extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   className?: string;
   name?: string;
   type?: string;
@@ -18,28 +14,20 @@ interface IProps
 
 export const PATTERN = /\D/g;
 
-export const InputDateMask = ({
-                                className,
-                                name,
-                                type,
-                                error,
-                                register,
-                                resetFiled,
-                                ...rest
-                              }: IProps) => {
+export const InputDateMask = ({ className, name, type, error, register, resetFiled, ...rest }: IProps) => {
   const getInputNumbersValue = (value: string) => {
-    return value.replace(PATTERN, "");
+    return value.replace(PATTERN, '');
   };
 
   const handlePhoneInput = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target;
     let inputNumbersValue = getInputNumbersValue(input.value);
 
-    let formattedInputValue = "";
+    let formattedInputValue = '';
     const selectionStart = input.selectionStart;
 
     if (!inputNumbersValue) {
-      return (input.value = "");
+      return (input.value = '');
     }
 
     if (input.value.length !== selectionStart) {
@@ -53,8 +41,8 @@ export const InputDateMask = ({
     if (inputNumbersValue.length > 1) {
       if (Number(inputNumbersValue[0]) === 3) {
         if (Number(inputNumbersValue[1]) > 1) {
-        } else formattedInputValue += inputNumbersValue[1] + ".";
-      } else formattedInputValue += inputNumbersValue[1] + ".";
+        } else formattedInputValue += inputNumbersValue[1] + '.';
+      } else formattedInputValue += inputNumbersValue[1] + '.';
     }
     if (inputNumbersValue.length > 2) {
       if (Number(inputNumbersValue[2]) > 1) {
@@ -63,11 +51,11 @@ export const InputDateMask = ({
     if (inputNumbersValue.length > 3) {
       if (Number(inputNumbersValue[2]) === 1) {
         if (Number(inputNumbersValue[3]) > 2) {
-        } else formattedInputValue += inputNumbersValue[3] + ".";
+        } else formattedInputValue += inputNumbersValue[3] + '.';
       } else if (Number(inputNumbersValue[2]) === 0) {
         if (Number(inputNumbersValue[3]) === 0) {
-        } else formattedInputValue += inputNumbersValue[3] + ".";
-      } else formattedInputValue += inputNumbersValue[3] + ".";
+        } else formattedInputValue += inputNumbersValue[3] + '.';
+      } else formattedInputValue += inputNumbersValue[3] + '.';
     }
     if (inputNumbersValue.length > 4) {
       if (Number(inputNumbersValue[4]) > 2) {
@@ -91,10 +79,7 @@ export const InputDateMask = ({
       if (Number(inputNumbersValue[4]) === 2) {
         if (Number(inputNumbersValue[6]) < 2) {
           formattedInputValue += inputNumbersValue[7];
-        } else if (
-          Number(inputNumbersValue[6]) === 2 &&
-          Number(inputNumbersValue[7]) < 4
-        ) {
+        } else if (Number(inputNumbersValue[6]) === 2 && Number(inputNumbersValue[7]) < 4) {
           formattedInputValue += inputNumbersValue[7];
         }
       } else formattedInputValue += inputNumbersValue[7];
@@ -104,16 +89,9 @@ export const InputDateMask = ({
   };
   const handlePhoneDelete = (event: KeyboardEvent<HTMLInputElement>) => {
     const input = event.target as HTMLInputElement;
-    if (
-      event.key === "Backspace" &&
-      getInputNumbersValue(input.value).length === 1
-    ) {
-      input.value = "";
-    } else if (
-      event.key === "Backspace" &&
-      input.value[input.value.length - 1] === "."
-    ) {
-      console.log("laksxcjvfdkal");
+    if (event.key === 'Backspace' && getInputNumbersValue(input.value).length === 1) {
+      input.value = '';
+    } else if (event.key === 'Backspace' && input.value[input.value.length - 1] === '.') {
       input.value = input.value.substring(0, input.value.length - 1);
     }
 
@@ -123,9 +101,13 @@ export const InputDateMask = ({
   return (
     <>
       <input
-        className={classNames(`${styles.input}`, {
-          [styles.error]: error
-        })}
+        className={classNames(
+          `${styles.input}`,
+          {
+            [styles.error]: error,
+          },
+          className
+        )}
         type={type}
         maxLength={18}
         onInput={handlePhoneInput}

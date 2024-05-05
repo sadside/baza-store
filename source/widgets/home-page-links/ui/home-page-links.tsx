@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { Category } from '@/app/page';
 import SvgSelector from '@/source/shared/utils/SvgSelector';
+import { useUnit } from 'effector-react';
+import { $user } from '@entities/user/model/user-model';
 
 interface categoryLinksProps {
   links: Category[];
@@ -14,7 +16,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
   const [showWomenCategories, setShowWomenCategories] = useState(false);
   const [showManCategories, setShowManCategories] = useState(false);
 
-  console.log('links: ', links);
+  const user = useUnit($user);
 
   const LIST_ITEM_VARIANTS: Variants = {
     hidden: {
@@ -40,7 +42,7 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
           <Link href="/cart">
             <SvgSelector id={'cart-white'} />
           </Link>
-          <Link href="/auth">
+          <Link href={user ? '/lk' : '/auth'}>
             <SvgSelector id={'user-white'} />
           </Link>
         </div>

@@ -11,119 +11,116 @@ export type SchemaRetrieve200Two = { [key: string]: {} };
 
 export type SchemaRetrieve200One = { [key: string]: {} };
 
-export type SchemaRetrieveLang = typeof SchemaRetrieveLang[keyof typeof SchemaRetrieveLang];
-
+export type SchemaRetrieveLang = (typeof SchemaRetrieveLang)[keyof typeof SchemaRetrieveLang];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const SchemaRetrieveLang = {
-  af: "af",
-  ar: "ar",
-  "ar-dz": "ar-dz",
-  ast: "ast",
-  az: "az",
-  be: "be",
-  bg: "bg",
-  bn: "bn",
-  br: "br",
-  bs: "bs",
-  ca: "ca",
-  ckb: "ckb",
-  cs: "cs",
-  cy: "cy",
-  da: "da",
-  de: "de",
-  dsb: "dsb",
-  el: "el",
-  en: "en",
-  "en-au": "en-au",
-  "en-gb": "en-gb",
-  eo: "eo",
-  es: "es",
-  "es-ar": "es-ar",
-  "es-co": "es-co",
-  "es-mx": "es-mx",
-  "es-ni": "es-ni",
-  "es-ve": "es-ve",
-  et: "et",
-  eu: "eu",
-  fa: "fa",
-  fi: "fi",
-  fr: "fr",
-  fy: "fy",
-  ga: "ga",
-  gd: "gd",
-  gl: "gl",
-  he: "he",
-  hi: "hi",
-  hr: "hr",
-  hsb: "hsb",
-  hu: "hu",
-  hy: "hy",
-  ia: "ia",
-  id: "id",
-  ig: "ig",
-  io: "io",
-  is: "is",
-  it: "it",
-  ja: "ja",
-  ka: "ka",
-  kab: "kab",
-  kk: "kk",
-  km: "km",
-  kn: "kn",
-  ko: "ko",
-  ky: "ky",
-  lb: "lb",
-  lt: "lt",
-  lv: "lv",
-  mk: "mk",
-  ml: "ml",
-  mn: "mn",
-  mr: "mr",
-  ms: "ms",
-  my: "my",
-  nb: "nb",
-  ne: "ne",
-  nl: "nl",
-  nn: "nn",
-  os: "os",
-  pa: "pa",
-  pl: "pl",
-  pt: "pt",
-  "pt-br": "pt-br",
-  ro: "ro",
-  ru: "ru",
-  sk: "sk",
-  sl: "sl",
-  sq: "sq",
-  sr: "sr",
-  "sr-latn": "sr-latn",
-  sv: "sv",
-  sw: "sw",
-  ta: "ta",
-  te: "te",
-  tg: "tg",
-  th: "th",
-  tk: "tk",
-  tr: "tr",
-  tt: "tt",
-  udm: "udm",
-  ug: "ug",
-  uk: "uk",
-  ur: "ur",
-  uz: "uz",
-  vi: "vi",
-  "zh-hans": "zh-hans",
-  "zh-hant": "zh-hant"
+  af: 'af',
+  ar: 'ar',
+  'ar-dz': 'ar-dz',
+  ast: 'ast',
+  az: 'az',
+  be: 'be',
+  bg: 'bg',
+  bn: 'bn',
+  br: 'br',
+  bs: 'bs',
+  ca: 'ca',
+  ckb: 'ckb',
+  cs: 'cs',
+  cy: 'cy',
+  da: 'da',
+  de: 'de',
+  dsb: 'dsb',
+  el: 'el',
+  en: 'en',
+  'en-au': 'en-au',
+  'en-gb': 'en-gb',
+  eo: 'eo',
+  es: 'es',
+  'es-ar': 'es-ar',
+  'es-co': 'es-co',
+  'es-mx': 'es-mx',
+  'es-ni': 'es-ni',
+  'es-ve': 'es-ve',
+  et: 'et',
+  eu: 'eu',
+  fa: 'fa',
+  fi: 'fi',
+  fr: 'fr',
+  fy: 'fy',
+  ga: 'ga',
+  gd: 'gd',
+  gl: 'gl',
+  he: 'he',
+  hi: 'hi',
+  hr: 'hr',
+  hsb: 'hsb',
+  hu: 'hu',
+  hy: 'hy',
+  ia: 'ia',
+  id: 'id',
+  ig: 'ig',
+  io: 'io',
+  is: 'is',
+  it: 'it',
+  ja: 'ja',
+  ka: 'ka',
+  kab: 'kab',
+  kk: 'kk',
+  km: 'km',
+  kn: 'kn',
+  ko: 'ko',
+  ky: 'ky',
+  lb: 'lb',
+  lt: 'lt',
+  lv: 'lv',
+  mk: 'mk',
+  ml: 'ml',
+  mn: 'mn',
+  mr: 'mr',
+  ms: 'ms',
+  my: 'my',
+  nb: 'nb',
+  ne: 'ne',
+  nl: 'nl',
+  nn: 'nn',
+  os: 'os',
+  pa: 'pa',
+  pl: 'pl',
+  pt: 'pt',
+  'pt-br': 'pt-br',
+  ro: 'ro',
+  ru: 'ru',
+  sk: 'sk',
+  sl: 'sl',
+  sq: 'sq',
+  sr: 'sr',
+  'sr-latn': 'sr-latn',
+  sv: 'sv',
+  sw: 'sw',
+  ta: 'ta',
+  te: 'te',
+  tg: 'tg',
+  th: 'th',
+  tk: 'tk',
+  tr: 'tr',
+  tt: 'tt',
+  udm: 'udm',
+  uk: 'uk',
+  ur: 'ur',
+  uz: 'uz',
+  vi: 'vi',
+  'zh-hans': 'zh-hans',
+  'zh-hant': 'zh-hant',
 } as const;
 
-export type SchemaRetrieveFormat = typeof SchemaRetrieveFormat[keyof typeof SchemaRetrieveFormat];
-
+export type SchemaRetrieveFormat = (typeof SchemaRetrieveFormat)[keyof typeof SchemaRetrieveFormat];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const SchemaRetrieveFormat = {
-  json: "json",
-  yaml: "yaml"
+  json: 'json',
+  yaml: 'yaml',
 } as const;
 
 export type SchemaRetrieveParams = {
@@ -131,27 +128,39 @@ export type SchemaRetrieveParams = {
   lang?: SchemaRetrieveLang;
 };
 
-export type ProductsFilterListParams = {
-  /**
-   * A page number within the paginated result set.
-   */
-  page?: number;
-  /**
-   * Number of results to return per page.
-   */
-  page_size?: number;
-};
+/**
+ * * `created` - Created
+ * `paid` - Paid
+ * `in_delivery` - In Delivery
+ * `delivered` - Delivered
+ * `received` - Received
+ * `cancelled` - Cancelled
+ */
+export type ViewOrderStatusEnum = (typeof ViewOrderStatusEnum)[keyof typeof ViewOrderStatusEnum];
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const ViewOrderStatusEnum = {
+  created: 'created',
+  paid: 'paid',
+  in_delivery: 'in_delivery',
+  delivered: 'delivered',
+  received: 'received',
+  cancelled: 'cancelled',
+} as const;
 
 export interface ViewOrder {
-  apartment?: string | null;
-  baza_loyalty?: number;
-  city?: string | null;
+  address?: string | null;
+  amount?: number;
+  apartment_number?: number | null;
+  code?: string | null;
   email: string;
-  frame?: string | null;
-  house?: string | null;
+  floor_number?: number | null;
   readonly id: number;
+  intercom?: number | null;
   is_paid?: boolean;
   is_received?: boolean;
+  loaylty_awarded?: boolean;
+  loyalty_received?: number;
   name: string;
   order_date?: string;
   payment_type: PaymentTypeEnum;
@@ -159,58 +168,50 @@ export interface ViewOrder {
   readonly products: string;
   receiving: ReceivingEnum;
   receiving_date?: string | null;
-  status?: StatusEnum;
-  street?: string | null;
+  status?: ViewOrderStatusEnum;
   surname: string;
 }
 
 export interface UserDataSerialzier {
-  apartment?: string | null;
   birthday_date: string;
-  city?: string | null;
   readonly email: string;
-  frame?: string | null;
-  house?: string | null;
   readonly id: number;
   name?: string | null;
   readonly phone: string;
-  street?: string | null;
   surname?: string | null;
 }
 
 /**
- * * `created` - Created
- * `paid` - Paid
- * `in_delivery` - In Delivery
- * `delivered` - Delivered
- * `received` - Received
- */
-export type StatusEnum = typeof StatusEnum[keyof typeof StatusEnum];
-
-
-// eslint-disable-next-line @typescript-eslint/no-redeclare
-export const StatusEnum = {
-  created: "created",
-  paid: "paid",
-  in_delivery: "in_delivery",
-  delivered: "delivered",
-  received: "received"
-} as const;
-
-/**
- * * `delivery_address` - Доставка до двери
- * `delivery_stock` - Доставка до склада
+ * * `courier` - Доставка
+ * `cdek` - Пункт СДЕК
  * `pickup` - Самовывоз
  */
-export type ReceivingEnum = typeof ReceivingEnum[keyof typeof ReceivingEnum];
-
+export type ReceivingEnum = (typeof ReceivingEnum)[keyof typeof ReceivingEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ReceivingEnum = {
-  delivery_address: "delivery_address",
-  delivery_stock: "delivery_stock",
-  pickup: "pickup"
+  courier: 'courier',
+  cdek: 'cdek',
+  pickup: 'pickup',
 } as const;
+
+export interface ProductsCalculate {
+  color: string;
+  image: string;
+  message: string;
+  name: string;
+  price: number;
+  quantity: number;
+  size: string;
+  status: string;
+}
+
+export interface ProductPath {
+  readonly children: string;
+  readonly id: number;
+  name: string;
+  slug?: string;
+}
 
 export interface Product {
   category: number;
@@ -233,16 +234,15 @@ export interface PhoneNumber {
 /**
  * * `online` - Картой онлайн
  * `cash` - Наличными
- * `fps` - СБП
+ * `sbp` - СБП
  */
-export type PaymentTypeEnum = typeof PaymentTypeEnum[keyof typeof PaymentTypeEnum];
-
+export type PaymentTypeEnum = (typeof PaymentTypeEnum)[keyof typeof PaymentTypeEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PaymentTypeEnum = {
-  online: "online",
-  cash: "cash",
-  fps: "fps"
+  online: 'online',
+  cash: 'cash',
+  sbp: 'sbp',
 } as const;
 
 export interface Payment {
@@ -253,6 +253,7 @@ export interface Payment {
   readonly id: number;
   readonly message: string;
   readonly order_id: string;
+  payment_fail?: boolean;
   readonly payment_id: string;
   /** Ссылка на страницу оплаты. По умолчанию ссылка доступна в течении 24 часов. */
   readonly payment_url: string;
@@ -260,11 +261,58 @@ export interface Payment {
   readonly success: boolean;
 }
 
-export interface PaginatedListProductList {
-  count?: number;
-  next?: string | null;
-  previous?: string | null;
-  results?: ListProduct[];
+export interface PatchedAddress {
+  address?: string;
+  apartment_number?: number | null;
+  code?: string | null;
+  floor_number?: number | null;
+  readonly id?: number;
+  intercom?: number | null;
+  is_main?: boolean;
+  type?: string;
+  readonly user_id?: number;
+}
+
+/**
+ * * `marketing` - Marketing
+ * `bring_in` - Bring In
+ */
+export type OperationEnum = (typeof OperationEnum)[keyof typeof OperationEnum];
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const OperationEnum = {
+  marketing: 'marketing',
+  bring_in: 'bring_in',
+} as const;
+
+/**
+ * * `black` - Black
+ * `gold` - Gold
+ * `platinum` - Platinum
+ */
+export type LoyaltyStatusEnum = (typeof LoyaltyStatusEnum)[keyof typeof LoyaltyStatusEnum];
+
+// eslint-disable-next-line @typescript-eslint/no-redeclare
+export const LoyaltyStatusEnum = {
+  black: 'black',
+  gold: 'gold',
+  platinum: 'platinum',
+} as const;
+
+export interface LoyaltyHistory {
+  datetime?: string;
+  operation?: OperationEnum;
+  total?: number;
+  readonly user_id: number;
+  value?: number;
+}
+
+export interface Loyalty {
+  awaiting_balance?: number;
+  balance?: number;
+  remained?: number | null;
+  status?: LoyaltyStatusEnum;
+  readonly user_id: number;
 }
 
 export interface Login {
@@ -284,19 +332,35 @@ export interface ListProducts {
   readonly slug: string;
 }
 
-export interface ListProduct {
-  readonly colours: string;
+export interface FilterProductModification {
+  readonly breadcrumbs: string;
+  readonly products: string;
+}
+
+export interface CreateOrder {
+  address?: string | null;
+  apartment_number?: number | null;
+  code?: string | null;
+  email: string;
+  floor_number?: number | null;
   readonly id: number;
-  image?: string;
-  readonly modifications: string;
+  intercom?: number | null;
   name: string;
-  path: AloneProductPath;
-  price: number;
+  payment_type: PaymentTypeEnum;
+  phone: string;
+  receiving: ReceivingEnum;
+  surname: string;
 }
 
 export interface Cart {
   readonly product: string;
   quantity?: number;
+}
+
+export interface Calculate {
+  available_loyalty: number;
+  price: number;
+  products: ProductsCalculate[];
 }
 
 export interface AloneProductPath {
@@ -305,3 +369,15 @@ export interface AloneProductPath {
   slug?: string;
 }
 
+export interface Address {
+  address: string;
+  price?: number;
+  apartment_number?: number | null;
+  code?: string | null;
+  floor_number?: number | null;
+  readonly id: number;
+  intercom?: number | null;
+  is_main?: boolean;
+  type: string;
+  readonly user_id: number;
+}

@@ -5,9 +5,7 @@ import { createEvent, createStore, sample } from 'effector';
 import { IFullProduct } from '@shared/types/models/Product';
 import { createGate } from 'effector-react';
 import { IProductCart } from '@/stores/cart/cart.interface';
-import { $cart, cartMounted } from '@entities/cart/model/cart';
-import { testGate } from '@/stores/cart/init';
-import { trackMediaQuery } from '@withease/web-api';
+import { $cart } from '@entities/cart/model/cart-model';
 import { desktop, mobile } from '@shared/lib/utils/helpers/device-matcher';
 
 export const sizeSelected = createEvent<{
@@ -67,13 +65,12 @@ sample({
   target: [$fullProduct, $selectedSize, $productInCart],
 });
 
-$selectedSize.watch((state) => console.log(state === null));
-
 sample({
   clock: $fullProduct,
   filter: (product) => !!product?.sizes?.length,
   fn: (product) => {
     return {
+      //@ts-ignore
       ...product.sizes[0],
     };
   },
@@ -86,6 +83,7 @@ sample({
 });
 
 sample({
+  //@ts-ignore
   clock: [$cart, $fullProduct, $selectedSize],
   source: {
     cart: $cart,
@@ -93,7 +91,6 @@ sample({
   },
   filter: ({ cart, size }) => !!size?.slug,
   fn: ({ cart, size }) => {
-    console.log(cart, size);
     return { ...cart.find((item) => item.slug === size?.slug) } || null;
   },
   target: $productInCart,

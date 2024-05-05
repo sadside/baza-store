@@ -26,8 +26,6 @@ async function getProduct(slug: string) {
   try {
     const response = await ProductService.getProductBySlug(slug);
 
-    console.log(response);
-
     if (!response.ok) throw new Error('error');
 
     return await response.json();

@@ -2,7 +2,7 @@ import '@/source/shared/styles/globals.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import React from 'react';
-import { API_URL } from '@/source/shared/api/http/custom-instance';
+import { API_URL } from '@shared/api/http/axios-instance';
 import '@shared/styles/globals.scss';
 import { Layout } from '@/source/layouts/product-layout';
 import { Toaster } from '@shared/ui/shadcn/ui/sonner';

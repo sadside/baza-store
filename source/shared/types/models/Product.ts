@@ -27,7 +27,8 @@ export type Modification = {
 
 export interface IFullProduct {
   name: string;
-  description?: string;
+  description: string;
+  composition_and_care: string;
   price: number;
   images: string[];
   category: {

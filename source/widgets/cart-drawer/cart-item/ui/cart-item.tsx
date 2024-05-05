@@ -2,9 +2,12 @@ import { IProductCart } from '@/stores/cart/cart.interface';
 import Image from 'next/image';
 import styles from './cart-item.module.scss';
 import { MinusIcon, PlusIcon } from 'lucide-react';
-import { productDecremented, productIncremented } from '@entities/cart/model/cart';
+import { $productsLoading } from '@entities/cart/model/cart-model';
 import { twMerge } from 'tailwind-merge';
 import Link from 'next/link';
+import { useUnit } from 'effector-react';
+import { Loader } from '@/components/loader/Loader';
+import { productDecremented, productIncremented } from '@/source/features/cart-mutation/model/cart-mutation';
 
 interface CartItemProps extends IProductCart {}
 
@@ -16,6 +19,8 @@ export const CartItem = ({ slug, image, name, size, color, price, quantityInCart
   const handleMinusClick = () => {
     productDecremented(slug);
   };
+
+  const loading = useUnit($productsLoading);
 
   return (
     <div className="flex gap-2 my-2">
@@ -33,14 +38,14 @@ export const CartItem = ({ slug, image, name, size, color, price, quantityInCart
         </p>
         <div className="w-full flex justify-between">
           <div className="flex items-center">
-            Количество
+            <span className="max-[400px]:sr-only">Количество</span>
             <button
               className="py-2 bg-gray-100 w-5 rounded h-3 flex items-center justify-center mx-1"
               onClick={handleMinusClick}
             >
               <MinusIcon width={13} />
             </button>
-            <p className="mx-2 font-semibold">{quantityInCart}</p>
+            <p className="mx-2 font-semibold">{loading ? <Loader height={18} width={18} /> : quantityInCart}</p>
             <button
               className=" py-2 bg-gray-100 w-5 rounded h-3 flex items-center justify-center mx-1"
               onClick={handlePlusClick}

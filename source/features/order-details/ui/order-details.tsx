@@ -6,7 +6,8 @@ import { useUnit } from 'effector-react';
 import PartsLogo from '@shared/assets/icons/parts.svg';
 import RightArrow from '@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg';
 import { Button } from '@shared/theme/button';
-import { $cart } from '@entities/cart/model/cart';
+import { $cart } from '@entities/cart/model/cart-model';
+import { partsModalStateChanged } from '@entities/product/model/product-model';
 
 interface OrderDetailsProps {
   className?: string;
@@ -43,7 +44,7 @@ export const OrderDetails = ({}: OrderDetailsProps) => {
           </div>
         </div>
       </div>
-      <button className={styles.partsPayment}>
+      <button className={styles.partsPayment} onClick={() => partsModalStateChanged(true)}>
         <PartsLogo />
         <div className={styles.value}>4 платежа по {salePrice / 4}</div>
         <RightArrow />

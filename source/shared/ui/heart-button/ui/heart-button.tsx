@@ -5,16 +5,8 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, useEffect, useState } from 're
 import CheckedHeartIcon from '@shared/assets/icons/CheckedHeartIcon.svg';
 import UncheckedHeartIcon from '@shared/assets/icons/UncheckedHeartIcon.svg';
 import { useUnit } from 'effector-react';
-import {
-  $favorites,
-  $user,
-  addFavorite,
-  addFavoriteToServerFx,
-  deleteFavoriteToServerFx,
-  removeFavorite,
-} from '@/stores/cart/init';
-import { IProductCart } from '@/stores/cart/cart.interface';
-import { IFullProduct } from '@shared/types/models/Product';
+
+import { $favorites, favoriteAdded, favoriteRemoved } from '@entities/favorite/model/favorite-model';
 
 interface HeartButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   checked: boolean;
@@ -26,15 +18,13 @@ interface HeartButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBu
 }
 
 export const HeartButton = ({ height = 20, fill = '#A2A2A2', width = 20, slug }: HeartButtonProps) => {
-  const user = useUnit($user);
-
   const favorites = useUnit($favorites);
 
   const [isFavorite, setFavorite] = useState(false);
 
   useEffect(() => {
-    favorites.forEach((item) => {
-      if (item === slug) {
+    favorites?.forEach((item) => {
+      if (item.slug === slug) {
         setFavorite(true);
       }
     });
@@ -44,12 +34,9 @@ export const HeartButton = ({ height = 20, fill = '#A2A2A2', width = 20, slug }:
     setFavorite(!isFavorite);
 
     if (!isFavorite) {
-      addFavorite(slug);
-
-      if (user) addFavoriteToServerFx(slug);
+      favoriteAdded(slug);
     } else {
-      removeFavorite(slug);
-      if (user) deleteFavoriteToServerFx(slug);
+      favoriteRemoved(slug);
     }
   };
 

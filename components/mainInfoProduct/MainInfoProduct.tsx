@@ -94,6 +94,7 @@ const PartsModal = ({ price }: { price: number }) => {
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
                 {format(new Date(add(new Date(), { days: 14 })), 'dd MMM', {
+                  //@ts-ignore
                   locale: ru,
                 })}
               </div>
@@ -103,6 +104,7 @@ const PartsModal = ({ price }: { price: number }) => {
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
                 {format(new Date(add(new Date(), { days: 28 })), 'dd MMM', {
+                  //@ts-ignore
                   locale: ru,
                 })}
               </div>
@@ -112,6 +114,7 @@ const PartsModal = ({ price }: { price: number }) => {
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
                 {format(new Date(add(new Date(), { days: 42 })), 'dd MMM', {
+                  //@ts-ignore
                   locale: ru,
                 })}
               </div>
@@ -233,6 +236,7 @@ const PartsMobileModal = ({ price }: { price: number }) => {
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
                 {format(new Date(add(new Date(), { days: 14 })), 'dd MMM', {
+                  //@ts-ignore
                   locale: ru,
                 })}
               </div>
@@ -242,6 +246,7 @@ const PartsMobileModal = ({ price }: { price: number }) => {
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
                 {format(new Date(add(new Date(), { days: 28 })), 'dd MMM', {
+                  //@ts-ignore
                   locale: ru,
                 })}
               </div>
@@ -251,6 +256,7 @@ const PartsMobileModal = ({ price }: { price: number }) => {
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
                 {format(new Date(add(new Date(), { days: 42 })), 'dd MMM', {
+                  //@ts-ignore
                   locale: ru,
                 })}
               </div>

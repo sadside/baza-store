@@ -2,7 +2,7 @@
 
 import { createEvent, createStore, sample } from 'effector';
 import { createGate } from 'effector-react';
-import { cartCleared } from '@entities/cart/model/cart';
+import { cartCleared } from '@entities/cart/model/cart-model';
 
 export const cartPageGate = createGate();
 

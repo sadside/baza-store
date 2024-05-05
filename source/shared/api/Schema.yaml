@@ -7,7 +7,7 @@ paths:
     post:
       operationId: auth_login_create
       tags:
-        - auth
+      - auth
       requestBody:
         content:
           application/json:
@@ -21,8 +21,8 @@ paths:
               $ref: '#/components/schemas/Login'
         required: true
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           content:
@@ -31,12 +31,12 @@ paths:
                 $ref: '#/components/schemas/Login'
           description: ''
   /api/auth/logout/:
-    get:
-      operationId: auth_logout_retrieve
+    post:
+      operationId: auth_logout_create
       tags:
-        - auth
+      - auth
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           description: No response body
@@ -44,10 +44,10 @@ paths:
     get:
       operationId: auth_phone_code_retrieve
       tags:
-        - auth
+      - auth
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           description: No response body
@@ -55,7 +55,7 @@ paths:
     post:
       operationId: auth_send_code_create
       tags:
-        - auth
+      - auth
       requestBody:
         content:
           application/json:
@@ -69,8 +69,8 @@ paths:
               $ref: '#/components/schemas/PhoneNumber'
         required: true
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           content:
@@ -81,47 +81,56 @@ paths:
   /api/orders/calculate/:
     get:
       operationId: orders_calculate_retrieve
+      summary: Предподсчет корзины
       tags:
-        - orders
+      - orders
       security:
-        - tokenAuth: [ ]
-      responses:
-        '200':
-          description: No response body
-  /api/orders/orders/:
-    get:
-      operationId: orders_orders_retrieve
-      tags:
-        - orders
-      security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ViewOrder'
+                $ref: '#/components/schemas/Calculate'
+          description: ''
+  /api/orders/orders/:
+    get:
+      operationId: orders_orders_list
+      summary: Просмотр всех заказов
+      tags:
+      - orders
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewOrder'
           description: ''
     post:
       operationId: orders_orders_create
+      summary: Создание заказа
       tags:
-        - orders
+      - orders
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ViewOrder'
+              $ref: '#/components/schemas/CreateOrder'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ViewOrder'
+              $ref: '#/components/schemas/CreateOrder'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/ViewOrder'
+              $ref: '#/components/schemas/CreateOrder'
         required: true
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
-        '200':
+        '201':
           content:
             application/json:
               schema:
@@ -131,10 +140,50 @@ paths:
     get:
       operationId: orders_payment_retrieve
       tags:
-        - orders
+      - orders
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+          description: ''
+  /api/orders/payment/response/fail/{payment_id}:
+    get:
+      operationId: orders_payment_response_fail_retrieve
+      parameters:
+      - in: path
+        name: payment_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - orders
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+          description: ''
+  /api/orders/payment/response/success/{payment_id}:
+    get:
+      operationId: orders_payment_response_success_retrieve
+      parameters:
+      - in: path
+        name: payment_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - orders
+      security:
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -146,10 +195,10 @@ paths:
     get:
       operationId: orders_payment_status_retrieve
       tags:
-        - orders
+      - orders
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           content:
@@ -161,72 +210,65 @@ paths:
     get:
       operationId: products_detail_retrieve
       parameters:
-        - in: path
-          name: slug
-          schema:
-            type: string
-          required: true
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
       tags:
-        - products
+      - products
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           description: No response body
   /api/products/filter/:
     get:
-      operationId: products_filter_list
-      parameters:
-        - name: page
-          required: false
-          in: query
-          description: A page number within the paginated result set.
-          schema:
-            type: integer
-        - name: page_size
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
+      operationId: products_filter_retrieve
       tags:
-        - products
+      - products
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PaginatedListProductList'
+                $ref: '#/components/schemas/FilterProductModification'
           description: ''
   /api/products/path/:
     get:
-      operationId: products_path_retrieve
+      operationId: products_path_list
       tags:
-        - products
+      - products
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductPath'
+          description: ''
   /api/products/product/{id}/:
     get:
       operationId: products_product_retrieve
       parameters:
-        - in: path
-          name: id
-          schema:
-            type: integer
-          required: true
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
       tags:
-        - products
+      - products
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           content:
@@ -238,10 +280,10 @@ paths:
     get:
       operationId: products_products_list
       tags:
-        - products
+      - products
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           content:
@@ -251,13 +293,191 @@ paths:
                 items:
                   $ref: '#/components/schemas/ListProducts'
           description: ''
+  /api/profile/address/:
+    get:
+      operationId: profile_address_list
+      description: |-
+        Адресы пользователя.
+
+        Добавление и получение списка адресов пользователя, доступно только для
+        текущего пользователю.
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Address'
+          description: ''
+    post:
+      operationId: profile_address_create
+      description: |-
+        Адресы пользователя.
+
+        Добавление и получение списка адресов пользователя, доступно только для
+        текущего пользователю.
+      tags:
+      - profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Address'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Address'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+  /api/profile/address/{id}/:
+    get:
+      operationId: profile_address_retrieve
+      description: |-
+        Адрес пользователя.
+
+        Обновление и удаление адреса, доступно только для адреса, принадлежащего
+        текущему пользователю.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+    put:
+      operationId: profile_address_update
+      description: |-
+        Адрес пользователя.
+
+        Обновление и удаление адреса, доступно только для адреса, принадлежащего
+        текущему пользователю.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Address'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Address'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Address'
+        required: true
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+    patch:
+      operationId: profile_address_partial_update
+      description: |-
+        Адрес пользователя.
+
+        Обновление и удаление адреса, доступно только для адреса, принадлежащего
+        текущему пользователю.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAddress'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAddress'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAddress'
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Address'
+          description: ''
+    delete:
+      operationId: profile_address_destroy
+      description: |-
+        Адрес пользователя.
+
+        Обновление и удаление адреса, доступно только для адреса, принадлежащего
+        текущему пользователю.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/profile/address/search/:
+    get:
+      operationId: profile_address_search_retrieve
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
   /api/profile/cart/:
     get:
       operationId: profile_cart_retrieve
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -268,7 +488,7 @@ paths:
     post:
       operationId: profile_cart_create
       tags:
-        - profile
+      - profile
       requestBody:
         content:
           application/json:
@@ -281,7 +501,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Cart'
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -292,9 +512,9 @@ paths:
     delete:
       operationId: profile_cart_destroy
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -302,7 +522,7 @@ paths:
     post:
       operationId: profile_cart_add_create
       tags:
-        - profile
+      - profile
       requestBody:
         content:
           application/json:
@@ -315,7 +535,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Cart'
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -327,9 +547,9 @@ paths:
     get:
       operationId: profile_cart_clear_retrieve
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           description: No response body
@@ -337,9 +557,9 @@ paths:
     get:
       operationId: profile_cart_maximization_retrieve
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -351,7 +571,7 @@ paths:
     post:
       operationId: profile_cart_remove_create
       tags:
-        - profile
+      - profile
       requestBody:
         content:
           application/json:
@@ -364,7 +584,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Cart'
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -376,27 +596,27 @@ paths:
     get:
       operationId: profile_favorites_retrieve
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           description: No response body
     post:
       operationId: profile_favorites_create
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           description: No response body
     delete:
       operationId: profile_favorites_destroy
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -404,9 +624,9 @@ paths:
     get:
       operationId: profile_info_retrieve
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -417,7 +637,7 @@ paths:
     post:
       operationId: profile_info_create
       tags:
-        - profile
+      - profile
       requestBody:
         content:
           application/json:
@@ -431,7 +651,7 @@ paths:
               $ref: '#/components/schemas/UserDataSerialzier'
         required: true
       security:
-        - tokenAuth: [ ]
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -439,17 +659,55 @@ paths:
               schema:
                 $ref: '#/components/schemas/UserDataSerialzier'
           description: ''
-  /api/profile/search-address/:
+  /api/profile/loyalty/:
     get:
-      operationId: profile_search_address_retrieve
+      operationId: profile_loyalty_retrieve
       tags:
-        - profile
+      - profile
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Loyalty'
+          description: ''
+    delete:
+      operationId: profile_loyalty_destroy
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/profile/loyalty/faker/:
+    post:
+      operationId: profile_loyalty_faker_create
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
       responses:
         '200':
           description: No response body
+  /api/profile/loyalty/history/:
+    get:
+      operationId: profile_loyalty_history_list
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoyaltyHistory'
+          description: ''
   /api/schema/:
     get:
       operationId: schema_retrieve
@@ -459,144 +717,190 @@ paths:
         - YAML: application/vnd.oai.openapi
         - JSON: application/vnd.oai.openapi+json
       parameters:
-        - in: query
-          name: format
-          schema:
-            type: string
-            enum:
-              - json
-              - yaml
-        - in: query
-          name: lang
-          schema:
-            type: string
-            enum:
-              - af
-              - ar
-              - ar-dz
-              - ast
-              - az
-              - be
-              - bg
-              - bn
-              - br
-              - bs
-              - ca
-              - ckb
-              - cs
-              - cy
-              - da
-              - de
-              - dsb
-              - el
-              - en
-              - en-au
-              - en-gb
-              - eo
-              - es
-              - es-ar
-              - es-co
-              - es-mx
-              - es-ni
-              - es-ve
-              - et
-              - eu
-              - fa
-              - fi
-              - fr
-              - fy
-              - ga
-              - gd
-              - gl
-              - he
-              - hi
-              - hr
-              - hsb
-              - hu
-              - hy
-              - ia
-              - id
-              - ig
-              - io
-              - is
-              - it
-              - ja
-              - ka
-              - kab
-              - kk
-              - km
-              - kn
-              - ko
-              - ky
-              - lb
-              - lt
-              - lv
-              - mk
-              - ml
-              - mn
-              - mr
-              - ms
-              - my
-              - nb
-              - ne
-              - nl
-              - nn
-              - os
-              - pa
-              - pl
-              - pt
-              - pt-br
-              - ro
-              - ru
-              - sk
-              - sl
-              - sq
-              - sr
-              - sr-latn
-              - sv
-              - sw
-              - ta
-              - te
-              - tg
-              - th
-              - tk
-              - tr
-              - tt
-              - udm
-              - ug
-              - uk
-              - ur
-              - uz
-              - vi
-              - zh-hans
-              - zh-hant
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
       tags:
-        - schema
+      - schema
       security:
-        - tokenAuth: [ ]
-        - { }
+      - tokenAuth: []
+      - {}
       responses:
         '200':
           content:
             application/vnd.oai.openapi:
               schema:
                 type: object
-                additionalProperties: { }
+                additionalProperties: {}
             application/yaml:
               schema:
                 type: object
-                additionalProperties: { }
+                additionalProperties: {}
             application/vnd.oai.openapi+json:
               schema:
                 type: object
-                additionalProperties: { }
+                additionalProperties: {}
             application/json:
               schema:
                 type: object
-                additionalProperties: { }
+                additionalProperties: {}
           description: ''
 components:
   schemas:
+    Address:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user_id:
+          type: integer
+          readOnly: true
+        type:
+          type: string
+          title: Тип адреса
+          maxLength: 128
+        address:
+          type: string
+          title: Адрес
+          maxLength: 128
+        code:
+          type: string
+          nullable: true
+          title: Код ПВЗ
+        apartment_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Домофон
+        is_main:
+          type: boolean
+          title: Основной адрес
+      required:
+      - address
+      - id
+      - type
+      - user_id
     AloneProductPath:
       type: object
       properties:
@@ -613,8 +917,23 @@ components:
           maxLength: 50
           pattern: ^[-a-zA-Z0-9_]+$
       required:
-        - id
-        - name
+      - id
+      - name
+    Calculate:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductsCalculate'
+        available_loyalty:
+          type: integer
+        price:
+          type: integer
+      required:
+      - available_loyalty
+      - price
+      - products
     Cart:
       type: object
       properties:
@@ -627,8 +946,8 @@ components:
           minimum: 0
           title: Количество
       required:
-        - product
-    ListProduct:
+      - product
+    CreateOrder:
       type: object
       properties:
         id:
@@ -636,32 +955,76 @@ components:
           readOnly: true
         name:
           type: string
-          title: Название
-          maxLength: 255
-        price:
+          title: Имя клиента
+          maxLength: 128
+        surname:
+          type: string
+          title: Фамилия клиента
+          maxLength: 128
+        email:
+          type: string
+          format: email
+          title: Почта клиента
+          maxLength: 254
+        phone:
+          type: string
+          title: Телефон клиента
+          maxLength: 11
+        receiving:
+          allOf:
+          - $ref: '#/components/schemas/ReceivingEnum'
+          title: Способ получения
+        payment_type:
+          allOf:
+          - $ref: '#/components/schemas/PaymentTypeEnum'
+          title: Способ оплаты
+        address:
+          type: string
+          nullable: true
+          title: Адрес
+          maxLength: 128
+        code:
+          type: string
+          nullable: true
+          title: Код ПВЗ
+        apartment_number:
           type: integer
           maximum: 2147483647
           minimum: -2147483648
-          title: Цена
-        image:
-          type: string
-          format: uri
-          title: Выбрать главное изображение
-        colours:
+          nullable: true
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Домофон
+      required:
+      - email
+      - id
+      - name
+      - payment_type
+      - phone
+      - receiving
+      - surname
+    FilterProductModification:
+      type: object
+      properties:
+        products:
           type: string
           readOnly: true
-        path:
-          $ref: '#/components/schemas/AloneProductPath'
-        modifications:
+        breadcrumbs:
           type: string
           readOnly: true
       required:
-        - colours
-        - id
-        - modifications
-        - name
-        - path
-        - price
+      - breadcrumbs
+      - products
     ListProducts:
       type: object
       properties:
@@ -693,15 +1056,15 @@ components:
           type: string
           readOnly: true
       required:
-        - colors_count
-        - images
-        - modification_id
-        - name
-        - old_price
-        - path
-        - price
-        - product_id
-        - slug
+      - colors_count
+      - images
+      - modification_id
+      - name
+      - old_price
+      - path
+      - price
+      - product_id
+      - slug
     Login:
       type: object
       properties:
@@ -710,28 +1073,123 @@ components:
         code:
           type: string
       required:
-        - code
-        - phone
-    PaginatedListProductList:
+      - code
+      - phone
+    Loyalty:
       type: object
       properties:
-        count:
+        user_id:
           type: integer
-          example: 123
-        next:
+          title: Пользователь
+          readOnly: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/LoyaltyStatusEnum'
+          title: Статус лояльности
+        balance:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Баланс лояльности
+        awaiting_balance:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Ожидаемый баланс лояльности
+        remained:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Остаталось до следущего уровня
+      required:
+      - user_id
+    LoyaltyHistory:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          readOnly: true
+        datetime:
+          type: string
+          format: date-time
+          title: Дата и время
+        operation:
+          allOf:
+          - $ref: '#/components/schemas/OperationEnum'
+          title: Баланс лояльности
+        value:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: История
+        total:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Итого
+      required:
+      - user_id
+    LoyaltyStatusEnum:
+      enum:
+      - black
+      - gold
+      - platinum
+      type: string
+      description: |-
+        * `black` - Black
+        * `gold` - Gold
+        * `platinum` - Platinum
+    OperationEnum:
+      enum:
+      - marketing
+      - bring_in
+      type: string
+      description: |-
+        * `marketing` - Marketing
+        * `bring_in` - Bring In
+    PatchedAddress:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user_id:
+          type: integer
+          readOnly: true
+        type:
+          type: string
+          title: Тип адреса
+          maxLength: 128
+        address:
+          type: string
+          title: Адрес
+          maxLength: 128
+        code:
           type: string
           nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=4
-        previous:
-          type: string
+          title: Код ПВЗ
+        apartment_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
-          format: uri
-          example: http://api.example.org/accounts/?page=2
-        results:
-          type: array
-          items:
-            $ref: '#/components/schemas/ListProduct'
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Домофон
+        is_main:
+          type: boolean
+          title: Основной адрес
     Payment:
       type: object
       properties:
@@ -780,35 +1238,38 @@ components:
           type: string
           readOnly: true
           title: Подробное описание ошибки
+        payment_fail:
+          type: boolean
+          title: Ошибка платежа
       required:
-        - amount
-        - description
-        - details
-        - error_code
-        - id
-        - message
-        - order_id
-        - payment_id
-        - payment_url
-        - status
-        - success
+      - amount
+      - description
+      - details
+      - error_code
+      - id
+      - message
+      - order_id
+      - payment_id
+      - payment_url
+      - status
+      - success
     PaymentTypeEnum:
       enum:
-        - online
-        - cash
-        - fps
+      - online
+      - cash
+      - sbp
       type: string
       description: |-
         * `online` - Картой онлайн
         * `cash` - Наличными
-        * `fps` - СБП
+        * `sbp` - СБП
     PhoneNumber:
       type: object
       properties:
         phone:
           type: string
       required:
-        - phone
+      - phone
     Product:
       type: object
       properties:
@@ -850,39 +1311,75 @@ components:
           type: string
           readOnly: true
       required:
-        - category
-        - color_images
-        - full_path
-        - id
-        - modifications
-        - name
-        - path
-        - price
-        - slug_path
+      - category
+      - color_images
+      - full_path
+      - id
+      - modifications
+      - name
+      - path
+      - price
+      - slug_path
+    ProductPath:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Название
+          maxLength: 63
+        slug:
+          type: string
+          title: Слаг (создается автоматически)
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        children:
+          type: string
+          readOnly: true
+      required:
+      - children
+      - id
+      - name
+    ProductsCalculate:
+      type: object
+      properties:
+        name:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: integer
+        size:
+          type: string
+        color:
+          type: string
+        message:
+          type: string
+        status:
+          type: string
+        image:
+          type: string
+      required:
+      - color
+      - image
+      - message
+      - name
+      - price
+      - quantity
+      - size
+      - status
     ReceivingEnum:
       enum:
-        - delivery_address
-        - delivery_stock
-        - pickup
+      - courier
+      - cdek
+      - pickup
       type: string
       description: |-
-        * `delivery_address` - Доставка до двери
-        * `delivery_stock` - Доставка до склада
+        * `courier` - Доставка
+        * `cdek` - Пункт СДЕК
         * `pickup` - Самовывоз
-    StatusEnum:
-      enum:
-        - created
-        - paid
-        - in_delivery
-        - delivered
-        - received
-      type: string
-      description: |-
-        * `created` - Created
-        * `paid` - Paid
-        * `in_delivery` - In Delivery
-        * `delivered` - Delivered
-        * `received` - Received
     UserDataSerialzier:
       type: object
       properties:
@@ -909,36 +1406,11 @@ components:
         birthday_date:
           type: string
           format: date
-        city:
-          type: string
-          nullable: true
-          title: Город
-          maxLength: 128
-        street:
-          type: string
-          nullable: true
-          title: Улица
-          maxLength: 128
-        house:
-          type: string
-          nullable: true
-          title: Дом
-          maxLength: 16
-        frame:
-          type: string
-          nullable: true
-          title: Корпус
-          maxLength: 16
-        apartment:
-          type: string
-          nullable: true
-          title: Квартира
-          maxLength: 16
       required:
-        - birthday_date
-        - email
-        - id
-        - phone
+      - birthday_date
+      - email
+      - id
+      - phone
     ViewOrder:
       type: object
       properties:
@@ -964,37 +1436,44 @@ components:
           maxLength: 11
         receiving:
           allOf:
-            - $ref: '#/components/schemas/ReceivingEnum'
+          - $ref: '#/components/schemas/ReceivingEnum'
           title: Способ получения
         payment_type:
           allOf:
-            - $ref: '#/components/schemas/PaymentTypeEnum'
+          - $ref: '#/components/schemas/PaymentTypeEnum'
           title: Способ оплаты
-        city:
+        amount:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          title: Стоимость
+        address:
           type: string
           nullable: true
-          title: Город
+          title: Адрес
           maxLength: 128
-        street:
+        code:
           type: string
           nullable: true
-          title: Улица
-          maxLength: 128
-        house:
-          type: string
+          title: Код ПВЗ
+        apartment_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
-          title: Дом
-          maxLength: 16
-        frame:
-          type: string
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
-          title: Корпус
-          maxLength: 16
-        apartment:
-          type: string
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
-          title: Квартира
-          maxLength: 16
+          title: Домофон
         is_paid:
           type: boolean
           title: Оплачено?
@@ -1010,27 +1489,46 @@ components:
           title: Дата заказа
         status:
           allOf:
-            - $ref: '#/components/schemas/StatusEnum'
+          - $ref: '#/components/schemas/ViewOrderStatusEnum'
           title: Статус
         receiving_date:
           type: string
           format: date-time
           nullable: true
           title: Дата получения
-        baza_loyalty:
+        loyalty_received:
           type: integer
           maximum: 2147483647
           minimum: -2147483648
-          title: Бонусная программа
+          title: Полученные баллы
+        loaylty_awarded:
+          type: boolean
+          title: Баллы начислены?
       required:
-        - email
-        - id
-        - name
-        - payment_type
-        - phone
-        - products
-        - receiving
-        - surname
+      - email
+      - id
+      - name
+      - payment_type
+      - phone
+      - products
+      - receiving
+      - surname
+    ViewOrderStatusEnum:
+      enum:
+      - created
+      - paid
+      - in_delivery
+      - delivered
+      - received
+      - cancelled
+      type: string
+      description: |-
+        * `created` - Created
+        * `paid` - Paid
+        * `in_delivery` - In Delivery
+        * `delivered` - Delivered
+        * `received` - Received
+        * `cancelled` - Cancelled
   securitySchemes:
     tokenAuth:
       type: apiKey

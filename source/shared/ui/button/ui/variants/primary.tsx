@@ -26,7 +26,7 @@ export const Primary = ({ children, loading, disabled, className, ...props }: pr
   return (
     <button
       type="submit"
-      className={`${buttonCls} ${className}`}
+      className={`${buttonCls} w-full h-11 ${className}`}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       disabled={disabled}

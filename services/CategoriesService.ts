@@ -1,5 +1,5 @@
 import { notAuthApi } from '@/api/api';
-import { API_URL } from '@/source/shared/api/http/custom-instance';
+import { API_URL } from '@shared/api/http/axios-instance';
 
 export default class CategoriesService {
   static async getMenuContent() {

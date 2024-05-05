@@ -1,6 +1,6 @@
 'use client';
 import { createEvent, createStore, sample } from 'effector';
-import { $loginError } from '@/stores/cart/init';
+import { $loginError } from '@entities/user/model/user-model';
 
 export const clearDigits = createEvent<void>();
 export const $codeDigits = createStore(['', '', '', '', '', '']).reset(clearDigits);

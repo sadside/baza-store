@@ -1,8 +1,10 @@
 .wrapper {
   background-color: #000000 !important;
-  width: 100%;
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
   color: #FFFFFF;
-  height: 100%;
 
   &:hover {
     background-color: #4E4E4E !important;

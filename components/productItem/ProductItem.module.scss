@@ -12,10 +12,10 @@
 }
 
 .img {
-  -o-object-fit: cover;
-  object-fit: cover;
+  //-o-object-fit: cover;
+  //object-fit: cover;
   width: 100% !important;
-  height: auto;
+  height: 460px;
   //@media (min-width: 2600px) {
   //  height: 900px;
   //}
