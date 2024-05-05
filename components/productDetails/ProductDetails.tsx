@@ -28,9 +28,6 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
     setIsDeliveryVisible((prev) => !prev);
   };
 
-  details =
-    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid atque consectetur dolores, id officiis pariatur quis repellendus rerum sint. Distinctio doloribus exercitationem id nihil non nulla possimus praesentium, quia quibusdam.';
-
   return (
     <div className={styles.wrapper}>
       <div className="py-[24px] w-full border-y border-black-50 text-black-200 hover:text-black transition duration-200">

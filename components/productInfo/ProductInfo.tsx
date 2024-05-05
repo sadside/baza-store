@@ -87,7 +87,11 @@ export const ProductInfo = ({ product }: Props) => {
             {selectedSize?.quantity <= 0 ? 'Нет в наличии' : 'Добавить в корзину'}
           </Button.Primary>
         )}
-        <ProductDetails details="123" delivery="123" useAdvice="asd" />
+        <ProductDetails
+          details={product.description}
+          delivery="Руководство по доставке."
+          useAdvice={product.composition_and_care}
+        />
       </div>
     </div>
   );

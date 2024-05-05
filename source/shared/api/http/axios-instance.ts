@@ -2,11 +2,11 @@ import axios, { AxiosError, CreateAxiosDefaults } from 'axios';
 import { getAccessToken, getContentType, removeFromStorage } from '@shared/api/lib/api.helpers';
 import apiService from '@shared/api/api/api.service';
 
-export const API_URL_CLIENT = 'http://127.0.0.1:8000/api/';
-export const API_URL = 'http://127.0.0.1:8000/api/';
+export const API_URL_CLIENT = 'http://thebaza.ru/api/';
+export const API_URL = 'http://server:8000/api/';
 
 const axiosOptions: CreateAxiosDefaults = {
-  baseURL: API_URL,
+  baseURL: API_URL_CLIENT,
   headers: getContentType(),
   withCredentials: true,
 };
