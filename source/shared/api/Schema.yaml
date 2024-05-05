@@ -31,8 +31,8 @@ paths:
                 $ref: '#/components/schemas/Login'
           description: ''
   /api/auth/logout/:
-    get:
-      operationId: auth_logout_retrieve
+    post:
+      operationId: auth_logout_create
       tags:
       - auth
       security:
@@ -81,16 +81,7 @@ paths:
   /api/orders/calculate/:
     get:
       operationId: orders_calculate_retrieve
-      tags:
-      - orders
-      security:
-      - tokenAuth: []
-      responses:
-        '200':
-          description: No response body
-  /api/orders/orders/:
-    get:
-      operationId: orders_orders_retrieve
+      summary: Предподсчет корзины
       tags:
       - orders
       security:
@@ -100,28 +91,46 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ViewOrder'
+                $ref: '#/components/schemas/Calculate'
+          description: ''
+  /api/orders/orders/:
+    get:
+      operationId: orders_orders_list
+      summary: Просмотр всех заказов
+      tags:
+      - orders
+      security:
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewOrder'
           description: ''
     post:
       operationId: orders_orders_create
+      summary: Создание заказа
       tags:
       - orders
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ViewOrder'
+              $ref: '#/components/schemas/CreateOrder'
           application/x-www-form-urlencoded:
             schema:
-              $ref: '#/components/schemas/ViewOrder'
+              $ref: '#/components/schemas/CreateOrder'
           multipart/form-data:
             schema:
-              $ref: '#/components/schemas/ViewOrder'
+              $ref: '#/components/schemas/CreateOrder'
         required: true
       security:
       - tokenAuth: []
       responses:
-        '200':
+        '201':
           content:
             application/json:
               schema:
@@ -451,6 +460,17 @@ paths:
       responses:
         '204':
           description: No response body
+  /api/profile/address/search/:
+    get:
+      operationId: profile_address_search_retrieve
+      tags:
+      - profile
+      security:
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
   /api/profile/cart/:
     get:
       operationId: profile_cart_retrieve
@@ -688,17 +708,6 @@ paths:
                 items:
                   $ref: '#/components/schemas/LoyaltyHistory'
           description: ''
-  /api/profile/search-address/:
-    get:
-      operationId: profile_search_address_retrieve
-      tags:
-      - profile
-      security:
-      - tokenAuth: []
-      - {}
-      responses:
-        '200':
-          description: No response body
   /api/schema/:
     get:
       operationId: schema_retrieve
@@ -862,6 +871,31 @@ components:
           type: string
           title: Адрес
           maxLength: 128
+        code:
+          type: string
+          nullable: true
+          title: Код ПВЗ
+        apartment_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Домофон
+        is_main:
+          type: boolean
+          title: Основной адрес
       required:
       - address
       - id
@@ -885,6 +919,21 @@ components:
       required:
       - id
       - name
+    Calculate:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductsCalculate'
+        available_loyalty:
+          type: integer
+        price:
+          type: integer
+      required:
+      - available_loyalty
+      - price
+      - products
     Cart:
       type: object
       properties:
@@ -898,6 +947,72 @@ components:
           title: Количество
       required:
       - product
+    CreateOrder:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Имя клиента
+          maxLength: 128
+        surname:
+          type: string
+          title: Фамилия клиента
+          maxLength: 128
+        email:
+          type: string
+          format: email
+          title: Почта клиента
+          maxLength: 254
+        phone:
+          type: string
+          title: Телефон клиента
+          maxLength: 11
+        receiving:
+          allOf:
+          - $ref: '#/components/schemas/ReceivingEnum'
+          title: Способ получения
+        payment_type:
+          allOf:
+          - $ref: '#/components/schemas/PaymentTypeEnum'
+          title: Способ оплаты
+        address:
+          type: string
+          nullable: true
+          title: Адрес
+          maxLength: 128
+        code:
+          type: string
+          nullable: true
+          title: Код ПВЗ
+        apartment_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Домофон
+      required:
+      - email
+      - id
+      - name
+      - payment_type
+      - phone
+      - receiving
+      - surname
     FilterProductModification:
       type: object
       properties:
@@ -1050,6 +1165,31 @@ components:
           type: string
           title: Адрес
           maxLength: 128
+        code:
+          type: string
+          nullable: true
+          title: Код ПВЗ
+        apartment_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+          nullable: true
+          title: Домофон
+        is_main:
+          type: boolean
+          title: Основной адрес
     Payment:
       type: object
       properties:
@@ -1117,12 +1257,12 @@ components:
       enum:
       - online
       - cash
-      - fps
+      - sbp
       type: string
       description: |-
         * `online` - Картой онлайн
         * `cash` - Наличными
-        * `fps` - СБП
+        * `sbp` - СБП
     PhoneNumber:
       type: object
       properties:
@@ -1202,15 +1342,43 @@ components:
       - children
       - id
       - name
+    ProductsCalculate:
+      type: object
+      properties:
+        name:
+          type: string
+        quantity:
+          type: integer
+        price:
+          type: integer
+        size:
+          type: string
+        color:
+          type: string
+        message:
+          type: string
+        status:
+          type: string
+        image:
+          type: string
+      required:
+      - color
+      - image
+      - message
+      - name
+      - price
+      - quantity
+      - size
+      - status
     ReceivingEnum:
       enum:
-      - delivery_address
-      - delivery_stock
+      - courier
+      - cdek
       - pickup
       type: string
       description: |-
-        * `delivery_address` - Доставка до двери
-        * `delivery_stock` - Доставка до склада
+        * `courier` - Доставка
+        * `cdek` - Пункт СДЕК
         * `pickup` - Самовывоз
     UserDataSerialzier:
       type: object
@@ -1279,31 +1447,33 @@ components:
           maximum: 2147483647
           minimum: -2147483648
           title: Стоимость
-        city:
+        address:
           type: string
           nullable: true
-          title: Город
+          title: Адрес
           maxLength: 128
-        street:
+        code:
           type: string
           nullable: true
-          title: Улица
-          maxLength: 128
-        house:
-          type: string
+          title: Код ПВЗ
+        apartment_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
-          title: Дом
-          maxLength: 16
-        frame:
-          type: string
+          title: Номер квартиры
+        floor_number:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
-          title: Корпус
-          maxLength: 16
-        apartment:
-          type: string
+          title: Номер этажа
+        intercom:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
           nullable: true
-          title: Квартира
-          maxLength: 16
+          title: Домофон
         is_paid:
           type: boolean
           title: Оплачено?
@@ -1326,11 +1496,14 @@ components:
           format: date-time
           nullable: true
           title: Дата получения
-        baza_loyalty:
+        loyalty_received:
           type: integer
           maximum: 2147483647
           minimum: -2147483648
-          title: Бонусная программа
+          title: Полученные баллы
+        loaylty_awarded:
+          type: boolean
+          title: Баллы начислены?
       required:
       - email
       - id

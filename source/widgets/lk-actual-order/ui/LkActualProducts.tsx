@@ -3,11 +3,16 @@
 import ActualOrder from '@entities/order/ui/actual-order';
 import { ActualOrderActions } from '@/source/features/actual-order-actions';
 import { useUnit } from 'effector-react';
-import { $actualOrders } from '@entities/order/model/order-model';
+import { $actualOrders, getOrdersFx } from '@entities/order/model/order-model';
 import { OrdersEmpty } from '@entities/order/ui/orders-empty';
+import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
 
 export const LkActualOrders = () => {
   const actualOrders = useUnit($actualOrders);
+  const loading = useUnit(getOrdersFx.pending);
+
+  if (loading && !actualOrders) return <Skeleton className="bg-black-50 h-[100px] rounded w-full" />;
+
   return (
     <div className="w-full">
       {actualOrders?.length ? (
@@ -15,7 +20,6 @@ export const LkActualOrders = () => {
       ) : (
         <OrdersEmpty />
       )}
-      <ActualOrderActions />
     </div>
   );
 };

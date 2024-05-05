@@ -4,6 +4,7 @@ import { ButtonWrapper } from '@/source/shared/ui/button';
 import { Primary, primaryProps } from '@/source/shared/ui/button/ui/variants/primary';
 import { Secondary } from '@/source/shared/ui/button/ui/variants/secondary';
 import { Count, countProps } from '@/source/shared/ui/button/ui/variants/count';
+import { twMerge } from 'tailwind-merge';
 
 interface ButtonProps {
   children?: React.ReactNode;
@@ -13,15 +14,9 @@ interface ButtonProps {
 
 function createButton<T>(ButtonComponent: React.FC<T>) {
   return (props: T & ButtonProps) => {
-    const { height = 44, width, ...otherProps } = props;
+    const { ...otherProps } = props;
 
-    return (
-      <ButtonWrapper style={{ height, width }}>
-        <ButtonComponent {...(otherProps as T)} style={{ height, width }}>
-          {props?.children}
-        </ButtonComponent>
-      </ButtonWrapper>
-    );
+    return <ButtonComponent {...(otherProps as T)}>{props?.children}</ButtonComponent>;
   };
 }
 

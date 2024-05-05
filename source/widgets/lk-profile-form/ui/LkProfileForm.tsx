@@ -28,7 +28,7 @@ export type ProfileFormFields = {
   surname: string;
   date: string;
   mail: string;
-  phone: string;
+  phone?: string;
 };
 
 export const LcProfileForm = () => {
@@ -54,30 +54,30 @@ export const LcProfileForm = () => {
 
   return (
     <form className="mt-5" onSubmit={handleSubmit(onSubmit)}>
-      <div className="relative ">
+      <div className="relative">
         <div>Имя</div>
-        <InputNameMask error={!!errors.name} register={register} name="name" />
+        <InputNameMask error={!!errors.name} register={register} name="name" className="w-[425px]" />
         {errors.name && <div className="absolute text-red">{errors.name.message}</div>}
       </div>
       <div className="relative mt-[18px]">
         <div>Фамилия</div>
-        <InputNameMask error={!!errors.surname} register={register} name="surname" />
+        <InputNameMask error={!!errors.surname} register={register} name="surname" className="w-[425px]" />
         {errors.surname && <div className="absolute text-red">{errors.surname.message}</div>}
       </div>
       <div className="relative mt-[18px]">
         <div>Дата </div>
-        <InputDateMask error={!!errors.date} register={register} name="date" />
+        <InputDateMask error={!!errors.date} register={register} name="date" className="w-[425px]" />
         {errors.date && <div className="absolute text-red">{errors.date.message}</div>}
       </div>
 
       <div className="relative mt-[18px]">
         <div>E-mail</div>
-        <input {...register('mail')} className={classNames(s.input, errors.mail && s.error)} />
+        <input {...register('mail')} className={classNames(s.input, errors.mail && s.error, 'w-[425px]')} />
         {errors.mail && <div className="absolute text-red">{errors.mail?.message}</div>}
       </div>
       <div className="relative mt-[18px]">
         <div>Телефон</div>
-        <PhoneInput register={register} name="phone" error={!!errors.phone} disabled={true} />
+        <PhoneInput register={register} name="phone" error={!!errors.phone} disabled={true} className="w-[425px]" />
         {errors.phone && <div className="absolute text-red">{errors.phone?.message}</div>}
       </div>
 

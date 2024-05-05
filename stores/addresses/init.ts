@@ -1,14 +1,12 @@
-import { createEvent, createStore, sample } from "effector";
+import { createEvent, createStore, sample } from 'effector';
 
 const changeTypeAddresses = createEvent<string>();
 
-
-const $activeTypeAddressesSelf = createStore<string>("cdek");
+const $activeTypeAddressesSelf = createStore<string>('personal');
 
 sample({
   clock: changeTypeAddresses,
-  fn: e => e,
-  target: $activeTypeAddressesSelf
+  target: $activeTypeAddressesSelf,
 });
 
 export { changeTypeAddresses, $activeTypeAddressesSelf };

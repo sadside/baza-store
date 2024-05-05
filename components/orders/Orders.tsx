@@ -6,9 +6,11 @@ import { LkActualOrders } from '@widgets/lk-actual-order';
 import ActualOrder from '@entities/order/ui/actual-order';
 import { useUnit } from 'effector-react';
 import { $orders } from '@entities/order';
-import { $actualOrders, $archiveOrders } from '@entities/order/model/order-model';
+import { $actualOrders, $archiveOrders, getOrdersFx } from '@entities/order/model/order-model';
 import { ArchiveOrder } from '@entities/order/ui/acrhive-order';
 import { OrdersEmpty } from '@entities/order/ui/orders-empty';
+import { useRouter } from 'next/navigation';
+import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
 
 export type miniOrder = {
   name: string;
@@ -32,12 +34,14 @@ export const Orders = () => {
   const activeOrders = useUnit($actualOrders);
   const archiveOrders = useUnit($archiveOrders);
 
+  const loading = useUnit(getOrdersFx.pending);
+
+  if (loading) return <Skeleton className="bg-black-50 h-full w-full"></Skeleton>;
+
   return (
     <>
       {!orders?.length ? (
-        <>
-          <OrdersEmpty />
-        </>
+        <OrdersEmpty />
       ) : (
         <div className="w-full">
           {activeOrders?.map((order) => <ActualOrder order={order} key={order.id} />)}

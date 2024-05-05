@@ -31,13 +31,8 @@ const cx = classNames.bind(styles);
 
 export const PhoneInput = ({ className, name, type, error, register, resetFiled, disabled, ...props }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
-  const { isShow, setIsShow, ref } = useOutside(false);
 
   const currentCountry = useUnit($currentCountryCode);
-  const codes = useUnit($countryCodes);
-  const isSelectOpened = useUnit($isSelectCodeOpened);
-
-  let value = '';
 
   const inputFocused = () => {
     setIsFocused(true);
@@ -66,20 +61,10 @@ export const PhoneInput = ({ className, name, type, error, register, resetFiled,
     handlePhoneInput(event, currentCountry);
   };
 
-  const handlePhoneCode = () => {
-    codesSelectOpened(true);
-    setIsShow(true);
-  };
-
-  const handlePhoneCodeClick = (code: string) => {
-    codeClicked(code);
-    setIsShow(false);
-  };
-
   return (
     <div className={styles.wrapper}>
       <input
-        className={inputClassName}
+        className={`${inputClassName} ${className} text-[12px]`}
         placeholder="Номер телефона"
         type={type}
         maxLength={18}
@@ -88,26 +73,11 @@ export const PhoneInput = ({ className, name, type, error, register, resetFiled,
         onFocus={inputFocused}
         disabled={disabled}
         {...register(name)}
-        {...props}
         onBlur={inputUnFocused}
       />
       <div className={regionCodeHandlerClassName}>
         <div className={styles.regionCode}>{currentCountry}</div>
-        {/*<Image src={arrow} alt="icon" />*/}
       </div>
-      {isSelectOpened && isShow && (
-        <div className={regionCodeSelectClassName} ref={ref} tabIndex={0}>
-          {codes.length ? (
-            codes?.map((code) => (
-              <div className={styles.selectCodeItem} onClick={() => handlePhoneCodeClick(code.phone_code)}>
-                {code.phone_code + ' ' + code.country_code}
-              </div>
-            ))
-          ) : (
-            <div className={styles.selectCodeItem}>Ничего не найдено</div>
-          )}
-        </div>
-      )}
     </div>
   );
 };

@@ -1,10 +1,12 @@
-import React from "react";
-import Welcome from "../welcome/Welcome";
-import Sidebar from "../sidebar/Sidebar";
+import React from 'react';
+import Welcome from '../welcome/Welcome';
+import Sidebar from '../sidebar/Sidebar';
+import { ContactsModal } from '@widgets/contacts-modal/ui/contacts-modal';
 
 export const LkLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="mb-10">
+      <ContactsModal />
       <Welcome />
       <div className="flex  max-[1050px]:flex-col">
         <Sidebar />

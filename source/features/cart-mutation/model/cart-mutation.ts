@@ -153,6 +153,7 @@ sample({
 
 sample({
   clock: getUserFx.doneData,
+  source: $user,
   filter: (user) => user === null,
   target: getCartFromLocalStorageFx,
 });

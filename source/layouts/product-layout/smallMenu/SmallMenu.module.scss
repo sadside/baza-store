@@ -8,6 +8,7 @@
 	left: 0;
 	width: 100%;
 	align-items: center;
+
 	margin-right: 0 !important;
 	justify-content: space-around;
 	@media (max-width: 1000px) {
@@ -42,9 +43,11 @@
 		flex: 1 1 50%;
 		margin-right: 0 !important;
 		padding: 0 30px;
+		background-color: #fff;
 		display: flex;
 		align-items: center;
 		height: 100%;
+		width: 100% !important;
 		justify-content: space-between;
 		border-bottom: 1px solid #ccc;
 	}

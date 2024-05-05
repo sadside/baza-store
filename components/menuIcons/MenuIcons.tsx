@@ -1,7 +1,5 @@
 'use client';
 
-import React, { useEffect } from 'react';
-
 import styles from './MenuIcons.module.scss';
 import Link from 'next/link';
 import { MenuCart } from '@/source/layouts/main-layout/cart/MenuCart';

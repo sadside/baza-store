@@ -5,7 +5,9 @@
  */
 import type {
   Address,
+  Calculate,
   Cart,
+  CreateOrder,
   FilterProductModification,
   ListProducts,
   Login,
@@ -53,8 +55,8 @@ export const authLoginCreate = (login: BodyType<Login>) => {
   });
 };
 
-export const authLogoutRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/auth/logout/`, method: 'GET' });
+export const authLogoutCreate = () => {
+  return $apiWithGuard<void>({ url: `/auth/logout/`, method: 'POST' });
 };
 
 export const authPhoneCodeRetrieve = () => {
@@ -70,25 +72,40 @@ export const authSendCodeCreate = (phoneNumber: BodyType<PhoneNumber>) => {
   });
 };
 
+/**
+ * @summary Предподсчет корзины
+ */
 export const ordersCalculateRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/orders/calculate/`, method: 'GET' });
+  return $apiWithGuard<Calculate>({ url: `/orders/calculate/`, method: 'GET' });
 };
 
-export const ordersOrdersRetrieve = () => {
+/**
+ * @summary Просмотр всех заказов
+ */
+export const ordersOrdersList = () => {
   return $apiWithGuard<ViewOrder[]>({ url: `/orders/orders/`, method: 'GET' });
 };
 
-export const ordersOrdersCreate = (viewOrder: BodyType<NonReadonly<ViewOrder>>) => {
+/**
+ * @summary Создание заказа
+ */
+export const ordersOrdersCreate = (createOrder: BodyType<NonReadonly<CreateOrder>>) => {
   return $apiWithGuard<ViewOrder>({
     url: `/orders/orders/`,
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    data: viewOrder,
+    data: createOrder,
   });
 };
 
-export const ordersPaymentRetrieve = () => {
-  return $apiWithGuard<Payment>({ url: `/orders/payment/`, method: 'GET' });
+export const ordersPaymentRetrieve = (id: number) => {
+  return $apiWithGuard<Payment>({
+    url: `/orders/payment/`,
+    method: 'GET',
+    params: {
+      order_id: id,
+    },
+  });
 };
 
 export const ordersPaymentResponseFailRetrieve = (paymentId: number) => {
@@ -198,6 +215,10 @@ export const profileAddressDestroy = (id: number) => {
   return $apiWithGuard<void>({ url: `/profile/address/${id}/`, method: 'DELETE' });
 };
 
+export const profileAddressSearchRetrieve = () => {
+  return $apiWithGuard<void>({ url: `/profile/address/search/`, method: 'GET' });
+};
+
 export const profileCartRetrieve = () => {
   return $apiWithGuard<Cart>({ url: `/profile/cart/`, method: 'GET' });
 };
@@ -282,10 +303,6 @@ export const profileLoyaltyHistoryList = () => {
   return $apiWithGuard<LoyaltyHistory[]>({ url: `/profile/loyalty/history/`, method: 'GET' });
 };
 
-export const profileSearchAddressRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/profile/search-address/`, method: 'GET' });
-};
-
 /**
  * OpenApi3 schema for this API. Format can be selected via content negotiation.
 
@@ -301,11 +318,11 @@ export const schemaRetrieve = (params?: SchemaRetrieveParams) => {
 };
 
 export type AuthLoginCreateResult = NonNullable<Awaited<ReturnType<typeof authLoginCreate>>>;
-export type AuthLogoutRetrieveResult = NonNullable<Awaited<ReturnType<typeof authLogoutRetrieve>>>;
+export type AuthLogoutCreateResult = NonNullable<Awaited<ReturnType<typeof authLogoutCreate>>>;
 export type AuthPhoneCodeRetrieveResult = NonNullable<Awaited<ReturnType<typeof authPhoneCodeRetrieve>>>;
 export type AuthSendCodeCreateResult = NonNullable<Awaited<ReturnType<typeof authSendCodeCreate>>>;
 export type OrdersCalculateRetrieveResult = NonNullable<Awaited<ReturnType<typeof ordersCalculateRetrieve>>>;
-export type OrdersOrdersRetrieveResult = NonNullable<Awaited<ReturnType<typeof ordersOrdersRetrieve>>>;
+export type OrdersOrdersListResult = NonNullable<Awaited<ReturnType<typeof ordersOrdersList>>>;
 export type OrdersOrdersCreateResult = NonNullable<Awaited<ReturnType<typeof ordersOrdersCreate>>>;
 export type OrdersPaymentRetrieveResult = NonNullable<Awaited<ReturnType<typeof ordersPaymentRetrieve>>>;
 export type OrdersPaymentResponseFailRetrieveResult = NonNullable<
@@ -326,6 +343,7 @@ export type ProfileAddressRetrieveResult = NonNullable<Awaited<ReturnType<typeof
 export type ProfileAddressUpdateResult = NonNullable<Awaited<ReturnType<typeof profileAddressUpdate>>>;
 export type ProfileAddressPartialUpdateResult = NonNullable<Awaited<ReturnType<typeof profileAddressPartialUpdate>>>;
 export type ProfileAddressDestroyResult = NonNullable<Awaited<ReturnType<typeof profileAddressDestroy>>>;
+export type ProfileAddressSearchRetrieveResult = NonNullable<Awaited<ReturnType<typeof profileAddressSearchRetrieve>>>;
 export type ProfileCartRetrieveResult = NonNullable<Awaited<ReturnType<typeof profileCartRetrieve>>>;
 export type ProfileCartCreateResult = NonNullable<Awaited<ReturnType<typeof profileCartCreate>>>;
 export type ProfileCartDestroyResult = NonNullable<Awaited<ReturnType<typeof profileCartDestroy>>>;
@@ -344,5 +362,4 @@ export type ProfileLoyaltyRetrieveResult = NonNullable<Awaited<ReturnType<typeof
 export type ProfileLoyaltyDestroyResult = NonNullable<Awaited<ReturnType<typeof profileLoyaltyDestroy>>>;
 export type ProfileLoyaltyFakerCreateResult = NonNullable<Awaited<ReturnType<typeof profileLoyaltyFakerCreate>>>;
 export type ProfileLoyaltyHistoryListResult = NonNullable<Awaited<ReturnType<typeof profileLoyaltyHistoryList>>>;
-export type ProfileSearchAddressRetrieveResult = NonNullable<Awaited<ReturnType<typeof profileSearchAddressRetrieve>>>;
 export type SchemaRetrieveResult = NonNullable<Awaited<ReturnType<typeof schemaRetrieve>>>;

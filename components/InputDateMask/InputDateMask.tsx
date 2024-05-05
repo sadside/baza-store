@@ -101,9 +101,13 @@ export const InputDateMask = ({ className, name, type, error, register, resetFil
   return (
     <>
       <input
-        className={classNames(`${styles.input}`, {
-          [styles.error]: error,
-        })}
+        className={classNames(
+          `${styles.input}`,
+          {
+            [styles.error]: error,
+          },
+          className
+        )}
         type={type}
         maxLength={18}
         onInput={handlePhoneInput}

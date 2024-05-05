@@ -14,6 +14,7 @@ import { toast } from 'sonner';
 import { getFavoritesFx } from '@entities/favorite/model/favorite-model';
 import { getLoyaltyHistoryFx, getLoyaltyInfoFx } from '@entities/loyalty/model/loyalty-model';
 import { status } from 'patronum/status';
+import { getAddressesFx } from '@entities/address/model/address-model';
 
 export const logouted = createEffect();
 
@@ -65,10 +66,13 @@ sample({
 });
 
 export const $user = createStore<IUser | null>(null).reset(logoutFx.doneData);
+$user.watch((state) => console.log(state));
 
 export const $loginError = createStore<string | null>(null);
 export const showToastErrorF = createEffect((error: string) => {
-  toast.error(error);
+  toast.error(error, {
+    position: 'top-right',
+  });
 });
 
 export const loginErrorChanged = createEvent<string | null>();
@@ -87,6 +91,7 @@ export const loginFx = createEffect(async ({ phone, code }: { phone: string; cod
     return res.data.user;
   } catch (err) {
     if (axios.isAxiosError(err)) {
+      1;
       throw new Error(err?.response?.data.error);
     } else {
       throw new Error('Произошла неизвестная ошибка ошибка...');
@@ -110,7 +115,7 @@ export const getUserFx = createEffect(async () => {
   }
 });
 
-export const $getUserFxStatus = status(getUserFx);
+export const $getUserFxStatus = status({ effect: getUserFx });
 
 export const $phoneNumber = createStore<string>('')
   .on(phoneInputSubmitted, (_, newState) => newState)
@@ -131,7 +136,14 @@ sample({
 sample({
   clock: getUserFx.doneData,
   filter: (user) => user !== null,
-  target: [$user, getCartFromServerFx, getLoyaltyInfoFx, getLoyaltyHistoryFx, getFavoritesFx],
+  target: $user,
+});
+
+sample({
+  clock: getUserFx.doneData,
+  source: $user,
+  filter: (user) => user !== null,
+  target: [$user, getCartFromServerFx, getLoyaltyInfoFx, getLoyaltyHistoryFx, getFavoritesFx, getAddressesFx],
 });
 
 sample({

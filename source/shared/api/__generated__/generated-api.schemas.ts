@@ -3,16 +3,15 @@
  * Do not edit manually.
  * OpenAPI spec version: 0.0.0
  */
-export type SchemaRetrieve200Four = {[key: string]: {}};
+export type SchemaRetrieve200Four = { [key: string]: {} };
 
-export type SchemaRetrieve200Three = {[key: string]: {}};
+export type SchemaRetrieve200Three = { [key: string]: {} };
 
-export type SchemaRetrieve200Two = {[key: string]: {}};
+export type SchemaRetrieve200Two = { [key: string]: {} };
 
-export type SchemaRetrieve200One = {[key: string]: {}};
+export type SchemaRetrieve200One = { [key: string]: {} };
 
-export type SchemaRetrieveLang = typeof SchemaRetrieveLang[keyof typeof SchemaRetrieveLang];
-
+export type SchemaRetrieveLang = (typeof SchemaRetrieveLang)[keyof typeof SchemaRetrieveLang];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const SchemaRetrieveLang = {
@@ -116,8 +115,7 @@ export const SchemaRetrieveLang = {
   'zh-hant': 'zh-hant',
 } as const;
 
-export type SchemaRetrieveFormat = typeof SchemaRetrieveFormat[keyof typeof SchemaRetrieveFormat];
-
+export type SchemaRetrieveFormat = (typeof SchemaRetrieveFormat)[keyof typeof SchemaRetrieveFormat];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const SchemaRetrieveFormat = {
@@ -126,20 +124,19 @@ export const SchemaRetrieveFormat = {
 } as const;
 
 export type SchemaRetrieveParams = {
-format?: SchemaRetrieveFormat;
-lang?: SchemaRetrieveLang;
+  format?: SchemaRetrieveFormat;
+  lang?: SchemaRetrieveLang;
 };
 
 /**
  * * `created` - Created
-* `paid` - Paid
-* `in_delivery` - In Delivery
-* `delivered` - Delivered
-* `received` - Received
-* `cancelled` - Cancelled
+ * `paid` - Paid
+ * `in_delivery` - In Delivery
+ * `delivered` - Delivered
+ * `received` - Received
+ * `cancelled` - Cancelled
  */
-export type ViewOrderStatusEnum = typeof ViewOrderStatusEnum[keyof typeof ViewOrderStatusEnum];
-
+export type ViewOrderStatusEnum = (typeof ViewOrderStatusEnum)[keyof typeof ViewOrderStatusEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ViewOrderStatusEnum = {
@@ -152,16 +149,18 @@ export const ViewOrderStatusEnum = {
 } as const;
 
 export interface ViewOrder {
+  address?: string | null;
   amount?: number;
-  apartment?: string | null;
-  baza_loyalty?: number;
-  city?: string | null;
+  apartment_number?: number | null;
+  code?: string | null;
   email: string;
-  frame?: string | null;
-  house?: string | null;
+  floor_number?: number | null;
   readonly id: number;
+  intercom?: number | null;
   is_paid?: boolean;
   is_received?: boolean;
+  loaylty_awarded?: boolean;
+  loyalty_received?: number;
   name: string;
   order_date?: string;
   payment_type: PaymentTypeEnum;
@@ -170,7 +169,6 @@ export interface ViewOrder {
   receiving: ReceivingEnum;
   receiving_date?: string | null;
   status?: ViewOrderStatusEnum;
-  street?: string | null;
   surname: string;
 }
 
@@ -184,19 +182,29 @@ export interface UserDataSerialzier {
 }
 
 /**
- * * `delivery_address` - Доставка до двери
-* `delivery_stock` - Доставка до склада
-* `pickup` - Самовывоз
+ * * `courier` - Доставка
+ * `cdek` - Пункт СДЕК
+ * `pickup` - Самовывоз
  */
-export type ReceivingEnum = typeof ReceivingEnum[keyof typeof ReceivingEnum];
-
+export type ReceivingEnum = (typeof ReceivingEnum)[keyof typeof ReceivingEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ReceivingEnum = {
-  delivery_address: 'delivery_address',
-  delivery_stock: 'delivery_stock',
+  courier: 'courier',
+  cdek: 'cdek',
   pickup: 'pickup',
 } as const;
+
+export interface ProductsCalculate {
+  color: string;
+  image: string;
+  message: string;
+  name: string;
+  price: number;
+  quantity: number;
+  size: string;
+  status: string;
+}
 
 export interface ProductPath {
   readonly children: string;
@@ -225,17 +233,16 @@ export interface PhoneNumber {
 
 /**
  * * `online` - Картой онлайн
-* `cash` - Наличными
-* `fps` - СБП
+ * `cash` - Наличными
+ * `sbp` - СБП
  */
-export type PaymentTypeEnum = typeof PaymentTypeEnum[keyof typeof PaymentTypeEnum];
-
+export type PaymentTypeEnum = (typeof PaymentTypeEnum)[keyof typeof PaymentTypeEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const PaymentTypeEnum = {
   online: 'online',
   cash: 'cash',
-  fps: 'fps',
+  sbp: 'sbp',
 } as const;
 
 export interface Payment {
@@ -256,17 +263,21 @@ export interface Payment {
 
 export interface PatchedAddress {
   address?: string;
+  apartment_number?: number | null;
+  code?: string | null;
+  floor_number?: number | null;
   readonly id?: number;
+  intercom?: number | null;
+  is_main?: boolean;
   type?: string;
   readonly user_id?: number;
 }
 
 /**
  * * `marketing` - Marketing
-* `bring_in` - Bring In
+ * `bring_in` - Bring In
  */
-export type OperationEnum = typeof OperationEnum[keyof typeof OperationEnum];
-
+export type OperationEnum = (typeof OperationEnum)[keyof typeof OperationEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const OperationEnum = {
@@ -276,11 +287,10 @@ export const OperationEnum = {
 
 /**
  * * `black` - Black
-* `gold` - Gold
-* `platinum` - Platinum
+ * `gold` - Gold
+ * `platinum` - Platinum
  */
-export type LoyaltyStatusEnum = typeof LoyaltyStatusEnum[keyof typeof LoyaltyStatusEnum];
-
+export type LoyaltyStatusEnum = (typeof LoyaltyStatusEnum)[keyof typeof LoyaltyStatusEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const LoyaltyStatusEnum = {
@@ -327,9 +337,30 @@ export interface FilterProductModification {
   readonly products: string;
 }
 
+export interface CreateOrder {
+  address?: string | null;
+  apartment_number?: number | null;
+  code?: string | null;
+  email: string;
+  floor_number?: number | null;
+  readonly id: number;
+  intercom?: number | null;
+  name: string;
+  payment_type: PaymentTypeEnum;
+  phone: string;
+  receiving: ReceivingEnum;
+  surname: string;
+}
+
 export interface Cart {
   readonly product: string;
   quantity?: number;
+}
+
+export interface Calculate {
+  available_loyalty: number;
+  price: number;
+  products: ProductsCalculate[];
 }
 
 export interface AloneProductPath {
@@ -340,8 +371,13 @@ export interface AloneProductPath {
 
 export interface Address {
   address: string;
+  price?: number;
+  apartment_number?: number | null;
+  code?: string | null;
+  floor_number?: number | null;
   readonly id: number;
+  intercom?: number | null;
+  is_main?: boolean;
   type: string;
   readonly user_id: number;
 }
-

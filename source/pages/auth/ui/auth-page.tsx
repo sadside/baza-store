@@ -75,6 +75,7 @@ export const AuthPage = ({}: Props) => {
                 style={{ width: '100%' }}
                 type="tel"
                 error={Boolean(errors?.phoneNumber?.message)}
+                className="w-[392px]"
                 register={register}
                 name="phoneNumber"
                 resetFiled={resetField}

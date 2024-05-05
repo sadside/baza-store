@@ -3,25 +3,14 @@ import React from 'react';
 import { ItemAddress } from '@widgets/item-address';
 import Link from 'next/link';
 import { ShowModalAddress } from '@entities/show-modal-address';
+import { useUnit } from 'effector-react';
+import { $addresses, $getAddressesFxStatus, deleteAddressesFx } from '@entities/address/model/address-model';
+import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
+import { RemoveAddressConfirm } from '@/source/features/remove-address-confirm/ui/remove-address-confirm';
 
 export const AddressesPage = () => {
-  const address = [
-    {
-      typeOfObtain: 'доставка в пвз сдэк',
-      address: 'Оренбург, Поляничко 9',
-      id: 1,
-    },
-    {
-      typeOfObtain: 'доставка в пвз сдэк',
-      address: 'Оренбург, Поляничко 9',
-      id: 3,
-    },
-    {
-      typeOfObtain: 'доставка в пвз сдэк',
-      address: 'Оренбург, Поляничко 9',
-      id: 3,
-    },
-  ];
+  const address = useUnit($addresses);
+
   return (
     <>
       <div>
@@ -30,7 +19,7 @@ export const AddressesPage = () => {
           Добавьте Ваши адреса и удобные способы доставки для быстрого оформления покупок.
         </div>
       </div>
-      {!address[0] ? (
+      {!address?.length ? (
         <div className="mt-8 w-[251px]">
           <Link
             className="uppercase px-[50px] font-semibold py-[14px] text-[12px] bg-black text-white"
@@ -41,8 +30,8 @@ export const AddressesPage = () => {
         </div>
       ) : (
         <div className="mt-5">
-          {address.map((a) => (
-            <ItemAddress key={a.id} address={a} />
+          {address.map((address) => (
+            <ItemAddress key={address.id} address={address} />
           ))}
           <div className="mt-7"></div>
           <Link
@@ -53,7 +42,7 @@ export const AddressesPage = () => {
           </Link>
         </div>
       )}
-      <ShowModalAddress func={() => console.log()} text={'Удалить адрес?'} />
+      <RemoveAddressConfirm />
     </>
   );
 };

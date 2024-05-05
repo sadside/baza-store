@@ -43,7 +43,11 @@ export const CartDrawer = () => {
           <p>{totalPrice / 100} ₽</p>
         </div>
         <div>
-          <Button.Primary>Оформить заказ</Button.Primary>
+          {cart.length > 0 && (
+            <Link href="/order">
+              <Button.Primary className="mb-3">Оформить заказ</Button.Primary>
+            </Link>
+          )}
           <Link href="/cart">
             <Button.Secondary>Перейти на страницу корзины</Button.Secondary>
           </Link>

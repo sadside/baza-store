@@ -9,6 +9,7 @@ import { ViewOrder, ViewOrderStatusEnum } from '@shared/api/__generated__/genera
 import { format } from 'date-fns';
 import ru from 'date-fns/locale/ru';
 import { formatter } from '@/components/productItem/ProductItem';
+import { ActualOrderActions } from '@/source/features/actual-order-actions';
 
 interface LkActualInfoProps {
   order: ViewOrder;
@@ -16,13 +17,13 @@ interface LkActualInfoProps {
 
 const ActualOrder = ({ order }: LkActualInfoProps) => {
   return (
-    <div className="mt-2.5">
+    <div className="my-2.5">
       <div className="flex items-center">
         <StateOrderLk status={order.status as ViewOrderStatusEnum} />
         <div className="flex ml-5 justify-between w-[91%] max-[1050px]:w-[85%]  max-[850px]:w-[80%]   max-[630px]:w-[75%] max-[540px]:w-[68%] max-[550px]:flex-col">
-          <div className="flex">
-            <span className="font-semibold mr-2">{order.id}</span>
-            <span className=" text-black-300  ">
+          <div className="flex items-center">
+            <span className="font-semibold mr-2 text-[14px]">Номер заказа: {order.id}</span>
+            <span className="text-black-300 text-[14px]">
               {format(new Date(order.order_date?.split('T')[0] || ''), 'd MMMM yyyy', {
                 // @ts-ignore
                 locale: ru,
@@ -33,7 +34,7 @@ const ActualOrder = ({ order }: LkActualInfoProps) => {
             <span className=" text-black-300  ">
               {formatter.format(order.products.length || 1).replace('метр', 'товар')}
             </span>
-            <span className="font-semibold ml-2">{getLkOrderPrice(order?.products)}</span>
+            <span className="font-semibold ml-2">{order?.amount ? order.amount / 100 : 0} ₽</span>
           </div>
         </div>
       </div>
@@ -45,6 +46,7 @@ const ActualOrder = ({ order }: LkActualInfoProps) => {
           ))
         }
       </div>
+      <ActualOrderActions order={order} />
     </div>
   );
 };

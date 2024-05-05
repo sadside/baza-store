@@ -38,7 +38,7 @@ export const CartItem = ({ slug, image, name, size, color, price, quantityInCart
         </p>
         <div className="w-full flex justify-between">
           <div className="flex items-center">
-            Количество
+            <span className="max-[400px]:sr-only">Количество</span>
             <button
               className="py-2 bg-gray-100 w-5 rounded h-3 flex items-center justify-center mx-1"
               onClick={handleMinusClick}

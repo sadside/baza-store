@@ -21,6 +21,7 @@ export const Count = ({
   plusAction,
   minusAction,
   minusNotAllowed,
+  className,
   plusNotAllowed,
   ...props
 }: countProps) => {
@@ -59,7 +60,7 @@ export const Count = ({
 
   return (
     //@ts-ignore
-    <div className={buttonCls} {...props} tabIndex={0}>
+    <div className={`${buttonCls} ${className} h-11`} {...props} tabIndex={0}>
       {/*{count}*/}
       <div className={styles.actions}>
         <div className={actionMinusCls} onClick={minusAction} tabIndex={0}>

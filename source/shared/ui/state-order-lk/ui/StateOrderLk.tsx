@@ -36,6 +36,12 @@ export const StateOrderLk = ({ status }: StateOrderLkProps) => {
           оплачен
         </div>
       );
+    case ViewOrderStatusEnum.cancelled:
+      return (
+        <div className="bg-red min-w-[120px] text-white uppercase px-[20px] text-[12px] font-semibold flex justify-center">
+          отменен
+        </div>
+      );
     default:
       return <></>;
   }

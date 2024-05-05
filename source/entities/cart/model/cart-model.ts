@@ -13,6 +13,7 @@ import {
 } from '@/source/features/clear-cart-confirm/model/clear-cart-confirm-model';
 import { appStarted } from '@shared/lib/utils/helpers/app-status';
 import { pending } from 'patronum/pending';
+import { status } from 'patronum/status';
 
 function getInitialCart() {
   if (typeof window !== 'undefined') {
@@ -68,6 +69,8 @@ export const getCartFromServerFx = createEffect(async () => {
     throw new Error('Ошибка получения товаров с сервера');
   }
 });
+
+export const getCartFxStatus = status(getCartFromServerFx);
 
 export const removeCartItemFx = createEffect(async (slug: string) => {
   try {
