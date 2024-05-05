@@ -3,10 +3,10 @@
 import React from 'react';
 import { LkLayout } from '@/source/layouts/lk-layout';
 import { useGate, useUnit } from 'effector-react';
-import { lkGate } from '@entities/order';
 import '@/source/layouts/lk-layout/model/lk-layout-model';
 import { $user, getUserFx, getUserFxStatus } from '@entities/user/model/user-model';
 import { useRouter } from 'next/navigation';
+import { lkGate } from '@/source/layouts/lk-layout/model/lk-layout-model';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   useGate(lkGate);

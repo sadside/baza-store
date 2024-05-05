@@ -1,7 +1,9 @@
 import { sample } from 'effector';
-import { lkGate } from '@entities/order';
 import { redirectFx } from '@shared/lib/utils/helpers/router-instance';
-import { $user, getUserFxStatus } from '@entities/user/model/user-model';
+import { $user, getUserFxStatus, logoutFx } from '@entities/user/model/user-model';
+import { createGate } from 'effector-react';
+
+export const lkGate = createGate();
 
 sample({
   clock: lkGate.open,
@@ -10,6 +12,12 @@ sample({
     status: getUserFxStatus,
   },
   filter: ({ user, status }) => user === null && (status === 'done' || status === 'fail'),
+  fn: () => '/',
+  target: redirectFx,
+});
+
+sample({
+  clock: logoutFx.doneData,
   fn: () => '/',
   target: redirectFx,
 });

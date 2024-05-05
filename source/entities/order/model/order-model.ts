@@ -6,6 +6,7 @@ import { status } from 'patronum/status';
 import { createCourierAddressFx } from '@/source/features/add-address-courier/model/add-address-courier-model';
 import { $addresses } from '@entities/address/model/address-model';
 import { ordersOrdersList } from '@shared/api/__generated__/generated-api';
+import { lkGate } from '@/source/layouts/lk-layout/model/lk-layout-model';
 
 export const getOrdersFx = createEffect(async () => {
   try {
@@ -34,7 +35,6 @@ export const $archiveOrders = $orders.map(
     )
 );
 export const $actualOrder = createStore<ViewOrder | null>(null);
-export const lkGate = createGate();
 
 sample({
   clock: lkGate.open,
