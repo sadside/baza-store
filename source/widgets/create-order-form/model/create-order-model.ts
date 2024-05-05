@@ -158,6 +158,8 @@ sample({
     //@ts-ignore
     const item = addresses?.find((address) => address.is_main) ?? null;
 
+    console.log(item);
+
     const res: Pickup = {
       price: item?.type === 'cdek' ? 800 : 1200,
       tariff: item?.type === 'personal' ? DELIVERY_TARIFFS.COMMON : null,
@@ -168,6 +170,8 @@ sample({
       floor_number: item?.floor_number,
       intercom: item?.intercom,
     };
+
+    console.log(res);
 
     return res;
   },
