@@ -1,9 +1,9 @@
 import { Address } from '@shared/api/__generated__/generated-api.schemas';
 import React from 'react';
-import { pickupChangeClicked } from '@widgets/create-order-form/model/second-step/step';
+import { Pickup, pickupChangeClicked } from '@widgets/create-order-form/model/second-step/step';
 
 type Props = {
-  address: Address;
+  address: Pickup;
 };
 
 const addressDeliveryType: Record<'cdek' | 'personal' | 'pickup', string> = {

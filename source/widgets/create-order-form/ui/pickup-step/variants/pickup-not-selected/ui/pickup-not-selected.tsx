@@ -42,7 +42,7 @@ export const PickupNotSelected = () => {
           <div className={twMerge('text-black-100 font-semibold uppercase', activeTab === 'cdek' && 'text-black')}>
             В пункте сдэк
           </div>
-          <div className={twMerge('text-black-200 text-[10px] font-medium mb-1.5 uppercase')}>600 ₽</div>
+          <div className={twMerge('text-black-200 text-[10px] font-medium mb-1.5 uppercase')}>800 ₽</div>
         </div>
         <div
           className={twMerge(

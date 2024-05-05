@@ -1,10 +1,10 @@
-import { combine, createEffect, createStore, sample } from 'effector';
+import { combine, createEffect, createStore, sample, Store } from 'effector';
 import { $authPhoneNumber, sendNumberPhoneFxStatus } from '@widgets/create-order-form/model/first-step/first-step';
 import { EffectState, status } from 'patronum/status';
 import { $user } from '@entities/user/model/user-model';
 import { IUser } from '@shared/types/models/User';
 import { Address, Calculate, CreateOrder, ViewOrder } from '@shared/api/__generated__/generated-api.schemas';
-import { $selectedPickUp, pickupChangeClicked } from '@widgets/create-order-form/model/second-step/step';
+import { $selectedPickUp, Pickup, pickupChangeClicked } from '@widgets/create-order-form/model/second-step/step';
 import {
   $selectedReceiverInfo,
   receiverChangeClicked,
@@ -109,7 +109,6 @@ export const createPaymentFx = createEffect(async (id: number) => {
 
     return res.data;
   } catch (e) {
-    console.log(e);
     toast.error('Произошла ошибка при создании заказа.');
     throw new Error();
   }
@@ -124,7 +123,8 @@ export const orderGate = createGate();
 export const $order = createStore<Calculate | null>(null).reset(orderGate.close);
 export const $orderIsCreating = pending([createPaymentFx, createOrderFx]);
 
-export const $currentFormStep = combine(
+//@ts-ignore
+export const $currentFormStep: Store<FORM_STEPS> = combine(
   sendNumberPhoneFxStatus,
   $authPhoneNumber,
   $user,
@@ -144,12 +144,13 @@ sample({
 });
 
 sample({
-  clock: [$currentFormStep],
+  clock: $currentFormStep,
   source: {
     order: $order,
     step: $currentFormStep,
   },
   filter: ({ order, step }) =>
+    //@y
     (!order && step === FORM_STEPS.PICK_UP_STEP) || (!order && step === FORM_STEPS.RECEIVER_STEP),
   target: orderCalculateFx,
 });
@@ -181,7 +182,6 @@ sample({
     floor_number: $floor_number,
     intercom: $intercom,
     fxStatus: $createOrderFxStatus,
-    tariff: tariffSelect.$selectedItem,
   },
   filter: ({ fxStatus }) => Boolean(fxStatus !== 'pending'),
   fn: ({
@@ -190,25 +190,20 @@ sample({
     apartment_number,
     floor_number,
     intercom,
-    tariff,
   }: {
     receiver: ReceiverData;
-    receiving: Address;
+    receiving: Pickup;
     apartment_number: string;
     floor_number: string;
     intercom: string;
-    tariff: TariffSelect;
-  }): CreateOrder => {
-    console.log(tariff);
-
-    return {
+  }) => {
+    const res = {
       name: receiver.name,
       surname: receiver.surname,
       email: receiver.mail,
       phone: receiver.phone,
-      //@ts-ignore
       receiving: receiving.type,
-      is_express: tariff?.value === DELIVERY_TARIFFS.EXPRESS,
+      is_express: receiving?.tariff === DELIVERY_TARIFFS.EXPRESS,
       payment_type: 'online',
       address: receiving?.address,
       code: receiving?.code,
@@ -216,6 +211,10 @@ sample({
       floor_number: Number(floor_number) ?? null,
       intercom: Number(intercom) ?? null,
     };
+
+    console.log(res);
+
+    return res;
   },
   target: createOrderFx,
 });

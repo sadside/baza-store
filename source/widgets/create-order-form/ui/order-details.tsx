@@ -1,6 +1,6 @@
 import { useUnit } from 'effector-react';
 import { $currentFormStep, $order, orderCalculateFx } from '@widgets/create-order-form/model/create-order-model';
-import { $selectedPickUp } from '@widgets/create-order-form/model/second-step/step';
+import { $selectedPickUp, Pickup } from '@widgets/create-order-form/model/second-step/step';
 import PartsLogo from '@shared/assets/icons/parts.svg';
 import RightArrow from '@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg';
 import React from 'react';
@@ -12,7 +12,7 @@ import { cartDrawerOpened } from '@widgets/cart-drawer/model/cart-drawer-model';
 
 export const OrderDetails = () => {
   const currentStep = useUnit($currentFormStep);
-  const selectedPickup = useUnit($selectedPickUp) as Address;
+  const selectedPickup = useUnit($selectedPickUp) as Pickup;
   const calculatedOrder = useUnit($order) as Calculate;
   const loading = useUnit(orderCalculateFx.pending);
   const status = useUnit($getUserFxStatus);

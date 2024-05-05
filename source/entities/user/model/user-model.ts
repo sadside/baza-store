@@ -66,7 +66,6 @@ sample({
 });
 
 export const $user = createStore<IUser | null>(null).reset(logoutFx.doneData);
-$user.watch((state) => console.log(state));
 
 export const $loginError = createStore<string | null>(null);
 export const showToastErrorF = createEffect((error: string) => {

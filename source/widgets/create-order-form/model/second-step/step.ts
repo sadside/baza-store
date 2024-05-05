@@ -15,23 +15,35 @@ import {
   selectPersonalPickUpAutocomplete,
   tariffSelect,
 } from '@widgets/create-order-form/ui/pickup-step/variants/pickup-not-selected/model/pickup-not-selected';
-import { pending } from 'patronum';
-import { orderGate } from '@widgets/create-order-form/model/create-order-model';
+import { SdekPoint } from '@/source/features/add-address-cdek/model/add-address-cdek';
 
 export const pickupChangeClicked = createEvent();
 export const mainFormSubmitted = createEvent();
 
-export const $selectedPickUp = createStore<Address | null>(null).reset(pickupChangeClicked);
+export type Pickup = {
+  address: string;
+  type: 'personal' | 'cdek';
+  price: number;
+  tariff: DELIVERY_TARIFFS | null;
+  code?: string;
+};
+
+export const $selectedPickUp = createStore<Pickup | null>(null).reset(pickupChangeClicked);
 
 sample({
   clock: $addresses,
   filter: (addresses): addresses is Array<Address> => Boolean(addresses?.length),
   //@ts-ignore
   fn: (addresses) => {
-    const res = addresses?.find((address) => address.is_main) ?? null;
+    const item = addresses?.find((address) => address.is_main) ?? null;
 
-    //@ts-ignore
-    res.price = res?.type === 'cdek' ? 800 : 1200;
+    const res: Pickup = {
+      price: item?.type === 'cdek' ? 800 : 1200,
+      tariff: item?.type === 'personal' ? DELIVERY_TARIFFS.COMMON : null,
+      address: item?.address ?? '',
+      //@ts-ignore
+      type: item?.type ?? 'personal',
+    };
 
     return res;
   },
@@ -60,7 +72,6 @@ split({
 });
 
 sample({
-  //@ts-ignore
   clock: personalFormSubmitted,
   source: {
     selectedItem: selectPersonalPickUpAutocomplete.$selectedItem,
@@ -70,22 +81,31 @@ sample({
     tariff: tariffSelect.$selectedItem,
   },
   filter: ({ selectedItem, tariff }) => selectedItem !== null && tariff !== null,
-  fn: ({ selectedItem, apartment_number, floor_number, intercom, tariff }, clock) => ({
-    address: selectedItem ?? '',
-    type: 'personal',
-    price: tariff ? tariff.price : 0,
-  }),
+  fn: ({ selectedItem, apartment_number, floor_number, intercom, tariff }, clock) =>
+    ({
+      address: selectedItem ?? '',
+      type: 'personal',
+      price: tariff ? tariff.price : 0,
+      tariff: tariff?.value || null,
+      code: '',
+    }) as Pickup,
   target: $selectedPickUp,
 });
 
 sample({
-  //@ts-ignore
   clock: cdekFormSubmitted,
   source: {
     point: cdekPointsSelect.$selectedItem,
     city: cityForCdekAutocomplete.$selectedItem,
   },
   filter: ({ point, city }) => point !== null && city !== null,
-  fn: ({ point, city }) => ({ type: 'cdek', address: point?.address, price: 600, code: point?.code }),
+  fn: ({ point, city }) =>
+    ({
+      type: 'cdek',
+      address: point?.address || '',
+      price: 600,
+      code: point?.code || '',
+      tariff: null,
+    }) as Pickup,
   target: $selectedPickUp,
 });
