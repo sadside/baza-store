@@ -9,6 +9,7 @@ import {
   cdekFormSubmitted,
   cdekPointsSelect,
   cityForCdekAutocomplete,
+  DELIVERY_TARIFFS,
   inShopFormSubmitted,
   personalFormSubmitted,
   selectPersonalPickUpAutocomplete,
@@ -72,7 +73,7 @@ sample({
   fn: ({ selectedItem, apartment_number, floor_number, intercom, tariff }, clock) => ({
     address: selectedItem ?? '',
     type: 'personal',
-    price: tariff?.value === 'Обычная' ? 1200 : 1500,
+    price: tariff ? tariff.price : 0,
   }),
   target: $selectedPickUp,
 });
