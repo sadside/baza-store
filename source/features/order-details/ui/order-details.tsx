@@ -8,6 +8,7 @@ import RightArrow from '@shared/assets/icons/tui-ic-small-pragmatic/chevron-righ
 import { Button } from '@shared/theme/button';
 import { $cart } from '@entities/cart/model/cart-model';
 import { partsModalStateChanged } from '@entities/product/model/product-model';
+import Link from 'next/link';
 
 interface OrderDetailsProps {
   className?: string;
@@ -49,7 +50,9 @@ export const OrderDetails = ({}: OrderDetailsProps) => {
         <div className={styles.value}>4 платежа по {salePrice / 4}</div>
         <RightArrow />
       </button>
-      <Button.Primary style={{ marginBottom: 16 }}>Оформить заказ</Button.Primary>
+      <Link href="/order">
+        <Button.Primary style={{ marginBottom: 16 }}>Оформить заказ</Button.Primary>
+      </Link>
       <p className={styles.loyaltyInfo}>АВТОРИЗУЙТЕСЬ, ЧТОБЫ СПИСАТЬ ИЛИ НАКОПИТЬ БАЛЛЫ</p>
     </div>
   );

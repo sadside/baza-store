@@ -145,13 +145,18 @@ sample({
 });
 
 sample({
-  clock: [$currentFormStep, orderGate.open],
+  clock: [$currentFormStep],
   source: {
     order: $order,
     step: $currentFormStep,
   },
   filter: ({ order, step }) =>
     (!order && step === FORM_STEPS.PICK_UP_STEP) || (!order && step === FORM_STEPS.RECEIVER_STEP),
+  target: orderCalculateFx,
+});
+
+sample({
+  clock: orderGate.open,
   target: orderCalculateFx,
 });
 
