@@ -60,24 +60,32 @@ export const $showPointsSelect = createStore(false)
 
 export type TariffSelect = {
   id: number;
-  value: string;
+  value: DELIVERY_TARIFFS;
   price: number;
+  label: string;
 };
+
+export enum DELIVERY_TARIFFS {
+  COMMON = 'common',
+  EXPRESS = 'express',
+}
 
 const tariffs: TariffSelect[] = [
   {
     id: 1,
-    value: 'Обычная - 1200₽',
+    value: DELIVERY_TARIFFS.COMMON,
     price: 1200,
+    label: 'Обычная - 1200₽',
   },
   {
     id: 2,
-    value: 'Экспресс - 1500₽',
-    price: 1200,
+    value: DELIVERY_TARIFFS.EXPRESS,
+    price: 1500,
+    label: 'Экспресс - 1500₽',
   },
 ];
 
-export const tariffSelect = invoke(createSelect<TariffSelect, 'value'>, { renderField: 'value', items: tariffs });
+export const tariffSelect = invoke(createSelect<TariffSelect, 'label'>, { renderField: 'label', items: tariffs });
 export const $selectTariffError = createStore(false);
 export const $selectCdekError = createStore(false);
 

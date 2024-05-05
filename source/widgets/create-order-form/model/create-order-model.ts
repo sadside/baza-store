@@ -1,7 +1,7 @@
-import { combine, createStore, sample, StoreWritable } from 'effector';
+import { combine, createEffect, createStore, sample } from 'effector';
 import { $authPhoneNumber, sendNumberPhoneFxStatus } from '@widgets/create-order-form/model/first-step/first-step';
 import { EffectState, status } from 'patronum/status';
-import { $user, getUserFx } from '@entities/user/model/user-model';
+import { $user } from '@entities/user/model/user-model';
 import { IUser } from '@shared/types/models/User';
 import { Address, Calculate, CreateOrder, ViewOrder } from '@shared/api/__generated__/generated-api.schemas';
 import { $selectedPickUp, pickupChangeClicked } from '@widgets/create-order-form/model/second-step/step';
@@ -10,7 +10,6 @@ import {
   receiverChangeClicked,
   ReceiverData,
 } from '@widgets/create-order-form/model/third-step/step';
-import { createEffect } from 'effector';
 import { pending } from 'patronum';
 import {
   ordersCalculateRetrieve,
@@ -25,7 +24,7 @@ import {
   $apartment,
   $floor_number,
   $intercom,
-  $selectTariffError,
+  DELIVERY_TARIFFS,
   TariffSelect,
   tariffSelect,
 } from '@widgets/create-order-form/ui/pickup-step/variants/pickup-not-selected/model/pickup-not-selected';
@@ -199,21 +198,25 @@ sample({
     floor_number: string;
     intercom: string;
     tariff: TariffSelect;
-  }): CreateOrder => ({
-    name: receiver.name,
-    surname: receiver.surname,
-    email: receiver.mail,
-    phone: receiver.phone,
-    //@ts-ignore
-    receiving: receiving.type,
-    is_express: tariff?.value === 'Экспресс - 1500₽',
-    payment_type: 'online',
-    address: receiving?.address,
-    code: receiving?.code,
-    apartment_number: Number(apartment_number) ?? null,
-    floor_number: Number(floor_number) ?? null,
-    intercom: Number(intercom) ?? null,
-  }),
+  }): CreateOrder => {
+    console.log(tariff);
+
+    return {
+      name: receiver.name,
+      surname: receiver.surname,
+      email: receiver.mail,
+      phone: receiver.phone,
+      //@ts-ignore
+      receiving: receiving.type,
+      is_express: tariff?.value === DELIVERY_TARIFFS.EXPRESS,
+      payment_type: 'online',
+      address: receiving?.address,
+      code: receiving?.code,
+      apartment_number: Number(apartment_number) ?? null,
+      floor_number: Number(floor_number) ?? null,
+      intercom: Number(intercom) ?? null,
+    };
+  },
   target: createOrderFx,
 });
 
