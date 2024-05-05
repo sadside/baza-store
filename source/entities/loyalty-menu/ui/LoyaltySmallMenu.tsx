@@ -26,10 +26,14 @@ export const LoyaltySmallMenu = () => {
         <div className="">
           <div className="flex justify-end">
             <span className="font-medium mr-1">Активных бонусов </span>
-            <span className="font-semibold"> {userLoyalty?.balance || 0}</span>
+            <span className="font-semibold"> {userLoyalty?.balance ? userLoyalty.balance / 100 : 0}</span>
           </div>
           <div className="flex justify-end text-black-200">
-            Ожидают подтверждения <span className="font-semibold ml-1"> {userLoyalty?.awaiting_balance || 0}</span>
+            Ожидают подтверждения{' '}
+            <span className="font-semibold ml-1">
+              {' '}
+              {userLoyalty?.awaiting_balance ? userLoyalty.awaiting_balance / 100 : 0}
+            </span>
           </div>
         </div>
       </div>

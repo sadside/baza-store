@@ -2,7 +2,7 @@
 import { createEffect, createEvent, createStore, sample } from 'effector';
 import { invoke } from '@withease/factories';
 import { createAutocomplete } from '@shared/theme/autocomplete/model/autocomplete-model';
-import { $apiWithGuard } from '@shared/api/http/axios-instance';
+import { $apiWithGuard, API_URL_CLIENT } from '@shared/api/http/axios-instance';
 import { Fields } from '@/source/features/add-address-courier/model/add-address-courier-model';
 import { Address } from '@shared/api/__generated__/generated-api.schemas';
 import { toast } from 'sonner';
@@ -47,7 +47,7 @@ export const $floor_number = createStore<string>('').on(floorNumberChanged, (_, 
 export const $intercom = createStore<string>('').on(intercomChanged, (_, value) => value);
 
 export const selectPersonalPickUpAutocomplete = invoke(createAutocomplete, {
-  url: 'http://localhost:8000/api/profile/address/search/',
+  url: `${API_URL_CLIENT}profile/address/search/`,
 });
 export const cityForCdekAutocomplete = invoke(createAutocomplete, {
   url: 'https://thebaza.ru/service/cdek/cities/search',

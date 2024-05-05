@@ -28,7 +28,7 @@ export const StatusLoyalty = () => {
       <div className="w-full mt-5   ">
         <div className="flex justify-between uppercase font-semibold">
           <div>{newStatus}</div>
-          <div>{loyalty?.remained} ₽</div>
+          <div>{loyalty?.remained ? loyalty?.remained / 100 : 0} ₽</div>
         </div>
         <div className="font-medium flex justify-between text-black-400 text-[12px]">
           <div>Кэшбек бонусами {cahsback}%</div>

@@ -2,7 +2,7 @@ import { invoke } from '@withease/factories';
 import { createAutocomplete } from '@shared/theme/autocomplete/model/autocomplete-model';
 import { createEvent, createStore, sample } from 'effector';
 import { createEffect } from 'effector';
-import { $apiWithGuard } from '@shared/api/http/axios-instance';
+import { $apiWithGuard, API_URL_CLIENT } from '@shared/api/http/axios-instance';
 import { redirectFx } from '@shared/lib/utils/helpers/router-instance';
 import { toast } from 'sonner';
 
@@ -20,7 +20,7 @@ interface Address {
 }
 
 export const courierAutocomplete = invoke(createAutocomplete, {
-  url: 'http://localhost:8000/api/profile/address/search/',
+  url: `${API_URL_CLIENT}profile/address/search/`,
 });
 export const formSubmitted = createEvent<Fields>();
 
