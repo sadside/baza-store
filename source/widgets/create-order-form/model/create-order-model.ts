@@ -33,6 +33,7 @@ import { $cart, getCartFromServerFx } from '@entities/cart/model/cart-model';
 import { AxiosError } from 'axios';
 import { getOrdersFx } from '@entities/order/model/order-model';
 import { $apiWithGuard } from '@shared/api/http/axios-instance';
+import { $addresses } from '@entities/address/model/address-model';
 
 export enum FORM_STEPS {
   AUTH_STEP,
@@ -141,6 +142,36 @@ sample({
 sample({
   clock: orderGate.open,
   target: cartDrawerClosed,
+});
+
+sample({
+  clock: [orderGate.open, $addresses],
+  source: {
+    step: $currentFormStep,
+    addresses: $addresses,
+  },
+  filter: ({ addresses, step }) => {
+    return Boolean(addresses?.length) && step === FORM_STEPS.PICK_UP_STEP;
+  },
+  //@ts-ignore
+  fn: ({ addresses }) => {
+    //@ts-ignore
+    const item = addresses?.find((address) => address.is_main) ?? null;
+
+    const res: Pickup = {
+      price: item?.type === 'cdek' ? 800 : 1200,
+      tariff: item?.type === 'personal' ? DELIVERY_TARIFFS.COMMON : null,
+      address: item?.address ?? '',
+      //@ts-ignore
+      type: item?.type ?? 'personal',
+      apartment: item?.apartment_number,
+      floor_number: item?.floor_number,
+      intercom: item?.intercom,
+    };
+
+    return res;
+  },
+  target: $selectedPickUp,
 });
 
 sample({

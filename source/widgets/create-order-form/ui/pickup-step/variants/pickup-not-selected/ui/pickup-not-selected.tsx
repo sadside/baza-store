@@ -12,10 +12,12 @@ import { InShop } from '@widgets/create-order-form/ui/pickup-step/variants/picku
 import { Button } from '@shared/theme/button';
 import React from 'react';
 import { mainFormSubmitted } from '@widgets/create-order-form/model/second-step/step';
+import { $order } from '@widgets/create-order-form/model/create-order-model';
 
 export const PickupNotSelected = () => {
   const activeTab = useUnit($activeTab);
   const orderComment = useUnit($orderComment);
+  const order = useUnit($order);
 
   return (
     <div>
@@ -73,8 +75,8 @@ export const PickupNotSelected = () => {
         </span>
       </div>
       <div className="mt-7 max-[470px]:w-full w-[221px] mb-7">
-        <Button.Primary type="submit" onClick={() => mainFormSubmitted()}>
-          далее
+        <Button.Primary type="submit" onClick={() => mainFormSubmitted()} disabled={order?.price === 0}>
+          {order?.price === 0 ? 'Выбранных товаров нет в наличии' : 'далее'}
         </Button.Primary>
       </div>
     </div>

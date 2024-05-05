@@ -35,34 +35,6 @@ export type Pickup = {
 export const $selectedPickUp = createStore<Pickup | null>(null).reset(pickupChangeClicked);
 
 sample({
-  clock: orderGate.open,
-  source: {
-    step: $currentFormStep,
-    addresses: $addresses,
-  },
-  filter: ({ addresses, step }) => Boolean(addresses?.length) && step === FORM_STEPS.PICK_UP_STEP,
-  //@ts-ignore
-  fn: (addresses) => {
-    //@ts-ignore
-    const item = addresses?.find((address) => address.is_main) ?? null;
-
-    const res: Pickup = {
-      price: item?.type === 'cdek' ? 800 : 1200,
-      tariff: item?.type === 'personal' ? DELIVERY_TARIFFS.COMMON : null,
-      address: item?.address ?? '',
-      //@ts-ignore
-      type: item?.type ?? 'personal',
-      apartment: item?.apartment_number,
-      floor_number: item?.floor_number,
-      intercom: item?.intercom,
-    };
-
-    return res;
-  },
-  target: $selectedPickUp,
-});
-
-sample({
   //@ts-ignore
   clock: inShopFormSubmitted,
   fn: () => ({
