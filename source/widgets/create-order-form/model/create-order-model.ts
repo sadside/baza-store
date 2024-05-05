@@ -151,14 +151,12 @@ sample({
     addresses: $addresses,
   },
   filter: ({ addresses, step }) => {
-    return Boolean(addresses?.length) && step === FORM_STEPS.PICK_UP_STEP;
+    return Boolean(addresses?.length) && (step === FORM_STEPS.PICK_UP_STEP || step === FORM_STEPS.RECEIVER_STEP);
   },
   //@ts-ignore
   fn: ({ addresses }) => {
     //@ts-ignore
     const item = addresses?.find((address) => address.is_main) ?? null;
-
-    console.log(item);
 
     const res: Pickup = {
       price: item?.type === 'cdek' ? 800 : 1200,
@@ -170,8 +168,6 @@ sample({
       floor_number: item?.floor_number,
       intercom: item?.intercom,
     };
-
-    console.log(res);
 
     return res;
   },
