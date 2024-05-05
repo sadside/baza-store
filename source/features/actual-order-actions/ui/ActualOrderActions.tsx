@@ -18,6 +18,8 @@ export const ActualOrderActions = ({ order }: ActualOrderProps) => {
     cancelOrderFx(order.id);
   };
 
+  console.log(order.status);
+
   const orderIsCanceling = useUnit(cancelOrderFx.pending);
 
   return (
