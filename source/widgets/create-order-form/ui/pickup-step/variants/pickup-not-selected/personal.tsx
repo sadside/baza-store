@@ -53,6 +53,7 @@ export const Personal = () => {
                 'border border-black-50 h-11 w-full px-3 py-[14px] font-medium text-[12px] hover:border-black-200 active:border-black focus:border-black outline-none mb-0.5'
               )}
               value={apartment}
+              type="number"
               onChange={(e) => apartmentChanged(e.target.value)}
             />
           </span>
@@ -65,6 +66,7 @@ export const Personal = () => {
                 'border border-black-50 h-11 w-full px-3 py-[14px] font-medium text-[12px] hover:border-black-200 active:border-black focus:border-black outline-none mb-0.5'
               )}
               value={floor}
+              type="number"
               onChange={(e) => floorNumberChanged(e.target.value)}
             />
           </span>
@@ -77,6 +79,7 @@ export const Personal = () => {
                 'border border-black-50 h-11 w-full px-3 py-[14px] font-medium text-[12px] hover:border-black-200 active:border-black focus:border-black outline-none mb-0.5'
               )}
               value={intercom}
+              type="number"
               onChange={(e) => intercomChanged(e.target.value)}
             />
           </span>

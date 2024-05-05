@@ -26,6 +26,9 @@ export type Pickup = {
   price: number;
   tariff: DELIVERY_TARIFFS | null;
   code?: string;
+  intercom?: number | null;
+  floor_number?: number | null;
+  apartment?: number | null;
 };
 
 export const $selectedPickUp = createStore<Pickup | null>(null).reset(pickupChangeClicked);
@@ -43,6 +46,9 @@ sample({
       address: item?.address ?? '',
       //@ts-ignore
       type: item?.type ?? 'personal',
+      apartment: item?.apartment_number,
+      floor_number: item?.floor_number,
+      intercom: item?.intercom,
     };
 
     return res;
@@ -88,6 +94,9 @@ sample({
       price: tariff ? tariff.price : 0,
       tariff: tariff?.value || null,
       code: '',
+      apartment: Number(apartment_number),
+      floor_number: Number(floor_number),
+      intercom: Number(intercom),
     }) as Pickup,
   target: $selectedPickUp,
 });

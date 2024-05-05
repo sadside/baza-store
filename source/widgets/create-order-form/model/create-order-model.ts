@@ -184,19 +184,7 @@ sample({
     fxStatus: $createOrderFxStatus,
   },
   filter: ({ fxStatus }) => Boolean(fxStatus !== 'pending'),
-  fn: ({
-    receiver,
-    receiving,
-    apartment_number,
-    floor_number,
-    intercom,
-  }: {
-    receiver: ReceiverData;
-    receiving: Pickup;
-    apartment_number: string;
-    floor_number: string;
-    intercom: string;
-  }) => {
+  fn: ({ receiver, receiving }: { receiver: ReceiverData; receiving: Pickup }) => {
     const res = {
       name: receiver.name,
       surname: receiver.surname,
@@ -207,12 +195,10 @@ sample({
       payment_type: 'online',
       address: receiving?.address,
       code: receiving?.code,
-      apartment_number: Number(apartment_number) ?? null,
-      floor_number: Number(floor_number) ?? null,
-      intercom: Number(intercom) ?? null,
+      apartment_number: receiving.apartment ?? null,
+      floor_number: receiving.floor_number ?? null,
+      intercom: receiving.intercom ?? null,
     };
-
-    console.log(res);
 
     return res;
   },
