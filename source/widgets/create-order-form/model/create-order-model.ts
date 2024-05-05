@@ -201,10 +201,10 @@ sample({
     phone: receiver.phone,
     //@ts-ignore
     receiving: receiving.type,
-    is_express: tariff.value === 'Экспресс - 1500₽',
+    is_express: tariff?.value === 'Экспресс - 1500₽',
     payment_type: 'online',
-    address: receiving.address,
-    code: receiving.code,
+    address: receiving?.address,
+    code: receiving?.code,
     apartment_number: Number(apartment_number) ?? null,
     floor_number: Number(floor_number) ?? null,
     intercom: Number(intercom) ?? null,

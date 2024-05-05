@@ -83,7 +83,7 @@ export const OrderDetails = () => {
               </div>
               <div className="flex justify-between items-center text-[14px] font-semibold mb-6">
                 <div className="uppercase">итого</div>
-                <div>{calculatedOrder?.price / 100} ₽</div>
+                <div>{calculatedOrder?.price / 100 + (selectedPickup?.price || 0)} ₽</div>
               </div>
               <div className="flex justify-between items-center p-2 border border-black rounded-[4px]">
                 <div className="flex gap-2.5 items-center">
