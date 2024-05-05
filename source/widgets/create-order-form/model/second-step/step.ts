@@ -16,6 +16,7 @@ import {
   tariffSelect,
 } from '@widgets/create-order-form/ui/pickup-step/variants/pickup-not-selected/model/pickup-not-selected';
 import { SdekPoint } from '@/source/features/add-address-cdek/model/add-address-cdek';
+import { $currentFormStep, FORM_STEPS, orderGate } from '@widgets/create-order-form/model/create-order-model';
 
 export const pickupChangeClicked = createEvent();
 export const mainFormSubmitted = createEvent();
@@ -34,10 +35,15 @@ export type Pickup = {
 export const $selectedPickUp = createStore<Pickup | null>(null).reset(pickupChangeClicked);
 
 sample({
-  clock: $addresses,
-  filter: (addresses): addresses is Array<Address> => Boolean(addresses?.length),
+  clock: orderGate.open,
+  source: {
+    step: $currentFormStep,
+    addresses: $addresses,
+  },
+  filter: ({ addresses, step }) => Boolean(addresses?.length) && step === FORM_STEPS.PICK_UP_STEP,
   //@ts-ignore
   fn: (addresses) => {
+    //@ts-ignore
     const item = addresses?.find((address) => address.is_main) ?? null;
 
     const res: Pickup = {
