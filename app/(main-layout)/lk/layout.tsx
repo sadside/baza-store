@@ -16,7 +16,5 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const status = useUnit(getUserFxStatus);
 
-  if (!user && !loading && status !== 'initial') router.push('/');
-
   return <LkLayout children={children} />;
 }
