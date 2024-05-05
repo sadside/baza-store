@@ -29,7 +29,7 @@ export type Pickup = {
   code?: string;
   intercom?: number | null;
   floor_number?: number | null;
-  apartment?: number | null;
+  apartment_number?: number | null;
 };
 
 export const $selectedPickUp = createStore<Pickup | null>(null).reset(pickupChangeClicked);
@@ -72,7 +72,7 @@ sample({
       price: tariff ? tariff.price : 0,
       tariff: tariff?.value || null,
       code: '',
-      apartment: Number(apartment_number),
+      apartment_number: Number(apartment_number),
       floor_number: Number(floor_number),
       intercom: Number(intercom),
     }) as Pickup,

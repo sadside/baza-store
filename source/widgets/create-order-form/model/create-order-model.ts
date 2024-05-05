@@ -164,7 +164,7 @@ sample({
       address: item?.address ?? '',
       //@ts-ignore
       type: item?.type ?? 'personal',
-      apartment: item?.apartment_number,
+      apartment_number: item?.apartment_number,
       floor_number: item?.floor_number,
       intercom: item?.intercom,
     };
@@ -226,7 +226,7 @@ sample({
       payment_type: 'online',
       address: receiving?.address,
       code: receiving?.code,
-      apartment_number: receiving.apartment ?? null,
+      apartment_number: receiving.apartment_number ?? null,
       floor_number: receiving.floor_number ?? null,
       intercom: receiving.intercom ?? null,
     };
