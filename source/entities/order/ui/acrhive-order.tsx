@@ -8,6 +8,7 @@ import { ViewOrder, ViewOrderStatusEnum } from '@shared/api/__generated__/genera
 import { format } from 'date-fns';
 import ru from 'date-fns/locale/ru';
 import { formatter } from '@/components/productItem/ProductItem';
+import { ActualOrderActions } from '@/source/features/actual-order-actions';
 
 interface LkActualInfoProps {
   order: ViewOrder;
@@ -32,13 +33,9 @@ export const ArchiveOrder = ({ order }: LkActualInfoProps) => {
             <span className=" text-black-300  ">
               {formatter.format(order.products.length || 1).replace('метр', 'товар')}
             </span>
-            <span className="font-semibold ml-2">{getLkOrderPrice(order.products)}</span>
+            <span className="font-semibold ml-2">{order?.amount ? order.amount / 100 : 0} ₽</span>
           </div>
         </div>
-      </div>
-      <div className="flex mt-5 flex-wrap justify-around	">
-        {//@ts-ignore
-        order?.products?.map((product) => <CardProductLk key={product.product.id} product={product} />)}
       </div>
     </div>
   );

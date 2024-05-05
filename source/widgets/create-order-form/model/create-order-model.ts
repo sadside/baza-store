@@ -25,6 +25,9 @@ import {
   $apartment,
   $floor_number,
   $intercom,
+  $selectTariffError,
+  TariffSelect,
+  tariffSelect,
 } from '@widgets/create-order-form/ui/pickup-step/variants/pickup-not-selected/model/pickup-not-selected';
 import { redirectFx } from '@shared/lib/utils/helpers/router-instance';
 import { $cart, getCartFromServerFx } from '@entities/cart/model/cart-model';
@@ -103,7 +106,7 @@ export const $createOrderFxStatus = status(createOrderFx);
 
 export const createPaymentFx = createEffect(async (id: number) => {
   try {
-    const res = await ordersPaymentRetrieve(id);
+    const res = await ordersPaymentRetrieve({ order_id: String(id) });
 
     return res.data;
   } catch (e) {
@@ -174,20 +177,23 @@ sample({
     floor_number: $floor_number,
     intercom: $intercom,
     fxStatus: $createOrderFxStatus,
+    tariff: tariffSelect.$selectedItem,
   },
-  filter: ({ fxStatus }) => Boolean(fxStatus === 'initial'),
+  filter: ({ fxStatus }) => Boolean(fxStatus !== 'pending'),
   fn: ({
     receiver,
     receiving,
     apartment_number,
     floor_number,
     intercom,
+    tariff,
   }: {
     receiver: ReceiverData;
     receiving: Address;
     apartment_number: string;
     floor_number: string;
     intercom: string;
+    tariff: TariffSelect;
   }): CreateOrder => ({
     name: receiver.name,
     surname: receiver.surname,
@@ -195,6 +201,7 @@ sample({
     phone: receiver.phone,
     //@ts-ignore
     receiving: receiving.type,
+    is_express: tariff.value === 'Экспресс - 1500₽',
     payment_type: 'online',
     address: receiving.address,
     code: receiving.code,

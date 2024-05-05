@@ -21,10 +21,17 @@ const $getOrdersStatusFx = status({ effect: getOrdersFx });
 
 export const $orders = createStore<ViewOrder[] | null>(null);
 export const $actualOrders = $orders.map(
-  (orders) => orders?.filter((order) => order.status !== ViewOrderStatusEnum.received)
+  (orders) =>
+    orders?.filter(
+      (order) => order.status !== ViewOrderStatusEnum.received && order.status !== ViewOrderStatusEnum.cancelled
+    )
 );
+
 export const $archiveOrders = $orders.map(
-  (orders) => orders?.filter((order) => order.status === ViewOrderStatusEnum.received)
+  (orders) =>
+    orders?.filter(
+      (order) => order.status === ViewOrderStatusEnum.received || order.status === ViewOrderStatusEnum.cancelled
+    )
 );
 export const $actualOrder = createStore<ViewOrder | null>(null);
 export const lkGate = createGate();

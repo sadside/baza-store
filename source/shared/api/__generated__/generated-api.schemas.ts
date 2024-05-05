@@ -128,9 +128,15 @@ export type SchemaRetrieveParams = {
   lang?: SchemaRetrieveLang;
 };
 
+export type OrdersPaymentRetrieveParams = {
+  order_id?: string;
+};
+
 /**
  * * `created` - Created
+ * `failed_payment` - Failed Payment
  * `paid` - Paid
+ * `awaiting_delivery` - Awaiting Delivery
  * `in_delivery` - In Delivery
  * `delivered` - Delivered
  * `received` - Received
@@ -141,7 +147,9 @@ export type ViewOrderStatusEnum = (typeof ViewOrderStatusEnum)[keyof typeof View
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ViewOrderStatusEnum = {
   created: 'created',
+  failed_payment: 'failed_payment',
   paid: 'paid',
+  awaiting_delivery: 'awaiting_delivery',
   in_delivery: 'in_delivery',
   delivered: 'delivered',
   received: 'received',
@@ -157,6 +165,7 @@ export interface ViewOrder {
   floor_number?: number | null;
   readonly id: number;
   intercom?: number | null;
+  is_express?: boolean;
   is_paid?: boolean;
   is_received?: boolean;
   loaylty_awarded?: boolean;
@@ -170,6 +179,7 @@ export interface ViewOrder {
   receiving_date?: string | null;
   status?: ViewOrderStatusEnum;
   surname: string;
+  use_loyalty_balance?: number;
 }
 
 export interface UserDataSerialzier {
@@ -182,7 +192,7 @@ export interface UserDataSerialzier {
 }
 
 /**
- * * `courier` - Доставка
+ * * `personal` - Доставка
  * `cdek` - Пункт СДЕК
  * `pickup` - Самовывоз
  */
@@ -190,7 +200,7 @@ export type ReceivingEnum = (typeof ReceivingEnum)[keyof typeof ReceivingEnum];
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
 export const ReceivingEnum = {
-  courier: 'courier',
+  personal: 'personal',
   cdek: 'cdek',
   pickup: 'pickup',
 } as const;
@@ -216,6 +226,7 @@ export interface ProductPath {
 export interface Product {
   category: number;
   readonly color_images: string;
+  composition_and_care?: string;
   description?: string | null;
   readonly full_path: string;
   readonly id: number;
@@ -345,11 +356,13 @@ export interface CreateOrder {
   floor_number?: number | null;
   readonly id: number;
   intercom?: number | null;
+  is_express?: boolean;
   name: string;
   payment_type: PaymentTypeEnum;
   phone: string;
   receiving: ReceivingEnum;
   surname: string;
+  use_loyalty?: boolean;
 }
 
 export interface Cart {
@@ -370,8 +383,8 @@ export interface AloneProductPath {
 }
 
 export interface Address {
-  address: string;
   price?: number;
+  address: string;
   apartment_number?: number | null;
   code?: string | null;
   floor_number?: number | null;

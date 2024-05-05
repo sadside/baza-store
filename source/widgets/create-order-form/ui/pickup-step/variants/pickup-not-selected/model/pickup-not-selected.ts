@@ -58,7 +58,7 @@ export const $showPointsSelect = createStore(false)
   .on(getCdekPointsFx.doneData, () => true)
   .reset(cityForCdekAutocomplete.$selectedItem);
 
-type TariffSelect = {
+export type TariffSelect = {
   id: number;
   value: string;
   price: number;

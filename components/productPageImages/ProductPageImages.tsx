@@ -52,7 +52,7 @@ export const ProductPageImages = ({ product }: Props) => {
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
         >
-          {product.images.map((image, index) => {
+          {product?.images?.map((image, index) => {
             return (
               <SwiperSlide>
                 <Image

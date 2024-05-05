@@ -319,7 +319,7 @@ export const MainInfoProduct = ({ product }: Props) => {
       <PartsMobileModal price={product.price} />
       <div className={styles.wrapper}>
         <div className={styles.productName}>
-          <div className={styles.name}>{`${product.name} ${product.current_color.eng_name}`}</div>
+          <div className={styles.name}>{`${product.name} ${product?.current_color?.eng_name}`}</div>
           <AddToFavorites product={product} />
         </div>
         <button className="flex gap-5 mb-6 items-center cursor-pointer">

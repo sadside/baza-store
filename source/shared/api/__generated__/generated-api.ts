@@ -13,6 +13,7 @@ import type {
   Login,
   Loyalty,
   LoyaltyHistory,
+  OrdersPaymentRetrieveParams,
   PatchedAddress,
   Payment,
   PhoneNumber,
@@ -98,14 +99,15 @@ export const ordersOrdersCreate = (createOrder: BodyType<NonReadonly<CreateOrder
   });
 };
 
-export const ordersPaymentRetrieve = (id: number) => {
-  return $apiWithGuard<Payment>({
-    url: `/orders/payment/`,
-    method: 'GET',
-    params: {
-      order_id: id,
-    },
-  });
+export const ordersOrdersCancelRetrieve = () => {
+  return $apiWithGuard<void>({ url: `/orders/orders/cancel/`, method: 'GET' });
+};
+
+/**
+ * @summary Предподсчет корзины
+ */
+export const ordersPaymentRetrieve = (params?: OrdersPaymentRetrieveParams) => {
+  return $apiWithGuard<Payment>({ url: `/orders/payment/`, method: 'GET', params });
 };
 
 export const ordersPaymentResponseFailRetrieve = (paymentId: number) => {
@@ -324,6 +326,7 @@ export type AuthSendCodeCreateResult = NonNullable<Awaited<ReturnType<typeof aut
 export type OrdersCalculateRetrieveResult = NonNullable<Awaited<ReturnType<typeof ordersCalculateRetrieve>>>;
 export type OrdersOrdersListResult = NonNullable<Awaited<ReturnType<typeof ordersOrdersList>>>;
 export type OrdersOrdersCreateResult = NonNullable<Awaited<ReturnType<typeof ordersOrdersCreate>>>;
+export type OrdersOrdersCancelRetrieveResult = NonNullable<Awaited<ReturnType<typeof ordersOrdersCancelRetrieve>>>;
 export type OrdersPaymentRetrieveResult = NonNullable<Awaited<ReturnType<typeof ordersPaymentRetrieve>>>;
 export type OrdersPaymentResponseFailRetrieveResult = NonNullable<
   Awaited<ReturnType<typeof ordersPaymentResponseFailRetrieve>>

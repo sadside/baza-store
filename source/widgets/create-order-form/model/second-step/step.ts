@@ -85,6 +85,6 @@ sample({
     city: cityForCdekAutocomplete.$selectedItem,
   },
   filter: ({ point, city }) => point !== null && city !== null,
-  fn: ({ point, city }) => ({ type: 'cdek', address: point?.address, price: 600 }),
+  fn: ({ point, city }) => ({ type: 'cdek', address: point?.address, price: 600, const: point?.code }),
   target: $selectedPickUp,
 });
