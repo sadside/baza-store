@@ -1,7 +1,6 @@
 import React from "react";
 import { StateOrderLk } from "@shared/ui/state-order-lk";
 import { getLkOrderPrice } from "@shared/utils/getLkOrderPrice";
-import { CardProductLk } from "@entities/card-product-lk";
 
 export type ItemOrderLk = {
   id: number
@@ -38,9 +37,6 @@ const LkActualInfo = ({ actualOrder }: Props) => {
           </div>
         </div>
       </div>
-      {actualOrder.showProduct ? <div className="flex mt-5 flex-wrap justify-around	">
-        {actualOrder.products.map(p => <CardProductLk key={p.id} product={p} />)}
-      </div> : <></>}
     </div>
   );
 };
