@@ -23,8 +23,8 @@ export const ActualOrderActions = ({ order }: ActualOrderProps) => {
   return (
     <div className="uppercase flex gap-[15px] min-w-[340px]  w-[40%] text-[12px] mt-7 items-center">
       {/*{order.receiving === ReceivingEnum.cdek && <Button.Primary>Отследить посылку</Button.Primary>}*/}
-      {order.status === ViewOrderStatusEnum.created ||
-        (order.status === ViewOrderStatusEnum.failed_payment && (
+      {order.status === 'created' ||
+        (order.status === 'failed_payment' && (
           <Button.Primary
             className="w-[244px]"
             onClick={() => createPaymentFx(order.id)}
@@ -34,8 +34,8 @@ export const ActualOrderActions = ({ order }: ActualOrderProps) => {
             Оплатить
           </Button.Primary>
         ))}
-      {order.status === ViewOrderStatusEnum.created ||
-        (order.status === ViewOrderStatusEnum.failed_payment && (
+      {order.status === 'created' ||
+        (order.status === 'failed_payment' && (
           <Button.Secondary
             className="w-[244px]"
             onClick={handleCancelClick}

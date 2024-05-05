@@ -44,7 +44,7 @@ export const StateOrderLk = ({ status }: StateOrderLkProps) => {
       );
     case ViewOrderStatusEnum.failed_payment:
       return (
-        <div className="bg-gray-500 min-w-[120px] text-white uppercase px-[20px] text-[12px] font-semibold flex justify-center">
+        <div className="bg-gray-500 min-w-[120px] text-white uppercase px-[20px] text-[12px] font-semibold flex justify-center text-nowrap ">
           не оплачен
         </div>
       );
