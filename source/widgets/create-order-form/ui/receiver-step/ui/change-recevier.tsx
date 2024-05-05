@@ -11,6 +11,7 @@ import { ProfileFormFields } from '@widgets/create-order-form/ui/auth-step/third
 import { ReceiverData, receiverFormSubmitted } from '@widgets/create-order-form/model/third-step/step';
 import { PhoneInput } from '@shared/ui/PhoneInput';
 import { Button } from '@shared/theme/button';
+import { $order } from '@widgets/create-order-form/model/create-order-model';
 
 const schema = yup.object().shape({
   name: yup.string().required('Это обязательное поле'),
@@ -21,6 +22,7 @@ const schema = yup.object().shape({
 
 export const ChangeRecevier = () => {
   const user = useUnit($user);
+  const order = useUnit($order);
 
   const {
     register,
@@ -85,8 +87,8 @@ export const ChangeRecevier = () => {
             {errors.phone && <div className="text-red text-[12px]">{errors.phone.message}</div>}
           </div>
         </div>
-        <Button.Primary className="w-full" type="submit">
-          Далее
+        <Button.Primary className="w-full" type="submit" disabled={order?.price === 0}>
+          {order?.price === 0 ? 'Выбранных товаров нет в наличии' : 'далее'}
         </Button.Primary>
       </div>
     </form>
