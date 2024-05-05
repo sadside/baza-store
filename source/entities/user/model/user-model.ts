@@ -115,6 +115,8 @@ export const getUserFx = createEffect(async () => {
   }
 });
 
+export const getUserFxStatus = status(getUserFx);
+
 export const $getUserFxStatus = status({ effect: getUserFx });
 
 export const $phoneNumber = createStore<string>('')

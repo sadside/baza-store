@@ -5,7 +5,7 @@ import { LkLayout } from '@/source/layouts/lk-layout';
 import { useGate, useUnit } from 'effector-react';
 import { lkGate } from '@entities/order';
 import '@/source/layouts/lk-layout/model/lk-layout-model';
-import { $user, getUserFx } from '@entities/user/model/user-model';
+import { $user, getUserFx, getUserFxStatus } from '@entities/user/model/user-model';
 import { useRouter } from 'next/navigation';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -14,8 +14,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   const loading = useUnit(getUserFx.pending);
 
   const router = useRouter();
+  const status = useUnit(getUserFxStatus);
 
-  if (!user && !loading) router.push('/');
+  if (!user && status === 'fail') router.push('/');
 
   return <LkLayout children={children} />;
 }
