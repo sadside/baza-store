@@ -24,19 +24,13 @@ const Sidebar = () => {
   const { push } = useRouter();
 
   return (
-    <>
-      <ShowModalMb
-        text="выйти из учетной записи?"
-        func={() => {
-          changeVisibleExit(false);
-        }}
-      />
+    <div className="flex-0">
       <div className="w-[30%] flex flex-col	gap-[16px]  pl-[40px] h-full max-[1050px]:hidden">
         {links.map((link) => {
           return (
             <Link
               className={classNames(
-                'w-full uppercase flex justify-start  text-[16px] font-semibold',
+                'w-full uppercase flex justify-start  text-[16px] font-semibold text-nowrap',
                 link.value === '/info/' + url[2] ? 'text-black' : 'text-black-200'
               )}
               href={link.value}
@@ -57,7 +51,7 @@ const Sidebar = () => {
           }
         />
       </div>
-    </>
+    </div>
   );
 };
 

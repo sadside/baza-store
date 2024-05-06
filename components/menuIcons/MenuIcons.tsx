@@ -9,6 +9,8 @@ import { usePathname } from 'next/navigation';
 import SvgSelector from '@shared/utils/SvgSelector';
 import { cartDrawerOpened } from '@widgets/cart-drawer/model/cart-drawer-model';
 import { $user } from '@entities/user/model/user-model';
+import UserIcon from '@shared/assets/icons/user.svg';
+import CartIcon from '@shared/assets/icons/cart.svg';
 
 type Props = {
   mobile: boolean;
@@ -21,11 +23,11 @@ export const MenuIcons = ({ mobile }: Props) => {
 
   return (
     <div className={styles.additional}>
-      <Link className={styles.userIcon} href={userStm !== null ? '/lk' : '/auth'}>
-        <SvgSelector id={'user'} />
+      <Link href={userStm ? '/lk' : '/auth'} className="mr-5 cursor-pointer">
+        <UserIcon className="fill-black" />
       </Link>
-      <div className={styles.userIcon} onClick={() => cartDrawerOpened()}>
-        <SvgSelector id={'cart'} />
+      <div className="cursor-pointer flex items-center" onClick={() => cartDrawerOpened()}>
+        <CartIcon className="fill-black" />
         <MenuCart />
       </div>
 

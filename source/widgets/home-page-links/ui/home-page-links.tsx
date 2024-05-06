@@ -7,6 +7,8 @@ import { Category } from '@/app/page';
 import SvgSelector from '@/source/shared/utils/SvgSelector';
 import { useUnit } from 'effector-react';
 import { $user } from '@entities/user/model/user-model';
+import UserIcon from '@shared/assets/icons/user.svg';
+import CartIcon from '@shared/assets/icons/cart.svg';
 
 interface categoryLinksProps {
   links: Category[];
@@ -39,11 +41,11 @@ export const HomePageLinks = ({ links }: categoryLinksProps) => {
           <SvgSelector id="new-logo" />
         </Link>
         <div className={styles.icons}>
-          <Link href="/cart">
-            <SvgSelector id={'cart-white'} />
-          </Link>
           <Link href={user ? '/lk' : '/auth'}>
-            <SvgSelector id={'user-white'} />
+            <UserIcon className="fill-white" />
+          </Link>
+          <Link href="/cart">
+            <CartIcon className="fill-white" />
           </Link>
         </div>
       </div>

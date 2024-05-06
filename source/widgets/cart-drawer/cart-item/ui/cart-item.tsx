@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useUnit } from 'effector-react';
 import { Loader } from '@/components/loader/Loader';
 import { productDecremented, productIncremented } from '@/source/features/cart-mutation/model/cart-mutation';
+import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
 
 interface CartItemProps extends IProductCart {}
 
@@ -45,7 +46,13 @@ export const CartItem = ({ slug, image, name, size, color, price, quantityInCart
             >
               <MinusIcon width={13} />
             </button>
-            <p className="mx-2 font-semibold">{loading ? <Loader height={18} width={18} /> : quantityInCart}</p>
+            <p className="font-semibold">
+              {loading ? (
+                <Skeleton className="bg-black-50 text-black-50 w-full rounded px-2">{quantityInCart}</Skeleton>
+              ) : (
+                <p className="px-2">{quantityInCart}</p>
+              )}
+            </p>
             <button
               className=" py-2 bg-gray-100 w-5 rounded h-3 flex items-center justify-center mx-1"
               onClick={handlePlusClick}

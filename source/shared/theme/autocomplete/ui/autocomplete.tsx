@@ -35,9 +35,9 @@ export const Autocomplete = ({ placeholder, className, model }: AutocompleteProp
   const inputValue = useUnit($inputValue);
 
   const icon: Record<'initial' | 'pending' | 'done' | 'fail', ReactNode> = {
-    initial: <HomeIcon className="h-[18px] w-[27px]" color="#7e7e7f" />,
+    initial: <></>,
     pending: <Loader height={18} width={27} />,
-    done: <HomeIcon className="h-[18px] w-[27px]" />,
+    done: <></>,
     fail: <CircleAlert className="h-[18px] w-[27px]" />,
   };
 

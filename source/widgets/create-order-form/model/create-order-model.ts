@@ -167,6 +167,7 @@ sample({
       apartment_number: item?.apartment_number,
       floor_number: item?.floor_number,
       intercom: item?.intercom,
+      code: item?.code ?? undefined,
     };
 
     return res;
@@ -181,7 +182,6 @@ sample({
     step: $currentFormStep,
   },
   filter: ({ order, step }) =>
-    //@y
     (!order && step === FORM_STEPS.PICK_UP_STEP) || (!order && step === FORM_STEPS.RECEIVER_STEP),
   target: orderCalculateFx,
 });

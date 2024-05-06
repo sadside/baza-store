@@ -49,7 +49,7 @@ export const AddAddressCourier = () => {
       <div className="mt-5">
         <div className="text-[14px]">Начните вводить адрес</div>
         <span>
-          <Autocomplete model={courierAutocomplete} className="mt-1" placeholder="Аддрес дома" />
+          <Autocomplete model={courierAutocomplete} className="mt-1" placeholder="Адрес дома" />
           {autocompleteError && <div className="text-red absolute text-[12px]">{autocompleteError}</div>}
         </span>
       </div>

@@ -1,7 +1,7 @@
-import styles from "./Footer.module.scss";
-import Link from "next/link";
-import Image from "next/image";
-import appLogo from "@shared/assets/app_logo.png";
+import styles from './Footer.module.scss';
+import Link from 'next/link';
+import Image from 'next/image';
+import appLogo from '@shared/assets/app_logo.png';
 
 type Props = {};
 
@@ -12,25 +12,25 @@ const Footer = (props: Props) => {
         <div className={styles.mainInfo}>
           <div>
             <h2>Покупателям</h2>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/delivery">
               FAQs
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/baza-loyalty">
               Программа лояльности
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/gift-certificates/">
               Подарочные карты
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/payment">
               Доставка, оплата, возврат
             </Link>
           </div>
           <div>
             <h2>Быстрая связь</h2>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="tel:89228865945">
               +7 (922) 886-59-45
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="mailto:info@thebaza.ru">
               info@thebaza.ru
             </Link>
             <Link className={styles.linkItem} href="#">
@@ -43,36 +43,18 @@ const Footer = (props: Props) => {
           <div>
             <div className={styles.iosApp}>
               <div className={styles.logo}>
-                <Image src={appLogo} alt={""} />
+                <Image src={appLogo} alt={''} />
               </div>
               <div>WEB-ПРИЛОЖЕНИЕ ДЛЯ IOS</div>
             </div>
             <div className={styles.methods}>
-              <svg
-                width="68"
-                height="20"
-                viewBox="0 0 68 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="68" height="20" viewBox="0 0 68 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="68" height="20" rx="4" fill="#A2A2A2" />
                 <g clip-path="url(#clip0_1899_10737)">
-                  <path
-                    d="M15.9392 6H14.6044V12.7689H15.9392V6Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M13.0711 6.37876H11.7363V13.1475H13.0711V6.37876Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M10.203 6.80162H8.86814V13.5716H10.203V6.80162Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M7.33482 7.22917H6L6.00001 14H7.33482L7.33482 7.22917Z"
-                    fill="white"
-                  />
+                  <path d="M15.9392 6H14.6044V12.7689H15.9392V6Z" fill="white" />
+                  <path d="M13.0711 6.37876H11.7363V13.1475H13.0711V6.37876Z" fill="white" />
+                  <path d="M10.203 6.80162H8.86814V13.5716H10.203V6.80162Z" fill="white" />
+                  <path d="M7.33482 7.22917H6L6.00001 14H7.33482L7.33482 7.22917Z" fill="white" />
                   <path
                     d="M51.1941 9.60656L49.0448 7.21695H47.7884V12.7497H49.1002V9.21971L51.0624 11.3111H51.3049L53.2333 9.21971V12.7497H54.5452V7.21695H53.2887L51.1941 9.60656Z"
                     fill="white"
@@ -100,26 +82,12 @@ const Footer = (props: Props) => {
                 </g>
                 <defs>
                   <clipPath id="clip0_1899_10737">
-                    <rect
-                      width="56"
-                      height="8"
-                      fill="white"
-                      transform="translate(6 6)"
-                    />
+                    <rect width="56" height="8" fill="white" transform="translate(6 6)" />
                   </clipPath>
                 </defs>
               </svg>
-              <svg
-                width="41"
-                height="12"
-                viewBox="0 0 41 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.57 11.8272H14.3298L16.3565 0.210938H19.5965L17.57 11.8272Z"
-                  fill="#A2A2A2"
-                />
+              <svg width="41" height="12" viewBox="0 0 41 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.57 11.8272H14.3298L16.3565 0.210938H19.5965L17.57 11.8272Z" fill="#A2A2A2" />
                 <path
                   d="M29.3153 0.494553C28.6762 0.259513 27.6625 0 26.4091 0C23.2093 0 20.956 1.58171 20.9422 3.84309C20.9156 5.51152 22.5555 6.43821 23.782 6.99452C25.0356 7.56299 25.4617 7.93403 25.4617 8.44073C25.4489 9.21894 24.4487 9.57766 23.5158 9.57766C22.2222 9.57766 21.529 9.39272 20.4757 8.95976L20.049 8.77416L19.5956 11.3818C20.3555 11.7027 21.7557 11.9875 23.2093 12C26.6092 12 28.8226 10.4428 28.8488 8.0329C28.8617 6.71054 27.9958 5.69729 26.129 4.86931C24.9957 4.3378 24.3017 3.97941 24.3017 3.43559C24.3149 2.9412 24.8887 2.43482 26.168 2.43482C27.2213 2.41002 27.9953 2.64473 28.5816 2.87961L28.8747 3.00296L29.3153 0.494553Z"
                   fill="#A2A2A2"
@@ -137,13 +105,7 @@ const Footer = (props: Props) => {
                   fill="#A2A2A2"
                 />
               </svg>
-              <svg
-                width="32"
-                height="20"
-                viewBox="0 0 32 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
@@ -151,13 +113,7 @@ const Footer = (props: Props) => {
                   fill="#A2A2A2"
                 />
               </svg>
-              <svg
-                width="44"
-                height="12"
-                viewBox="0 0 44 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M4.12457 0.00204775C4.51712 -0.000303467 5.68378 -0.105504 6.17795 1.56431C6.51083 2.68912 7.04109 4.53161 7.76872 7.09177H8.06506C8.84539 4.39267 9.38143 2.55018 9.67319 1.56431C10.1725 -0.122898 11.4208 0.00208081 11.9201 0.00208081L15.7725 0.00208562V12H11.8461V4.92943H11.5828L9.39397 12H6.43982L4.25102 4.92419H3.98772V12H0.0612793V0.00208562L4.12457 0.00204775Z"
                   fill="#A2A2A2"
@@ -181,17 +137,8 @@ const Footer = (props: Props) => {
         <div className={styles.addInfo}>
           <div>
             <div className={styles.copy}>
-              <svg
-                width="89"
-                height="10"
-                viewBox="0 0 89 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.5879 0.0142652V2.5107H6.74519V10H3.82909V2.5107H0V0.0142652H10.5879Z"
-                  fill="black"
-                />
+              <svg width="89" height="10" viewBox="0 0 89 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5879 0.0142652V2.5107H6.74519V10H3.82909V2.5107H0V0.0142652H10.5879Z" fill="black" />
                 <path
                   d="M19.9059 0.0142652H22.822V10H19.9059V6.24822H14.6051V10H11.7026V0.0142652H14.6051V3.75178H19.9059V0.0142652Z"
                   fill="black"

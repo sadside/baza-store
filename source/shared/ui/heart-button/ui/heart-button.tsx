@@ -24,7 +24,7 @@ export const HeartButton = ({ height = 20, fill = '#A2A2A2', width = 20, slug }:
 
   useEffect(() => {
     favorites?.forEach((item) => {
-      if (item.slug === slug) {
+      if (slug.includes(item.slug)) {
         setFavorite(true);
       }
     });

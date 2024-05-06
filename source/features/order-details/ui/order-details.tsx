@@ -9,6 +9,7 @@ import { Button } from '@shared/theme/button';
 import { $cart } from '@entities/cart/model/cart-model';
 import { partsModalStateChanged } from '@entities/product/model/product-model';
 import Link from 'next/link';
+import { $user } from '@entities/user/model/user-model';
 
 interface OrderDetailsProps {
   className?: string;
@@ -16,6 +17,7 @@ interface OrderDetailsProps {
 
 export const OrderDetails = ({}: OrderDetailsProps) => {
   const products = useUnit($cart);
+  const user = useUnit($user);
 
   const fullPrice = getSalePriceFromCart(products);
   const salePrice = getPriceFromCart(products);
@@ -53,7 +55,7 @@ export const OrderDetails = ({}: OrderDetailsProps) => {
       <Link href="/order">
         <Button.Primary style={{ marginBottom: 16 }}>Оформить заказ</Button.Primary>
       </Link>
-      <p className={styles.loyaltyInfo}>АВТОРИЗУЙТЕСЬ, ЧТОБЫ СПИСАТЬ ИЛИ НАКОПИТЬ БАЛЛЫ</p>
+      {!user && <p className={styles.loyaltyInfo}>АВТОРИЗУЙТЕСЬ, ЧТОБЫ СПИСАТЬ ИЛИ НАКОПИТЬ БАЛЛЫ</p>}
     </div>
   );
 };

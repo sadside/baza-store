@@ -7,7 +7,7 @@ type Props = {
 };
 
 const addressDeliveryType: Record<'cdek' | 'personal' | 'pickup', string> = {
-  ['cdek']: 'Сдеком',
+  ['cdek']: 'В пункте ПВЗ СДЕК',
   ['personal']: 'Курьером',
   ['pickup']: 'В магазине BAZA',
 };

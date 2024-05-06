@@ -14,6 +14,7 @@ export const LkFavourite = () => {
 
   return (
     <>
+      <h2 className="text-[14px] font-medium uppercase mb-2.5">избранное</h2>
       {favourites?.length ? (
         <div className="flex justify-around flex-wrap">
           {favourites.map((f) => (

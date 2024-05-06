@@ -45,7 +45,7 @@ export const PaymentStep = () => {
 
   if (currentStep < FORM_STEPS.PAYMENT_STEP) {
     return (
-      <div>
+      <div className="mb-10">
         <div className="h-[72px] flex items-center border-y border-y-black-50">
           <h2 className="uppercase text-base font-semibold text-black-100">СПОСОБЫ ОПЛАТЫ</h2>
         </div>

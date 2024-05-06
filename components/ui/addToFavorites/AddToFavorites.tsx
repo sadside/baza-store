@@ -23,7 +23,7 @@ export const AddToFavorites = ({ product }: Props) => {
         setFavorite(true);
       }
     });
-  }, []);
+  }, [favorites]);
 
   const handleClick = () => {
     setFavorite(!isFavorite);

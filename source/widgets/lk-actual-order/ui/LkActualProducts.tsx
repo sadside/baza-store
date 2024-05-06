@@ -15,6 +15,7 @@ export const LkActualOrders = () => {
 
   return (
     <div className="w-full">
+      <h2 className="text-[14px] font-medium uppercase mb-2.5">актуальные заказы</h2>
       {actualOrders?.length ? (
         actualOrders.map((order) => <ActualOrder order={order} key={order.id} />)
       ) : (
