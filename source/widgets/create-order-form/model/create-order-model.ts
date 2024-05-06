@@ -24,6 +24,7 @@ import {
   $apartment,
   $floor_number,
   $intercom,
+  $orderComment,
   DELIVERY_TARIFFS,
   TariffSelect,
   tariffSelect,
@@ -213,9 +214,10 @@ sample({
     floor_number: $floor_number,
     intercom: $intercom,
     fxStatus: $createOrderFxStatus,
+    comment: $orderComment,
   },
   filter: ({ fxStatus }) => Boolean(fxStatus !== 'pending'),
-  fn: ({ receiver, receiving }: { receiver: ReceiverData; receiving: Pickup }) => {
+  fn: ({ receiver, receiving, comment }: { receiver: ReceiverData; receiving: Pickup; comment: string }) => {
     const res = {
       name: receiver.name,
       surname: receiver.surname,
@@ -229,6 +231,7 @@ sample({
       apartment_number: receiving.apartment_number ?? null,
       floor_number: receiving.floor_number ?? null,
       intercom: receiving.intercom ?? null,
+      comment,
     };
 
     return res;
