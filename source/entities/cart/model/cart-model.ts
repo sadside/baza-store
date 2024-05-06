@@ -52,7 +52,7 @@ export const addProductToServerFx = createEffect(async (slug: string) => {
 
 export const clearCartFx = createEffect(async () => {
   try {
-    await axios.get(`${API_URL_CLIENT}profile/cart/clear/`, {
+    await $apiWithGuard.get(`${API_URL_CLIENT}profile/cart/clear/`, {
       withCredentials: true,
     });
   } catch (e) {

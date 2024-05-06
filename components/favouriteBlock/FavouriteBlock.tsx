@@ -14,7 +14,7 @@ const FavouriteBlock = ({ o }: Props) => {
   return (
     <div className={s.root}>
       <div className={s.img}>
-        <img src={image.replace('http://127.0.0.1:8000/', 'http://thebaza.ru/')} alt="img" />
+        <img src={image} alt="img" />
       </div>
       <div className={s.card}>
         <div className={s.content}>

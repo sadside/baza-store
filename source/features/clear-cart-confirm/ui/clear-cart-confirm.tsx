@@ -27,11 +27,11 @@ export const ClearCartConfirm = () => {
 
   return (
     <Dialog open={isVisible} onOpenChange={(value) => cartModalStateChanged(value)}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px]" autoFocus={false}>
         <DialogHeader>
           <h2 className="text-center text-[14px] font-semibold uppercase mt-2.5">Очистить корзину?</h2>
         </DialogHeader>
-        <div className="mt-8 flex gap-5">
+        <div className="mt-8 flex gap-5" autoFocus={false}>
           <Button.Secondary onClick={notConfirmHandleClick}>Нет</Button.Secondary>
           <Button.Primary onClick={confirmHandleClick} loading={cartClearLoading}>
             Да

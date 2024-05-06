@@ -53,7 +53,12 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
           <AnimatePresence>
             {isDetailsVisible && (
               <motion.div
-                animate={!isDetailsVisible ? { height: 0, opacity: 0 } : { height: 'auto', opacity: 1 }}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                style={{
+                  overflow: 'hidden',
+                }}
                 className="mt-3"
               >
                 {details}
@@ -85,7 +90,12 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
           <AnimatePresence>
             {isUseAdviceVisible && (
               <motion.div
-                animate={!isDetailsVisible ? { height: 0, opacity: 0 } : { height: 'auto', opacity: 1 }}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                style={{
+                  overflow: 'hidden',
+                }}
                 className="mt-3"
               >
                 {useAdvice}
@@ -94,7 +104,7 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
           </AnimatePresence>
         </div>
       </div>
-      <div className="py-[24px] w-full border-b border-black-50 text-black-200 hover:text-black transition duration-200">
+      <div className="py-[24px] w-full border-b border-black-50 text-black-200 hover:text-black transition duration-200 overflow-hidden">
         <div className="w-full">
           <div className="w-full flex justify-between items-center cursor-pointer" onClick={deliveryHandleClick}>
             <h2 className="font-semibold uppercase text-[14px]">Доставка</h2>
@@ -117,7 +127,12 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
           <AnimatePresence>
             {isDeliveryVisible && (
               <motion.div
-                animate={!isDetailsVisible ? { height: 0, opacity: 0 } : { height: 'auto', opacity: 1 }}
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                style={{
+                  overflow: 'hidden',
+                }}
                 className="mt-3"
               >
                 {delivery}

@@ -9,7 +9,7 @@ type AddressTypes = {
 const selectItems: AddressTypes[] = [
   {
     type: 'cdek',
-    label: 'Сдеком',
+    label: 'В пункте ПВЗ СДЕК',
   },
   {
     type: 'personal',

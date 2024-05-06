@@ -19,17 +19,19 @@ export const ProductPageImages = ({ product }: Props) => {
       <div className={styles.imgList}>
         {product?.images?.map((image, index) => {
           return (
-            <>
-              <Image
-                src={image.replace('http://127.0.0.1:8000/', 'http://thebaza.ru/')}
-                width={500}
-                height={1150}
-                alt="Изображение товара"
-                className={styles.productImage}
-                key={index}
-                priority
-              />
-            </>
+            <Image
+              src={image}
+              width={500}
+              height={1150}
+              objectFit="cover"
+              objectPosition="center"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              alt="Изображение товара"
+              quality={100}
+              className={styles.productImage}
+              key={index}
+              priority
+            />
           );
         })}
       </div>
@@ -55,14 +57,7 @@ export const ProductPageImages = ({ product }: Props) => {
           {product?.images?.map((image, index) => {
             return (
               <SwiperSlide>
-                <Image
-                  src={image.replace('http://127.0.0.1:8000/', 'http://thebaza.ru/')}
-                  width={2500}
-                  height={1150}
-                  alt="ssss"
-                  key={index}
-                  className={styles.productImage}
-                />
+                <Image src={image} width={2500} height={1150} alt="ssss" key={index} className={styles.productImage} />
               </SwiperSlide>
             );
           })}
