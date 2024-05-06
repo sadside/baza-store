@@ -14,9 +14,7 @@ export const metadata = {
 };
 
 const getData = async () => {
-  const res = await fetch(`${API_URL}products/path/`, {
-    cache: 'no-store',
-  });
+  const res = await fetch(`${API_URL}products/path/`);
 
   const links = await res.json();
 

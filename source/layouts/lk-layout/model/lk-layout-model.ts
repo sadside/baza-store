@@ -9,9 +9,9 @@ sample({
   clock: getUserFx.done,
   source: {
     user: $user,
-    opened: lkGate.state,
+    opened: lkGate.status,
   },
-  filter: ({ user, opened }) => !user && !!opened,
+  filter: ({ user, opened }) => !user && Boolean(opened),
   fn: () => '/',
   target: redirectFx,
 });

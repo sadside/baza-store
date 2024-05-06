@@ -10,7 +10,7 @@ export interface Category {
 }
 
 const getOverlayLinks = async (): Promise<Category[]> => {
-  const res = await fetch(`${API_URL}products/path/`, { cache: 'no-store' });
+  const res = await fetch(`${API_URL}products/path/`);
 
   if (!res.ok) throw new Error('error');
 
