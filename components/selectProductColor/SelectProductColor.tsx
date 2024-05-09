@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import styles from "./SelectProductColor.module.scss";
-import clsx from "clsx";
-import Link from "next/link";
+import styles from './SelectProductColor.module.scss';
+import clsx from 'clsx';
+import Link from 'next/link';
 
 type Props = {
   colours: {
@@ -18,6 +18,7 @@ type Props = {
 };
 
 export const SelectProductColor = ({ colours, current_color }: Props) => {
+  console.log(colours);
   return (
     <div className={styles.wrapper}>
       <div className={styles.color}>
@@ -32,8 +33,8 @@ export const SelectProductColor = ({ colours, current_color }: Props) => {
               style={{ backgroundColor: `#${color.hex_code}` }}
               className={clsx({
                 [styles.colorPrickerBtn]: true,
-                [styles.selectedColorBtn]:
-                color.hex_code === current_color.hex_code
+                [styles.selectedColorBtn]: color.hex_code === current_color.hex_code,
+                [`bg-[#${color.hex_code}]`]: true,
               })}
               key={color.hex_code}
             ></Link>
