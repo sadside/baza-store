@@ -1,8 +1,8 @@
-import classNames from 'classnames/bind';
-import styles from '@shared/ui/button/ui/variants/styles/count.module.scss';
-import { ButtonHTMLAttributes, DetailedHTMLProps, HTMLAttributes, useState } from 'react';
-import { Loader } from '@/components/loader/Loader';
-import { BUTTON_VARIANTS } from '@/source/shared/ui/button/ui/button-wrapper';
+import classNames from "classnames/bind";
+import styles from "@shared/ui/button/ui/variants/styles/count.module.scss";
+import { ButtonHTMLAttributes, DetailedHTMLProps, useState } from "react";
+import { Loader } from "@/components/loader/Loader";
+import { BUTTON_VARIANTS } from "@/source/shared/ui/button/ui/button-wrapper";
 
 export interface countProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   loading?: boolean;
@@ -16,32 +16,32 @@ export interface countProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLB
 const cx = classNames.bind(styles);
 
 export const Count = ({
-  loading,
-  value,
-  plusAction,
-  minusAction,
-  minusNotAllowed,
-  className,
-  plusNotAllowed,
-  ...props
-}: countProps) => {
+                        loading,
+                        value,
+                        plusAction,
+                        minusAction,
+                        minusNotAllowed,
+                        className,
+                        plusNotAllowed,
+                        ...props
+                      }: countProps) => {
   const [focused, setIsFocused] = useState(false);
 
   const buttonCls = cx({
     wrapper: true,
-    focused,
+    focused
   });
 
   const actionPlusCls = cx({
     action: true,
     plusNotAllowed,
-    loading,
+    loading
   });
 
   const actionMinusCls = cx({
     action: true,
     minusNotAllowed,
-    loading,
+    loading
   });
 
   const handlePlusCLick = () => {

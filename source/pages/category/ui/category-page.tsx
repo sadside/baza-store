@@ -1,7 +1,7 @@
-import Products from '@/components/products/Products';
-import styles from './category-page.module.scss';
-import { IProduct } from '@shared/types/models/Product';
-import { Breadcrumbs } from '@shared/ui/breadcrumbs/ui/breadcrumbs';
+import Products from "@/components/products/Products";
+import styles from "./category-page.module.scss";
+import { IProduct } from "@shared/types/models/Product";
+import { Breadcrumbs } from "@shared/ui/breadcrumbs/ui/breadcrumbs";
 
 interface CategoryPageProps {
   products: IProduct[];

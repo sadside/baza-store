@@ -2,36 +2,97 @@ import styles from "./Footer.module.scss";
 import Link from "next/link";
 import Image from "next/image";
 import appLogo from "@shared/assets/app_logo.png";
-import parts from "@/assets/dolyami.svg";
+import { Button } from "@shared/theme/button";
+import SvgSelector from "@shared/utils/SvgSelector";
+import React from "react";
 
 type Props = {};
 
 const Footer = (props: Props) => {
   return (
     <div className={styles.wrapper}>
+      <div className={styles.mobile}>
+        <div className={styles.iosAppMobile}>
+          <div className={styles.logo}>
+            <Image src={appLogo} alt={""} />
+          </div>
+          <div>WEB-ПРИЛОЖЕНИЕ ДЛЯ IOS</div>
+        </div>
+        <div className={styles.buy}>
+          <button className="border-black-50 border-[1px] w-full border-x-0  py-[14px]">
+            <Link href="/info/delivery"
+                  className="flex justify-between  text-black-200 uppercase text-[14px] items-center ">
+              Покупателям
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.1582 13.3372L4.98486 6.16466L6.1632 4.98633L13.3357 12.158V5.83716H15.0024V15.0038H5.8357V13.3372H12.1582Z"
+                  fill="#777777"
+                />
+              </svg>
+            </Link>
+          </button>
+        </div>
+        <div>
+          <div className={styles.copyMobile}>
+            <svg width="89" height="10" viewBox="0 0 89 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5879 0.0142652V2.5107H6.74519V10H3.82909V2.5107H0V0.0142652H10.5879Z" fill="black" />
+              <path
+                d="M19.9059 0.0142652H22.822V10H19.9059V6.24822H14.6051V10H11.7026V0.0142652H14.6051V3.75178H19.9059V0.0142652Z"
+                fill="black"
+              />
+              <path
+                d="M27.503 7.50357H34.3981V10H24.6006V0.0142652H34.3981V2.5107H27.503V3.75178H33.8667V6.24822H27.503V7.50357Z"
+                fill="black"
+              />
+              <path
+                d="M49.5094 4.75036C50.218 5.26391 50.6949 6.13409 50.6949 7.1184C50.6949 8.70185 49.4549 10 47.9423 10L39.8345 9.98574V0L47.4109 0.0142652C48.9235 0.0142652 50.1635 1.29815 50.1635 2.8816C50.1635 3.59487 49.9182 4.25107 49.5094 4.75036ZM46.5797 2.5107H42.737V3.89444H46.5797C46.9476 3.89444 47.2474 3.5806 47.2474 3.19544C47.2474 2.81027 46.9476 2.5107 46.5797 2.5107ZM47.1111 7.50357C47.479 7.50357 47.7788 7.18973 47.7788 6.80456C47.7788 6.4194 47.479 6.10556 47.1111 6.10556H42.737V7.50357H47.1111Z"
+                fill="black"
+              />
+              <path
+                d="M60.4772 9.98574L59.9594 8.8873H54.8358L54.318 9.98574H51.1294L55.8033 0.0142652H58.9919L63.6659 9.98574H60.4772ZM58.7739 6.39087L57.384 3.40942L55.9805 6.39087H58.7739Z"
+                fill="black"
+              />
+              <path
+                d="M64.3056 0.0142652H74.8935V2.45364L68.8705 7.50357H74.8935V10H64.3056V7.54636L70.3286 2.5107H64.3056V0.0142652Z"
+                fill="black"
+              />
+              <path
+                d="M84.8759 9.98574L84.3581 8.8873H79.2344L78.7166 9.98574H75.528L80.2019 0.0142652H83.3906L88.0645 9.98574H84.8759ZM83.1725 6.39087L81.7826 3.40942L80.3791 6.39087H83.1725Z"
+                fill="black"
+              />
+            </svg>
+            © 2024
+          </div>
+          <div>
+            <Link className={styles.linkItem} href="#">
+              Политика конфиденциальности
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className={styles.info}>
         <div className={styles.mainInfo}>
           <div>
             <h2>Покупателям</h2>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/delivery">
               FAQs
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/baza-loyalty">
               Программа лояльности
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/gift-certificates/">
               Подарочные карты
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/payment">
               Доставка, оплата, возврат
             </Link>
           </div>
           <div>
             <h2>Быстрая связь</h2>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="tel:89228865945">
               +7 (922) 886-59-45
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="mailto:info@thebaza.ru">
               info@thebaza.ru
             </Link>
             <Link className={styles.linkItem} href="#">
@@ -49,31 +110,13 @@ const Footer = (props: Props) => {
               <div>WEB-ПРИЛОЖЕНИЕ ДЛЯ IOS</div>
             </div>
             <div className={styles.methods}>
-              <svg
-                width="68"
-                height="20"
-                viewBox="0 0 68 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="68" height="20" viewBox="0 0 68 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="68" height="20" rx="4" fill="#A2A2A2" />
                 <g clip-path="url(#clip0_1899_10737)">
-                  <path
-                    d="M15.9392 6H14.6044V12.7689H15.9392V6Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M13.0711 6.37876H11.7363V13.1475H13.0711V6.37876Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M10.203 6.80162H8.86814V13.5716H10.203V6.80162Z"
-                    fill="white"
-                  />
-                  <path
-                    d="M7.33482 7.22917H6L6.00001 14H7.33482L7.33482 7.22917Z"
-                    fill="white"
-                  />
+                  <path d="M15.9392 6H14.6044V12.7689H15.9392V6Z" fill="white" />
+                  <path d="M13.0711 6.37876H11.7363V13.1475H13.0711V6.37876Z" fill="white" />
+                  <path d="M10.203 6.80162H8.86814V13.5716H10.203V6.80162Z" fill="white" />
+                  <path d="M7.33482 7.22917H6L6.00001 14H7.33482L7.33482 7.22917Z" fill="white" />
                   <path
                     d="M51.1941 9.60656L49.0448 7.21695H47.7884V12.7497H49.1002V9.21971L51.0624 11.3111H51.3049L53.2333 9.21971V12.7497H54.5452V7.21695H53.2887L51.1941 9.60656Z"
                     fill="white"
@@ -101,26 +144,12 @@ const Footer = (props: Props) => {
                 </g>
                 <defs>
                   <clipPath id="clip0_1899_10737">
-                    <rect
-                      width="56"
-                      height="8"
-                      fill="white"
-                      transform="translate(6 6)"
-                    />
+                    <rect width="56" height="8" fill="white" transform="translate(6 6)" />
                   </clipPath>
                 </defs>
               </svg>
-              <svg
-                width="41"
-                height="12"
-                viewBox="0 0 41 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17.57 11.8272H14.3298L16.3565 0.210938H19.5965L17.57 11.8272Z"
-                  fill="#A2A2A2"
-                />
+              <svg width="41" height="12" viewBox="0 0 41 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M17.57 11.8272H14.3298L16.3565 0.210938H19.5965L17.57 11.8272Z" fill="#A2A2A2" />
                 <path
                   d="M29.3153 0.494553C28.6762 0.259513 27.6625 0 26.4091 0C23.2093 0 20.956 1.58171 20.9422 3.84309C20.9156 5.51152 22.5555 6.43821 23.782 6.99452C25.0356 7.56299 25.4617 7.93403 25.4617 8.44073C25.4489 9.21894 24.4487 9.57766 23.5158 9.57766C22.2222 9.57766 21.529 9.39272 20.4757 8.95976L20.049 8.77416L19.5956 11.3818C20.3555 11.7027 21.7557 11.9875 23.2093 12C26.6092 12 28.8226 10.4428 28.8488 8.0329C28.8617 6.71054 27.9958 5.69729 26.129 4.86931C24.9957 4.3378 24.3017 3.97941 24.3017 3.43559C24.3149 2.9412 24.8887 2.43482 26.168 2.43482C27.2213 2.41002 27.9953 2.64473 28.5816 2.87961L28.8747 3.00296L29.3153 0.494553Z"
                   fill="#A2A2A2"
@@ -138,27 +167,15 @@ const Footer = (props: Props) => {
                   fill="#A2A2A2"
                 />
               </svg>
-              <svg
-                width="32"
-                height="20"
-                viewBox="0 0 32 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M16.1493 17.2838C18.2383 15.5412 19.5667 12.9249 19.5667 10C19.5667 7.07506 18.2383 4.45885 16.1493 2.71618C17.8075 1.33289 19.9451 0.5 22.2782 0.5C27.5505 0.5 31.8245 4.75329 31.8245 10C31.8245 15.2467 27.5505 19.5 22.2782 19.5C19.9451 19.5 17.8075 18.6671 16.1493 17.2838ZM16.1493 17.2838C14.491 18.6671 12.3535 19.5 10.0204 19.5C4.74813 19.5 0.474121 15.2467 0.474121 10C0.474121 4.75329 4.74813 0.5 10.0204 0.5C12.3535 0.5 14.491 1.33289 16.1493 2.71618C14.0602 4.45885 12.7319 7.07506 12.7319 10C12.7319 12.9249 14.0602 15.5412 16.1493 17.2838Z"
                   fill="#A2A2A2"
                 />
               </svg>
-              <svg
-                width="44"
-                height="12"
-                viewBox="0 0 44 12"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M4.12457 0.00204775C4.51712 -0.000303467 5.68378 -0.105504 6.17795 1.56431C6.51083 2.68912 7.04109 4.53161 7.76872 7.09177H8.06506C8.84539 4.39267 9.38143 2.55018 9.67319 1.56431C10.1725 -0.122898 11.4208 0.00208081 11.9201 0.00208081L15.7725 0.00208562V12H11.8461V4.92943H11.5828L9.39397 12H6.43982L4.25102 4.92419H3.98772V12H0.0612793V0.00208562L4.12457 0.00204775Z"
                   fill="#A2A2A2"
@@ -182,17 +199,8 @@ const Footer = (props: Props) => {
         <div className={styles.addInfo}>
           <div>
             <div className={styles.copy}>
-              <svg
-                width="89"
-                height="10"
-                viewBox="0 0 89 10"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M10.5879 0.0142652V2.5107H6.74519V10H3.82909V2.5107H0V0.0142652H10.5879Z"
-                  fill="black"
-                />
+              <svg width="89" height="10" viewBox="0 0 89 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.5879 0.0142652V2.5107H6.74519V10H3.82909V2.5107H0V0.0142652H10.5879Z" fill="black" />
                 <path
                   d="M19.9059 0.0142652H22.822V10H19.9059V6.24822H14.6051V10H11.7026V0.0142652H14.6051V3.75178H19.9059V0.0142652Z"
                   fill="black"

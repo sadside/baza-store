@@ -11,17 +11,17 @@
 }
 
 .name {
-  font-size: 24px;
+  font-size: 16px;
   @media (min-width: 1200px) and (max-width: 2600px) {
     font-size: 16px;
   }
   font-family: Montserrat;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: bold;
   line-height: 130%;
 }
 
 .price {
   line-height: 100%;
-  font-size: 16px;
+  font-size: 14px;
 }

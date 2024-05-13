@@ -1,1 +1,1 @@
-export { $orders } from './model/order-model';
+export { $orders } from "./model/order-model";

@@ -1,11 +1,11 @@
-import { combine, createEvent, createStore, EventCallable, sample, split, Store, StoreWritable } from 'effector';
-import { createEffect } from 'effector';
-import { EffectState, status } from 'patronum/status';
-import { createFactory, invoke } from '@withease/factories';
-import { debounce } from 'patronum';
-import { $apiWithGuard } from '@shared/api/http/axios-instance';
-import axios from 'axios';
-import { createGate, Gate } from 'effector-react';
+import { combine, createEvent, createStore, EventCallable, sample, split, Store, StoreWritable } from "effector";
+import { createEffect } from "effector";
+import { EffectState, status } from "patronum/status";
+import { createFactory, invoke } from "@withease/factories";
+import { debounce } from "patronum";
+import { $apiWithGuard } from "@shared/api/http/axios-instance";
+import axios from "axios";
+import { createGate, Gate } from "effector-react";
 
 const DEBOUNCE_TIMEOUT_IN_MS = 500;
 
@@ -20,9 +20,9 @@ export const createAutocomplete = createFactory(({ url }: { url: string }) => {
     try {
       const res = await axios.get<string[]>(url, {
         params: {
-          q: value,
+          q: value
         },
-        withCredentials: true,
+        withCredentials: true
       });
 
       return res.data;
@@ -32,7 +32,7 @@ export const createAutocomplete = createFactory(({ url }: { url: string }) => {
   });
 
   const $status = status({ effect: getSuggestionsFx });
-  const $inputValue = createStore<string>('').reset(reset);
+  const $inputValue = createStore<string>("").reset(reset);
   const $suggestions = createStore<string[] | null>(null).reset(reset);
   const $fieldError = createStore<string | null>(null).reset(reset);
   const $selectedItem = createStore<string | null>(null).reset(reset);
@@ -43,37 +43,37 @@ export const createAutocomplete = createFactory(({ url }: { url: string }) => {
     $outsideClicked,
     $status,
     (items, selectedItem, outsideWasClicked, status) =>
-      Boolean(!outsideWasClicked && !selectedItem && items?.length && status === 'done')
+      Boolean(!outsideWasClicked && !selectedItem && items?.length && status === "done")
   );
   const gate = createGate();
 
   sample({
     clock: outsideClicked,
     fn: () => true,
-    target: $outsideClicked,
+    target: $outsideClicked
   });
 
   sample({
     clock: inputChanged,
-    target: $inputValue,
+    target: $inputValue
   });
 
   sample({
     //@ts-ignore
     clock: inputChanged,
-    fn: () => 'initial',
-    target: $status,
+    fn: () => "initial",
+    target: $status
   });
 
   sample({
     clock: inputChangeFinished,
     filter: (value) => !!value,
-    target: getSuggestionsFx,
+    target: getSuggestionsFx
   });
 
   sample({
     clock: getSuggestionsFx.doneData,
-    target: $suggestions,
+    target: $suggestions
   });
 
   sample({
@@ -81,17 +81,17 @@ export const createAutocomplete = createFactory(({ url }: { url: string }) => {
     source: $selectedItem,
     filter: (selectedItem) => Boolean(selectedItem),
     fn: () => null,
-    target: $selectedItem,
+    target: $selectedItem
   });
 
   sample({
     clock: itemSelected,
-    target: [$inputValue, $selectedItem],
+    target: [$inputValue, $selectedItem]
   });
 
   sample({
     clock: gate.close,
-    target: reset,
+    target: reset
   });
 
   return {
@@ -105,7 +105,7 @@ export const createAutocomplete = createFactory(({ url }: { url: string }) => {
     outsideClicked,
     $selectedItem,
     gate,
-    reset,
+    reset
   };
 });
 

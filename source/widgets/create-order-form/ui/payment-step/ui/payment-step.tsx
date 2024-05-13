@@ -1,26 +1,26 @@
-'use click';
+"use click";
 
 import {
   $currentFormStep,
   $order,
   $orderIsCreating,
-  FORM_STEPS,
-} from '@widgets/create-order-form/model/create-order-model';
-import { useUnit } from 'effector-react';
-import { Checkbox } from '@shared/ui/shadcn/ui/checkbox';
-import { Button } from '@shared/theme/button';
+  FORM_STEPS
+} from "@widgets/create-order-form/model/create-order-model";
+import { useUnit } from "effector-react";
+import { Checkbox } from "@shared/ui/shadcn/ui/checkbox";
+import { Button } from "@shared/theme/button";
 import {
   $activePaymentMethod,
   $writeOffPoints,
   paymentButtonClicked,
   paymentMethodCheckBoxClicked,
-  writeOffPointsCheckBoxClicked,
-} from '@widgets/create-order-form/model/payment-step/payment-step';
-import { AnimatePresence, motion } from 'framer-motion';
-import { add, format } from 'date-fns';
-import ru from 'date-fns/locale/ru';
-import Link from 'next/link';
-import { Calculate } from '@shared/api/__generated__/generated-api.schemas';
+  writeOffPointsCheckBoxClicked
+} from "@widgets/create-order-form/model/payment-step/payment-step";
+import { AnimatePresence, motion } from "framer-motion";
+import { add, format } from "date-fns";
+import ru from "date-fns/locale/ru";
+import Link from "next/link";
+import { Calculate } from "@shared/api/__generated__/generated-api.schemas";
 
 export const PaymentStep = () => {
   const currentStep: FORM_STEPS = useUnit($currentFormStep);
@@ -34,11 +34,11 @@ export const PaymentStep = () => {
   const activePaymentMethod = useUnit($activePaymentMethod);
 
   const handleCardMethodClick = () => {
-    paymentMethodCheckBoxClicked('card');
+    paymentMethodCheckBoxClicked("card");
   };
 
   const handlePartsMethodClick = () => {
-    paymentMethodCheckBoxClicked('parts');
+    paymentMethodCheckBoxClicked("parts");
   };
 
   const orderIsCreating = useUnit($orderIsCreating);
@@ -69,25 +69,25 @@ export const PaymentStep = () => {
         )}
         <h2 className="uppercase text-base font-semibold mb-[18px]">СПОСОБ ОПЛАТЫ</h2>
         <div className="flex gap-2.5 items-center mb-[10px]">
-          <Checkbox checked={activePaymentMethod === 'card'} onClick={handleCardMethodClick} />
+          <Checkbox checked={activePaymentMethod === "card"} onClick={handleCardMethodClick} />
           <p className="text-[12px] font-medium uppercase cursor-pointer select-none" onClick={handleCardMethodClick}>
             БАНКОВСКОЙ КАРТОЙ
           </p>
         </div>
         <div className="flex gap-2.5 items-center mb-[14px]">
-          <Checkbox checked={activePaymentMethod === 'parts'} onClick={handlePartsMethodClick} />
+          <Checkbox checked={activePaymentMethod === "parts"} onClick={handlePartsMethodClick} />
           <p className="text-[12px] font-medium uppercase cursor-pointer select-none" onClick={handlePartsMethodClick}>
             ДОЛЯМИ - 4 ПЛАТЕЖА ПО 25%
           </p>
         </div>
         <AnimatePresence>
-          {activePaymentMethod === 'parts' && (
+          {activePaymentMethod === "parts" && (
             <motion.div
               initial={{
-                opacity: 0,
+                opacity: 0
               }}
               animate={{
-                opacity: 1,
+                opacity: 1
               }}
             >
               <p className="text-[14px] text-black-100 mb-2.5">
@@ -102,9 +102,9 @@ export const PaymentStep = () => {
                 </div>
                 <div className="w-full text-black-200">
                   <div className="mb-1 text-[12px]">
-                    {format(new Date(add(new Date(), { days: 14 })), 'dd MMM', {
+                    {format(new Date(add(new Date(), { days: 14 })), "dd MMM", {
                       //@ts-ignore
-                      locale: ru,
+                      locale: ru
                     })}
                   </div>
                   <div className="text-[12px] font-semibold mb-3">{calculatedOrder?.price / 400} ₽</div>
@@ -112,9 +112,9 @@ export const PaymentStep = () => {
                 </div>
                 <div className="w-full text-black-200">
                   <div className="mb-1 text-[12px]">
-                    {format(new Date(add(new Date(), { days: 28 })), 'dd MMM', {
+                    {format(new Date(add(new Date(), { days: 28 })), "dd MMM", {
                       //@ts-ignore
-                      locale: ru,
+                      locale: ru
                     })}
                   </div>
                   <div className="text-[12px] font-semibold mb-3">{calculatedOrder?.price / 400} ₽</div>
@@ -122,9 +122,9 @@ export const PaymentStep = () => {
                 </div>
                 <div className="w-full text-black-200">
                   <div className="mb-1 text-[12px]">
-                    {format(new Date(add(new Date(), { days: 42 })), 'dd MMM', {
+                    {format(new Date(add(new Date(), { days: 42 })), "dd MMM", {
                       //@ts-ignore
-                      locale: ru,
+                      locale: ru
                     })}
                   </div>
                   <div className="text-[12px] font-semibold mb-3">{calculatedOrder?.price / 400} ₽</div>
@@ -135,21 +135,21 @@ export const PaymentStep = () => {
           )}
         </AnimatePresence>
         <Button.Primary
-          className="mt-6 mb-2"
+          className="mt-6 mb-2 max-[550px]:mt-2.5"
           onClick={() => paymentButtonClicked()}
           loading={orderIsCreating}
           disabled={orderIsCreating}
         >
           Оплатить
         </Button.Primary>
-        <div className="text-black-200 text-[10px] font-light">
-          Нажимая на кнопку, вы соглашаетесь с{' '}
+        <div className="text-black-200 mb-5 text-[10px] font-light">
+          Нажимая на кнопку, вы соглашаетесь с{" "}
           <Link href="/info/" className="text-black">
             условиями обработки перс. данных
           </Link>
           , а также с
           <Link href="/info/" className="text-black">
-            {' '}
+            {" "}
             условиями продажи
           </Link>
         </div>

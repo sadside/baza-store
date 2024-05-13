@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import styles from './ProductDetails.module.scss';
-import topArrow from '@shared/assets/topArrow.svg';
-import Image from 'next/image';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useState } from 'react';
+import styles from "./ProductDetails.module.scss";
+import topArrow from "@shared/assets/topArrow.svg";
+import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+
 type Props = {
   details: string;
   useAdvice: string;
@@ -30,7 +31,8 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className="py-[24px] w-full border-y border-black-50 text-black-200 hover:text-black transition duration-200">
+      <div
+        className="py-[24px] w-full border-y border-black-50 text-black-200 hover:text-black transition duration-200">
         <div className="w-full">
           <div className="w-full flex justify-between items-center cursor-pointer" onClick={detailsHandleClick}>
             <h2 className="font-semibold uppercase text-[14px]">Детали продукта</h2>
@@ -54,10 +56,10 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
             {isDetailsVisible && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
+                animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 style={{
-                  overflow: 'hidden',
+                  overflow: "hidden"
                 }}
                 className="mt-3"
               >
@@ -67,7 +69,8 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
           </AnimatePresence>
         </div>
       </div>
-      <div className="py-[24px] w-full border-b border-black-50 text-black-200 hover:text-black transition duration-200">
+      <div
+        className="py-[24px] w-full border-b border-black-50 text-black-200 hover:text-black transition duration-200">
         <div className="w-full">
           <div className="w-full flex justify-between items-center cursor-pointer" onClick={useAdviceHandleClick}>
             <h2 className="font-semibold uppercase text-[14px]">Состав и уход</h2>
@@ -91,10 +94,10 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
             {isUseAdviceVisible && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
+                animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 style={{
-                  overflow: 'hidden',
+                  overflow: "hidden"
                 }}
                 className="mt-3"
               >
@@ -104,7 +107,8 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
           </AnimatePresence>
         </div>
       </div>
-      <div className="py-[24px] w-full border-b border-black-50 text-black-200 hover:text-black transition duration-200 overflow-hidden">
+      <div
+        className="py-[24px] w-full border-b border-black-50 text-black-200 hover:text-black transition duration-200 overflow-hidden">
         <div className="w-full">
           <div className="w-full flex justify-between items-center cursor-pointer" onClick={deliveryHandleClick}>
             <h2 className="font-semibold uppercase text-[14px]">Доставка</h2>
@@ -128,10 +132,10 @@ export const ProductDetails = ({ details, useAdvice, delivery }: Props) => {
             {isDeliveryVisible && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
+                animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 style={{
-                  overflow: 'hidden',
+                  overflow: "hidden"
                 }}
                 className="mt-3"
               >

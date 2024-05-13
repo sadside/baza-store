@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { createEffect, createEvent, createStore, sample, split } from 'effector';
-import { IUser } from '@shared/types/models/User';
-import axios, { AxiosError } from 'axios';
-import AuthService from '@/services/AuthService';
-import { $apiWithGuard } from '@shared/api/http/axios-instance';
-import { $currentCountryCode } from '@/source/shared/ui/PhoneInput/model/countryCodes';
-import { removeFromStorage, saveTokenStorage } from '@shared/api/lib/api.helpers';
-import { appStarted } from '@shared/lib/utils/helpers/app-status';
-import { getCartFromServerFx } from '@entities/cart/model/cart-model';
-import { ProfileFormFields } from '@widgets/lk-profile-form/ui/LkProfileForm';
-import { toast } from 'sonner';
-import { getFavoritesFx } from '@entities/favorite/model/favorite-model';
-import { getLoyaltyHistoryFx, getLoyaltyInfoFx } from '@entities/loyalty/model/loyalty-model';
-import { status } from 'patronum/status';
-import { getAddressesFx } from '@entities/address/model/address-model';
+import { createEffect, createEvent, createStore, sample, split } from "effector";
+import { IUser } from "@shared/types/models/User";
+import axios, { AxiosError } from "axios";
+import AuthService from "@/services/AuthService";
+import { $apiWithGuard } from "@shared/api/http/axios-instance";
+import { $currentCountryCode } from "@/source/shared/ui/PhoneInput/model/countryCodes";
+import { removeFromStorage, saveTokenStorage } from "@shared/api/lib/api.helpers";
+import { appStarted } from "@shared/lib/utils/helpers/app-status";
+import { getCartFromServerFx } from "@entities/cart/model/cart-model";
+import { ProfileFormFields } from "@widgets/lk-profile-form/ui/LkProfileForm";
+import { toast } from "sonner";
+import { getFavoritesFx } from "@entities/favorite/model/favorite-model";
+import { getLoyaltyHistoryFx, getLoyaltyInfoFx } from "@entities/loyalty/model/loyalty-model";
+import { status } from "patronum/status";
+import { getAddressesFx } from "@entities/address/model/address-model";
 
 export const logouted = createEffect();
 
@@ -35,7 +35,7 @@ export const postUserFx = createEffect(async (data: ProfileFormFields) => {
       name: data.name,
       surname: data.surname,
       birthday_date: data.date,
-      email: data.mail,
+      email: data.mail
     };
 
     const res = await $apiWithGuard.post(`profile/info/`, newUserData);
@@ -46,10 +46,10 @@ export const postUserFx = createEffect(async (data: ProfileFormFields) => {
     //@ts-ignore
     error.response.data.email.forEach((errorText) => {
       toast(errorText, {
-        position: 'top-right',
+        position: "top-right"
       });
     });
-    throw new Error('Не удалось обновить информацию.');
+    throw new Error("Не удалось обновить информацию.");
   }
 });
 
@@ -57,12 +57,12 @@ export const userInfoEdited = createEvent<ProfileFormFields>();
 
 sample({
   clock: userInfoEdited,
-  target: postUserFx,
+  target: postUserFx
 });
 
 sample({
   clock: logouted,
-  target: logoutFx,
+  target: logoutFx
 });
 
 export const $user = createStore<IUser | null>(null).reset(logoutFx.doneData);
@@ -70,7 +70,7 @@ export const $user = createStore<IUser | null>(null).reset(logoutFx.doneData);
 export const $loginError = createStore<string | null>(null);
 export const showToastErrorF = createEffect((error: string) => {
   toast.error(error, {
-    position: 'top-right',
+    position: "top-right"
   });
 });
 
@@ -78,7 +78,7 @@ export const loginErrorChanged = createEvent<string | null>();
 
 sample({
   clock: loginErrorChanged,
-  target: $loginError,
+  target: $loginError
 });
 
 export const loginFx = createEffect(async ({ phone, code }: { phone: string; code: string }) => {
@@ -93,7 +93,7 @@ export const loginFx = createEffect(async ({ phone, code }: { phone: string; cod
       1;
       throw new Error(err?.response?.data.error);
     } else {
-      throw new Error('Произошла неизвестная ошибка ошибка...');
+      throw new Error("Произошла неизвестная ошибка ошибка...");
     }
   }
 });
@@ -101,7 +101,7 @@ export const loginFx = createEffect(async ({ phone, code }: { phone: string; cod
 sample({
   clock: loginFx.fail,
   fn: (error) => error.error.message,
-  target: [$loginError, showToastErrorF],
+  target: [$loginError, showToastErrorF]
 });
 
 export const getUserFx = createEffect(async () => {
@@ -118,7 +118,7 @@ export const getUserFxStatus = status(getUserFx);
 
 export const $getUserFxStatus = status({ effect: getUserFx });
 
-export const $phoneNumber = createStore<string>('')
+export const $phoneNumber = createStore<string>("")
   .on(phoneInputSubmitted, (_, newState) => newState)
   .reset(loginFx.doneData);
 
@@ -128,38 +128,38 @@ sample({
   fn: (phoneCode, loginData) => {
     return {
       phone: phoneCode + loginData.phone,
-      code: loginData.code.join(''),
+      code: loginData.code.join("")
     };
   },
-  target: loginFx,
+  target: loginFx
 });
 
 sample({
   clock: getUserFx.doneData,
   filter: (user) => user !== null,
-  target: $user,
+  target: $user
 });
 
 sample({
   clock: getUserFx.doneData,
   source: $user,
   filter: (user) => user !== null,
-  target: [$user, getCartFromServerFx, getLoyaltyInfoFx, getLoyaltyHistoryFx, getFavoritesFx, getAddressesFx],
+  target: [$user, getCartFromServerFx, getLoyaltyInfoFx, getLoyaltyHistoryFx, getFavoritesFx, getAddressesFx]
 });
 
 sample({
   clock: loginFx.doneData,
-  target: [$user, getLoyaltyInfoFx, getLoyaltyHistoryFx, getFavoritesFx],
+  target: [$user, getLoyaltyInfoFx, getLoyaltyHistoryFx, getFavoritesFx]
 });
 
 sample({
   clock: postUserFx.doneData,
-  target: $user,
+  target: $user
 });
 
 sample({
   clock: appStarted,
   source: $getUserFxStatus,
-  filter: (status) => status !== 'pending',
-  target: getUserFx,
+  filter: (status) => status !== "pending",
+  target: getUserFx
 });

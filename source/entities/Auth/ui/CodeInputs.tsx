@@ -1,12 +1,13 @@
-import styles from './CodeInputs.module.scss';
-import { useUnit } from 'effector-react';
-import { $codeDigits, clearDigits, digitIntroduced, digitRemoved } from '@/stores/auth/auth';
-import React, { ChangeEvent, forwardRef, useEffect, useImperativeHandle, useRef } from 'react';
+import styles from "./CodeInputs.module.scss";
+import { useUnit } from "effector-react";
+import { $codeDigits, clearDigits, digitIntroduced, digitRemoved } from "@/stores/auth/auth";
+import React, { ChangeEvent, forwardRef, useEffect, useImperativeHandle, useRef } from "react";
 
-import classNames from 'classnames/bind';
-import { $loginError, loginErrorChanged } from '@entities/user/model/user-model';
+import classNames from "classnames/bind";
+import { $loginError, loginErrorChanged } from "@entities/user/model/user-model";
 
-interface CodeInputsProps {}
+interface CodeInputsProps {
+}
 
 const cx = classNames.bind(styles);
 
@@ -20,11 +21,11 @@ export const CodeInputs = forwardRef(({}: CodeInputsProps, ref) => {
 
   const inputClassname = cx({
     error: error !== null,
-    codeInput: true,
+    codeInput: true
   });
 
   useImperativeHandle(ref, () => ({
-    focus: () => inputRefs.current[0].focus(),
+    focus: () => inputRefs.current[0].focus()
   }));
 
   useEffect(() => {
@@ -39,11 +40,11 @@ export const CodeInputs = forwardRef(({}: CodeInputsProps, ref) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     loginErrorChanged(null);
     const value = e.target.value;
-    if ((value < '0' || value > '9') && value !== '') return;
+    if ((value < "0" || value > "9") && value !== "") return;
 
     digitIntroduced({
       value,
-      position: index,
+      position: index
     });
 
     if (index < length - 1) {
@@ -54,14 +55,14 @@ export const CodeInputs = forwardRef(({}: CodeInputsProps, ref) => {
   };
 
   const handleKeyDown = (index: number, event: React.KeyboardEvent) => {
-    if (event.key === 'Backspace') {
+    if (event.key === "Backspace") {
       event.preventDefault();
       if (digits[index].match(/^[0-9]$/)) digitRemoved(index);
       else if (index > 0) inputRefs.current[index - 1].focus();
     }
 
-    if (event.key === 'ArrowRight' && index < length - 1) inputRefs.current[index + 1].focus();
-    if (event.key === 'ArrowLeft' && index > 0) inputRefs.current[index - 1].focus();
+    if (event.key === "ArrowRight" && index < length - 1) inputRefs.current[index + 1].focus();
+    if (event.key === "ArrowLeft" && index > 0) inputRefs.current[index - 1].focus();
   };
 
   return (

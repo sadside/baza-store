@@ -1,7 +1,7 @@
-'use client';
-import { Button } from '@shared/theme/button';
-import Link from 'next/link';
-import React from 'react';
+"use client";
+import { Button } from "@shared/theme/button";
+import Link from "next/link";
+import React from "react";
 
 export const OrdersEmpty = () => {
   return (
@@ -11,7 +11,7 @@ export const OrdersEmpty = () => {
         <br />
         Для оформления перейдите в каталог
       </div>
-      <Link href={'/'}>
+      <Link href={"/"}>
         <Button.Primary width={240}>Перейти в каталог</Button.Primary>
       </Link>
     </div>

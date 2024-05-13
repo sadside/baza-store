@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { $currentFormStep, FORM_STEPS } from '@widgets/create-order-form/model/create-order-model';
-import { FirstFirstStep } from '@widgets/create-order-form/ui/auth-step/first-step';
-import { FirstSecondStep } from '@widgets/create-order-form/ui/auth-step/second-step';
-import { FirstThirdStep } from '@widgets/create-order-form/ui/auth-step/third-step';
-import { useUnit } from 'effector-react';
+import { $currentFormStep, FORM_STEPS } from "@widgets/create-order-form/model/create-order-model";
+import { FirstFirstStep } from "@widgets/create-order-form/ui/auth-step/first-step";
+import { FirstSecondStep } from "@widgets/create-order-form/ui/auth-step/second-step";
+import { FirstThirdStep } from "@widgets/create-order-form/ui/auth-step/third-step";
+import { useUnit } from "effector-react";
 
 const getStep = (currentStep: FORM_STEPS) => {
   if (currentStep === FORM_STEPS.AUTH_STEP) return <FirstFirstStep />;

@@ -1,7 +1,7 @@
-import React from 'react';
-import { LoyaltySmallMenu } from '@entities/loyalty-menu';
-import { LkActualOrders } from '@widgets/lk-actual-order';
-import { LkFavourite } from '@widgets/lk-favourite';
+import React from "react";
+import { LoyaltySmallMenu } from "@entities/loyalty-menu";
+import { LkActualOrders } from "@widgets/lk-actual-order";
+import { LkFavourite } from "@widgets/lk-favourite";
 
 const Page = () => {
   return (

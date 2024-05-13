@@ -1,11 +1,11 @@
-import React from 'react';
-import { useUnit } from 'effector-react';
-import { IProductCart } from '@/stores/cart/cart.interface';
-import { MinusIcon, PlusIcon } from 'lucide-react';
-import { $user } from '@entities/user/model/user-model';
-import { productDecremented, productIncremented } from '@/source/features/cart-mutation/model/cart-mutation';
-import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
-import { $productsLoading } from '@entities/cart/model/cart-model';
+import React from "react";
+import { useUnit } from "effector-react";
+import { IProductCart } from "@/stores/cart/cart.interface";
+import { MinusIcon, PlusIcon } from "lucide-react";
+import { $user } from "@entities/user/model/user-model";
+import { productDecremented, productIncremented } from "@/source/features/cart-mutation/model/cart-mutation";
+import { Skeleton } from "@shared/ui/shadcn/ui/skeleton";
+import { $productsLoading } from "@entities/cart/model/cart-model";
 
 interface CartItemsActionsProps {
   product: IProductCart;
@@ -66,7 +66,7 @@ export const CartItemsActions = ({ product }: CartItemsActionsProps) => {
             onClick={handlePlusClick}
             disabled={quantityInCart + 1 > quantityInShop}
           >
-            <PlusIcon width={13} color={quantityInCart + 1 > quantityInShop ? 'gray' : 'black'} />
+            <PlusIcon width={13} color={quantityInCart + 1 > quantityInShop ? "gray" : "black"} />
           </button>
         </div>
       </div>

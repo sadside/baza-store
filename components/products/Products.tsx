@@ -1,7 +1,7 @@
-import ProductItem from '@/components/productItem/ProductItem';
+import ProductItem from "@/components/productItem/ProductItem";
 
-import styles from './Products.module.scss';
-import { IProduct } from '@shared/types/models/Product';
+import styles from "./Products.module.scss";
+import { IProduct } from "@shared/types/models/Product";
 
 const Products = ({ products }: { products: IProduct[] }) => {
   return (

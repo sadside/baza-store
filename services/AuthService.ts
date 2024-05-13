@@ -1,6 +1,6 @@
-import axios, { AxiosResponse } from 'axios';
-import { IUser } from '@shared/types/models/User';
-import { $api, $apiWithGuard } from '@shared/api/http/axios-instance';
+import axios, { AxiosResponse } from "axios";
+import { IUser } from "@shared/types/models/User";
+import { $api, $apiWithGuard } from "@shared/api/http/axios-instance";
 
 interface LoginResponse {
   user: IUser;
@@ -13,16 +13,16 @@ export default class AuthService {
       `auth/login/`,
       {
         phone,
-        code,
+        code
       },
       {
-        withCredentials: true,
+        withCredentials: true
       }
     );
   }
 
   static async getUser(): Promise<AxiosResponse<IUser>> {
-    return $apiWithGuard.get<IUser>('profile/info/');
+    return $apiWithGuard.get<IUser>("profile/info/");
   }
 
   static async logout() {

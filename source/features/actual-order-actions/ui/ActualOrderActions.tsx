@@ -1,11 +1,11 @@
-'use client';
-import React from 'react';
-import { Button } from '@shared/theme/button';
-import { useUnit } from 'effector-react';
-import { $actualOrder } from '@entities/order/model/order-model';
-import { ReceivingEnum, ViewOrder, ViewOrderStatusEnum } from '@shared/api/__generated__/generated-api.schemas';
-import { contactsModalChanged } from '@widgets/contacts-modal/model/contact-modal';
-import { cancelOrderFx, createPaymentFx } from '@widgets/create-order-form/model/create-order-model';
+"use client";
+import React from "react";
+import { Button } from "@shared/theme/button";
+import { useUnit } from "effector-react";
+import { $actualOrder } from "@entities/order/model/order-model";
+import { ReceivingEnum, ViewOrder, ViewOrderStatusEnum } from "@shared/api/__generated__/generated-api.schemas";
+import { contactsModalChanged } from "@widgets/contacts-modal/model/contact-modal";
+import { cancelOrderFx, createPaymentFx } from "@widgets/create-order-form/model/create-order-model";
 
 interface ActualOrderProps {
   order: ViewOrder;
@@ -23,7 +23,7 @@ export const ActualOrderActions = ({ order }: ActualOrderProps) => {
   return (
     <div className="uppercase flex gap-[15px] min-w-[340px]  w-[40%] text-[12px] mt-7 items-center">
       {/*{order.receiving === ReceivingEnum.cdek && <Button.Primary>Отследить посылку</Button.Primary>}*/}
-      {(order.status === 'created' || order.status === 'failed_payment') && (
+      {(order.status === "created" || order.status === "failed_payment") && (
         <Button.Primary
           className="w-[244px]"
           onClick={() => createPaymentFx(order.id)}
@@ -33,7 +33,7 @@ export const ActualOrderActions = ({ order }: ActualOrderProps) => {
           Оплатить
         </Button.Primary>
       )}
-      {(order.status === 'created' || order.status === 'failed_payment') && (
+      {(order.status === "created" || order.status === "failed_payment") && (
         <Button.Secondary
           className="w-[244px]"
           onClick={handleCancelClick}

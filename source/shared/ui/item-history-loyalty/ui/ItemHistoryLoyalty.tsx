@@ -1,5 +1,5 @@
-import React from 'react';
-import { LoyaltyHistory } from '@shared/api/__generated__/generated-api.schemas';
+import React from "react";
+import { LoyaltyHistory } from "@shared/api/__generated__/generated-api.schemas";
 
 interface ItemHistoryProps {
   historyItem: LoyaltyHistory;

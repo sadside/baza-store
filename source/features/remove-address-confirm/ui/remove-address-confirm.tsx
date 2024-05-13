@@ -1,14 +1,14 @@
-import { Dialog, DialogContent, DialogHeader } from '@shared/ui/shadcn/ui/dialog';
-import { useGate, useUnit } from 'effector-react';
-import { Button } from '@shared/theme/button';
+import { Dialog, DialogContent, DialogHeader } from "@shared/ui/shadcn/ui/dialog";
+import { useGate, useUnit } from "effector-react";
+import { Button } from "@shared/theme/button";
 import {
   $isAddressRemoveConfirmVisible,
   addressModalStateChanged,
   addressPageGate,
   addressRemoveConfirmed,
-  addressRemoveNotConfirmed,
-} from '@/source/features/remove-address-confirm/model/remove-address-confirm-model';
-import { deleteAddressesFx } from '@entities/address/model/address-model';
+  addressRemoveNotConfirmed
+} from "@/source/features/remove-address-confirm/model/remove-address-confirm-model";
+import { deleteAddressesFx } from "@entities/address/model/address-model";
 
 export const RemoveAddressConfirm = () => {
   useGate(addressPageGate);

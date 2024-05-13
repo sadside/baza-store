@@ -1,4 +1,4 @@
-import { API_URL } from '@shared/api/http/axios-instance';
+import { API_URL } from "@shared/api/http/axios-instance";
 
 export default class ProductService {
   static async getProductBySlug(slug: string) {

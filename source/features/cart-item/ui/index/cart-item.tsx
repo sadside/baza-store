@@ -1,10 +1,10 @@
-import styles from './cart-item.module.scss';
-import { IProductCart } from '@/stores/cart/cart.interface';
-import test from '@shared/assets/pic.png';
-import Image from 'next/image';
-import { CartItemPrice } from '@/source/features/cart-item/ui/cart-item-price/ui/cart-item-price';
-import { HeartButton } from '@shared/ui/heart-button/ui/heart-button';
-import { CartItemsActions } from '@/source/features/cart-items-actions';
+import styles from "./cart-item.module.scss";
+import { IProductCart } from "@/stores/cart/cart.interface";
+import Image from "next/image";
+import { CartItemPrice } from "@/source/features/cart-item/ui/cart-item-price/ui/cart-item-price";
+import { HeartButton } from "@shared/ui/heart-button/ui/heart-button";
+import { CartItemsActions } from "@/source/features/cart-items-actions";
+import SvgSelector from "@shared/utils/SvgSelector";
 
 interface CartItemProps {
   product: IProductCart;
@@ -25,7 +25,13 @@ export const CartItem = ({ product }: CartItemProps) => {
             <CartItemPrice originalPrice={old_price || price} salePrice={price} />
           </div>
           <div>
-            <HeartButton checked={true} slug={product.slug} />
+            <span className='max-[420px]:hidden'>
+                <HeartButton checked={true} slug={product.slug} />
+            </span>
+            <span className='hidden    max-[420px]:flex'>
+              <SvgSelector id='close-grey' />
+            </span>
+
           </div>
         </div>
         <CartItemsActions product={product} />

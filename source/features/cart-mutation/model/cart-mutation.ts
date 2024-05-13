@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import { createEffect, createEvent, createStore, sample } from 'effector';
-import { resetModal } from '@/source/features/clear-cart-confirm/model/clear-cart-confirm-model';
+import { createEffect, createEvent, createStore, sample } from "effector";
+import { resetModal } from "@/source/features/clear-cart-confirm/model/clear-cart-confirm-model";
 import {
   $cart,
   addProductToServerFx,
   cartCleared,
   clearCartFx,
   getCartFromServerFx,
-  removeCartItemFx,
-} from '@entities/cart/model/cart-model';
-import { IProductCart } from '@/stores/cart/cart.interface';
-import { $apiWithGuard } from '@shared/api/http/axios-instance';
-import { $user, getUserFx, loginFx, logoutFx } from '@entities/user/model/user-model';
-import { showProductAddedToastFx, showProductRemovedToastFx } from '@/source/features/show-toast/model/show-toast';
-import { addProductToStorage } from '@shared/utils/localStorage/localStorage';
+  removeCartItemFx
+} from "@entities/cart/model/cart-model";
+import { IProductCart } from "@/stores/cart/cart.interface";
+import { $apiWithGuard } from "@shared/api/http/axios-instance";
+import { $user, getUserFx, loginFx, logoutFx } from "@entities/user/model/user-model";
+import { showProductAddedToastFx, showProductRemovedToastFx } from "@/source/features/show-toast/model/show-toast";
+import { addProductToStorage } from "@shared/utils/localStorage/localStorage";
 
 export const productIncremented = createEvent<string>();
 export const productDecremented = createEvent<string>();
 export const productAddedToCart = createEvent<IProductCart>();
 
 export const clearLocalCartFx = createEffect(() => {
-  localStorage.setItem('products', '[]');
+  localStorage.setItem("products", "[]");
 });
 
 export const getCartFromLocalStorageFx = createEffect<void, IProductCart[]>(() => {
-  return JSON.parse(localStorage.getItem('products') || '[]') as IProductCart[];
+  return JSON.parse(localStorage.getItem("products") || "[]") as IProductCart[];
 });
 
 export const addToStorageFx = createEffect((products: IProductCart[]) => {
@@ -38,20 +38,20 @@ interface Body {
 }
 
 const synchronizationWithLocalStorageFx = createEffect(async () => {
-  const cart = JSON.parse(localStorage.getItem('products') || '[]') as IProductCart[];
+  const cart = JSON.parse(localStorage.getItem("products") || "[]") as IProductCart[];
   const body: Body[] = [];
 
   cart.forEach(({ slug, quantityInCart }) =>
     body.push({
       slug,
-      quantity: quantityInCart,
+      quantity: quantityInCart
     })
   );
 
   try {
     await $apiWithGuard.post(`profile/cart/`, body);
   } catch (e: any) {
-    throw new Error('Ошибка добавления товара.');
+    throw new Error("Ошибка добавления товара.");
   }
 });
 
@@ -60,7 +60,7 @@ sample({
   source: { user: $user, cart: $cart },
   filter: (data) => data.user === null,
   fn: (data, item) => [...data.cart, item],
-  target: [$cart, showProductAddedToastFx],
+  target: [$cart, showProductAddedToastFx]
 });
 
 sample({
@@ -68,14 +68,14 @@ sample({
   source: { user: $user, cart: $cart },
   filter: (data) => data.user !== null,
   fn: (_, product) => product.slug,
-  target: addProductToServerFx,
+  target: addProductToServerFx
 });
 
 sample({
   clock: cartCleared,
   source: $user,
   filter: (user) => !!user,
-  target: clearCartFx,
+  target: clearCartFx
 });
 
 sample({
@@ -83,79 +83,79 @@ sample({
   source: $user,
   filter: (user) => !user,
   fn: () => [],
-  target: [$cart, resetModal],
+  target: [$cart, resetModal]
 });
 
 sample({
   clock: productIncremented,
   source: {
     cartItems: $cart,
-    user: $user,
+    user: $user
   },
   filter: ({ cartItems, user }, itemSlug) => !user && isCanIncrement(cartItems, itemSlug),
   fn: incrementProduct,
-  target: [$cart, showProductAddedToastFx],
+  target: [$cart, showProductAddedToastFx]
 });
 
 sample({
   clock: productDecremented,
   source: {
     cartItems: $cart,
-    user: $user,
+    user: $user
   },
   filter: ({ cartItems, user }, itemSlug) => !user && isCanDecrement(cartItems, itemSlug),
   fn: decrementProduct,
-  target: [$cart, showProductRemovedToastFx],
+  target: [$cart, showProductRemovedToastFx]
 });
 
 sample({
   clock: productDecremented,
   source: {
     cartItems: $cart,
-    user: $user,
+    user: $user
   },
   filter: ({ cartItems, user }, itemSlug) => !!user && isCanDecrement(cartItems, itemSlug),
   fn: (_, slug) => slug,
-  target: [removeCartItemFx],
+  target: [removeCartItemFx]
 });
 
 sample({
   clock: productIncremented,
   source: {
     cartItems: $cart,
-    user: $user,
+    user: $user
   },
   filter: ({ cartItems, user }, itemSlug) => !!user && isCanIncrement(cartItems, itemSlug),
   fn: (_, slug) => slug,
-  target: [addProductToServerFx],
+  target: [addProductToServerFx]
 });
 
 sample({
   clock: loginFx.doneData,
-  target: synchronizationWithLocalStorageFx,
+  target: synchronizationWithLocalStorageFx
 });
 
 sample({
   clock: synchronizationWithLocalStorageFx.doneData,
-  target: [clearLocalCartFx, getCartFromServerFx],
+  target: [clearLocalCartFx, getCartFromServerFx]
 });
 
 sample({
   clock: logoutFx.doneData,
-  target: clearLocalCartFx,
+  target: clearLocalCartFx
 });
 
 sample({
   clock: clearLocalCartFx,
   fn: () => [],
-  target: $cart,
+  target: $cart
 });
 
 sample({
   clock: getUserFx.doneData,
   source: $user,
   filter: (user) => user === null,
-  target: getCartFromLocalStorageFx,
+  target: getCartFromLocalStorageFx
 });
 
 sample({
@@ -163,7 +163,7 @@ sample({
   source: $user,
   filter: (user) => user === null,
   fn: (_, cart) => cart,
-  target: addToStorageFx,
+  target: addToStorageFx
 });
 
 function isCanIncrement(cartItems: IProductCart[], slug: string) {
@@ -191,7 +191,7 @@ function incrementProduct({ cartItems }: { cartItems: IProductCart[] }, slug: st
     if (cartItem.slug === slug)
       return {
         ...cartItem,
-        quantityInCart: cartItem.quantityInCart + 1,
+        quantityInCart: cartItem.quantityInCart + 1
       };
     else return cartItem;
   });
@@ -202,7 +202,7 @@ function decrementProduct({ cartItems }: { cartItems: IProductCart[] }, slug: st
     if (cartItem.slug === slug)
       return {
         ...cartItem,
-        quantityInCart: cartItem.quantityInCart - 1,
+        quantityInCart: cartItem.quantityInCart - 1
       };
     else return cartItem;
   });

@@ -1,21 +1,21 @@
-import { Dialog, DialogContent, DialogHeader } from '@shared/ui/shadcn/ui/dialog';
-import { useUnit } from 'effector-react';
-import { $isVisible, contactsModalChanged } from '@widgets/contacts-modal/model/contact-modal';
-import Logo from '@shared/assets/logo.svg';
-import { Button } from '@shared/theme/button';
-import Link from 'next/link';
+import { Dialog, DialogContent, DialogHeader } from "@shared/ui/shadcn/ui/dialog";
+import { useUnit } from "effector-react";
+import { $isVisible, contactsModalChanged } from "@widgets/contacts-modal/model/contact-modal";
+import Logo from "@shared/assets/logo.svg";
+import { Button } from "@shared/theme/button";
+import Link from "next/link";
 
 export const ContactsModal = () => {
   const isVisible = useUnit($isVisible);
 
   return (
     <Dialog open={isVisible} onOpenChange={(value) => contactsModalChanged(value)}>
-      <DialogContent className="max-w-[600px] flex flex-col items-center py-[80px] px-[40px]">
+      <DialogContent className="max-w-[728px] w-[90%] flex flex-col items-center py-[80px] px-[40px]">
         <Logo />
-        <p className="text-center text-black-400 text-[12px] mb-5 mt-10">
+        <p className="text-center text-black-400 text-[14px]  font-medium mb-5 mt-10">
           Если у вас появились дополнительные вопросы, свяжитесь с нами удобным способом.
         </p>
-        <div className="flex gap-5 justify-center items-center mb-10 flex-wrap">
+        <div className="flex gap-5 justify-center flex-wrap items-center mb-10 ">
           <a
             href="tel:89228865945"
             className="px-[30px] py-2.5 flex items-center justify-center bg-black-50 text-black-300 uppercase font-semibold text-[12px] text-nowrap"

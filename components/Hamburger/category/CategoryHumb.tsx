@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useUnit } from "effector-react";
 import {
@@ -10,14 +12,37 @@ import s from "./Category.module.scss";
 import Link from "next/link";
 import classNames from "classnames";
 import SvgSelector from "@shared/utils/SvgSelector";
+import styles from "@/components/smallMenuMobile/SmallMenuMobile.module.scss";
+import Logo from "@shared/assets/logo.svg";
+import MenuLinks from "@/components/menuLinks/MenuLinks";
+import { MenuIcons } from "@/components/menuIcons/MenuIcons";
 
-const CategoryHumb = () => {
+type Props = { links: any[] };
+const CategoryHumb = ({ links }: Props) => {
   let { name, children } = { ...useUnit($activeCategoryBurger) };
   let open = useUnit($showBurgerCategory);
   return (
     <>
       {open ? (
         <div className={classNames(s.root, open ? "hidden" : undefined)}>
+          <div className={styles.wrapper}>
+            <div className={styles.hamb}
+                 onClick={() => {
+                   HamburgMenuClosed();
+                 }}
+            >
+              <SvgSelector
+                id={"close"}
+              />
+            </div>
+            <div className={styles.logo}>
+              <Link href="/">
+                <Logo />
+              </Link>
+            </div>
+            <MenuLinks links={links} mobile={true} />
+            <MenuIcons />
+          </div>
           <header className={s.top}>
             <span className={s.contentTOP}>
               <span className={s.title}>
@@ -32,9 +57,6 @@ const CategoryHumb = () => {
                   {" "}
                   {name}
                 </span>
-              </span>
-              <span className={s.btn} onClick={() => HamburgMenuClosed()}>
-                <SvgSelector id={"close"} />
               </span>
             </span>
           </header>

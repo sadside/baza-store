@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { $currentFormStep, FORM_STEPS } from '@widgets/create-order-form/model/create-order-model';
-import { useUnit } from 'effector-react';
-import { $selectedPickUp } from '@widgets/create-order-form/model/second-step/step';
-import { PickupNotSelected } from './variants/pickup-not-selected/ui/pickup-not-selected';
-import { AddressItem } from '@entities/address/ui/address-item';
+import { $currentFormStep, FORM_STEPS } from "@widgets/create-order-form/model/create-order-model";
+import { useUnit } from "effector-react";
+import { $selectedPickUp } from "@widgets/create-order-form/model/second-step/step";
+import { PickupNotSelected } from "./variants/pickup-not-selected/ui/pickup-not-selected";
+import { AddressItem } from "@entities/address/ui/address-item";
 
 export const SecondStep = () => {
   const currentStep: FORM_STEPS = useUnit($currentFormStep);

@@ -1,16 +1,16 @@
-import { Autocomplete } from '@shared/theme/autocomplete/ui/autocomplete';
+import { Autocomplete } from "@shared/theme/autocomplete/ui/autocomplete";
 import {
   $cdekAutocompleteError,
   $selectCdekError,
   $showPointsSelect,
   cdekPointsSelect,
-  cityForCdekAutocomplete,
-} from '@widgets/create-order-form/ui/pickup-step/variants/pickup-not-selected/model/pickup-not-selected';
-import { Select } from '@/source/features/add-address-cdek/ui/select/ui/select';
-import { Map, Placemark, YMaps } from 'react-yandex-maps';
-import { useUnit } from 'effector-react';
-import React from 'react';
-import { twMerge } from 'tailwind-merge';
+  cityForCdekAutocomplete
+} from "@widgets/create-order-form/ui/pickup-step/variants/pickup-not-selected/model/pickup-not-selected";
+import { Select } from "@/source/features/add-address-cdek/ui/select/ui/select";
+import { Map, Placemark, YMaps } from "react-yandex-maps";
+import { useUnit } from "effector-react";
+import React from "react";
+import { twMerge } from "tailwind-merge";
 
 export const Cdek = () => {
   const { $selectedItem } = cdekPointsSelect;
@@ -35,7 +35,7 @@ export const Cdek = () => {
             <Select
               model={cdekPointsSelect}
               placeholder="Ничего не выбрано"
-              className={twMerge('w-full', selectError && 'text-red animate-shake animate-delay-100')}
+              className={twMerge("w-full", selectError && "text-red animate-shake animate-delay-100")}
             />
           </>
         )}
@@ -48,7 +48,7 @@ export const Cdek = () => {
               <Placemark
                 geometry={[selectedPoint.latitude, selectedPoint.longitude]}
                 options={{
-                  preset: 'islands#darkGreenDotIcon',
+                  preset: "islands#darkGreenDotIcon"
                 }}
               />
             </Map>

@@ -1,5 +1,5 @@
-import { createEffect, createEvent, createStore, sample } from 'effector';
-import PhoneInputService from '@/source/shared/ui/PhoneInput/api/phoneInputApi';
+import { createEffect, createEvent, createStore, sample } from "effector";
+import PhoneInputService from "@/source/shared/ui/PhoneInput/api/phoneInputApi";
 
 type countryCode = {
   country_code: string;
@@ -9,8 +9,8 @@ type countryCode = {
 // stores
 const $countryCodes = createStore<countryCode[]>([]);
 const $isSelectCodeOpened = createStore(false);
-const $currentCountryCode = createStore<string>('+7');
-const $codeInputValue = createStore<string>('+7');
+const $currentCountryCode = createStore<string>("+7");
+const $codeInputValue = createStore<string>("+7");
 
 // events
 const codesSelectOpened = createEvent<boolean>();
@@ -44,27 +44,27 @@ const getCountryCodesById = createEffect(async (phoneCode: string) => {
 
 sample({
   clock: [codesSelectOpened, codesSelectClosed],
-  target: $isSelectCodeOpened,
+  target: $isSelectCodeOpened
 });
 
 sample({
   clock: codesSelectOpened,
-  target: getCountryCodesFx,
+  target: getCountryCodesFx
 });
 
 sample({
   clock: [getCountryCodesFx.doneData, getCountryCodesById.doneData],
-  target: $countryCodes,
+  target: $countryCodes
 });
 
 sample({
   clock: codeClicked,
-  target: $currentCountryCode,
+  target: $currentCountryCode
 });
 
 sample({
   clock: codeInputChanged,
-  target: [$codeInputValue],
+  target: [$codeInputValue]
 });
 
 export {
@@ -75,5 +75,5 @@ export {
   codeClicked,
   getCountryCodesById,
   $codeInputValue,
-  codeInputChanged,
+  codeInputChanged
 };

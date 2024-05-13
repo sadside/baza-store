@@ -1,5 +1,5 @@
-import Cookies from 'js-cookie';
-import { EnumTokens } from '@shared/api/api/api.service';
+import Cookies from "js-cookie";
+import { EnumTokens } from "@shared/api/api/api.service";
 
 export const getAccessToken = () => {
   const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN);
@@ -8,9 +8,9 @@ export const getAccessToken = () => {
 
 export const saveTokenStorage = (accessToken: string) => {
   Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, {
-    domain: 'localhost',
-    sameSite: 'strict',
-    expires: 1,
+    domain: "localhost",
+    sameSite: "strict",
+    expires: 1
   });
 };
 
@@ -19,5 +19,5 @@ export const removeFromStorage = () => {
 };
 
 export const getContentType = () => ({
-  'Content-Type': 'application/json',
+  "Content-Type": "application/json"
 });

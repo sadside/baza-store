@@ -1,14 +1,14 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { RegisterFormValues } from '@pages/auth/ui/auth-page';
-import { PhoneInput } from '@shared/ui/PhoneInput';
-import * as yup from 'yup';
-import { Button } from '@shared/theme/button';
-import { formSubmitted, sendNumberPhoneFx } from '@widgets/create-order-form/model/first-step/first-step';
-import { useUnit } from 'effector-react';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { RegisterFormValues } from "@pages/auth/ui/auth-page";
+import { PhoneInput } from "@shared/ui/PhoneInput";
+import * as yup from "yup";
+import { Button } from "@shared/theme/button";
+import { formSubmitted, sendNumberPhoneFx } from "@widgets/create-order-form/model/first-step/first-step";
+import { useUnit } from "effector-react";
 
 const schema = yup.object().shape({
-  phoneNumber: yup.string().required('Введите номер телефона'),
+  phoneNumber: yup.string().required("Введите номер телефона")
 });
 
 export const FirstFirstStep = () => {
@@ -16,10 +16,10 @@ export const FirstFirstStep = () => {
     register,
     handleSubmit,
     resetField,
-    formState: { errors },
+    formState: { errors }
   } = useForm<RegisterFormValues>({
     resolver: yupResolver(schema),
-    mode: 'onChange',
+    mode: "onChange"
   });
 
   const onSubmit = (data: RegisterFormValues) => formSubmitted(data);
@@ -27,7 +27,7 @@ export const FirstFirstStep = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="w-[544px]">
+      <div className="w-[544px] max-[625px]:w-full">
         <h2 className="text-base font-semibold mb-3">ВХОД / РЕГИСТРАЦИЯ</h2>
         <p className="text-[14px] text-black-300 mb-3">
           Ускорьте покупку, сохраните детали заказа в личном кабинете.

@@ -4,17 +4,41 @@
   overflow: hidden;
   height: 266px;
   display: flex;
+  width: 100%;
   align-items: center;
   padding-top: 40px;
+  margin-top: 70px;
   justify-content: center;
-  @media (max-width: 670px) {
-    height: 214px;
+  @media (max-width: 500px) {
+    padding-top: 20px;
+
+    height: 300px;
   }
 }
 
 .info {
   padding: 30px 40px;
   width: 100%;
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
+.mobile {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  @media (max-width: 500px) {
+    display: flex;
+  }
+}
+
+.buy {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .mainInfo {
@@ -50,6 +74,15 @@
   margin-bottom: 20px;
 }
 
+.iosAppMobile {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
 .logo {
   width: 32px;
   height: 32px;
@@ -74,6 +107,17 @@
   display: flex;
   align-items: center;
   gap: 6px;
+
+}
+
+.copyMobile {
+  color: #777777;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 40px;
+  justify-content: center;
 }
 
 .addInfo {

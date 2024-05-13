@@ -1,22 +1,22 @@
-import { Button } from '@shared/theme/button';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useUnit } from 'effector-react';
-import { $user, postUserFx, userInfoEdited } from '@entities/user/model/user-model';
-import * as yup from 'yup';
-import { InputNameMask } from '@/components/inputNameMask/InputNameMask';
-import React from 'react';
-import { InputDateMask } from '@/components/InputDateMask/InputDateMask';
-import { twMerge } from 'tailwind-merge';
-import { Checkbox } from '@shared/ui/shadcn/ui/checkbox';
+import { Button } from "@shared/theme/button";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useUnit } from "effector-react";
+import { $user, postUserFx, userInfoEdited } from "@entities/user/model/user-model";
+import * as yup from "yup";
+import { InputNameMask } from "@/components/inputNameMask/InputNameMask";
+import React from "react";
+import { InputDateMask } from "@/components/InputDateMask/InputDateMask";
+import { twMerge } from "tailwind-merge";
+import { Checkbox } from "@shared/ui/shadcn/ui/checkbox";
 import {
   $offerCheckBox,
   $policyCheckBox,
   offerCheckBoxClicked,
-  policyCheckBoxClicked,
-} from '@widgets/create-order-form/model/first-step/third-step';
-import Link from 'next/link';
-import { toast } from 'sonner';
+  policyCheckBoxClicked
+} from "@widgets/create-order-form/model/first-step/third-step";
+import Link from "next/link";
+import { toast } from "sonner";
 
 export type ProfileFormFields = {
   name: string;
@@ -26,10 +26,10 @@ export type ProfileFormFields = {
 };
 
 const schema = yup.object().shape({
-  name: yup.string().required('Введите имя'),
-  surname: yup.string().required('Введите Фамилию'),
-  date: yup.string().required('Введите дату рождения').min(10, 'Введите дату в формате дд.мм.гггг'),
-  mail: yup.string().required('Введите почту').email('Введите корректную почту'),
+  name: yup.string().required("Введите имя"),
+  surname: yup.string().required("Введите Фамилию"),
+  date: yup.string().required("Введите дату рождения").min(10, "Введите дату в формате дд.мм.гггг"),
+  mail: yup.string().required("Введите почту").email("Введите корректную почту")
 });
 
 export const FirstThirdStep = () => {
@@ -38,15 +38,15 @@ export const FirstThirdStep = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm<ProfileFormFields>({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: user?.name ?? '',
-      surname: user?.surname ?? '',
-      mail: user?.email ?? '',
-      date: user?.birthday_date ?? '',
-    },
+      name: user?.name ?? "",
+      surname: user?.surname ?? "",
+      mail: user?.email ?? "",
+      date: user?.birthday_date ?? ""
+    }
   });
 
   const offerCheckBox = useUnit($offerCheckBox);
@@ -55,8 +55,8 @@ export const FirstThirdStep = () => {
   const onSubmit = (data: ProfileFormFields) => {
     if (offerCheckBox && policyCheckBox) userInfoEdited(data);
     else
-      toast.error('Заполните все поля.', {
-        position: 'top-right',
+      toast.error("Заполните все поля.", {
+        position: "top-right"
       });
   };
   const loading = useUnit(postUserFx.pending);
@@ -103,9 +103,9 @@ export const FirstThirdStep = () => {
             <input
               placeholder="E-mail"
               className={twMerge(
-                'border border-black-50 h-11 w-full px-3 py-[14px] font-medium text-[12px] hover:border-black-200 active:border-black focus:border-black outline-none'
+                "border border-black-50 h-11 w-full px-3 py-[14px] font-medium text-[12px] hover:border-black-200 active:border-black focus:border-black outline-none"
               )}
-              {...register('mail')}
+              {...register("mail")}
             />
             {errors.mail && <div className="text-red text-[12px]">{errors.mail.message}</div>}
           </div>
@@ -130,8 +130,8 @@ export const FirstThirdStep = () => {
         <div className="flex gap-2.5 items-center mb-[18px]">
           <Checkbox checked={policyCheckBox} onClick={handlePolicyClick} />
           <p className="text-[12px] font-medium cursor-pointer select-none" onClick={handlePolicyClick}>
-            Я прочитал и согласен с условиями{' '}
-            <Link href={'/info'} className="underline">
+            Я прочитал и согласен с условиями{" "}
+            <Link href={"/info"} className="underline">
               политики обработки персональных данных
             </Link>
           </p>

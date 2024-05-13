@@ -1,4 +1,4 @@
-import { createEvent } from 'effector';
+import { createEvent } from "effector";
 
 // const getMenuContentFx = createEffect(async () => {
 //   const menuContent = await notAuthApi.get(`api/menu-content/`)

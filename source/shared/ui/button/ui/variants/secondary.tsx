@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import styles from './styles/secondary.module.scss';
-import { Loader } from '@/components/loader/Loader';
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, useState } from 'react';
-import classNames from 'classnames/bind';
-import { BUTTON_VARIANTS } from '@shared/ui/button/ui/button-wrapper';
+import styles from "./styles/secondary.module.scss";
+import { Loader } from "@/components/loader/Loader";
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, useState } from "react";
+import classNames from "classnames/bind";
+import { BUTTON_VARIANTS } from "@shared/ui/button/ui/button-wrapper";
 
 export interface primaryProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: ReactNode;
@@ -20,7 +20,7 @@ export const Secondary = ({ children, loading, disabled, className, ...props }: 
   const buttonCls = cx({
     wrapper: true,
     disabled,
-    focused,
+    focused
   });
 
   return (

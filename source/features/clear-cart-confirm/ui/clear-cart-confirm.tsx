@@ -1,14 +1,14 @@
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@shared/ui/shadcn/ui/dialog';
-import { useGate, useUnit } from 'effector-react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@shared/ui/shadcn/ui/dialog";
+import { useGate, useUnit } from "effector-react";
 import {
   $isClearCartModalVisible,
   cartCleanConfirmed,
   cartCleanNotConfirmed,
   cartModalStateChanged,
-  cartPageGate,
-} from '@/source/features/clear-cart-confirm/model/clear-cart-confirm-model';
-import { Button } from '@shared/theme/button';
-import { clearCartFx } from '@entities/cart/model/cart-model';
+  cartPageGate
+} from "@/source/features/clear-cart-confirm/model/clear-cart-confirm-model";
+import { Button } from "@shared/theme/button";
+import { clearCartFx } from "@entities/cart/model/cart-model";
 
 export const ClearCartConfirm = () => {
   useGate(cartPageGate);

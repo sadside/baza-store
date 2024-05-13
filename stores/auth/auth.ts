@@ -1,9 +1,9 @@
-'use client';
-import { createEvent, createStore, sample } from 'effector';
-import { $loginError } from '@entities/user/model/user-model';
+"use client";
+import { createEvent, createStore, sample } from "effector";
+import { $loginError } from "@entities/user/model/user-model";
 
 export const clearDigits = createEvent<void>();
-export const $codeDigits = createStore(['', '', '', '', '', '']).reset(clearDigits);
+export const $codeDigits = createStore(["", "", "", "", "", ""]).reset(clearDigits);
 
 export const digitIntroduced = createEvent<{
   value: string;
@@ -17,7 +17,7 @@ sample({
   source: $loginError,
   filter: (err) => err !== null,
   fn: () => null,
-  target: $loginError,
+  target: $loginError
 });
 
 sample({
@@ -25,12 +25,12 @@ sample({
   source: $codeDigits,
   fn: (digits, newDigit) => {
     const oldDigit = digits[newDigit.position];
-    const newDigitValue = newDigit.value.trim().replace(oldDigit, '');
+    const newDigitValue = newDigit.value.trim().replace(oldDigit, "");
     const newDigits = [...digits];
     newDigits[newDigit.position] = newDigitValue;
     return newDigits;
   },
-  target: $codeDigits,
+  target: $codeDigits
 });
 
 sample({
@@ -38,8 +38,8 @@ sample({
   source: $codeDigits,
   fn: (digits, index) => {
     const newDigits = [...digits];
-    newDigits[index] = '';
+    newDigits[index] = "";
     return newDigits;
   },
-  target: $codeDigits,
+  target: $codeDigits
 });

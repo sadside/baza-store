@@ -1,5 +1,5 @@
-import styles from './video.module.scss';
-import classNames from 'classnames/bind';
+import styles from "./video.module.scss";
+import classNames from "classnames/bind";
 
 const cx = classNames.bind(styles);
 //
@@ -19,13 +19,13 @@ export const Video = ({ src }: { src: string }) => {
         loop
         muted
         style={{
-          position: 'absolute',
-          minWidth: '100%',
-          minHeight: '100%',
-          left: '50%',
-          top: '50%',
+          position: "absolute",
+          minWidth: "100%",
+          minHeight: "100%",
+          left: "50%",
+          top: "50%",
           zIndex: -1,
-          transform: 'translate(-50%, -50%)',
+          transform: "translate(-50%, -50%)"
         }}
         src={src}
       >

@@ -1,12 +1,12 @@
-import React from 'react';
-import s from '@/source/features/add-address-cdek/ui/indexx.module.scss';
+import React from "react";
+import s from "@/source/features/add-address-cdek/ui/indexx.module.scss";
 
-import classNames from 'classnames';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { Button } from '@shared/theme/button';
-import { Autocomplete } from '@shared/theme/autocomplete/ui/autocomplete';
+import classNames from "classnames";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Button } from "@shared/theme/button";
+import { Autocomplete } from "@shared/theme/autocomplete/ui/autocomplete";
 import {
   $autocompleteError,
   $isMainAddress,
@@ -14,10 +14,10 @@ import {
   createCourierAddressFx,
   Fields,
   formSubmitted,
-  mainAddressClicked,
-} from '@/source/features/add-address-courier/model/add-address-courier-model';
-import { useUnit } from 'effector-react';
-import { Checkbox } from '@shared/ui/shadcn/ui/checkbox';
+  mainAddressClicked
+} from "@/source/features/add-address-courier/model/add-address-courier-model";
+import { useUnit } from "effector-react";
+import { Checkbox } from "@shared/ui/shadcn/ui/checkbox";
 
 const schema = yup.object().shape({});
 
@@ -27,9 +27,9 @@ export const AddAddressCourier = () => {
     handleSubmit,
     formState: { errors },
     reset,
-    setValue,
+    setValue
   } = useForm<Fields>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema)
   });
 
   const onSubmit = (data: Fields) => {
@@ -49,28 +49,30 @@ export const AddAddressCourier = () => {
       <div className="mt-5">
         <div className="text-[14px]">Начните вводить адрес</div>
         <span>
-          <Autocomplete model={courierAutocomplete} className="mt-1" placeholder="Адрес дома" />
+          <Autocomplete model={courierAutocomplete} className="mt-1 w-[425px] " placeholder="Адрес дома" />
           {autocompleteError && <div className="text-red absolute text-[12px]">{autocompleteError}</div>}
         </span>
       </div>
       <div className="mt-5">
         <div className="text-[14px] mb-1">Квартира</div>
         <span>
-          <input {...register('apartment')} className={classNames(s.input, errors.apartment && s.error)} />
+          <input type={"number"} {...register("apartment")}
+                 className={classNames(s.input, errors.apartment && s.error)} />
           {errors.apartment && <div className="text-red absolute text-[12px]">{errors.apartment?.message}</div>}
         </span>
       </div>
       <div className="mt-5">
         <div className="text-[14px] mb-1">Этаж</div>
         <span>
-          <input {...register('floor')} className={classNames(s.input, errors.floor && s.error)} />
+          <input type={"number"} {...register("floor")} className={classNames(s.input, errors.floor && s.error)} />
           {errors.floor && <div className="text-red absolute text-[12px]">{errors.floor?.message}</div>}
         </span>
       </div>
       <div className="mt-5">
         <div className="text-[14px] mb-1">Домофон</div>
         <span>
-          <input {...register('intercom')} className={classNames(s.input, errors.intercom && s.error)} />
+          <input type={"number"} {...register("intercom")}
+                 className={classNames(s.input, errors.intercom && s.error)} />
           {errors.intercom && <div className="text-red absolute text-[12px]">{errors.intercom?.message}</div>}
         </span>
       </div>

@@ -1,23 +1,23 @@
-'use client';
+"use client";
 
-import { createEffect, createEvent, createStore, merge, sample } from 'effector';
-import { IProductCart } from '@/stores/cart/cart.interface';
-import { addProductToStorage } from '@shared/utils/localStorage/localStorage';
-import axios from 'axios';
-import { $apiWithGuard, API_URL_CLIENT } from '@shared/api/http/axios-instance';
-import { IServerCart } from '@shared/types/models/Cart';
-import { toast } from 'sonner';
+import { createEffect, createEvent, createStore, merge, sample } from "effector";
+import { IProductCart } from "@/stores/cart/cart.interface";
+import { addProductToStorage } from "@shared/utils/localStorage/localStorage";
+import axios from "axios";
+import { $apiWithGuard, API_URL_CLIENT } from "@shared/api/http/axios-instance";
+import { IServerCart } from "@shared/types/models/Cart";
+import { toast } from "sonner";
 import {
   cartCleanConfirmed,
-  cartModalStateChanged,
-} from '@/source/features/clear-cart-confirm/model/clear-cart-confirm-model';
-import { appStarted } from '@shared/lib/utils/helpers/app-status';
-import { pending } from 'patronum/pending';
-import { status } from 'patronum/status';
+  cartModalStateChanged
+} from "@/source/features/clear-cart-confirm/model/clear-cart-confirm-model";
+import { appStarted } from "@shared/lib/utils/helpers/app-status";
+import { pending } from "patronum/pending";
+import { status } from "patronum/status";
 
 function getInitialCart() {
-  if (typeof window !== 'undefined') {
-    const items = localStorage.getItem('products') || '[]';
+  if (typeof window !== "undefined") {
+    const items = localStorage.getItem("products") || "[]";
     return JSON.parse(items);
   } else return [];
 }
@@ -35,13 +35,13 @@ export const $cartTotalPrice = $cart.map((cart) => {
 sample({
   clock: appStarted,
   fn: () => getInitialCart(),
-  target: $cart,
+  target: $cart
 });
 
 export const addProductToServerFx = createEffect(async (slug: string) => {
   try {
     const res = await $apiWithGuard.post(`profile/cart/add/`, {
-      slug: slug,
+      slug: slug
     });
 
     return res.data as IServerCart[];
@@ -53,10 +53,10 @@ export const addProductToServerFx = createEffect(async (slug: string) => {
 export const clearCartFx = createEffect(async () => {
   try {
     await $apiWithGuard.get(`${API_URL_CLIENT}profile/cart/clear/`, {
-      withCredentials: true,
+      withCredentials: true
     });
   } catch (e) {
-    throw new Error('Ошибка при очистке корзины.');
+    throw new Error("Ошибка при очистке корзины.");
   }
 });
 
@@ -66,7 +66,7 @@ export const getCartFromServerFx = createEffect(async () => {
 
     return res.data as IServerCart[];
   } catch {
-    throw new Error('Ошибка получения товаров с сервера');
+    throw new Error("Ошибка получения товаров с сервера");
   }
 });
 
@@ -75,10 +75,10 @@ export const getCartFxStatus = status(getCartFromServerFx);
 export const removeCartItemFx = createEffect(async (slug: string) => {
   try {
     await $apiWithGuard.post(`profile/cart/remove/`, {
-      slug: slug,
+      slug: slug
     });
   } catch {
-    throw new Error('Ошибка удаления товара.');
+    throw new Error("Ошибка удаления товара.");
   }
 });
 
@@ -88,20 +88,20 @@ const cartWasChanged = merge([addProductToServerFx.doneData, removeCartItemFx.do
 
 sample({
   clock: cartWasChanged,
-  target: getCartFromServerFx,
+  target: getCartFromServerFx
 });
 
 export const cartCleared = createEvent();
 
 sample({
   clock: cartCleanConfirmed,
-  target: cartCleared,
+  target: cartCleared
 });
 
 sample({
   clock: clearCartFx.doneData,
   fn: () => false,
-  target: cartModalStateChanged,
+  target: cartModalStateChanged
 });
 
 sample({
@@ -113,10 +113,10 @@ sample({
       return {
         ...product,
         quantityInCart: item.quantity,
-        quantityInShop: quantity,
+        quantityInShop: quantity
       };
     }),
-  target: $cart,
+  target: $cart
 });
 
 // Сетевой слой из ServerCart -> ProductCart
@@ -124,7 +124,7 @@ function convertServerProductsToLocalProducts(serverProducts: IServerCart[]) {
   return serverProducts.map((serverProduct) => {
     const {
       product: { id, image, quantity: quantityInShop, size, slug, color, old_price, price, name },
-      quantity: quantityInServerCart,
+      quantity: quantityInServerCart
     } = serverProduct;
 
     return {
@@ -137,7 +137,7 @@ function convertServerProductsToLocalProducts(serverProducts: IServerCart[]) {
       color,
       old_price,
       price,
-      name,
+      name
     } as IProductCart;
   });
 }

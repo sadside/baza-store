@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { createEvent, createStore, sample } from 'effector';
-import { createGate } from 'effector-react';
+import { createEvent, createStore, sample } from "effector";
+import { createGate } from "effector-react";
 
 export const addressPageGate = createGate();
 
@@ -15,22 +15,22 @@ export const addressModalOpened = createEvent<void>();
 sample({
   clock: [addressRemoveNotConfirmed],
   fn: () => false,
-  target: $isAddressRemoveConfirmVisible,
+  target: $isAddressRemoveConfirmVisible
 });
 
 sample({
   clock: addressModalOpened,
   fn: () => true,
-  target: $isAddressRemoveConfirmVisible,
+  target: $isAddressRemoveConfirmVisible
 });
 
 sample({
   clock: addressRemoveConfirmed,
   fn: () => false,
-  target: $isAddressRemoveConfirmVisible,
+  target: $isAddressRemoveConfirmVisible
 });
 
 sample({
   clock: addressModalStateChanged,
-  target: $isAddressRemoveConfirmVisible,
+  target: $isAddressRemoveConfirmVisible
 });

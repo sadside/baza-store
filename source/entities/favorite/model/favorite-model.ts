@@ -1,8 +1,8 @@
-'use client';
-import { createEvent, createStore, sample, split } from 'effector';
-import { createEffect } from 'effector';
-import { $apiWithGuard } from '@shared/api/http/axios-instance';
-import { loginFx } from '@entities/user/model/user-model';
+"use client";
+import { createEvent, createStore, sample, split } from "effector";
+import { createEffect } from "effector";
+import { $apiWithGuard } from "@shared/api/http/axios-instance";
+import { loginFx } from "@entities/user/model/user-model";
 
 export interface Favorite {
   name: string;
@@ -17,7 +17,7 @@ export const favoriteRemoved = createEvent<string>();
 export const addFavoriteFx = createEffect(async (slug: string) => {
   try {
     const res = await $apiWithGuard.post(`profile/favorites/`, {
-      slug,
+      slug
     });
 
     return res.data as Favorite[];
@@ -50,15 +50,15 @@ export const $favorites = createStore<Favorite[] | null>(null);
 
 sample({
   clock: favoriteAdded,
-  target: addFavoriteFx,
+  target: addFavoriteFx
 });
 
 sample({
   clock: favoriteRemoved,
-  target: deleteFavoriteFx,
+  target: deleteFavoriteFx
 });
 
 sample({
   clock: [getFavoritesFx.doneData, deleteFavoriteFx.doneData, addFavoriteFx.doneData],
-  target: $favorites,
+  target: $favorites
 });

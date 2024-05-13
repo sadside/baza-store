@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import { ProductsCalculate } from '@shared/api/__generated__/generated-api.schemas';
+import Image from "next/image";
+import { ProductsCalculate } from "@shared/api/__generated__/generated-api.schemas";
 
 type OrderProductItemProps = {
   product: ProductsCalculate;

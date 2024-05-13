@@ -1,8 +1,8 @@
-import { $currentFormStep, FORM_STEPS } from '@widgets/create-order-form/model/create-order-model';
-import { useUnit } from 'effector-react';
-import { ChangeRecevier } from '@widgets/create-order-form/ui/receiver-step/ui/change-recevier';
-import { ReceiverInfo } from '@widgets/create-order-form/ui/receiver-step/ui/receiver-info';
-import { $selectedReceiverInfo } from '@widgets/create-order-form/model/third-step/step';
+import { $currentFormStep, FORM_STEPS } from "@widgets/create-order-form/model/create-order-model";
+import { useUnit } from "effector-react";
+import { ChangeRecevier } from "@widgets/create-order-form/ui/receiver-step/ui/change-recevier";
+import { ReceiverInfo } from "@widgets/create-order-form/ui/receiver-step/ui/receiver-info";
+import { $selectedReceiverInfo } from "@widgets/create-order-form/model/third-step/step";
 
 export const ReceiverStep = () => {
   const currentStep: FORM_STEPS = useUnit($currentFormStep);

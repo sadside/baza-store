@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import styles from './ProductItem.module.scss';
-import { IProduct } from '@shared/types/models/Product';
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./ProductItem.module.scss";
+import { IProduct } from "@shared/types/models/Product";
 
-export const formatter = new Intl.NumberFormat('ru', {
-  style: 'unit',
-  unit: 'meter',
-  unitDisplay: 'long',
+export const formatter = new Intl.NumberFormat("ru", {
+  style: "unit",
+  unit: "meter",
+  unitDisplay: "long"
 });
 
 const ProductItem = ({ images, product_id, name, price, colors_count, slug }: IProduct) => {
@@ -16,7 +16,7 @@ const ProductItem = ({ images, product_id, name, price, colors_count, slug }: IP
     <Link className={styles.product} href={`/products/${slug}`}>
       <Image
         src={images[0]}
-        alt={'j'}
+        alt={"j"}
         className="w-full object-cover"
         objectFit="cover"
         objectPosition="center"
@@ -29,7 +29,6 @@ const ProductItem = ({ images, product_id, name, price, colors_count, slug }: IP
       <div className={styles.infoWrap}>
         <div className={styles.name}>{name}</div>
         <div className={styles.price}>{price / 100} ₽</div>
-        <div className={styles.countColor}>{formatter.format(colors_count || 1).replace('метр', 'цвет')}</div>
       </div>
     </Link>
   );

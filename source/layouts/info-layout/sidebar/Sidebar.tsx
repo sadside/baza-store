@@ -1,26 +1,26 @@
-'use client';
-import React from 'react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import classNames from 'classnames';
-import { changeVisibleExit } from '@/stores/areYouSure/exit';
-import ShowModalMb from '@entities/show-modal-mb/ui/ShowModalMb';
-import { Select } from '@shared/ui/select';
-import s from './index.module.scss';
+"use client";
+import React from "react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import classNames from "classnames";
+import { changeVisibleExit } from "@/stores/areYouSure/exit";
+import ShowModalMb from "@entities/show-modal-mb/ui/ShowModalMb";
+import { Select } from "@shared/ui/select";
+import s from "./index.module.scss";
 
 const Sidebar = () => {
   const links = [
-    { name: 'Доставка', value: '/info/delivery' },
-    { name: 'оплата', value: '/info/payment' },
-    { name: 'возврат', value: '/info/recovery' },
-    { name: 'программа лояльности', value: '/info/baza-loyalty' },
-    { name: 'подарочный сертификат', value: '/info/gift-certificates' },
-    { name: 'документы', value: '/info/documents' },
-    { name: 'контакты', value: '/info/contacts' },
+    { name: "Доставка", value: "/info/delivery" },
+    { name: "оплата", value: "/info/payment" },
+    { name: "возврат", value: "/info/recovery" },
+    { name: "программа лояльности", value: "/info/baza-loyalty" },
+    { name: "подарочный сертификат", value: "/info/gift-certificates" },
+    { name: "документы", value: "/info/documents" },
+    { name: "контакты", value: "/info/contacts" }
   ];
 
-  const url = usePathname().split('/');
-  const value = links.find((v) => v.value === '/' + url[1] + '/' + url[2])?.value;
+  const url = usePathname().split("/");
+  const value = links.find((v) => v.value === "/" + url[1] + "/" + url[2])?.name;
   const { push } = useRouter();
 
   return (
@@ -30,8 +30,8 @@ const Sidebar = () => {
           return (
             <Link
               className={classNames(
-                'w-full uppercase flex justify-start  text-[16px] font-semibold text-nowrap',
-                link.value === '/info/' + url[2] ? 'text-black' : 'text-black-200'
+                "w-full uppercase flex justify-start  text-[16px] font-semibold text-nowrap",
+                link.value === "/info/" + url[2] ? "text-black" : "text-black-200"
               )}
               href={link.value}
             >
@@ -40,14 +40,13 @@ const Sidebar = () => {
           );
         })}
       </div>
-      <div className={s.mobile}>
+      <div className={classNames(s.mobile, 'px-[16px]')}>
         <Select
-          color={'#F0F0F0'}
           options={links}
-          value={value ? value : 'Личный кабинет'}
+          value={value ? value : "Ничего не найден"}
           onChange={
             // @ts-ignore
-            (e) => push(e.target.value)
+            (e) => push(e)
           }
         />
       </div>

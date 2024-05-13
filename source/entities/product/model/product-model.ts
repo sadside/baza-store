@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { IColor } from '@/components/selectProductColor/SelectProductColor.interface';
-import { createEvent, createStore, sample } from 'effector';
-import { IFullProduct } from '@shared/types/models/Product';
-import { createGate } from 'effector-react';
-import { IProductCart } from '@/stores/cart/cart.interface';
-import { $cart } from '@entities/cart/model/cart-model';
-import { desktop, mobile } from '@shared/lib/utils/helpers/device-matcher';
+import { IColor } from "@/components/selectProductColor/SelectProductColor.interface";
+import { createEvent, createStore, sample } from "effector";
+import { IFullProduct } from "@shared/types/models/Product";
+import { createGate } from "effector-react";
+import { IProductCart } from "@/stores/cart/cart.interface";
+import { $cart } from "@entities/cart/model/cart-model";
+import { desktop, mobile } from "@shared/lib/utils/helpers/device-matcher";
 
 export const sizeSelected = createEvent<{
   name: string;
@@ -43,7 +43,7 @@ sample({
   source: desktop.$matches,
   filter: (isDesktop) => isDesktop,
   fn: (src, clk) => clk,
-  target: $partsDesktopModalIsVisible,
+  target: $partsDesktopModalIsVisible
 });
 
 sample({
@@ -51,18 +51,18 @@ sample({
   source: mobile.$matches,
   filter: (isMobile) => isMobile,
   fn: (src, clk) => clk,
-  target: $partsMobileModalIsVisible,
+  target: $partsMobileModalIsVisible
 });
 
 sample({
   clock: productGate.open,
-  target: $fullProduct,
+  target: $fullProduct
 });
 
 sample({
   clock: productGate.close,
   fn: () => null,
-  target: [$fullProduct, $selectedSize, $productInCart],
+  target: [$fullProduct, $selectedSize, $productInCart]
 });
 
 sample({
@@ -71,15 +71,15 @@ sample({
   fn: (product) => {
     return {
       //@ts-ignore
-      ...product.sizes[0],
+      ...product.sizes[0]
     };
   },
-  target: $selectedSize,
+  target: $selectedSize
 });
 
 sample({
   clock: sizeSelected,
-  target: $selectedSize,
+  target: $selectedSize
 });
 
 sample({
@@ -87,11 +87,11 @@ sample({
   clock: [$cart, $fullProduct, $selectedSize],
   source: {
     cart: $cart,
-    size: $selectedSize,
+    size: $selectedSize
   },
   filter: ({ cart, size }) => !!size?.slug,
   fn: ({ cart, size }) => {
     return { ...cart.find((item) => item.slug === size?.slug) } || null;
   },
-  target: $productInCart,
+  target: $productInCart
 });

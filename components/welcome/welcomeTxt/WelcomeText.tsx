@@ -1,9 +1,9 @@
-'use client';
-import React from 'react';
-import s from './WelcomeTxt.module.scss';
-import { useRouter } from 'next/navigation';
-import { useUnit } from 'effector-react';
-import { $user, logoutFx } from '@entities/user/model/user-model';
+"use client";
+import React from "react";
+import s from "./WelcomeTxt.module.scss";
+import { useRouter } from "next/navigation";
+import { useUnit } from "effector-react";
+import { $user, logoutFx } from "@entities/user/model/user-model";
 
 const WelcomeText = () => {
   const { push } = useRouter();
@@ -11,9 +11,9 @@ const WelcomeText = () => {
 
   const handleClick = () => {
     logoutFx();
-    localStorage.setItem('products', '[]');
-    localStorage.setItem('favorites', '[]');
-    push('/');
+    localStorage.setItem("products", "[]");
+    localStorage.setItem("favorites", "[]");
+    push("/");
   };
 
   return (
@@ -30,7 +30,7 @@ const WelcomeText = () => {
           быть не видны ниже, пожалуйста, <span className={s.line}>свяжитесь с нами для </span>
           получения дополнительной помощи. Если вы хотите вернуть заказ, который не отображается ниже, пожалуйста,
           посетите нашу страницу <span className={s.line}>Возврат</span>, чтобы начать процесс возврата. Если у вас есть
-          какие-либо вопросы или вам нужна дополнительная помощь, пожалуйста,{' '}
+          какие-либо вопросы или вам нужна дополнительная помощь, пожалуйста,{" "}
           <span className={s.line}>свяжитесь с нами</span>
         </span>
       </div>

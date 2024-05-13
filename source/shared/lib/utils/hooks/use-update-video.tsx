@@ -1,5 +1,5 @@
-'use client';
-import { useCallback, useEffect, useState } from 'react';
+"use client";
+import { useCallback, useEffect, useState } from "react";
 
 export function useUpdateVideo() {
   const [state, setState] = useState(false);

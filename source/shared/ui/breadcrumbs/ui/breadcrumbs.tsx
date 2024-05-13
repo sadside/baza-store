@@ -1,5 +1,5 @@
-import styles from './breadcrumbs.module.scss';
-import Link from 'next/link';
+import styles from "./breadcrumbs.module.scss";
+import Link from "next/link";
 
 interface Path {
   name: string;
@@ -16,10 +16,10 @@ export const Breadcrumbs = ({ path }: BreadcrumbsProps) => {
       {path?.map((item, index) => {
         return (
           <Link
-            className={`${index === path.length - 1 ? 'text-black' : ''}`}
+            className={`${index === path.length - 1 ? "text-black" : ""}`}
             href={index === 0 ? `/${item.slug}` : `${item.slug}`}
           >
-            {item.name} {index !== path.length - 1 ? ' /' : null}
+            {item.name} {index !== path.length - 1 ? " /" : null}
           </Link>
         );
       })}

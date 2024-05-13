@@ -1,6 +1,6 @@
-import React from 'react';
-import Sidebar from '../sidebar/Sidebar';
-import Welcome from '../welcome/Welcome';
+import React from "react";
+import Sidebar from "../sidebar/Sidebar";
+import Welcome from "../welcome/Welcome";
 
 export const InfoLayout = ({ children }: { children: React.ReactNode }) => {
   return (

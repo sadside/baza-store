@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { Button } from '@shared/theme/button';
+import Link from "next/link";
+import { Button } from "@shared/theme/button";
 
 export default function ErrorWrapper({ error }: { error: Error }) {
   return (

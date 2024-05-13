@@ -1,9 +1,9 @@
-import { ChangeEvent, KeyboardEvent } from 'react';
+import { ChangeEvent, KeyboardEvent } from "react";
 
 const PATTERN = /\D/g;
 
 const getInputNumbersValue = (value: string) => {
-  return value.replace(PATTERN, '');
+  return value.replace(PATTERN, "");
 };
 
 const handlePhoneInput = (event: ChangeEvent<HTMLInputElement>, currentCountry: string) => {
@@ -11,14 +11,14 @@ const handlePhoneInput = (event: ChangeEvent<HTMLInputElement>, currentCountry: 
 
   let inputNumbersValue = getInputNumbersValue(input.value);
 
-  let formattedInputValue = '';
+  let formattedInputValue = "";
   const selectionStart = input.selectionStart;
 
   if (!inputNumbersValue) {
-    return (input.value = '');
+    return (input.value = "");
   }
 
-  if (currentCountry === '+7') {
+  if (currentCountry === "+7") {
     if (inputNumbersValue.length === 11) {
       inputNumbersValue = inputNumbersValue.substring(1, inputNumbersValue.length);
     }
@@ -28,19 +28,19 @@ const handlePhoneInput = (event: ChangeEvent<HTMLInputElement>, currentCountry: 
     }
 
     if (inputNumbersValue.length >= 0) {
-      formattedInputValue += '(' + inputNumbersValue.substring(0, 3);
+      formattedInputValue += "(" + inputNumbersValue.substring(0, 3);
     }
 
     if (inputNumbersValue.length >= 4) {
-      formattedInputValue += ') ' + inputNumbersValue.substring(3, 6);
+      formattedInputValue += ") " + inputNumbersValue.substring(3, 6);
     }
 
     if (inputNumbersValue.length >= 7) {
-      formattedInputValue += '-' + inputNumbersValue.substring(6, 8);
+      formattedInputValue += "-" + inputNumbersValue.substring(6, 8);
     }
 
     if (inputNumbersValue.length >= 9) {
-      formattedInputValue += '-' + inputNumbersValue.substring(8, 10);
+      formattedInputValue += "-" + inputNumbersValue.substring(8, 10);
     }
   } else {
     formattedInputValue += inputNumbersValue;
@@ -52,9 +52,9 @@ const handlePhoneInput = (event: ChangeEvent<HTMLInputElement>, currentCountry: 
 const handlePhoneDelete = (event: KeyboardEvent<HTMLInputElement>, resetFiled: (inputName: string) => void) => {
   const input = event.target as HTMLInputElement;
 
-  if (event.key === 'Backspace' && getInputNumbersValue(input.value).length === 1) {
-    input.value = '';
-    resetFiled('phoneNumber');
+  if (event.key === "Backspace" && getInputNumbersValue(input.value).length === 1) {
+    input.value = "";
+    resetFiled("phoneNumber");
   }
 
   return input;

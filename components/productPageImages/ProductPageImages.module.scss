@@ -8,17 +8,20 @@
   -o-object-fit: cover;
   object-fit: cover;
   height: 100vh;
+  @media (max-width: 770px) {
+    height: 91.5vh;
+  }
 }
 
 .swiper {
   display: none;
-  @media (max-width: 666px) {
+  @media (max-width: 770px) {
     display: flex;
   }
 }
 
 .imgList {
-  @media (max-width: 666px) {
+  @media (max-width: 770px) {
     display: none;
   }
 }

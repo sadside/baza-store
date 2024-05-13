@@ -1,8 +1,8 @@
-import React from 'react';
-import styles from './SelectProductSize.module.scss';
-import clsx from 'clsx';
-import { useUnit } from 'effector-react';
-import { $selectedSize, sizeSelected } from '@entities/product/model/product-model';
+import React from "react";
+import styles from "./SelectProductSize.module.scss";
+import clsx from "clsx";
+import { useUnit } from "effector-react";
+import { $selectedSize, sizeSelected } from "@entities/product/model/product-model";
 
 type Props = {
   sizes: {
@@ -29,7 +29,7 @@ export const SelectProductSize = ({ sizes }: Props) => {
                 className={clsx({
                   [styles.sizeItem]: true,
                   [styles.active]: selectedSize?.slug === size.slug,
-                  'text-black-100': selectedSize?.quantity === 0,
+                  "text-black-100": selectedSize?.quantity === 0
                 })}
                 onClick={() => sizeSelected(size)}
                 key={size.mod_id}

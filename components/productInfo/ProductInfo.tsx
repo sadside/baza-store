@@ -1,20 +1,20 @@
-'use client';
-import styles from './ProductInfo.module.scss';
-import { MainInfoProduct } from '../mainInfoProduct/MainInfoProduct';
-import { Hr } from '../ui/hr/Hr';
-import { SelectProductColor } from '../selectProductColor/SelectProductColor';
-import { SelectProductSize } from '../selectSizeProduct/SelectProductSize';
-import { ProductDetails } from '../productDetails/ProductDetails';
-import { useGate, useUnit } from 'effector-react';
-import { IFullProduct } from '@shared/types/models/Product';
-import { Button } from '@shared/theme/button';
-import { $productsLoading } from '@entities/cart/model/cart-model';
-import { $productInCart, $selectedSize, productGate } from '@entities/product/model/product-model';
+"use client";
+import styles from "./ProductInfo.module.scss";
+import { MainInfoProduct } from "../mainInfoProduct/MainInfoProduct";
+import { Hr } from "../ui/hr/Hr";
+import { SelectProductColor } from "../selectProductColor/SelectProductColor";
+import { SelectProductSize } from "../selectSizeProduct/SelectProductSize";
+import { ProductDetails } from "../productDetails/ProductDetails";
+import { useGate, useUnit } from "effector-react";
+import { IFullProduct } from "@shared/types/models/Product";
+import { Button } from "@shared/theme/button";
+import { $productsLoading } from "@entities/cart/model/cart-model";
+import { $productInCart, $selectedSize, productGate } from "@entities/product/model/product-model";
 import {
   productAddedToCart,
   productDecremented,
-  productIncremented,
-} from '@/source/features/cart-mutation/model/cart-mutation';
+  productIncremented
+} from "@/source/features/cart-mutation/model/cart-mutation";
 
 type Props = {
   product: IFullProduct;
@@ -43,9 +43,9 @@ export const ProductInfo = ({ product }: Props) => {
       size: selectedSize.name,
       color: product.current_color.name,
       quantityInCart: 1,
-      slug: selectedSize?.slug || '',
+      slug: selectedSize?.slug || "",
       old_price: product.old_price > 0 ? product.old_price : product.price,
-      quantityInShop: selectedSize?.quantity || 0,
+      quantityInShop: selectedSize?.quantity || 0
     });
   };
 
@@ -84,7 +84,7 @@ export const ProductInfo = ({ product }: Props) => {
             onClick={handleAddToCartClick}
             disabled={selectedSize?.quantity <= 0 || loading}
           >
-            {selectedSize?.quantity <= 0 ? 'Нет в наличии' : 'Добавить в корзину'}
+            {selectedSize?.quantity <= 0 ? "Нет в наличии" : "Добавить в корзину"}
           </Button.Primary>
         )}
         <ProductDetails
