@@ -16,6 +16,8 @@ export const metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html>
+      <link rel="manifest" href="https://progressier.app/oArYkg1IG28DPvIUlFmQ/progressier.json" />
+      <script defer src="https://progressier.app/oArYkg1IG28DPvIUlFmQ/script.js"></script>
       <body>
         <Toaster />
         <Layout>{children}</Layout>

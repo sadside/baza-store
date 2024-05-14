@@ -1,6 +1,6 @@
-import React from "react";
-import { API_URL } from "@shared/api/http/axios-instance";
-import { HomePage } from "@/source/pages/home";
+import React from 'react';
+import { API_URL } from '@shared/api/http/axios-instance';
+import { HomePage } from '@/source/pages/home';
 
 export interface Category {
   id: number;
@@ -9,18 +9,35 @@ export interface Category {
   children: Category[];
 }
 
-const getOverlayLinks = async (): Promise<Category[]> => {
+type ReturnT = {
+  links: Category[];
+  video: Blob;
+};
+
+const getOverlayLinks = async (): Promise<ReturnT> => {
   const res = await fetch(`${API_URL}products/path/`, {
     cache: 'no-store',
   });
 
-  if (!res.ok) throw new Error("error");
+  const video = await fetch(`https://thebaza.ru/service/videostreaming/blob/`, {
+    cache: 'no-store',
+  });
 
-  return await res.json();
+  const blob = await video.blob();
+  const links = (await res.json()) as Category[];
+
+  if (!res.ok) throw new Error('error');
+
+  return {
+    links,
+    video: blob,
+  };
 };
 
 export default async function Home() {
-  const links = await getOverlayLinks();
+  const { links, video } = await getOverlayLinks();
 
-  return <HomePage links={links} />;
+  const src = URL.createObjectURL(video);
+
+  return <HomePage links={links} src={src} />;
 }
