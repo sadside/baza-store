@@ -9,7 +9,6 @@ import { Toaster } from '@shared/ui/shadcn/ui/sonner';
 
 export const metadata = {
   title: 'BAZA',
-  manifest: '/manifest.json',
   themeColor: '#ffffff',
 };
 
