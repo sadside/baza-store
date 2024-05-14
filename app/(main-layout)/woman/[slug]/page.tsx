@@ -1,8 +1,5 @@
-import { IFullProduct } from '@shared/types/models/Product';
-import { ProductPage } from '@pages/product';
-import { redirect } from 'next/navigation';
-import CategoriesService from '@/services/CategoriesService';
-import { CategoryPage } from '@pages/category';
+import CategoriesService from "@/services/CategoriesService";
+import { CategoryPage } from "@pages/category";
 
 type params = {
   params: {
@@ -22,7 +19,7 @@ async function getProducts(category: string) {
   return products;
 }
 
-export default async function ({ params: { slug } }: params) {
+export default async function({ params: { slug } }: params) {
   const products = await getProducts(slug);
 
   return <CategoryPage products={products.products} breadcrumbs={products.breadcrumbs} />;

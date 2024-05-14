@@ -1,8 +1,7 @@
-'use client';
-import Logo from '@shared/assets/logo.svg';
-import Link from 'next/link';
-import { useUnit } from 'effector-react';
-import { $user } from '@entities/user/model/user-model';
+"use client";
+import Logo from "@shared/assets/logo.svg";
+import { useUnit } from "effector-react";
+import { $user } from "@entities/user/model/user-model";
 
 export const OrderFailed = () => {
   const user = useUnit($user);
@@ -14,7 +13,7 @@ export const OrderFailed = () => {
       </div>
       <h4 className="font-semibold uppercase mb-5">ЗАКАЗ НЕ ОПЛАЧЕН</h4>
       <p className="text-center font-normal text-[14px] mb-5">
-        {user?.name ? user.name : 'Загрузка'}
+        {user?.name ? user.name : "Загрузка"}
         , Вы не оплатили заказ!
         <br />
       </p>

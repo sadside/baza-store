@@ -1,20 +1,20 @@
-'use client';
-import React from 'react';
-import { Select } from '@shared/ui/select';
-import { useUnit } from 'effector-react';
-import { $activeTypeAddressesSelf, changeTypeAddresses } from '@/stores/addresses/init';
+"use client";
+import React from "react";
+import { Select } from "@shared/ui/select";
+import { useUnit } from "effector-react";
+import { $activeTypeAddressesSelf, changeTypeAddresses } from "@/stores/addresses/init";
 
 export const TypeOfObtainAddress = () => {
   const value = useUnit($activeTypeAddressesSelf);
   const options = [
     {
-      name: 'в пункте сдэк',
-      value: 'cdek',
+      name: "в пункте сдэк",
+      value: "cdek"
     },
     {
-      name: 'Курьером',
-      value: 'personal',
-    },
+      name: "Курьером",
+      value: "personal"
+    }
   ];
   // @ts-ignore
   return (
@@ -26,7 +26,7 @@ export const TypeOfObtainAddress = () => {
           <Select
             onChange={(e: any) => changeTypeAddresses(e.target.value)}
             value={value}
-            color={'white'}
+            color={"white"}
             options={options}
           />
         }

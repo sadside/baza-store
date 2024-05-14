@@ -1,38 +1,55 @@
-import React from 'react';
-import s from './select.module.scss';
-import classNames from 'classnames';
+"use client";
+import React, { useState } from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "@shared/ui/shadcn/ui/popover";
+import { Button } from "@shared/ui/shadcn/ui/button";
+import { twMerge } from "tailwind-merge";
+import { ChevronsUpDown } from "lucide-react";
 
 type Props = {
-  color: string;
   options: {
     value: string;
     name: string;
   }[];
   value: string;
   onChange: any;
+  color?: boolean
 };
-export const Select = ({ color, options, onChange, value }: Props) => {
+export const Select = ({color, options, onChange, value }: Props) => {
+  const [visible, setVisible] = useState(false);
   return (
-    <select
-      value={value}
-      onChange={onChange}
-      style={{ backgroundColor: color }}
-      className=" p-[10px] w-11/12 max-[470px]:w-full pl-[12px] border-[1px]
-            focus:border-black-200
-            h-[44px]
-            text-[12px] font-medium
-             border-backBazaLogo hover:border-black-200 active:border-black-200
-             uppercase
-             "
-    >
-      {options.map((o) => (
-        <option
-          className={classNames('uppercase flex m-[14px] h-[40px] p-[14px] font-medium text-[12px]', s.options)}
-          value={o.value}
+    <Popover open={visible} onOpenChange={(value) => setVisible(value)}>
+      <PopoverTrigger className={"w-full  "} asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={visible}
+          className={twMerge(
+            "justify-between  rounded-none h-[44px] uppercase border border-black-50 text-[12px]  aria-expanded:border-black",
+            color?' bg-black-5 hover:bg-black-25':'hover:bg-white'
+          )}
         >
-          {o.name}
-        </option>
-      ))}
-    </select>
+          {options?.length ? (!value ? "qdwA" : value) : "Ничего не найдено"}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="p-0 mt-3 rounded-none max-h-[176px] overflow-y-auto">
+        {options?.map((item) => (
+          <div
+            key={item.value}
+            onClick={() => {
+              setVisible(false);
+              onChange(item.value);
+            }}
+            className={twMerge(
+              "text-[12px] uppercase min-h-11 py-3 flex items-center text-wrap px-3 hover:bg-black-5 bg-white cursor-pointer transition-all duration-500 hover:font-semibold overflow-x-hidden",
+              item.name === value && "font-semibold bg-black-5"
+            )}
+          >
+            {item.name}
+          </div>
+        ))}
+      </PopoverContent>
+
+    </Popover>
   );
 };

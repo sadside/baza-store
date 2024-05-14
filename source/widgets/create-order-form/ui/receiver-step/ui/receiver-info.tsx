@@ -1,4 +1,4 @@
-import { receiverChangeClicked, ReceiverData } from '@widgets/create-order-form/model/third-step/step';
+import { receiverChangeClicked, ReceiverData } from "@widgets/create-order-form/model/third-step/step";
 
 type ReceiverInfoProps = {
   receiver: ReceiverData;

@@ -1,16 +1,17 @@
-import { IProductCart } from '@/stores/cart/cart.interface';
-import Image from 'next/image';
-import styles from './cart-item.module.scss';
-import { MinusIcon, PlusIcon } from 'lucide-react';
-import { $productsLoading } from '@entities/cart/model/cart-model';
-import { twMerge } from 'tailwind-merge';
-import Link from 'next/link';
-import { useUnit } from 'effector-react';
-import { Loader } from '@/components/loader/Loader';
-import { productDecremented, productIncremented } from '@/source/features/cart-mutation/model/cart-mutation';
-import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
+import { IProductCart } from "@/stores/cart/cart.interface";
+import Image from "next/image";
+import styles from "./cart-item.module.scss";
+import { MinusIcon, PlusIcon } from "lucide-react";
+import { $productsLoading } from "@entities/cart/model/cart-model";
+import { twMerge } from "tailwind-merge";
+import Link from "next/link";
+import { useUnit } from "effector-react";
+import { Loader } from "@/components/loader/Loader";
+import { productDecremented, productIncremented } from "@/source/features/cart-mutation/model/cart-mutation";
+import { Skeleton } from "@shared/ui/shadcn/ui/skeleton";
 
-interface CartItemProps extends IProductCart {}
+interface CartItemProps extends IProductCart {
+}
 
 export const CartItem = ({ slug, image, name, size, color, price, quantityInCart, quantityInShop }: CartItemProps) => {
   const handlePlusClick = () => {
@@ -58,7 +59,7 @@ export const CartItem = ({ slug, image, name, size, color, price, quantityInCart
               onClick={handlePlusClick}
               disabled={quantityInCart + 1 > quantityInShop}
             >
-              <PlusIcon width={13} color={quantityInCart + 1 > quantityInShop ? 'gray' : 'black'} />
+              <PlusIcon width={13} color={quantityInCart + 1 > quantityInShop ? "gray" : "black"} />
             </button>
           </div>
           <div className="font-bold">{(price * quantityInCart) / 100} ₽</div>

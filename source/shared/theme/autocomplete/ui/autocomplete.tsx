@@ -1,11 +1,11 @@
-import { Input } from '@shared/theme/input/ui/input';
-import { twMerge } from 'tailwind-merge';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Loader } from '@/components/loader/Loader';
-import { useGate, useUnit } from 'effector-react';
-import { ReactNode, useRef } from 'react';
-import { CircleAlert, CrossIcon, HomeIcon } from 'lucide-react';
-import { AutocompleteModel } from '@shared/theme/autocomplete/model/autocomplete-model';
+import { Input } from "@shared/theme/input/ui/input";
+import { twMerge } from "tailwind-merge";
+import { AnimatePresence, motion } from "framer-motion";
+import { Loader } from "@/components/loader/Loader";
+import { useGate, useUnit } from "effector-react";
+import { ReactNode, useRef } from "react";
+import { CircleAlert, CrossIcon, HomeIcon } from "lucide-react";
+import { AutocompleteModel } from "@shared/theme/autocomplete/model/autocomplete-model";
 
 interface AutocompleteProps {
   className?: string;
@@ -17,12 +17,12 @@ export const Autocomplete = ({ placeholder, className, model }: AutocompleteProp
   const variants = {
     visible: {
       scale: 1,
-      opacity: 1,
+      opacity: 1
     },
     hidden: {
       scale: 0.8,
-      opacity: 0,
-    },
+      opacity: 0
+    }
   };
 
   const ref = useRef(null);
@@ -34,17 +34,17 @@ export const Autocomplete = ({ placeholder, className, model }: AutocompleteProp
   const suggestions = useUnit($suggestions);
   const inputValue = useUnit($inputValue);
 
-  const icon: Record<'initial' | 'pending' | 'done' | 'fail', ReactNode> = {
+  const icon: Record<"initial" | "pending" | "done" | "fail", ReactNode> = {
     initial: <></>,
     pending: <Loader height={18} width={27} />,
     done: <></>,
-    fail: <CircleAlert className="h-[18px] w-[27px]" />,
+    fail: <CircleAlert className="h-[18px] w-[27px]" />
   };
 
   useGate(gate);
 
   return (
-    <div className={twMerge('relative w-[425px]', className)} ref={ref}>
+    <div className={twMerge("relative max-[470px]:w-full w-[425px]", className)} ref={ref}>
       <Input
         placeholder={placeholder}
         className="pr-[43px] w-full"
@@ -55,10 +55,10 @@ export const Autocomplete = ({ placeholder, className, model }: AutocompleteProp
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            initial={'hidden'}
-            animate={'visible'}
-            exit={'hidden'}
-            transition={{ ease: 'easeOut', duration: 0.3, type: 'spring' }}
+            initial={"hidden"}
+            animate={"visible"}
+            exit={"hidden"}
+            transition={{ ease: "easeOut", duration: 0.3, type: "spring" }}
             variants={variants}
             className="bg-white w-full absolute top-[60px] border border-black-50 z-10"
           >

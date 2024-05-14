@@ -1,10 +1,11 @@
 import '@/source/shared/styles/globals.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import '@/source/shared/styles/globals.scss';
+import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import { Layout } from '@app/ui/layout';
 import '@shared/styles/globals.scss';
 import { Toaster } from '@shared/ui/shadcn/ui/sonner';
-import Script from 'next/script';
 
 export const metadata = {
   title: 'BAZA',

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { Button } from '@shared/theme/button';
-import { Autocomplete } from '@shared/theme/autocomplete/ui/autocomplete';
+import { Button } from "@shared/theme/button";
+import { Autocomplete } from "@shared/theme/autocomplete/ui/autocomplete";
 import {
   $isMainAddress,
   $showPointsSelect,
@@ -9,12 +9,12 @@ import {
   cdekPointsSelect,
   cityForCdekAutocomplete,
   createCdekAddressFx,
-  mainAddressClicked,
-} from '@/source/features/add-address-cdek/model/add-address-cdek';
-import { YMaps, Map, Placemark } from 'react-yandex-maps';
-import { useUnit } from 'effector-react';
-import { Select } from '@/source/features/add-address-cdek/ui/select/ui/select';
-import { Checkbox } from '@shared/ui/shadcn/ui/checkbox';
+  mainAddressClicked
+} from "@/source/features/add-address-cdek/model/add-address-cdek";
+import { YMaps, Map, Placemark } from "react-yandex-maps";
+import { useUnit } from "effector-react";
+import { Select } from "@/source/features/add-address-cdek/ui/select/ui/select";
+import { Checkbox } from "@shared/ui/shadcn/ui/checkbox";
 
 export const AddAddressCdek = () => {
   const { $selectedItem } = cdekPointsSelect;
@@ -41,7 +41,7 @@ export const AddAddressCdek = () => {
         {isSelectVisible && (
           <>
             <div className="text-[14px] mb-1">Выберите ПВЗ СДЕК</div>
-            <Select model={cdekPointsSelect} placeholder="Ничего не выбрано" className="w-[425px]" />
+            <Select model={cdekPointsSelect} placeholder="Ничего не выбрано" className="w-[425px]  max-[465px]:w-full" />
           </>
         )}
         {selectedPoint && (
@@ -54,7 +54,7 @@ export const AddAddressCdek = () => {
                 <Placemark
                   geometry={[selectedPoint.latitude, selectedPoint.longitude]}
                   options={{
-                    preset: 'islands#darkGreenDotIcon',
+                    preset: "islands#darkGreenDotIcon"
                   }}
                 />
               </Map>

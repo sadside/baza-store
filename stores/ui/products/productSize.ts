@@ -1,5 +1,5 @@
-import { IColor } from '@/components/selectProductColor/SelectProductColor.interface';
-import { createEvent, createStore } from 'effector';
+import { IColor } from "@/components/selectProductColor/SelectProductColor.interface";
+import { createEvent, createStore } from "effector";
 
 export const sizeSelected = createEvent<{
   name: string;

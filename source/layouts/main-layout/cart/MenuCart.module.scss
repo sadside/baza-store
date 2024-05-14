@@ -5,4 +5,7 @@
   z-index: 200;
   font-size: 14px;
   background-color: #fff;
+  @media (max-width: 600px) {
+    display: none;
+  }
 }

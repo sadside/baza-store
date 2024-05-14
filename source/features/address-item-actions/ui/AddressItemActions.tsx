@@ -1,7 +1,7 @@
-import React from 'react';
-import { changeVisibleAddress } from '@/stores/areYouSure/address';
-import { addressRemoveBtnClicked, deleteAddressesFx } from '@entities/address/model/address-model';
-import { toast } from 'sonner';
+import React from "react";
+import { changeVisibleAddress } from "@/stores/areYouSure/address";
+import { addressRemoveBtnClicked, deleteAddressesFx } from "@entities/address/model/address-model";
+import { toast } from "sonner";
 
 export const AddressItemActions = ({ id }: { id: number }) => {
   const handleClick = () => {
@@ -9,8 +9,8 @@ export const AddressItemActions = ({ id }: { id: number }) => {
   };
 
   const handleEditClick = () => {
-    toast('Редактирование адреса временно недоступно.', {
-      position: 'top-right',
+    toast("Редактирование адреса временно недоступно.", {
+      position: "top-right"
     });
   };
 

@@ -1,6 +1,6 @@
 .wrapper {
   flex: 0 0 auto;
-  height: 70px;
+  height: 60px;
   display: flex;
   z-index: 50;
   padding-right: 40px;
@@ -13,15 +13,16 @@
   justify-content: space-around;
   transition: transform border .2s ease-in-out;
   border-bottom: 1px solid #00000039;
-  @media (max-width: 1000px) {
-    justify-content: space-between;
-  }
 
   .hide {
     transform: translateY(-70px);
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 800px) {
+    padding-right: 20px;
+
+  }
+  @media (max-width: 770px) {
     display: none;
   }
 
@@ -32,7 +33,7 @@
     margin-left: 40px;
     margin-right: 40px;
     height: 40px;
-    @media (max-width: 1000px) {
+    @media (max-width: 800px) {
       margin-left: 20px;
     }
   }

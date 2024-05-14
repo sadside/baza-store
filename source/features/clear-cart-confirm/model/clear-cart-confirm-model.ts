@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { createEvent, createStore, sample } from 'effector';
-import { createGate } from 'effector-react';
-import { cartCleared } from '@entities/cart/model/cart-model';
+import { createEvent, createStore, sample } from "effector";
+import { createGate } from "effector-react";
+import { cartCleared } from "@entities/cart/model/cart-model";
 
 export const cartPageGate = createGate();
 
@@ -15,16 +15,16 @@ export const cartModalStateChanged = createEvent<boolean>();
 sample({
   clock: [cartCleanNotConfirmed],
   fn: () => false,
-  target: $isClearCartModalVisible,
+  target: $isClearCartModalVisible
 });
 
 sample({
   clock: cartCleanConfirmed,
   fn: () => false,
-  target: $isClearCartModalVisible,
+  target: $isClearCartModalVisible
 });
 
 sample({
   clock: cartModalStateChanged,
-  target: $isClearCartModalVisible,
+  target: $isClearCartModalVisible
 });

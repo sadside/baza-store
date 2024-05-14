@@ -1,19 +1,19 @@
-import { AddToFavorites } from '../ui/addToFavorites/AddToFavorites';
-import styles from './MainInfoProduct.module.scss';
-import { IFullProduct } from '@shared/types/models/Product';
-import Image from 'next/image';
-import partsLogo from '@shared/assets/dolyami-small-logo.svg';
-import { Dialog, DialogContent } from '@shared/ui/shadcn/ui/dialog';
-import { useUnit } from 'effector-react';
+import { AddToFavorites } from "../ui/addToFavorites/AddToFavorites";
+import styles from "./MainInfoProduct.module.scss";
+import { IFullProduct } from "@shared/types/models/Product";
+import Image from "next/image";
+import partsLogo from "@shared/assets/dolyami-small-logo.svg";
+import { Dialog, DialogContent } from "@shared/ui/shadcn/ui/dialog";
+import { useUnit } from "effector-react";
 import {
   $partsDesktopModalIsVisible,
   $partsMobileModalIsVisible,
-  partsModalStateChanged,
-} from '@entities/product/model/product-model';
-import { add, format, hoursToMilliseconds, startOfDay } from 'date-fns';
+  partsModalStateChanged
+} from "@entities/product/model/product-model";
+import { add, format, hoursToMilliseconds, startOfDay } from "date-fns";
 
-import ru from 'date-fns/locale/ru';
-import { Button } from '@shared/theme/button';
+import ru from "date-fns/locale/ru";
+import { Button } from "@shared/theme/button";
 import {
   Drawer,
   DrawerClose,
@@ -21,8 +21,8 @@ import {
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
-  DrawerTitle,
-} from '@shared/ui/shadcn/ui/drawer';
+  DrawerTitle
+} from "@shared/ui/shadcn/ui/drawer";
 
 type Props = {
   product: IFullProduct;
@@ -30,7 +30,6 @@ type Props = {
 
 const PartsModal = ({ price }: { price: number }) => {
   const isVisible = useUnit($partsDesktopModalIsVisible);
-
   return (
     <Dialog open={isVisible} onOpenChange={(val) => partsModalStateChanged(val)}>
       <DialogContent className="max-w-[600px]">
@@ -93,9 +92,9 @@ const PartsModal = ({ price }: { price: number }) => {
             </div>
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
-                {format(new Date(add(new Date(), { days: 14 })), 'dd MMM', {
+                {format(new Date(add(new Date(), { days: 14 })), "dd MMM", {
                   //@ts-ignore
-                  locale: ru,
+                  locale: ru
                 })}
               </div>
               <div className="text-[12px] font-semibold mb-3">{price / 400} ₽</div>
@@ -103,9 +102,9 @@ const PartsModal = ({ price }: { price: number }) => {
             </div>
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
-                {format(new Date(add(new Date(), { days: 28 })), 'dd MMM', {
+                {format(new Date(add(new Date(), { days: 28 })), "dd MMM", {
                   //@ts-ignore
-                  locale: ru,
+                  locale: ru
                 })}
               </div>
               <div className="text-[12px] font-semibold mb-3">{price / 400} ₽</div>
@@ -113,9 +112,9 @@ const PartsModal = ({ price }: { price: number }) => {
             </div>
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
-                {format(new Date(add(new Date(), { days: 42 })), 'dd MMM', {
+                {format(new Date(add(new Date(), { days: 42 })), "dd MMM", {
                   //@ts-ignore
-                  locale: ru,
+                  locale: ru
                 })}
               </div>
               <div className="text-[12px] font-semibold mb-3">{price / 400} ₽</div>
@@ -160,7 +159,7 @@ const PartsModal = ({ price }: { price: number }) => {
           <p className="text-center text-black-200 text-[12px]">
             Подробнее о сервисе можно узнать на
             <a href="https://dolyame.ru/" target="_blank" className="text-[#003EB7]">
-              {' '}
+              {" "}
               dolyame.ru
             </a>
           </p>
@@ -235,9 +234,9 @@ const PartsMobileModal = ({ price }: { price: number }) => {
             </div>
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
-                {format(new Date(add(new Date(), { days: 14 })), 'dd MMM', {
+                {format(new Date(add(new Date(), { days: 14 })), "dd MMM", {
                   //@ts-ignore
-                  locale: ru,
+                  locale: ru
                 })}
               </div>
               <div className="text-[12px] font-semibold mb-3">{price / 400} ₽</div>
@@ -245,9 +244,9 @@ const PartsMobileModal = ({ price }: { price: number }) => {
             </div>
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
-                {format(new Date(add(new Date(), { days: 28 })), 'dd MMM', {
+                {format(new Date(add(new Date(), { days: 28 })), "dd MMM", {
                   //@ts-ignore
-                  locale: ru,
+                  locale: ru
                 })}
               </div>
               <div className="text-[12px] font-semibold mb-3">{price / 400} ₽</div>
@@ -255,9 +254,9 @@ const PartsMobileModal = ({ price }: { price: number }) => {
             </div>
             <div className="w-full text-black-200">
               <div className="mb-1 text-[12px]">
-                {format(new Date(add(new Date(), { days: 42 })), 'dd MMM', {
+                {format(new Date(add(new Date(), { days: 42 })), "dd MMM", {
                   //@ts-ignore
-                  locale: ru,
+                  locale: ru
                 })}
               </div>
               <div className="text-[12px] font-semibold mb-3">{price / 400} ₽</div>
@@ -302,7 +301,7 @@ const PartsMobileModal = ({ price }: { price: number }) => {
           <p className="text-center text-black-200 text-[12px]">
             Подробности на
             <a href="https://dolyame.ru/" target="_blank" className="text-[#003EB7]">
-              {' '}
+              {" "}
               dolyame.ru
             </a>
           </p>

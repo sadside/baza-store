@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   Sheet,
@@ -7,15 +7,15 @@ import {
   SheetDescription,
   SheetFooter,
   SheetHeader,
-  SheetTitle,
-} from '@shared/ui/shadcn/ui/sheet';
-import { $isCartDrawerVisible, cartDrawerStateChanged, drawerGate } from '@widgets/cart-drawer/model/cart-drawer-model';
-import { useGate, useUnit } from 'effector-react';
-import { $cart, $cartTotalPrice, $productsLoading } from '@entities/cart/model/cart-model';
-import { CartItem } from '@widgets/cart-drawer/cart-item/ui/cart-item';
-import { Button } from '@shared/theme/button';
-import { Hr } from '@/components/ui/hr/Hr';
-import Link from 'next/link';
+  SheetTitle
+} from "@shared/ui/shadcn/ui/sheet";
+import { $isCartDrawerVisible, cartDrawerStateChanged, drawerGate } from "@widgets/cart-drawer/model/cart-drawer-model";
+import { useGate, useUnit } from "effector-react";
+import { $cart, $cartTotalPrice, $productsLoading } from "@entities/cart/model/cart-model";
+import { CartItem } from "@widgets/cart-drawer/cart-item/ui/cart-item";
+import { Button } from "@shared/theme/button";
+import { Hr } from "@/components/ui/hr/Hr";
+import Link from "next/link";
 
 export const CartDrawer = () => {
   const isVisible = useUnit($isCartDrawerVisible);

@@ -1,5 +1,5 @@
-import React from 'react';
-import { AddAddress } from '@pages/add-address';
+import React from "react";
+import { AddAddress } from "@pages/add-address";
 
 type params = {
   params: {

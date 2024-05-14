@@ -1,6 +1,6 @@
-import React from 'react';
-import { API_URL, API_URL_CLIENT } from '@shared/api/http/axios-instance';
-import { HomePage } from '@/source/pages/home';
+import React from "react";
+import { API_URL } from "@shared/api/http/axios-instance";
+import { HomePage } from "@/source/pages/home";
 
 export interface Category {
   id: number;
@@ -14,7 +14,7 @@ const getOverlayLinks = async (): Promise<Category[]> => {
     cache: 'no-store',
   });
 
-  if (!res.ok) throw new Error('error');
+  if (!res.ok) throw new Error("error");
 
   return await res.json();
 };

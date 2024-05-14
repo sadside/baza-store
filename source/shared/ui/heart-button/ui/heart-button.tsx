@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import styles from './heart-button.module.scss';
-import { ButtonHTMLAttributes, DetailedHTMLProps, useEffect, useState } from 'react';
-import CheckedHeartIcon from '@shared/assets/icons/CheckedHeartIcon.svg';
-import UncheckedHeartIcon from '@shared/assets/icons/UncheckedHeartIcon.svg';
-import { useUnit } from 'effector-react';
+import styles from "./heart-button.module.scss";
+import { ButtonHTMLAttributes, DetailedHTMLProps, useEffect, useState } from "react";
+import CheckedHeartIcon from "@shared/assets/icons/CheckedHeartIcon.svg";
+import UncheckedHeartIcon from "@shared/assets/icons/UncheckedHeartIcon.svg";
+import { useUnit } from "effector-react";
 
-import { $favorites, favoriteAdded, favoriteRemoved } from '@entities/favorite/model/favorite-model';
+import { $favorites, favoriteAdded, favoriteRemoved } from "@entities/favorite/model/favorite-model";
 
 interface HeartButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   checked: boolean;
@@ -17,7 +17,7 @@ interface HeartButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLBu
   slug: string;
 }
 
-export const HeartButton = ({ height = 20, fill = '#A2A2A2', width = 20, slug }: HeartButtonProps) => {
+export const HeartButton = ({ height = 20, fill = "#A2A2A2", width = 20, slug }: HeartButtonProps) => {
   const favorites = useUnit($favorites);
 
   const [isFavorite, setFavorite] = useState(false);

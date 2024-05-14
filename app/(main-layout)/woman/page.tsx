@@ -1,5 +1,5 @@
-import { CategoryPage } from '@pages/category';
-import CategoriesService from '@/services/CategoriesService';
+import { CategoryPage } from "@pages/category";
+import CategoriesService from "@/services/CategoriesService";
 
 async function getProducts(category: string) {
   const response = await CategoriesService.getProductsByCategory(category);
@@ -11,8 +11,8 @@ async function getProducts(category: string) {
   return products;
 }
 
-export default async function () {
-  const products = await getProducts('woman');
+export default async function() {
+  const products = await getProducts("woman");
 
   return <CategoryPage products={products.products} breadcrumbs={products.breadcrumbs} />;
 }

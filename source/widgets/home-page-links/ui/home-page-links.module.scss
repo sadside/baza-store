@@ -5,6 +5,11 @@
   right: 40px;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    left: 16px;
+    top: 20px;
+    right: 16px;
+  }
 }
 
 .linksBlock {
@@ -15,6 +20,42 @@
   display: flex;
   justify-content: space-between;
   align-items: end;
+  @media (max-width: 500px) {
+    display: none;
+  }
+  @media (max-width: 800px) {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+}
+
+.allWindow {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  transition: color 1s;
+  z-index: 101;
+}
+
+.linksBlockMobile {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  right: 40px;
+  display: none;
+  justify-content: space-between;
+  align-items: end;
+  @media (max-width: 800px) {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+  @media (max-width: 500px) {
+    display: flex;
+  }
 }
 
 .categoryTitle {

@@ -1,5 +1,5 @@
-import { createEvent, createStore, sample } from 'effector';
-import { orderGate } from '@widgets/create-order-form/model/create-order-model';
+import { createEvent, createStore, sample } from "effector";
+import { orderGate } from "@widgets/create-order-form/model/create-order-model";
 
 export type ReceiverData = {
   name: string;
@@ -14,5 +14,5 @@ export const $selectedReceiverInfo = createStore<ReceiverData | null>(null).rese
 
 sample({
   clock: receiverFormSubmitted,
-  target: $selectedReceiverInfo,
+  target: $selectedReceiverInfo
 });

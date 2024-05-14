@@ -1,21 +1,11 @@
-import styles from './PhoneInput.module.scss';
-import arrow from '@shared/assets/icons/authInputArrow.svg';
+import styles from "./PhoneInput.module.scss";
 
-import classNames from 'classnames/bind';
-import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, useState } from 'react';
-import Image from 'next/image';
-import { handlePhoneDelete, handlePhoneInput } from '../lib/inputLogic';
+import classNames from "classnames/bind";
+import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, useState } from "react";
+import { handlePhoneDelete, handlePhoneInput } from "../lib/inputLogic";
 
-import { useUnit } from 'effector-react';
-
-import { useOutside } from '@/source/shared/lib/utils/hooks/useOutside';
-import {
-  $countryCodes,
-  $currentCountryCode,
-  $isSelectCodeOpened,
-  codeClicked,
-  codesSelectOpened,
-} from '@shared/ui/PhoneInput/model/countryCodes';
+import { useUnit } from "effector-react";
+import { $currentCountryCode } from "@shared/ui/PhoneInput/model/countryCodes";
 
 interface InputProps extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   className?: string;
@@ -44,17 +34,17 @@ export const PhoneInput = ({ className, name, type, error, register, resetFiled,
 
   const inputClassName = cx({
     input: true,
-    error: error,
+    error: error
   });
 
   const regionCodeHandlerClassName = cx({
     regionCodeHandler: true,
-    focused: isFocused,
+    focused: isFocused
   });
 
   const regionCodeSelectClassName = cx({
     codeSelect: true,
-    focused: isFocused,
+    focused: isFocused
   });
 
   const handleInput = (event: ChangeEvent<HTMLInputElement>) => {

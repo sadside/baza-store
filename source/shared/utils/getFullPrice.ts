@@ -1,4 +1,4 @@
-import { IProductCart } from '@/stores/cart/cart.interface';
+import { IProductCart } from "@/stores/cart/cart.interface";
 
 export const getPriceFromCart = (arr: IProductCart[]) => {
   let totalPrice = 0;

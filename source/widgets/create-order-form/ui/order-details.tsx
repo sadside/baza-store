@@ -1,14 +1,14 @@
-import { useUnit } from 'effector-react';
-import { $currentFormStep, $order, orderCalculateFx } from '@widgets/create-order-form/model/create-order-model';
-import { $selectedPickUp, Pickup } from '@widgets/create-order-form/model/second-step/step';
-import PartsLogo from '@shared/assets/icons/parts.svg';
-import RightArrow from '@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg';
-import React from 'react';
-import { OrderProductItem } from '@widgets/create-order-form/ui/order-product-item';
-import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
-import { $getUserFxStatus } from '@entities/user/model/user-model';
-import { Address, Calculate } from '@shared/api/__generated__/generated-api.schemas';
-import { cartDrawerOpened } from '@widgets/cart-drawer/model/cart-drawer-model';
+import { useUnit } from "effector-react";
+import { $currentFormStep, $order, orderCalculateFx } from "@widgets/create-order-form/model/create-order-model";
+import { $selectedPickUp, Pickup } from "@widgets/create-order-form/model/second-step/step";
+import PartsLogo from "@shared/assets/icons/parts.svg";
+import RightArrow from "@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg";
+import React from "react";
+import { OrderProductItem } from "@widgets/create-order-form/ui/order-product-item";
+import { Skeleton } from "@shared/ui/shadcn/ui/skeleton";
+import { $getUserFxStatus } from "@entities/user/model/user-model";
+import { Address, Calculate } from "@shared/api/__generated__/generated-api.schemas";
+import { cartDrawerOpened } from "@widgets/cart-drawer/model/cart-drawer-model";
 
 export const OrderDetails = () => {
   const currentStep = useUnit($currentFormStep);
@@ -22,11 +22,12 @@ export const OrderDetails = () => {
   };
 
   return (
-    <div className="bg-white-600 w-[380px] py-6 px-[18px]" style={{ height: 'min-content' }}>
+    <div className="bg-white-600 max-[1050px]:mb-[40px] max-[1050px]:w-full w-[380px] py-6 px-[18px]"
+         style={{ height: "min-content" }}>
       {currentStep <= 2 && (
         <div>
           <h2 className="uppercase font-semibold mb-[18px]">ДЕТАЛИ ЗАКАЗА</h2>
-          {status !== 'done' ? (
+          {status !== "done" ? (
             <Skeleton className="bg-black-100 h-4 w-full" />
           ) : (
             <p className="uppercase text-[12px]">детали заказа будут доступны после авторизации</p>
@@ -79,7 +80,7 @@ export const OrderDetails = () => {
               <div className="mb-6">{calculatedOrder?.products.map((item) => <OrderProductItem product={item} />)}</div>
               <div className="flex justify-between items-center text-[12px] font-semibold mb-6">
                 <div className="uppercase">доставка</div>
-                <div>{selectedPickup ? selectedPickup.price + '₽' : 'не выбрана'}</div>
+                <div>{selectedPickup ? selectedPickup.price + "₽" : "не выбрана"}</div>
               </div>
               <div className="flex justify-between items-center text-[14px] font-semibold mb-6">
                 <div className="uppercase">итого</div>

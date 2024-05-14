@@ -1,15 +1,15 @@
-import styles from './order-details.module.scss';
-import React from 'react';
-import { getSalePriceFromCart } from '@shared/utils/getSalePrice';
-import { getPriceFromCart } from '@shared/utils/getFullPrice';
-import { useUnit } from 'effector-react';
-import PartsLogo from '@shared/assets/icons/parts.svg';
-import RightArrow from '@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg';
-import { Button } from '@shared/theme/button';
-import { $cart } from '@entities/cart/model/cart-model';
-import { partsModalStateChanged } from '@entities/product/model/product-model';
-import Link from 'next/link';
-import { $user } from '@entities/user/model/user-model';
+import styles from "./order-details.module.scss";
+import React from "react";
+import { getSalePriceFromCart } from "@shared/utils/getSalePrice";
+import { getPriceFromCart } from "@shared/utils/getFullPrice";
+import { useUnit } from "effector-react";
+import PartsLogo from "@shared/assets/icons/parts.svg";
+import RightArrow from "@shared/assets/icons/tui-ic-small-pragmatic/chevron-right.svg";
+import { Button } from "@shared/theme/button";
+import { $cart } from "@entities/cart/model/cart-model";
+import { partsModalStateChanged } from "@entities/product/model/product-model";
+import Link from "next/link";
+import { $user } from "@entities/user/model/user-model";
 
 interface OrderDetailsProps {
   className?: string;
@@ -47,7 +47,9 @@ export const OrderDetails = ({}: OrderDetailsProps) => {
           </div>
         </div>
       </div>
-      <button className={styles.partsPayment} onClick={() => partsModalStateChanged(true)}>
+      <button className={styles.partsPayment} onClick={() => {
+        partsModalStateChanged(true);
+      }}>
         <PartsLogo />
         <div className={styles.value}>4 платежа по {salePrice / 4}</div>
         <RightArrow />

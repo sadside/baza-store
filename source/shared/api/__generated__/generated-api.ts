@@ -25,10 +25,10 @@ import type {
   SchemaRetrieve200Two,
   SchemaRetrieveParams,
   UserDataSerialzier,
-  ViewOrder,
-} from './generated-api.schemas';
-import { $apiWithGuard } from '../http/axios-instance';
-import type { BodyType } from '../http/axios-instance';
+  ViewOrder
+} from "./generated-api.schemas";
+import type { BodyType } from "../http/axios-instance";
+import { $apiWithGuard } from "../http/axios-instance";
 
 // https://stackoverflow.com/questions/49579094/typescript-conditional-types-filter-out-readonly-properties-pick-only-requir/49579497#49579497
 type IfEquals<X, Y, A = X, B = never> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2 ? A : B;
@@ -43,33 +43,33 @@ type DistributeReadOnlyOverUnions<T> = T extends any ? NonReadonly<T> : never;
 type Writable<T> = Pick<T, WritableKeys<T>>;
 type NonReadonly<T> = [T] extends [UnionToIntersection<T>]
   ? {
-      [P in keyof Writable<T>]: T[P] extends object ? NonReadonly<NonNullable<T[P]>> : T[P];
-    }
+    [P in keyof Writable<T>]: T[P] extends object ? NonReadonly<NonNullable<T[P]>> : T[P];
+  }
   : DistributeReadOnlyOverUnions<T>;
 
 export const authLoginCreate = (login: BodyType<Login>) => {
   return $apiWithGuard<Login>({
     url: `/auth/login/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: login,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: login
   });
 };
 
 export const authLogoutCreate = () => {
-  return $apiWithGuard<void>({ url: `/auth/logout/`, method: 'POST' });
+  return $apiWithGuard<void>({ url: `/auth/logout/`, method: "POST" });
 };
 
 export const authPhoneCodeRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/auth/phone-code/`, method: 'GET' });
+  return $apiWithGuard<void>({ url: `/auth/phone-code/`, method: "GET" });
 };
 
 export const authSendCodeCreate = (phoneNumber: BodyType<PhoneNumber>) => {
   return $apiWithGuard<PhoneNumber>({
     url: `/auth/send-code/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: phoneNumber,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: phoneNumber
   });
 };
 
@@ -77,14 +77,14 @@ export const authSendCodeCreate = (phoneNumber: BodyType<PhoneNumber>) => {
  * @summary Предподсчет корзины
  */
 export const ordersCalculateRetrieve = () => {
-  return $apiWithGuard<Calculate>({ url: `/orders/calculate/`, method: 'GET' });
+  return $apiWithGuard<Calculate>({ url: `/orders/calculate/`, method: "GET" });
 };
 
 /**
  * @summary Просмотр всех заказов
  */
 export const ordersOrdersList = () => {
-  return $apiWithGuard<ViewOrder[]>({ url: `/orders/orders/`, method: 'GET' });
+  return $apiWithGuard<ViewOrder[]>({ url: `/orders/orders/`, method: "GET" });
 };
 
 /**
@@ -93,229 +93,229 @@ export const ordersOrdersList = () => {
 export const ordersOrdersCreate = (createOrder: BodyType<NonReadonly<CreateOrder>>) => {
   return $apiWithGuard<ViewOrder>({
     url: `/orders/orders/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: createOrder,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: createOrder
   });
 };
 
 export const ordersOrdersCancelRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/orders/orders/cancel/`, method: 'GET' });
+  return $apiWithGuard<void>({ url: `/orders/orders/cancel/`, method: "GET" });
 };
 
 /**
  * @summary Предподсчет корзины
  */
 export const ordersPaymentRetrieve = (params?: OrdersPaymentRetrieveParams) => {
-  return $apiWithGuard<Payment>({ url: `/orders/payment/`, method: 'GET', params });
+  return $apiWithGuard<Payment>({ url: `/orders/payment/`, method: "GET", params });
 };
 
 export const ordersPaymentResponseFailRetrieve = (paymentId: number) => {
-  return $apiWithGuard<Payment>({ url: `/orders/payment/response/fail/${paymentId}`, method: 'GET' });
+  return $apiWithGuard<Payment>({ url: `/orders/payment/response/fail/${paymentId}`, method: "GET" });
 };
 
 export const ordersPaymentResponseSuccessRetrieve = (paymentId: number) => {
-  return $apiWithGuard<Payment>({ url: `/orders/payment/response/success/${paymentId}`, method: 'GET' });
+  return $apiWithGuard<Payment>({ url: `/orders/payment/response/success/${paymentId}`, method: "GET" });
 };
 
 export const ordersPaymentStatusRetrieve = () => {
-  return $apiWithGuard<Payment>({ url: `/orders/payment/status/`, method: 'GET' });
+  return $apiWithGuard<Payment>({ url: `/orders/payment/status/`, method: "GET" });
 };
 
 export const productsDetailRetrieve = (slug: string) => {
-  return $apiWithGuard<void>({ url: `/products/detail/${slug}/`, method: 'GET' });
+  return $apiWithGuard<void>({ url: `/products/detail/${slug}/`, method: "GET" });
 };
 
 export const productsFilterRetrieve = () => {
-  return $apiWithGuard<FilterProductModification>({ url: `/products/filter/`, method: 'GET' });
+  return $apiWithGuard<FilterProductModification>({ url: `/products/filter/`, method: "GET" });
 };
 
 export const productsPathList = () => {
-  return $apiWithGuard<ProductPath[]>({ url: `/products/path/`, method: 'GET' });
+  return $apiWithGuard<ProductPath[]>({ url: `/products/path/`, method: "GET" });
 };
 
 export const productsProductRetrieve = (id: number) => {
-  return $apiWithGuard<Product>({ url: `/products/product/${id}/`, method: 'GET' });
+  return $apiWithGuard<Product>({ url: `/products/product/${id}/`, method: "GET" });
 };
 
 export const productsProductsList = () => {
-  return $apiWithGuard<ListProducts[]>({ url: `/products/products/`, method: 'GET' });
+  return $apiWithGuard<ListProducts[]>({ url: `/products/products/`, method: "GET" });
 };
 
 /**
  * Адресы пользователя.
 
-Добавление и получение списка адресов пользователя, доступно только для
-текущего пользователю.
+ Добавление и получение списка адресов пользователя, доступно только для
+ текущего пользователю.
  */
 export const profileAddressList = () => {
-  return $apiWithGuard<Address[]>({ url: `/profile/address/`, method: 'GET' });
+  return $apiWithGuard<Address[]>({ url: `/profile/address/`, method: "GET" });
 };
 
 /**
  * Адресы пользователя.
 
-Добавление и получение списка адресов пользователя, доступно только для
-текущего пользователю.
+ Добавление и получение списка адресов пользователя, доступно только для
+ текущего пользователю.
  */
 export const profileAddressCreate = (address: BodyType<NonReadonly<Address>>) => {
   return $apiWithGuard<Address>({
     url: `/profile/address/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: address,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: address
   });
 };
 
 /**
  * Адрес пользователя.
 
-Обновление и удаление адреса, доступно только для адреса, принадлежащего
-текущему пользователю.
+ Обновление и удаление адреса, доступно только для адреса, принадлежащего
+ текущему пользователю.
  */
 export const profileAddressRetrieve = (id: number) => {
-  return $apiWithGuard<Address>({ url: `/profile/address/${id}/`, method: 'GET' });
+  return $apiWithGuard<Address>({ url: `/profile/address/${id}/`, method: "GET" });
 };
 
 /**
  * Адрес пользователя.
 
-Обновление и удаление адреса, доступно только для адреса, принадлежащего
-текущему пользователю.
+ Обновление и удаление адреса, доступно только для адреса, принадлежащего
+ текущему пользователю.
  */
 export const profileAddressUpdate = (id: number, address: BodyType<NonReadonly<Address>>) => {
   return $apiWithGuard<Address>({
     url: `/profile/address/${id}/`,
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    data: address,
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    data: address
   });
 };
 
 /**
  * Адрес пользователя.
 
-Обновление и удаление адреса, доступно только для адреса, принадлежащего
-текущему пользователю.
+ Обновление и удаление адреса, доступно только для адреса, принадлежащего
+ текущему пользователю.
  */
 export const profileAddressPartialUpdate = (id: number, patchedAddress: BodyType<NonReadonly<PatchedAddress>>) => {
   return $apiWithGuard<Address>({
     url: `/profile/address/${id}/`,
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    data: patchedAddress,
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    data: patchedAddress
   });
 };
 
 /**
  * Адрес пользователя.
 
-Обновление и удаление адреса, доступно только для адреса, принадлежащего
-текущему пользователю.
+ Обновление и удаление адреса, доступно только для адреса, принадлежащего
+ текущему пользователю.
  */
 export const profileAddressDestroy = (id: number) => {
-  return $apiWithGuard<void>({ url: `/profile/address/${id}/`, method: 'DELETE' });
+  return $apiWithGuard<void>({ url: `/profile/address/${id}/`, method: "DELETE" });
 };
 
 export const profileAddressSearchRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/profile/address/search/`, method: 'GET' });
+  return $apiWithGuard<void>({ url: `/profile/address/search/`, method: "GET" });
 };
 
 export const profileCartRetrieve = () => {
-  return $apiWithGuard<Cart>({ url: `/profile/cart/`, method: 'GET' });
+  return $apiWithGuard<Cart>({ url: `/profile/cart/`, method: "GET" });
 };
 
 export const profileCartCreate = (cart: BodyType<NonReadonly<Cart>>) => {
   return $apiWithGuard<Cart>({
     url: `/profile/cart/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: cart,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: cart
   });
 };
 
 export const profileCartDestroy = () => {
-  return $apiWithGuard<void>({ url: `/profile/cart/`, method: 'DELETE' });
+  return $apiWithGuard<void>({ url: `/profile/cart/`, method: "DELETE" });
 };
 
 export const profileCartAddCreate = (cart: BodyType<NonReadonly<Cart>>) => {
   return $apiWithGuard<Cart>({
     url: `/profile/cart/add/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: cart,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: cart
   });
 };
 
 export const profileCartClearRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/profile/cart/clear/`, method: 'GET' });
+  return $apiWithGuard<void>({ url: `/profile/cart/clear/`, method: "GET" });
 };
 
 export const profileCartMaximizationRetrieve = () => {
-  return $apiWithGuard<Cart>({ url: `/profile/cart/maximization/`, method: 'GET' });
+  return $apiWithGuard<Cart>({ url: `/profile/cart/maximization/`, method: "GET" });
 };
 
 export const profileCartRemoveCreate = (cart: BodyType<NonReadonly<Cart>>) => {
   return $apiWithGuard<Cart>({
     url: `/profile/cart/remove/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: cart,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: cart
   });
 };
 
 export const profileFavoritesRetrieve = () => {
-  return $apiWithGuard<void>({ url: `/profile/favorites/`, method: 'GET' });
+  return $apiWithGuard<void>({ url: `/profile/favorites/`, method: "GET" });
 };
 
 export const profileFavoritesCreate = () => {
-  return $apiWithGuard<void>({ url: `/profile/favorites/`, method: 'POST' });
+  return $apiWithGuard<void>({ url: `/profile/favorites/`, method: "POST" });
 };
 
 export const profileFavoritesDestroy = () => {
-  return $apiWithGuard<void>({ url: `/profile/favorites/`, method: 'DELETE' });
+  return $apiWithGuard<void>({ url: `/profile/favorites/`, method: "DELETE" });
 };
 
 export const profileInfoRetrieve = () => {
-  return $apiWithGuard<UserDataSerialzier>({ url: `/profile/info/`, method: 'GET' });
+  return $apiWithGuard<UserDataSerialzier>({ url: `/profile/info/`, method: "GET" });
 };
 
 export const profileInfoCreate = (userDataSerialzier: BodyType<NonReadonly<UserDataSerialzier>>) => {
   return $apiWithGuard<UserDataSerialzier>({
     url: `/profile/info/`,
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    data: userDataSerialzier,
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    data: userDataSerialzier
   });
 };
 
 export const profileLoyaltyRetrieve = () => {
-  return $apiWithGuard<Loyalty>({ url: `/profile/loyalty/`, method: 'GET' });
+  return $apiWithGuard<Loyalty>({ url: `/profile/loyalty/`, method: "GET" });
 };
 
 export const profileLoyaltyDestroy = () => {
-  return $apiWithGuard<void>({ url: `/profile/loyalty/`, method: 'DELETE' });
+  return $apiWithGuard<void>({ url: `/profile/loyalty/`, method: "DELETE" });
 };
 
 export const profileLoyaltyFakerCreate = () => {
-  return $apiWithGuard<void>({ url: `/profile/loyalty/faker/`, method: 'POST' });
+  return $apiWithGuard<void>({ url: `/profile/loyalty/faker/`, method: "POST" });
 };
 
 export const profileLoyaltyHistoryList = () => {
-  return $apiWithGuard<LoyaltyHistory[]>({ url: `/profile/loyalty/history/`, method: 'GET' });
+  return $apiWithGuard<LoyaltyHistory[]>({ url: `/profile/loyalty/history/`, method: "GET" });
 };
 
 /**
  * OpenApi3 schema for this API. Format can be selected via content negotiation.
 
-- YAML: application/vnd.oai.openapi
-- JSON: application/vnd.oai.openapi+json
+ - YAML: application/vnd.oai.openapi
+ - JSON: application/vnd.oai.openapi+json
  */
 export const schemaRetrieve = (params?: SchemaRetrieveParams) => {
   return $apiWithGuard<SchemaRetrieve200One | SchemaRetrieve200Two | SchemaRetrieve200Three | SchemaRetrieve200Four>({
     url: `/schema/`,
-    method: 'GET',
-    params,
+    method: "GET",
+    params
   });
 };
 

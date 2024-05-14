@@ -1,6 +1,6 @@
-import { createGate } from 'effector-react';
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
-import { createEffect } from 'effector';
+import { createGate } from "effector-react";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { createEffect } from "effector";
 
 export const routerGate = createGate<AppRouterInstance>();
 

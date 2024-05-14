@@ -1,7 +1,7 @@
-import React from 'react';
-import Welcome from '../welcome/Welcome';
-import Sidebar from '../sidebar/Sidebar';
-import { ContactsModal } from '@widgets/contacts-modal/ui/contacts-modal';
+import React from "react";
+import Welcome from "../welcome/Welcome";
+import Sidebar from "../sidebar/Sidebar";
+import { ContactsModal } from "@widgets/contacts-modal/ui/contacts-modal";
 
 export const LkLayout = ({ children }: { children: React.ReactNode }) => {
   return (

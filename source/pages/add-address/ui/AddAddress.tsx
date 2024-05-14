@@ -1,13 +1,10 @@
-'use client';
-import React from 'react';
-import { TypeOfObtainAddress } from '@widgets/type-of-obtain-address';
-import { useUnit } from 'effector-react';
-import { $activeTypeAddressesSelf } from '@/stores/addresses/init';
-import { AddAddressCdek } from '@/source/features/add-address-cdek';
-import { AddAddressCourier } from '@/source/features/add-address-courier';
-import { YMaps } from 'react-yandex-maps';
-import { Select } from '@/source/features/add-address-cdek/ui/select/ui/select';
-import { deliveryTypeSelect } from '@pages/add-address/model/add-address-model';
+"use client";
+import React from "react";
+import { useUnit } from "effector-react";
+import { AddAddressCdek } from "@/source/features/add-address-cdek";
+import { AddAddressCourier } from "@/source/features/add-address-courier";
+import { Select } from "@/source/features/add-address-cdek/ui/select/ui/select";
+import { deliveryTypeSelect } from "@pages/add-address/model/add-address-model";
 
 export const AddAddress = () => {
   const deliveryType = useUnit(deliveryTypeSelect.$selectedItem);
@@ -18,9 +15,10 @@ export const AddAddress = () => {
         Добавьте Ваши адреса и удобные способы доставки для быстрого оформления покупок.
       </div>
       <div className="mt-5 mb-1 text-[14px]">Способ получения</div>
-      <Select model={deliveryTypeSelect} placeholder="Выберите способ получения" className="w-[425px]" />
-      {deliveryType?.type === 'cdek' && <AddAddressCdek />}
-      {deliveryType?.type === 'personal' && <AddAddressCourier />}
+      <Select model={deliveryTypeSelect} placeholder="Выберите способ получения"
+              className=" max-[465px]:w-full w-[425px]" />
+      {deliveryType?.type === "cdek" && <AddAddressCdek />}
+      {deliveryType?.type === "personal" && <AddAddressCourier />}
     </div>
   );
 };

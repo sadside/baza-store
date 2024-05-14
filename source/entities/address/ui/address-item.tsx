@@ -1,15 +1,15 @@
-import { Address } from '@shared/api/__generated__/generated-api.schemas';
-import React from 'react';
-import { Pickup, pickupChangeClicked } from '@widgets/create-order-form/model/second-step/step';
+import { Address } from "@shared/api/__generated__/generated-api.schemas";
+import React from "react";
+import { Pickup, pickupChangeClicked } from "@widgets/create-order-form/model/second-step/step";
 
 type Props = {
   address: Pickup;
 };
 
-const addressDeliveryType: Record<'cdek' | 'personal' | 'pickup', string> = {
-  ['cdek']: 'В пункте ПВЗ СДЕК',
-  ['personal']: 'Курьером',
-  ['pickup']: 'В магазине BAZA',
+const addressDeliveryType: Record<"cdek" | "personal" | "pickup", string> = {
+  ["cdek"]: "В пункте ПВЗ СДЕК",
+  ["personal"]: "Курьером",
+  ["pickup"]: "В магазине BAZA"
 };
 
 export const AddressItem = ({ address }: Props) => {
@@ -18,7 +18,7 @@ export const AddressItem = ({ address }: Props) => {
       <div className="text-[12px] ">
         <div className="font-medium ">Способ получения</div>
         <div className="font-semibold uppercase">
-          {addressDeliveryType[address.type as 'cdek' | 'personal' | 'pickup']}
+          {addressDeliveryType[address.type as "cdek" | "personal" | "pickup"]}
         </div>
         <div className="font-medium mt-[16px]">Адрес</div>
         <div className="font-semibold uppercase ">{address.address}</div>

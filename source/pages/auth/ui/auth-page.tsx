@@ -1,21 +1,20 @@
-'use client';
+"use client";
 
-import { yupResolver } from '@hookform/resolvers/yup';
-import Head from 'next/head';
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
+import { yupResolver } from "@hookform/resolvers/yup";
+import Head from "next/head";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
 
-import styles from './auth-page.module.scss';
-import axios from 'axios';
-import { useUnit } from 'effector-react';
-import { useLayoutEffect } from 'react';
-import { $currentCountryCode, $isSelectCodeOpened } from '@/source/shared/ui/PhoneInput/model/countryCodes';
-import { $api, API_URL_CLIENT } from '@shared/api/http/axios-instance';
-import { PhoneInput } from '@/source/shared/ui/PhoneInput';
-import { Button } from '@/source/shared/theme/button';
-import { toast } from 'sonner';
-import { $user, phoneInputSubmitted } from '@entities/user/model/user-model';
+import styles from "./auth-page.module.scss";
+import { useUnit } from "effector-react";
+import { useLayoutEffect } from "react";
+import { $currentCountryCode, $isSelectCodeOpened } from "@/source/shared/ui/PhoneInput/model/countryCodes";
+import { $api } from "@shared/api/http/axios-instance";
+import { PhoneInput } from "@/source/shared/ui/PhoneInput";
+import { Button } from "@/source/shared/theme/button";
+import { toast } from "sonner";
+import { $user, phoneInputSubmitted } from "@entities/user/model/user-model";
 
 type Props = {};
 
@@ -24,7 +23,7 @@ export type RegisterFormValues = {
 };
 
 const schema = yup.object().shape({
-  phoneNumber: yup.string().required('Введите номер телефона'),
+  phoneNumber: yup.string().required("Введите номер телефона")
 });
 
 export const AuthPage = ({}: Props) => {
@@ -34,31 +33,31 @@ export const AuthPage = ({}: Props) => {
   const phoneCode = useUnit($currentCountryCode);
 
   useLayoutEffect(() => {
-    if (user) push('/');
+    if (user) push("/");
   }, []);
 
   const {
     register,
     handleSubmit,
     resetField,
-    formState: { errors },
+    formState: { errors }
   } = useForm<RegisterFormValues>({
     resolver: yupResolver(schema),
-    mode: 'onChange',
+    mode: "onChange"
   });
 
   //TODO: ВЫНЕСТИ В СТМ
 
   const onSubmit = handleSubmit(async (data) => {
     const res = await $api.post(`auth/send-code/`, {
-      phone: phoneCode + data.phoneNumber,
+      phone: phoneCode + data.phoneNumber
     });
 
     if (res.status === 201) {
       phoneInputSubmitted(data.phoneNumber);
-      push('/confirm-code');
+      push("/confirm-code");
     }
-    if (res.status === 400) toast('Номер телефона не соответствует формату.');
+    if (res.status === 400) toast("Номер телефона не соответствует формату.");
   });
 
   return (
@@ -70,12 +69,12 @@ export const AuthPage = ({}: Props) => {
         <form className={styles.form} onSubmit={onSubmit}>
           <div className={styles.content}>
             <div className={styles.authTitle}>ВХОД / РЕГИСТРАЦИЯ</div>
-            <div style={{ marginBottom: 14 }}>
+            <div style={{ marginBottom: 14, width: "100%" }}>
               <PhoneInput
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
                 type="tel"
                 error={Boolean(errors?.phoneNumber?.message)}
-                className="w-[392px]"
+                className="w-full"
                 register={register}
                 name="phoneNumber"
                 resetFiled={resetField}

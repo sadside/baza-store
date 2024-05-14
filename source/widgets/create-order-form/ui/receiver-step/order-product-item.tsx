@@ -1,3 +1,4 @@
 type OrderProductItemProps = {};
 
-export const OrderProductItem = ({}) => {};
+export const OrderProductItem = ({}) => {
+};

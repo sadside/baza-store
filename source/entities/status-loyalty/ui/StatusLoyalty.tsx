@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import classNames from 'classnames';
-import { useUnit } from 'effector-react';
-import { $loyalty } from '@entities/loyalty/model/loyalty-model';
+import classNames from "classnames";
+import { useUnit } from "effector-react";
+import { $loyalty } from "@entities/loyalty/model/loyalty-model";
 
 export const StatusLoyalty = () => {
   const loyalty = useUnit($loyalty);
 
-  const newStatus = loyalty?.status || 'black';
+  const newStatus = loyalty?.status || "black";
 
   let cahsback = 0;
 
   switch (loyalty?.status) {
-    case 'black':
+    case "black":
       cahsback = 5;
       break;
-    case 'platinum':
+    case "platinum":
       cahsback = 10;
       break;
-    case 'gold':
+    case "gold":
       cahsback = 7;
       break;
   }
@@ -35,10 +35,10 @@ export const StatusLoyalty = () => {
           <div>До следующего статуса</div>
         </div>
       </div>
-      <div className={'grid grid-cols-3 mt-2.5  '}>
+      <div className={"grid grid-cols-3 mt-2.5  "}>
         <div
           className={classNames(
-            'border-t-black text-black flex justify-center border-t-[1px] mr-[5px] items-center flex-col'
+            "border-t-black text-black flex justify-center border-t-[1px] mr-[5px] items-center flex-col"
           )}
         >
           <div className="uppercase font-medium pt-[2px]  text-black">Black</div>
@@ -46,8 +46,8 @@ export const StatusLoyalty = () => {
         </div>
         <div
           className={classNames(
-            'flex justify-center border-t-[1px] mr-[5px] items-center flex-col',
-            newStatus === 'black' ? 'border-t-black-100' : 'border-t-black text-black'
+            "flex justify-center border-t-[1px] mr-[5px] items-center flex-col",
+            newStatus === "black" ? "border-t-black-100" : "border-t-black text-black"
           )}
         >
           <div className="uppercase font-medium pt-[2px] ">gold</div>
@@ -55,8 +55,8 @@ export const StatusLoyalty = () => {
         </div>
         <div
           className={classNames(
-            'flex justify-center border-t-[1px]  items-center flex-col',
-            newStatus === 'black' || newStatus === 'gold' ? 'border-t-black-100' : 'border-t-black text-black'
+            "flex justify-center border-t-[1px]  items-center flex-col",
+            newStatus === "black" || newStatus === "gold" ? "border-t-black-100" : "border-t-black text-black"
           )}
         >
           <div className="uppercase font-medium pt-[2px] ">platinum</div>

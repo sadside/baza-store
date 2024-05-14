@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React from 'react';
-import s from './InfoBlock.module.scss';
-import Link from 'next/link';
-import { useUnit } from 'effector-react';
-import { clickCategory } from '@/stores/lc/init';
-import { $user } from '@entities/user/model/user-model';
+import React from "react";
+import s from "./InfoBlock.module.scss";
+import Link from "next/link";
+import { useUnit } from "effector-react";
+import { clickCategory } from "@/stores/lc/init";
+import { $user } from "@entities/user/model/user-model";
 
 type Props = {};
 
@@ -20,25 +20,25 @@ export const InfoBlock = (props: Props) => {
           <div className={s.line}>
             <span className={s.tag}>Имя: </span>
             <span suppressHydrationWarning className={s.right}>
-              {user?.name ? user.name : 'Необходимо заполнить.'}
+              {user?.name ? user.name : "Необходимо заполнить."}
             </span>
           </div>
           <div className={s.line}>
             <span className={s.tag}>Фамилия:</span>
             <span suppressHydrationWarning className={s.right}>
-              {user?.surname ? user.surname : 'Необходимо заполнить.'}
+              {user?.surname ? user.surname : "Необходимо заполнить."}
             </span>
           </div>
           <div className={s.line}>
             <span className={s.tag}>E-mail:</span>
             <span suppressHydrationWarning className={`${s.right} ${s.done}`}>
-              {user?.email ? user.email : 'Необходимо заполнить.'}
+              {user?.email ? user.email : "Необходимо заполнить."}
             </span>
           </div>
           <div className={s.line}>
             <span className={s.tag}>Телефон:</span>
             <span suppressHydrationWarning className={`${s.right} ${s.done}`}>
-              {user?.phone ? user.phone : 'Необходимо заполнить.'}
+              {user?.phone ? user.phone : "Необходимо заполнить."}
             </span>
           </div>
         </div>

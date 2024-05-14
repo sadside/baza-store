@@ -1,14 +1,14 @@
-'use client';
-import { createEffect, createEvent, createStore, sample } from 'effector';
-import { invoke } from '@withease/factories';
-import { createAutocomplete } from '@shared/theme/autocomplete/model/autocomplete-model';
-import { $apiWithGuard, API_URL_CLIENT } from '@shared/api/http/axios-instance';
-import { Fields } from '@/source/features/add-address-courier/model/add-address-courier-model';
-import { Address } from '@shared/api/__generated__/generated-api.schemas';
-import { toast } from 'sonner';
-import { createSelect } from '@/source/features/add-address-cdek/ui/select/model/select-model';
-import axios from 'axios';
-import { SdekPoint } from '@/source/features/add-address-cdek/model/add-address-cdek';
+"use client";
+import { createEffect, createEvent, createStore, sample } from "effector";
+import { invoke } from "@withease/factories";
+import { createAutocomplete } from "@shared/theme/autocomplete/model/autocomplete-model";
+import { $apiWithGuard, API_URL_CLIENT } from "@shared/api/http/axios-instance";
+import { Fields } from "@/source/features/add-address-courier/model/add-address-courier-model";
+import { Address } from "@shared/api/__generated__/generated-api.schemas";
+import { toast } from "sonner";
+import { createSelect } from "@/source/features/add-address-cdek/ui/select/model/select-model";
+import axios from "axios";
+import { SdekPoint } from "@/source/features/add-address-cdek/model/add-address-cdek";
 
 export const tabChanged = createEvent<string>();
 
@@ -24,11 +24,11 @@ export const orderCommentChanged = createEvent<string>();
 
 const getCdekPointsFx = createEffect(async (city: string) => {
   try {
-    const res = await axios.get<SdekPoint[]>('https://thebaza.ru/service/cdek/delivery-points', {
+    const res = await axios.get<SdekPoint[]>("https://thebaza.ru/service/cdek/delivery-points", {
       params: {
-        city,
+        city
       },
-      withCredentials: true,
+      withCredentials: true
     });
 
     return res.data;
@@ -37,22 +37,22 @@ const getCdekPointsFx = createEffect(async (city: string) => {
   }
 });
 
-export const $activeTab = createStore<string>('personal').on(tabChanged, (_, tabChanged) => tabChanged);
+export const $activeTab = createStore<string>("personal").on(tabChanged, (_, tabChanged) => tabChanged);
 export const $autocompleteError = createStore<string | null>(null);
 export const $cdekAutocompleteError = createStore<string | null>(null);
-export const $orderComment = createStore<string>('').on(orderCommentChanged, (_, text) => text);
+export const $orderComment = createStore<string>("").on(orderCommentChanged, (_, text) => text);
 
-export const $apartment = createStore<string>('').on(apartmentChanged, (_, value) => value);
-export const $floor_number = createStore<string>('').on(floorNumberChanged, (_, value) => value);
-export const $intercom = createStore<string>('').on(intercomChanged, (_, value) => value);
+export const $apartment = createStore<string>("").on(apartmentChanged, (_, value) => value);
+export const $floor_number = createStore<string>("").on(floorNumberChanged, (_, value) => value);
+export const $intercom = createStore<string>("").on(intercomChanged, (_, value) => value);
 
 export const selectPersonalPickUpAutocomplete = invoke(createAutocomplete, {
-  url: `${API_URL_CLIENT}profile/address/search/`,
+  url: `${API_URL_CLIENT}profile/address/search/`
 });
 export const cityForCdekAutocomplete = invoke(createAutocomplete, {
-  url: 'https://thebaza.ru/service/cdek/cities/search',
+  url: "https://thebaza.ru/service/cdek/cities/search"
 });
-export const cdekPointsSelect = invoke(createSelect<SdekPoint, 'address'>, { renderField: 'address' });
+export const cdekPointsSelect = invoke(createSelect<SdekPoint, "address">, { renderField: "address" });
 
 export const $showPointsSelect = createStore(false)
   .on(getCdekPointsFx.doneData, () => true)
@@ -66,8 +66,8 @@ export type TariffSelect = {
 };
 
 export enum DELIVERY_TARIFFS {
-  COMMON = 'common',
-  EXPRESS = 'express',
+  COMMON = "common",
+  EXPRESS = "express",
 }
 
 const tariffs: TariffSelect[] = [
@@ -75,17 +75,17 @@ const tariffs: TariffSelect[] = [
     id: 1,
     value: DELIVERY_TARIFFS.COMMON,
     price: 1200,
-    label: 'Обычная - 1200₽',
+    label: "Обычная - 1200₽"
   },
   {
     id: 2,
     value: DELIVERY_TARIFFS.EXPRESS,
     price: 1500,
-    label: 'Экспресс - 1500₽',
-  },
+    label: "Экспресс - 1500₽"
+  }
 ];
 
-export const tariffSelect = invoke(createSelect<TariffSelect, 'label'>, { renderField: 'label', items: tariffs });
+export const tariffSelect = invoke(createSelect<TariffSelect, "label">, { renderField: "label", items: tariffs });
 export const $selectTariffError = createStore(false);
 export const $selectCdekError = createStore(false);
 
@@ -93,14 +93,14 @@ sample({
   clock: personalFormSubmitted,
   source: selectPersonalPickUpAutocomplete.$selectedItem,
   filter: (selectedItem) => !Boolean(selectedItem),
-  fn: () => 'Это обязательное поле.',
-  target: $autocompleteError,
+  fn: () => "Это обязательное поле.",
+  target: $autocompleteError
 });
 
 sample({
   clock: selectPersonalPickUpAutocomplete.$selectedItem,
   fn: () => null,
-  target: $autocompleteError,
+  target: $autocompleteError
 });
 
 sample({
@@ -108,7 +108,7 @@ sample({
   source: selectPersonalPickUpAutocomplete.$selectedItem,
   filter: (selectedItem) => Boolean(selectedItem),
   fn: () => null,
-  target: $autocompleteError,
+  target: $autocompleteError
 });
 
 sample({
@@ -116,7 +116,7 @@ sample({
   source: tariffSelect.$selectedItem,
   filter: (selectedItem) => !Boolean(selectedItem),
   fn: () => true,
-  target: $selectTariffError,
+  target: $selectTariffError
 });
 
 sample({
@@ -124,34 +124,34 @@ sample({
   source: tariffSelect.$selectedItem,
   filter: (selectedItem) => Boolean(selectedItem),
   fn: () => false,
-  target: $selectTariffError,
+  target: $selectTariffError
 });
 
 sample({
   clock: tariffSelect.$selectedItem,
   fn: () => false,
-  target: $selectTariffError,
+  target: $selectTariffError
 });
 
 sample({
   clock: cityForCdekAutocomplete.$selectedItem,
   fn: () => null,
-  target: $cdekAutocompleteError,
+  target: $cdekAutocompleteError
 });
 
 sample({
   clock: cdekFormSubmitted,
   source: cityForCdekAutocomplete.$selectedItem,
   filter: (selectedItem) => !Boolean(selectedItem),
-  fn: () => 'Это обязательное поле.',
-  target: $cdekAutocompleteError,
+  fn: () => "Это обязательное поле.",
+  target: $cdekAutocompleteError
 });
 sample({
   clock: cdekFormSubmitted,
   source: cityForCdekAutocomplete.$selectedItem,
   filter: (selectedItem) => Boolean(selectedItem),
   fn: () => null,
-  target: $cdekAutocompleteError,
+  target: $cdekAutocompleteError
 });
 
 sample({
@@ -159,7 +159,7 @@ sample({
   source: cdekPointsSelect.$selectedItem,
   filter: (selectedItem) => !Boolean(selectedItem),
   fn: () => true,
-  target: $selectCdekError,
+  target: $selectCdekError
 });
 
 sample({
@@ -167,26 +167,26 @@ sample({
   source: cdekPointsSelect.$selectedItem,
   filter: (selectedItem) => Boolean(selectedItem),
   fn: () => false,
-  target: $selectCdekError,
+  target: $selectCdekError
 });
 
 sample({
   clock: cdekPointsSelect.$selectedItem,
   fn: () => false,
-  target: $selectCdekError,
+  target: $selectCdekError
 });
 
 sample({
   clock: cityForCdekAutocomplete.itemSelected,
-  target: getCdekPointsFx,
+  target: getCdekPointsFx
 });
 
 sample({
   clock: getCdekPointsFx.doneData,
-  target: cdekPointsSelect.$items,
+  target: cdekPointsSelect.$items
 });
 
 sample({
   clock: cityForCdekAutocomplete.$selectedItem,
-  target: cdekPointsSelect.reset,
+  target: cdekPointsSelect.reset
 });

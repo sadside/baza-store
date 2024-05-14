@@ -1,72 +1,74 @@
 .wrapper {
-	flex: 0 0 auto;
-	height: 70px;
-	display: flex;
-	z-index: 2;
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	align-items: center;
+  flex: 0 0 auto;
+  height: 60px;
+  display: flex;
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
 
-	margin-right: 0 !important;
-	justify-content: space-around;
-	@media (max-width: 1000px) {
-		justify-content: space-between;
-	}
+  margin-right: 0 !important;
+  justify-content: space-around;
+  @media (max-width: 1000px) {
+    justify-content: space-between;
+  }
 
-	.hide {
-		transform: translateY(-70px);
-	}
+  .hide {
+    transform: translateY(-70px);
+  }
 
-	@media (max-width: 1200px) {
-		display: none;
-	}
-	
-	.logo {
-		display: flex;
-		// width: 200px;
-		align-items: center;
-		margin-left: 40px;
-		margin-right: 40px;
-		height: 40px;
-		@media (max-width: 1000px) {
-			margin-left: 20px;
-		}
-	}
-	
-	.logoWrapper {
-		flex: 1 1 50%;
-	}
+  @media (max-width: 770px) {
+    display: none;
+  }
 
-	.linksWrapper {
-		flex: 1 1 50%;
-		margin-right: 0 !important;
-		padding: 0 30px;
-		background-color: #fff;
-		display: flex;
-		align-items: center;
-		height: 100%;
-		width: 100% !important;
-		justify-content: space-between;
-		border-bottom: 1px solid #ccc;
-	}
-	
-	.userIcon {
-		a {
-			margin: 0;
-			padding: 0;
-			height: 25px;
-		}
-	}
+  .logo {
+    display: flex;
+    // width: 200px;
+    align-items: center;
+    margin-left: 40px;
+    margin-right: 40px;
+    height: 40px;
+    @media (max-width: 1000px) {
+      margin-left: 20px;
+    }
+  }
+
+  .logoWrapper {
+    flex: 1 1 50%;
+  }
+
+  .linksWrapper {
+    flex: 1 1 50%;
+    margin-right: 0 !important;
+    padding: 0 30px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100% !important;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .userIcon {
+    a {
+      margin: 0;
+      padding: 0;
+      height: 25px;
+    }
+  }
 }
 
 .opacity {
-	background: none !important;
-	* {
-		color: #fff !important;
-		background: none;
-		border-color: #fff !important;
-	}
-	border: none !important;
+  background: none !important;
+
+  * {
+    color: #fff !important;
+    background: none;
+    border-color: #fff !important;
+  }
+
+  border: none !important;
 }

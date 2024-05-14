@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import ActualOrder from '@entities/order/ui/actual-order';
-import { ActualOrderActions } from '@/source/features/actual-order-actions';
-import { useUnit } from 'effector-react';
-import { $actualOrders, getOrdersFx } from '@entities/order/model/order-model';
-import { OrdersEmpty } from '@entities/order/ui/orders-empty';
-import { Skeleton } from '@shared/ui/shadcn/ui/skeleton';
+import ActualOrder from "@entities/order/ui/actual-order";
+import { ActualOrderActions } from "@/source/features/actual-order-actions";
+import { useUnit } from "effector-react";
+import { $actualOrders, getOrdersFx } from "@entities/order/model/order-model";
+import { OrdersEmpty } from "@entities/order/ui/orders-empty";
+import { Skeleton } from "@shared/ui/shadcn/ui/skeleton";
 
 export const LkActualOrders = () => {
   const actualOrders = useUnit($actualOrders);

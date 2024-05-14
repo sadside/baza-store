@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useDeferredValue } from 'react';
-import s from './index.module.scss';
-import classNames from 'classnames';
-import { InputPhoneMask } from '@/components/ui/inputPhoneMask/InputPhoneMask';
-import InputForm from '@/components/inputForm/InputForm';
-import { InputNameMask } from '@/components/inputNameMask/InputNameMask';
+import React, { useDeferredValue } from "react";
+import s from "./index.module.scss";
+import classNames from "classnames";
+import { InputPhoneMask } from "@/components/ui/inputPhoneMask/InputPhoneMask";
+import InputForm from "@/components/inputForm/InputForm";
+import { InputNameMask } from "@/components/inputNameMask/InputNameMask";
 import {
   $cityInputValue,
   $citySuggestions,
@@ -23,12 +23,12 @@ import {
   houseInputChanged,
   houseSelected,
   streetInputChanged,
-  streetSelected,
-} from '@/stores/order/init';
-import { useUnit } from 'effector-react';
-import { Loader } from '@/components/loader/Loader';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useOutside } from '@shared/lib/utils/hooks/useOutside';
+  streetSelected
+} from "@/stores/order/init";
+import { useUnit } from "effector-react";
+import { Loader } from "@/components/loader/Loader";
+import { AnimatePresence, motion } from "framer-motion";
+import { useOutside } from "@shared/lib/utils/hooks/useOutside";
 
 interface IProps {
   title?: string;
@@ -72,7 +72,7 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
               <span className={s.title}>Имя*</span>
               <span className={s.prov}>
                 <InputNameMask
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   name="name"
                   register={register}
                   error={Boolean(errors.name)}
@@ -85,7 +85,7 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
               <span className={s.title}>Фамилия*</span>
               <span className={s.prov}>
                 <InputNameMask
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   name="surname"
                   register={register}
                   error={Boolean(errors.surname)}
@@ -98,11 +98,11 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
               <span className={s.title}>E-mail*</span>
               <span className={s.prov}>
                 <input
-                  {...register('mail', {
-                    required: 'Введите E-mail',
+                  {...register("mail", {
+                    required: "Введите E-mail"
                   })}
                   className={classNames(s.input, errors.mail && s.error)}
-                  placeholder={'Введите E-mail..'}
+                  placeholder={"Введите E-mail.."}
                 />
                 {errors.mail && <span className={s.txt}>{errors.mail?.message}</span>}
               </span>
@@ -111,7 +111,7 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
               <span className={s.title}>Телефон*</span>
               <span className={s.prov}>
                 <InputPhoneMask
-                  style={{ width: '100%' }}
+                  style={{ width: "100%" }}
                   resetFiled={reset}
                   error={!!errors.phone}
                   register={register}
@@ -145,19 +145,19 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
                         className={s.select}
                         initial={{ height: 0, opacity: 0 }}
                         style={{
-                          overflow: 'hidden',
+                          overflow: "hidden"
                         }}
                         transition={{
                           duration: 0.3,
-                          type: 'tween',
+                          type: "tween"
                         }}
                         animate={{
-                          height: 'min-content',
-                          opacity: 1,
+                          height: "min-content",
+                          opacity: 1
                         }}
                         exit={{
                           height: 0,
-                          opacity: 0,
+                          opacity: 0
                         }}
                       >
                         {!loadingCitySuggestions &&
@@ -189,7 +189,7 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                       if (selectedCity) streetInputChanged(e.target.value);
                       // else toast.error("Введите город");
-                      else alert('Введите город.');
+                      else alert("Введите город.");
                     }}
                     value={streetInputValue}
                     className={classNames(s.input, errors.city && s.error)}
@@ -201,19 +201,19 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
                         className={s.select}
                         initial={{ height: 0, opacity: 0 }}
                         style={{
-                          overflow: 'hidden',
+                          overflow: "hidden"
                         }}
                         transition={{
                           duration: 0.3,
-                          type: 'tween',
+                          type: "tween"
                         }}
                         animate={{
-                          height: 'min-content',
-                          opacity: 1,
+                          height: "min-content",
+                          opacity: 1
                         }}
                         exit={{
                           height: 0,
-                          opacity: 0,
+                          opacity: 0
                         }}
                       >
                         {!loadingStreetSuggestions &&
@@ -244,7 +244,7 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
                       if (selectedStreet) {
                         houseInputChanged(e.target.value);
                         setIsShow(true);
-                      } else alert('Введите улицу и город.');
+                      } else alert("Введите улицу и город.");
                     }}
                     value={houseInputValue}
                     className={classNames(s.input, errors.city && s.error)}
@@ -256,19 +256,19 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
                         className={s.select}
                         initial={{ height: 0, opacity: 0 }}
                         style={{
-                          overflow: 'hidden',
+                          overflow: "hidden"
                         }}
                         transition={{
                           duration: 0.3,
-                          type: 'tween',
+                          type: "tween"
                         }}
                         animate={{
-                          height: 'min-content',
-                          opacity: 1,
+                          height: "min-content",
+                          opacity: 1
                         }}
                         exit={{
                           height: 0,
-                          opacity: 0,
+                          opacity: 0
                         }}
                       >
                         {!loadingHouseSuggestions &&
@@ -289,8 +289,8 @@ const ZakazDannie = ({ title, main, errors, reset, register, resetField, setValu
                   </AnimatePresence>
                 </span>
               </div>
-              <InputForm register={register} placeholder={'№'} type={'frame'} reset={resetField} form={true} />
-              <InputForm register={register} placeholder={'№'} type={'room'} reset={resetField} form={true} />
+              <InputForm register={register} placeholder={"№"} type={"frame"} reset={resetField} form={true} />
+              <InputForm register={register} placeholder={"№"} type={"room"} reset={resetField} form={true} />
             </div>
           </>
         )}

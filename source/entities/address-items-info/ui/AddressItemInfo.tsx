@@ -1,13 +1,13 @@
-import React from 'react';
-import { Address } from '@shared/api/__generated__/generated-api.schemas';
+import React from "react";
+import { Address } from "@shared/api/__generated__/generated-api.schemas";
 
 type Props = {
   address: Address;
 };
 
-const addressDeliveryType: Record<'cdek' | 'personal', string> = {
-  ['cdek']: 'В пункте ПВЗ СДЕК',
-  ['personal']: 'Курьером',
+const addressDeliveryType: Record<"cdek" | "personal", string> = {
+  ["cdek"]: "В пункте ПВЗ СДЕК",
+  ["personal"]: "Курьером"
 };
 
 export const AddressItemInfo = ({ address }: Props) => {

@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import { useUnit } from 'effector-react';
-import React from 'react';
+import { useUnit } from "effector-react";
+import React from "react";
 
-import styles from './MenuCart.module.scss';
-import { $cart, addProductToServerFx, getCartFromServerFx } from '@entities/cart/model/cart-model';
-import { Loader } from '@/components/loader/Loader';
+import styles from "./MenuCart.module.scss";
+import { $cart, addProductToServerFx, getCartFromServerFx } from "@entities/cart/model/cart-model";
+import { Loader } from "@/components/loader/Loader";
 
 type Props = {};
 

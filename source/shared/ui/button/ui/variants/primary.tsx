@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-import styles from './styles/primary.module.scss';
-import { Loader } from '@/components/loader/Loader';
-import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, useState } from 'react';
-import classNames from 'classnames/bind';
-import { BUTTON_VARIANTS } from '@shared/ui/button/ui/button-wrapper';
-import { twMerge } from 'tailwind-merge';
+import styles from "./styles/primary.module.scss";
+import { Loader } from "@/components/loader/Loader";
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactNode, useState } from "react";
+import classNames from "classnames/bind";
+import { BUTTON_VARIANTS } from "@shared/ui/button/ui/button-wrapper";
 
 export interface primaryProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
   children: ReactNode;
@@ -20,7 +19,7 @@ export const Primary = ({ children, loading, disabled, className, ...props }: pr
   const buttonCls = cx({
     wrapper: true,
     disabled,
-    focused,
+    focused
   });
 
   return (

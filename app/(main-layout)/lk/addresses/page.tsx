@@ -1,5 +1,5 @@
-import React from 'react';
-import { AddressesPage } from '@pages/adress';
+import React from "react";
+import { AddressesPage } from "@pages/adress";
 
 const Addresses = () => {
   return <AddressesPage />;

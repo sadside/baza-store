@@ -1,10 +1,10 @@
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
-import styles from './button-wrapper.module.scss';
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
+import styles from "./button-wrapper.module.scss";
 
 export enum BUTTON_VARIANTS {
-  PRIMARY = 'primary',
-  SECONDARY = 'secondary',
-  COUNT = 'count',
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
+  COUNT = "count",
 }
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

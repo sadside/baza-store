@@ -1,8 +1,8 @@
-import { IOrder, IOrderPaymentData } from '@shared/types/models/Order';
-import OrderServise from '@/services/OrderService';
-import axios from 'axios';
-import { createEffect, createEvent, createStore, sample } from 'effector';
-import { API_URL_CLIENT } from '@shared/api/http/axios-instance';
+import { IOrder, IOrderPaymentData } from "@shared/types/models/Order";
+import OrderServise from "@/services/OrderService";
+import axios from "axios";
+import { createEffect, createEvent, createStore, sample } from "effector";
+import { API_URL_CLIENT } from "@shared/api/http/axios-instance";
 
 const clickSam = createEvent();
 const clickDost = createEvent();
@@ -21,7 +21,7 @@ export const createOrderFx = createEffect(async (data: any) => {
 export const getOrders = createEffect(async () => {
   try {
     const res = await axios.get(`${API_URL_CLIENT}orders/orders/`, {
-      withCredentials: true,
+      withCredentials: true
     });
 
     return res.data as IOrder[];
@@ -32,13 +32,13 @@ export const getOrders = createEffect(async () => {
 
 sample({
   clock: createOrderFx.doneData,
-  target: $orders,
+  target: $orders
 });
 
 const getOrderPaymentDataFx = createEffect(async () => {
   try {
     const res = await axios.get<IOrderPaymentData>(`${API_URL_CLIENT}orders/calculate/`, {
-      withCredentials: true,
+      withCredentials: true
     });
 
     return res.data;
@@ -48,40 +48,40 @@ const getOrderPaymentDataFx = createEffect(async () => {
 });
 
 const $orderPaymentData = createStore<IOrderPaymentData | null>(null);
-const $activeMeth = createStore<string>('sam')
-  .on(clickSam, () => 'sam')
-  .on(clickDost, () => 'dost');
+const $activeMeth = createStore<string>("sam")
+  .on(clickSam, () => "sam")
+  .on(clickDost, () => "dost");
 
-const $activeOplata = createStore<string>('Onl').on(clickOplata, (_, payload) => payload);
+const $activeOplata = createStore<string>("Onl").on(clickOplata, (_, payload) => payload);
 
 sample({
   clock: orderPageMounted,
-  target: getOrderPaymentDataFx,
+  target: getOrderPaymentDataFx
 });
 
 sample({
   clock: getOrders.doneData,
-  target: $orders,
+  target: $orders
 });
 
 sample({
   clock: getOrderPaymentDataFx.doneData,
-  target: $orderPaymentData,
+  target: $orderPaymentData
 });
 
 export const cityInputChanged = createEvent<string>();
 export const citySelected = createEvent<string>();
 
-export const $selectedCity = createStore<string>('')
+export const $selectedCity = createStore<string>("")
   .on(citySelected, (_, state) => state)
   .reset(cityInputChanged);
 
-export const getOrderPriceInfoFx = createEffect(async (address = '') => {
+export const getOrderPriceInfoFx = createEffect(async (address = "") => {
   try {
     const response = await axios.get(`${API_URL_CLIENT}orders/calculate/`, {
       params: {
-        delivery_address: address,
-      },
+        delivery_address: address
+      }
     });
 
     return response.data as IOrderPaymentData;
@@ -106,9 +106,9 @@ export const getCitySuggestionsFx = createEffect(async (string: string) => {
     const response = await axios.get(`${API_URL_CLIENT}profile/search-address/`, {
       params: {
         q: string,
-        type: 'city',
-        limit: 5,
-      },
+        type: "city",
+        limit: 5
+      }
     });
 
     return response.data as string[];
@@ -116,7 +116,7 @@ export const getCitySuggestionsFx = createEffect(async (string: string) => {
     return [];
   }
 });
-export const $cityInputValue = createStore('')
+export const $cityInputValue = createStore("")
   .on(cityInputChanged, (_, payload) => payload)
   .on(citySelected, (_, city) => city);
 export const $citySuggestions = createStore<string[]>([]);
@@ -124,17 +124,17 @@ export const $citySuggestions = createStore<string[]>([]);
 sample({
   clock: citySelected,
   fn: () => [],
-  target: $citySuggestions,
+  target: $citySuggestions
 });
 
 sample({
   clock: cityInputChanged,
-  target: getCitySuggestionsFx,
+  target: getCitySuggestionsFx
 });
 
 sample({
   clock: getCitySuggestionsFx.doneData,
-  target: $citySuggestions,
+  target: $citySuggestions
 });
 
 // street
@@ -147,9 +147,9 @@ export const getStreetSuggestionsFx = createEffect(async ({ street, city }: { st
     const response = await axios.get(`${API_URL_CLIENT}profile/search-address/`, {
       params: {
         q: `${city}, ${street}`,
-        type: 'street',
-        limit: 5,
-      },
+        type: "street",
+        limit: 5
+      }
     });
 
     return response.data as string[];
@@ -157,7 +157,7 @@ export const getStreetSuggestionsFx = createEffect(async ({ street, city }: { st
     return [];
   }
 });
-export const $streetInputValue = createStore('')
+export const $streetInputValue = createStore("")
   .on(streetInputChanged, (_, payload) => payload)
   .reset(cityInputChanged);
 
@@ -168,20 +168,20 @@ export const $streetSuggestions = createStore<string[]>([]);
 
 sample({
   clock: streetSelected,
-  target: $streetInputValue,
+  target: $streetInputValue
 });
 
 sample({
   clock: streetSelected,
   fn: () => [],
-  target: $streetSuggestions,
+  target: $streetSuggestions
 });
 
 sample({
   clock: streetInputChanged,
-  filter: (street) => street === '',
+  filter: (street) => street === "",
   fn: () => [],
-  target: $streetSuggestions,
+  target: $streetSuggestions
 });
 
 sample({
@@ -189,12 +189,12 @@ sample({
   clock: streetInputChanged,
   filter: ({ city }, street) => !!city && !!street,
   fn: ({ city }, street) => ({ city, street }),
-  target: getStreetSuggestionsFx,
+  target: getStreetSuggestionsFx
 });
 
 sample({
   clock: getStreetSuggestionsFx.doneData,
-  target: $streetSuggestions,
+  target: $streetSuggestions
 });
 
 // house
@@ -208,9 +208,9 @@ export const getHouseSuggestionsFx = createEffect(
       const response = await axios.get(`${API_URL_CLIENT}profile/search-address/`, {
         params: {
           q: `${city}, ${street}, ${house}`,
-          type: 'house',
-          limit: 5,
-        },
+          type: "house",
+          limit: 5
+        }
       });
 
       return response.data as string[];
@@ -219,7 +219,7 @@ export const getHouseSuggestionsFx = createEffect(
     }
   }
 );
-export const $houseInputValue = createStore('')
+export const $houseInputValue = createStore("")
   .on(houseInputChanged, (_, payload) => payload)
   .reset(cityInputChanged, streetInputChanged);
 
@@ -230,20 +230,20 @@ export const $houseSuggestions = createStore<string[]>([]);
 
 sample({
   clock: houseSelected,
-  target: $houseInputValue,
+  target: $houseInputValue
 });
 
 sample({
   clock: houseSelected,
   fn: () => [],
-  target: $houseSuggestions,
+  target: $houseSuggestions
 });
 
 sample({
   clock: houseInputChanged,
-  filter: (house) => house === '',
+  filter: (house) => house === "",
   fn: () => [],
-  target: $houseSuggestions,
+  target: $houseSuggestions
 });
 
 sample({
@@ -252,12 +252,12 @@ sample({
   clock: houseInputChanged,
   filter: ({ city, street }, house) => !!city && !!house && !!street,
   fn: ({ city, street }, house) => ({ city, house, street }),
-  target: getHouseSuggestionsFx,
+  target: getHouseSuggestionsFx
 });
 
 sample({
   clock: getHouseSuggestionsFx.doneData,
-  target: $houseSuggestions,
+  target: $houseSuggestions
 });
 
 sample({
@@ -265,13 +265,13 @@ sample({
   source: {
     city: $selectedCity,
     street: $selectedStreet,
-    house: $selectedHouse,
+    house: $selectedHouse
   },
   fn: ({ city, street, house }) => {
     if (city && street && house) return `${city}, ${street} улица, ${house}`;
-    else return '';
+    else return "";
   },
-  target: getOrderPriceInfoFx,
+  target: getOrderPriceInfoFx
 });
 
 sample({
@@ -279,18 +279,18 @@ sample({
   source: {
     city: $selectedCity,
     street: $selectedStreet,
-    house: $selectedHouse,
+    house: $selectedHouse
   },
   fn: ({ city, street, house }) => {
     if (city && street && house) return `${city}, ${street} улица, ${house}`;
-    else return '';
+    else return "";
   },
-  target: getOrderPriceInfoFx,
+  target: getOrderPriceInfoFx
 });
 
 sample({
   clock: getOrderPriceInfoFx.doneData,
-  target: $orderPaymentData,
+  target: $orderPaymentData
 });
 
 sample({
@@ -303,12 +303,12 @@ sample({
         ...order,
         delivery: {
           ...order.delivery,
-          price: 0,
-        },
+          price: 0
+        }
       };
     }
   },
-  target: $orderPaymentData,
+  target: $orderPaymentData
 });
 
 export { clickSam, clickDost, $activeMeth, $activeOplata, clickOplata, orderPageMounted, $orderPaymentData };

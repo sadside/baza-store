@@ -1,24 +1,24 @@
-'use client';
+"use client";
 
-import styles from './MenuLinks.module.scss';
+import styles from "./MenuLinks.module.scss";
 import {
   $activeCategory,
   $showDropdownMenu,
   $stateOfMenu,
   dropdownMenuOpened,
-  menuChanged,
-} from '@/stores/layout/menu/init';
-import { useUnit } from 'effector-react';
-import Link from 'next/link';
+  menuChanged
+} from "@/stores/layout/menu/init";
+import { useUnit } from "effector-react";
+import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-} from '@shared/ui/shadcn/ui/navigation-menu';
-import { ComponentIcon } from 'lucide-react';
+  NavigationMenuTrigger
+} from "@shared/ui/shadcn/ui/navigation-menu";
+import { ComponentIcon } from "lucide-react";
 
 type Props = { links: any[]; mobile: boolean };
 

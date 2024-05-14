@@ -1,7 +1,7 @@
-import styles from '../inputPhoneMask/InputPhoneMask.module.scss';
+import styles from "../inputPhoneMask/InputPhoneMask.module.scss";
 
-import classNames from 'classnames';
-import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, KeyboardEvent } from 'react';
+import classNames from "classnames";
+import { ChangeEvent, DetailedHTMLProps, HTMLAttributes, KeyboardEvent } from "react";
 
 interface IProps extends DetailedHTMLProps<HTMLAttributes<HTMLInputElement>, HTMLInputElement> {
   className?: string;
@@ -16,7 +16,7 @@ export const PATTERN = /[^a-zA-ZА-Яа-яЁё]/g;
 
 export const InputNameMask = ({ className, name, type, error, register, resetFiled, ...rest }: IProps) => {
   const getInputSymvolValue = (value: string) => {
-    return value.replace(PATTERN, '');
+    return value.replace(PATTERN, "");
   };
 
   const handlePhoneInput = (event: ChangeEvent<HTMLInputElement>) => {
@@ -28,8 +28,8 @@ export const InputNameMask = ({ className, name, type, error, register, resetFil
   const handlePhoneDelete = (event: KeyboardEvent<HTMLInputElement>) => {
     const input = event.target as HTMLInputElement;
 
-    if (event.key === 'Backspace' && getInputSymvolValue(input.value).length === 1) {
-      input.value = '';
+    if (event.key === "Backspace" && getInputSymvolValue(input.value).length === 1) {
+      input.value = "";
     }
 
     return input;
@@ -41,7 +41,7 @@ export const InputNameMask = ({ className, name, type, error, register, resetFil
         className={classNames(
           `${styles.input}`,
           {
-            [styles.error]: error,
+            [styles.error]: error
           },
           className
         )}

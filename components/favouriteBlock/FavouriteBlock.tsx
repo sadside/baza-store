@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import s from './FavouriteBlock.module.scss';
-import { IServerFavorite } from '@shared/types/models/Favorites';
-import SvgSelector from '@shared/utils/SvgSelector';
+import React from "react";
+import s from "./FavouriteBlock.module.scss";
+import { IServerFavorite } from "@shared/types/models/Favorites";
+import SvgSelector from "@shared/utils/SvgSelector";
 
 type Props = {
   o: IServerFavorite;
@@ -27,7 +27,7 @@ const FavouriteBlock = ({ o }: Props) => {
                 // deleteFavoriteToServerFx(slug);
               }}
             >
-              <SvgSelector id={'favoriteHeart'} />
+              <SvgSelector id={"favoriteHeart"} />
             </span>
           </div>
           <div className={s.description}>
@@ -43,7 +43,7 @@ const FavouriteBlock = ({ o }: Props) => {
           </div>
         </div>
         <div className={s.bottom}>
-          <span className={s.setting} style={{ cursor: 'pointer' }}>
+          <span className={s.setting} style={{ cursor: "pointer" }}>
             Изменить
           </span>
           <span className={s.price}>{price / 100} ₽</span>

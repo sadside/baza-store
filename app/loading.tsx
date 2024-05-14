@@ -1,5 +1,4 @@
 import { twMerge } from 'tailwind-merge';
-import SvgSelector from '@shared/utils/SvgSelector';
 import Logo from '@shared/assets/icons/bazaMainLogo.svg';
 
 export default function Loading() {

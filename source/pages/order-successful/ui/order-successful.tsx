@@ -1,8 +1,8 @@
-'use client';
-import Logo from '@shared/assets/logo.svg';
-import Link from 'next/link';
-import { useUnit } from 'effector-react';
-import { $user } from '@entities/user/model/user-model';
+"use client";
+import Logo from "@shared/assets/logo.svg";
+import Link from "next/link";
+import { useUnit } from "effector-react";
+import { $user } from "@entities/user/model/user-model";
 
 export const OrderSuccessful = () => {
   const user = useUnit($user);
@@ -14,10 +14,10 @@ export const OrderSuccessful = () => {
       </div>
       <h4 className="font-semibold uppercase mb-5">ЗАКАЗ ОФОРМЛЕН</h4>
       <p className="text-center font-normal text-[14px] mb-5">
-        {user?.name ? user.name : 'Загрузка'}
+        {user?.name ? user.name : "Загрузка"}
         , спасибо за заказ!
         <br />
-        Статус выполнения заказа вы узнаете в{' '}
+        Статус выполнения заказа вы узнаете в{" "}
         <Link href="/lk" className="underline">
           личном кабинете.
         </Link>

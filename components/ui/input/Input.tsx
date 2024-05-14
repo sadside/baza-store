@@ -1,4 +1,4 @@
-import styles from './Input.module.scss';
+import styles from "./Input.module.scss";
 
 type InputProps = {
   width?: number;
@@ -9,7 +9,7 @@ type InputProps = {
   padding?: number;
 };
 
-const Input = ({ placeholder = '', width = 392, height = 44, errorMessage = '', margin = 0 }: InputProps) => {
+const Input = ({ placeholder = "", width = 392, height = 44, errorMessage = "", margin = 0 }: InputProps) => {
   return (
     <div style={{ width, height, margin }}>
       <label>

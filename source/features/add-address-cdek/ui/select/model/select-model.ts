@@ -1,6 +1,6 @@
-import { createFactory, invoke } from '@withease/factories';
-import { combine, createEvent, createStore, EventCallable, sample, StoreWritable } from 'effector';
-import { createGate, Gate } from 'effector-react';
+import { createFactory, invoke } from "@withease/factories";
+import { combine, createEvent, createStore, EventCallable, sample, StoreWritable } from "effector";
+import { createGate, Gate } from "effector-react";
 
 export const createSelect = createFactory(
   <Obj, Key extends keyof Obj>({ renderField, items }: { renderField: Key; items?: Obj[] | null }) => {
@@ -16,14 +16,14 @@ export const createSelect = createFactory(
 
     sample({
       clock: itemSelected,
-      target: $selectedItem,
+      target: $selectedItem
     });
 
     sample({
       clock: $items,
       filter: (items) => items?.length === 0,
       fn: () => false,
-      target: $selectIsVisible,
+      target: $selectIsVisible
     });
 
     sample({
@@ -31,18 +31,18 @@ export const createSelect = createFactory(
       source: $items,
       filter: (items) => items?.length !== 0,
       fn: (_, state) => state,
-      target: $selectIsVisible,
+      target: $selectIsVisible
     });
 
     sample({
       clock: itemSelected,
       fn: () => false,
-      target: $selectIsVisible,
+      target: $selectIsVisible
     });
 
     sample({
       clock: gate.close,
-      target: reset,
+      target: reset
     });
 
     return {
@@ -53,12 +53,12 @@ export const createSelect = createFactory(
       visibleChanged,
       reset,
       res,
-      gate,
+      gate
     };
   }
 );
 
-export const testModel = invoke(createSelect<{ id: number; value: string }, 'value'>, { renderField: 'value' });
+export const testModel = invoke(createSelect<{ id: number; value: string }, "value">, { renderField: "value" });
 export type SelectModel<Obj, Key extends keyof Obj> = {
   itemSelected: EventCallable<Obj>;
   $items: StoreWritable<Obj[] | null>;

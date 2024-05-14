@@ -22,13 +22,20 @@
   background: black;
   display: flex;
   align-items: center;
+  
 }
 
 .originalPrice {
   color: #C01111;
   text-decoration: line-through;
+  @media (max-width: 430px) {
+    display: none;
+  }
 }
 
 .saleValue {
   color: #C01111;
+  @media (max-width: 430px) {
+    display: none;
+  }
 }

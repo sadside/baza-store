@@ -1,51 +1,51 @@
-import React from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useUnit } from 'effector-react/compat';
-import { $activeModal, clickOut } from '@/stores/modal/init';
-import s from './MobileModal.module.scss';
-import SvgSelector from '@shared/utils/SvgSelector';
-import { convertDate } from '@shared/utils/convertDate';
+import React from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useUnit } from "effector-react/compat";
+import { $activeModal, clickOut } from "@/stores/modal/init";
+import s from "./MobileModal.module.scss";
+import SvgSelector from "@shared/utils/SvgSelector";
+import { convertDate } from "@shared/utils/convertDate";
 
 const MobileModal = () => {
   const visible = useUnit($activeModal);
   let orders = [
-    { id: 26775134, date: '21.01.2023', time: '21:38', count: '+755' },
+    { id: 26775134, date: "21.01.2023", time: "21:38", count: "+755" },
     {
       id: 26775144,
-      date: '21.01.2023',
-      time: '21:38',
-      count: '+755',
+      date: "21.01.2023",
+      time: "21:38",
+      count: "+755"
     },
-    { id: 24775134, date: '21.01.2023', time: '21:38', count: '+755' },
+    { id: 24775134, date: "21.01.2023", time: "21:38", count: "+755" },
     {
       id: 24575134,
-      date: '21.01.2023',
-      time: '21:38',
-      count: '+755',
+      date: "21.01.2023",
+      time: "21:38",
+      count: "+755"
     },
-    { id: 24575154, date: '21.01.2023', time: '21:38', count: '+755' },
+    { id: 24575154, date: "21.01.2023", time: "21:38", count: "+755" },
     {
       id: 24675134,
-      date: '21.01.2023',
-      time: '21:38',
-      count: '+755',
-    },
+      date: "21.01.2023",
+      time: "21:38",
+      count: "+755"
+    }
   ];
   return (
     <AnimatePresence>
       {visible && (
         <motion.div
           onClick={(e) => e.stopPropagation()}
-          animate={{ y: '0%' }}
-          initial={{ y: '150%' }}
-          style={{ width: '100%' }}
-          exit={{ y: '150%' }}
+          animate={{ y: "0%" }}
+          initial={{ y: "150%" }}
+          style={{ width: "100%" }}
+          exit={{ y: "150%" }}
           transition={{ duration: 0.5 }}
           className={s.mobile}
         >
           <span onClick={() => clickOut()}>
-            {' '}
-            <SvgSelector id={'home'} />
+            {" "}
+            <SvgSelector id={"home"} />
           </span>
           <div className={s.orders}>
             {orders.map((o) => {

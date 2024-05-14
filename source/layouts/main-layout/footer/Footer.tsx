@@ -1,13 +1,75 @@
-import styles from './Footer.module.scss';
-import Link from 'next/link';
-import Image from 'next/image';
-import appLogo from '@shared/assets/app_logo.png';
+import styles from "./Footer.module.scss";
+import Link from "next/link";
+import Image from "next/image";
+import appLogo from "@shared/assets/app_logo.png";
+import { Button } from "@shared/theme/button";
+import SvgSelector from "@shared/utils/SvgSelector";
+import React from "react";
 
 type Props = {};
 
 const Footer = (props: Props) => {
   return (
     <div className={styles.wrapper}>
+      <div className={styles.mobile}>
+        <div className={styles.iosAppMobile}>
+          <div className={styles.logo}>
+            <Image src={appLogo} alt={""} />
+          </div>
+          <div>WEB-ПРИЛОЖЕНИЕ ДЛЯ IOS</div>
+        </div>
+        <div className={styles.buy}>
+          <button className="border-black-50 border-[1px] w-full border-x-0  py-[14px]">
+            <Link href="/info/delivery"
+                  className="flex justify-between  text-black-200 uppercase text-[14px] items-center ">
+              Покупателям
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12.1582 13.3372L4.98486 6.16466L6.1632 4.98633L13.3357 12.158V5.83716H15.0024V15.0038H5.8357V13.3372H12.1582Z"
+                  fill="#777777"
+                />
+              </svg>
+            </Link>
+          </button>
+        </div>
+        <div>
+          <div className={styles.copyMobile}>
+            <svg width="89" height="10" viewBox="0 0 89 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.5879 0.0142652V2.5107H6.74519V10H3.82909V2.5107H0V0.0142652H10.5879Z" fill="black" />
+              <path
+                d="M19.9059 0.0142652H22.822V10H19.9059V6.24822H14.6051V10H11.7026V0.0142652H14.6051V3.75178H19.9059V0.0142652Z"
+                fill="black"
+              />
+              <path
+                d="M27.503 7.50357H34.3981V10H24.6006V0.0142652H34.3981V2.5107H27.503V3.75178H33.8667V6.24822H27.503V7.50357Z"
+                fill="black"
+              />
+              <path
+                d="M49.5094 4.75036C50.218 5.26391 50.6949 6.13409 50.6949 7.1184C50.6949 8.70185 49.4549 10 47.9423 10L39.8345 9.98574V0L47.4109 0.0142652C48.9235 0.0142652 50.1635 1.29815 50.1635 2.8816C50.1635 3.59487 49.9182 4.25107 49.5094 4.75036ZM46.5797 2.5107H42.737V3.89444H46.5797C46.9476 3.89444 47.2474 3.5806 47.2474 3.19544C47.2474 2.81027 46.9476 2.5107 46.5797 2.5107ZM47.1111 7.50357C47.479 7.50357 47.7788 7.18973 47.7788 6.80456C47.7788 6.4194 47.479 6.10556 47.1111 6.10556H42.737V7.50357H47.1111Z"
+                fill="black"
+              />
+              <path
+                d="M60.4772 9.98574L59.9594 8.8873H54.8358L54.318 9.98574H51.1294L55.8033 0.0142652H58.9919L63.6659 9.98574H60.4772ZM58.7739 6.39087L57.384 3.40942L55.9805 6.39087H58.7739Z"
+                fill="black"
+              />
+              <path
+                d="M64.3056 0.0142652H74.8935V2.45364L68.8705 7.50357H74.8935V10H64.3056V7.54636L70.3286 2.5107H64.3056V0.0142652Z"
+                fill="black"
+              />
+              <path
+                d="M84.8759 9.98574L84.3581 8.8873H79.2344L78.7166 9.98574H75.528L80.2019 0.0142652H83.3906L88.0645 9.98574H84.8759ZM83.1725 6.39087L81.7826 3.40942L80.3791 6.39087H83.1725Z"
+                fill="black"
+              />
+            </svg>
+            © 2024
+          </div>
+          <div>
+            <Link className={styles.linkItem} href="/info/documents">
+              Политика конфиденциальности
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className={styles.info}>
         <div className={styles.mainInfo}>
           <div>
@@ -33,17 +95,17 @@ const Footer = (props: Props) => {
             <Link className={styles.linkItem} href="mailto:info@thebaza.ru">
               info@thebaza.ru
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/documents">
               Telegram
             </Link>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/documents">
               Whats’App
             </Link>
           </div>
           <div>
             <div className={styles.iosApp}>
               <div className={styles.logo}>
-                <Image src={appLogo} alt={''} />
+                <Image src={appLogo} alt={""} />
               </div>
               <div>WEB-ПРИЛОЖЕНИЕ ДЛЯ IOS</div>
             </div>
@@ -107,8 +169,8 @@ const Footer = (props: Props) => {
               </svg>
               <svg width="32" height="20" viewBox="0 0 32 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M16.1493 17.2838C18.2383 15.5412 19.5667 12.9249 19.5667 10C19.5667 7.07506 18.2383 4.45885 16.1493 2.71618C17.8075 1.33289 19.9451 0.5 22.2782 0.5C27.5505 0.5 31.8245 4.75329 31.8245 10C31.8245 15.2467 27.5505 19.5 22.2782 19.5C19.9451 19.5 17.8075 18.6671 16.1493 17.2838ZM16.1493 17.2838C14.491 18.6671 12.3535 19.5 10.0204 19.5C4.74813 19.5 0.474121 15.2467 0.474121 10C0.474121 4.75329 4.74813 0.5 10.0204 0.5C12.3535 0.5 14.491 1.33289 16.1493 2.71618C14.0602 4.45885 12.7319 7.07506 12.7319 10C12.7319 12.9249 14.0602 15.5412 16.1493 17.2838Z"
                   fill="#A2A2A2"
                 />
@@ -168,7 +230,7 @@ const Footer = (props: Props) => {
             </div>
           </div>
           <div>
-            <Link className={styles.linkItem} href="#">
+            <Link className={styles.linkItem} href="/info/documents">
               Политика конфиденциальности
             </Link>
           </div>
