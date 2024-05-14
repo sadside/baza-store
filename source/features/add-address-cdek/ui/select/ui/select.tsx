@@ -16,10 +16,7 @@ interface SelectProps {
 
 export function Select({ model, placeholder, className }: SelectProps) {
   const { $selectIsVisible, visibleChanged, $selectedItem, $items, itemSelected, res, gate } = model;
-
-  const isVisible = useUnit($selectIsVisible);
-  const selectedItem = useUnit($selectedItem);
-  const items = useUnit($items);
+  const [isVisible, selectedItem, items] = useUnit([$selectIsVisible, $selectedItem, $items]);
 
   useGate(gate);
 
