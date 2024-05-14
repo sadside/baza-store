@@ -31,6 +31,7 @@ export const ProductInfo = ({ product }: Props) => {
   useGate(productGate, product);
 
   const productInCart = useUnit($productInCart);
+  console.log(productInCart);
 
   const loading = useUnit($productsLoading);
 

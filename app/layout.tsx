@@ -4,9 +4,7 @@ import React from 'react';
 import { Layout } from '@app/ui/layout';
 import '@shared/styles/globals.scss';
 import { Toaster } from '@shared/ui/shadcn/ui/sonner';
-import { allSettled, fork, serialize } from 'effector';
-import { appStarted } from '@shared/lib/utils/helpers/app-status';
-import { EffectorNext } from '@effector/next';
+import Script from 'next/script';
 
 export const metadata = {
   title: 'BAZA',

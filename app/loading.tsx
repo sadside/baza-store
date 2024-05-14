@@ -1,7 +1,6 @@
-'use client';
-import Loader from '@/source/shared/assets/svg-loaders/2.svg';
-import { useEffect, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
+import SvgSelector from '@shared/utils/SvgSelector';
+import Logo from '@shared/assets/icons/bazaMainLogo.svg';
 
 export default function Loading() {
   return (
@@ -13,9 +12,9 @@ export default function Loading() {
         justifyContent: 'center',
         alignItems: 'center',
       }}
-      className={twMerge('animate-fade animate-ease-in')}
+      className={twMerge('bg-black')}
     >
-      <Loader />
+      <Logo className="animate-pulse animate-ease-in duration-[2000]" />
     </div>
   );
 }
