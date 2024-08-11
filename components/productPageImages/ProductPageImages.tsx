@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { IFullProduct } from "@shared/types/models/Product";
-import styles from "./ProductPageImages.module.scss";
-import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Navigation, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { IFullProduct } from '@shared/types/models/Product';
+import styles from './ProductPageImages.module.scss';
+import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { A11y, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 type Props = {
   product: IFullProduct;
@@ -17,7 +17,7 @@ export const ProductPageImages = ({ product }: Props) => {
   return (
     <div className={styles.images}>
       <div className={styles.imgList}>
-        {product?.images?.map((image, index) => {
+        {product?.images?.slice(1, -1)?.map((image, index) => {
           return (
             <Image
               src={image}
@@ -39,11 +39,11 @@ export const ProductPageImages = ({ product }: Props) => {
         <Swiper
           style={{
             // @ts-ignore
-            "--swiper-pagination-color": "black",
-            "--swiper-pagination-bullet-inactive-color": "white",
-            "--swiper-pagination-bullet-inactive-opacity": "1",
-            "--swiper-pagination-bullet-size": "10px",
-            "--swiper-pagination-bullet-horizontal-gap": "6px"
+            '--swiper-pagination-color': 'black',
+            '--swiper-pagination-bullet-inactive-color': 'white',
+            '--swiper-pagination-bullet-inactive-opacity': '1',
+            '--swiper-pagination-bullet-size': '10px',
+            '--swiper-pagination-bullet-horizontal-gap': '6px',
           }}
           modules={[Navigation, Pagination, A11y]}
           spaceBetween={50}

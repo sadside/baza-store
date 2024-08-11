@@ -1,6 +1,6 @@
-import Link from "next/link";
-import { Button } from "@shared/theme/button";
-import React from "react";
+import Link from 'next/link';
+import { Button } from '@shared/theme/button';
+import React from 'react';
 
 export const FavoritesEmpty = () => {
   return (
@@ -10,7 +10,7 @@ export const FavoritesEmpty = () => {
         <br />
         Для добавления перейдите в каталог.
       </div>
-      <Link href={"/"}>
+      <Link href={'/'}>
         <Button.Primary width={238}>Перейти в каталог</Button.Primary>
       </Link>
     </div>
