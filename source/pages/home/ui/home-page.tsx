@@ -22,7 +22,7 @@ export const HomePage = ({ links, src }: Props) => {
           changeVisibleMan(false);
         }}
       >
-        <Video src={'./video.mp4'} />
+        <Video src={'./video1.mp4'} />
         <HomePageLinks links={links} />
       </div>
       <div className={styles.footerMobile}>

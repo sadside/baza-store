@@ -19,6 +19,7 @@ export const Video = ({ src }: { src: string }) => {
         autoPlay
         loop
         muted
+        playsInline
         style={{
           position: 'absolute',
           minWidth: '100%',
