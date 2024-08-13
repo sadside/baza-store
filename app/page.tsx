@@ -24,6 +24,8 @@ const getOverlayLinks = async (): Promise<ReturnT> => {
 
   const token = cookieStore.get('access_token');
 
+  console.log(token);
+
   const test = await fetch(`${API_URL}orders/orders/`, {
     credentials: 'include',
     headers: {
