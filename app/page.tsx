@@ -20,8 +20,15 @@ const getOverlayLinks = async (): Promise<ReturnT> => {
     cache: 'no-store',
   });
 
+  const cookieStore = cookies();
+
+  const token = cookieStore.get('access_token');
+
   const test = await fetch(`${API_URL}orders/orders/`, {
     credentials: 'include',
+    headers: {
+      Authorization: `Token ${token}`,
+    },
   });
 
   const video = await fetch(`https://thebaza.ru/service/videostreaming/blob/`, {
@@ -32,10 +39,6 @@ const getOverlayLinks = async (): Promise<ReturnT> => {
   const links = (await res.json()) as Category[];
 
   const testRes = await test.json();
-
-  const cookieStore = cookies();
-
-  console.log(cookieStore.getAll());
 
   console.log('cookie', testRes);
 
