@@ -19,12 +19,20 @@ const getOverlayLinks = async (): Promise<ReturnT> => {
     cache: 'no-store',
   });
 
+  const test = await fetch(`${API_URL}orders/orders/`, {
+    credentials: 'include',
+  });
+
   const video = await fetch(`https://thebaza.ru/service/videostreaming/blob/`, {
     cache: 'no-store',
   });
 
   const blob = await video.blob();
   const links = (await res.json()) as Category[];
+
+  const testRes = await test.json();
+
+  console.log('cookie', testRes);
 
   if (!res.ok) throw new Error('error');
 
