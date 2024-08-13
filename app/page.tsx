@@ -1,6 +1,7 @@
 import React from 'react';
 import { API_URL } from '@shared/api/http/axios-instance';
 import { HomePage } from '@/source/pages/home';
+import { cookies } from 'next/headers';
 
 export interface Category {
   id: number;
@@ -31,6 +32,10 @@ const getOverlayLinks = async (): Promise<ReturnT> => {
   const links = (await res.json()) as Category[];
 
   const testRes = await test.json();
+
+  const cookieStore = cookies();
+
+  console.log(cookieStore.getAll());
 
   console.log('cookie', testRes);
 
