@@ -29,7 +29,7 @@ const getOverlayLinks = async (): Promise<ReturnT> => {
   const test = await fetch(`${API_URL}orders/orders/`, {
     credentials: 'include',
     headers: {
-      Authorization: `Token ${token}`,
+      Authorization: `Token ${token?.value}`,
     },
   });
 
